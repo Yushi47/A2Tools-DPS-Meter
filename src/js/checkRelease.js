@@ -1,6 +1,6 @@
 (() => {
-  const CDN_MANIFEST = "https://cdn.a2tools.app/latest.json";
-  const RELEASES_URL = "https://gitee.com/taengu/AION2-DPS-Meter/releases";
+  const CDN_MANIFEST = "https://cdn.a2tools.app/latest-v2.json";
+  const RELEASES_URL = "https://github.com/taengu/A2Tools-DPS-Meter/releases";
   const FETCH_TIMEOUT = 6000;
   const START_DELAY = 800,
     RETRY = 500,

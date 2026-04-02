@@ -128,7 +128,7 @@
     },
 
     getVersion() {
-      return "2.0.0";
+      return "2.0.0-beta.1";
     },
   };
 
@@ -383,8 +383,20 @@
     writeCachedIcon() {},
 
     // --- Fetch ---
-    fetchUrlAsync(url) {
-      return fetch(url).then((r) => r.text());
+    fetchUrlAsync(url, callbackId) {
+      // checkRelease.js registers a callback via window._fetchUrlCallback(id, raw)
+      fetch(url)
+        .then((r) => r.text())
+        .then((text) => {
+          if (callbackId && typeof window._fetchUrlCallback === "function") {
+            window._fetchUrlCallback(callbackId, text);
+          }
+        })
+        .catch(() => {
+          if (callbackId && typeof window._fetchUrlCallback === "function") {
+            window._fetchUrlCallback(callbackId, JSON.stringify({ error: "fetch failed" }));
+          }
+        });
     },
 
     // --- Admin ---
