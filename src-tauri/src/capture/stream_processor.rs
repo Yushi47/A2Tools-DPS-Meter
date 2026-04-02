@@ -316,7 +316,6 @@ impl StreamProcessor {
             tracing::debug!("DOT: bad damage varint");
             return;
         }
-        tracing::info!("DOT parsed: target={} actor={} skill={} dmg={}", target_info.value, actor_info.value, skill_code, damage_info.value);
 
         let mut pdp = ParsedDamagePacket::new();
         pdp.set_dot(true);
