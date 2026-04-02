@@ -1,17 +1,14 @@
 use std::collections::{HashMap, HashSet};
 use std::sync::Arc;
 
-
-use crate::combat::data_storage::DataStorage;
+use crate::combat::data_storage::{DataStorage, TargetCombatData};
 use crate::combat::ping_tracker::PingTracker;
-use crate::entity::damage_packet::ParsedDamagePacket;
 use crate::entity::details_context::*;
 use crate::entity::dps_data::DpsData;
 use crate::entity::fight_record::FightRecord;
 use crate::entity::job_class::JobClass;
 use crate::entity::personal_data::PersonalData;
 use crate::entity::summon_resolver;
-use crate::entity::target_info::TargetInfo;
 use crate::i18n::lookup::{NpcLookup, SkillLookup};
 
 /// Train mob NPC type codes.
@@ -60,15 +57,13 @@ pub struct DpsCalculator {
     skill_lookup: Arc<SkillLookup>,
     npc_lookup: Arc<NpcLookup>,
     ping_tracker: Arc<PingTracker>,
-    target_info_map: HashMap<i32, TargetInfo>,
     current_target: i32,
     last_dps_snapshot: Option<DpsData>,
+    last_damage_gen: i64,
     target_selection_mode: TargetSelectionMode,
-    last_local_hit_time: i64,
     last_known_local_id: Option<i64>,
     all_targets_window_ms: i64,
     nickname_job_cache: HashMap<String, String>,
-    /// Track which boss targets have already been auto-saved to avoid duplicates.
     saved_boss_targets: HashSet<i32>,
 }
 
@@ -84,11 +79,10 @@ impl DpsCalculator {
             skill_lookup,
             npc_lookup,
             ping_tracker,
-            target_info_map: HashMap::new(),
             current_target: 0,
             last_dps_snapshot: None,
+            last_damage_gen: -1,
             target_selection_mode: TargetSelectionMode::LastHitByMe,
-            last_local_hit_time: -1,
             last_known_local_id: None,
             all_targets_window_ms: 120_000,
             nickname_job_cache: HashMap::new(),
@@ -104,12 +98,18 @@ impl DpsCalculator {
         self.all_targets_window_ms = ms.clamp(10_000, 900_000);
     }
 
+    pub fn mark_all_targets_saved(&mut self) {
+        let combat = self.data_storage.get_combat_snapshot();
+        for &tid in combat.keys() {
+            self.saved_boss_targets.insert(tid);
+        }
+    }
+
     pub fn restart_target_selection(&mut self, clear_damage: bool) {
-        self.last_local_hit_time = -1;
         self.current_target = 0;
-        self.target_info_map.clear();
         self.last_dps_snapshot = None;
         self.saved_boss_targets.clear();
+        self.last_damage_gen = -1;
         if clear_damage {
             self.data_storage.flush();
         }
@@ -120,99 +120,87 @@ impl DpsCalculator {
         let current_local_id = self.data_storage.local_player_id();
         if current_local_id != self.last_known_local_id {
             self.last_known_local_id = current_local_id;
+            self.last_damage_gen = -1;
             self.restart_target_selection(false);
         }
 
-        let pdp_map = self.data_storage.get_by_target_snapshot();
-        let actor_map = self.data_storage.get_by_actor_snapshot();
+        // If no new damage since last cycle, return cached result
+        let current_gen = self.data_storage.damage_generation();
+        if current_gen == self.last_damage_gen && self.last_dps_snapshot.is_some() {
+            return self.last_dps_snapshot.as_ref().unwrap().clone();
+        }
+        self.last_damage_gen = current_gen;
+
+        // Get pre-computed aggregates (cheap — small map, not 17K packets)
+        let combat_data = self.data_storage.get_combat_snapshot();
         let nickname_data = self.data_storage.get_nicknames();
         let summon_data = self.data_storage.get_summon_data();
-
-        // Update target info and detect idle resets
-        let mut idle_reset_targets: Vec<(i32, i64)> = Vec::new();
-        for (target, packets) in &pdp_map {
-            for pdp in packets {
-                let info = self.target_info_map.entry(*target).or_insert_with(|| {
-                    TargetInfo::new(*target, pdp.timestamp())
-                });
-                info.process_pdp(pdp);
-            }
-            // Check if an idle reset was triggered for this target
-            if let Some(reset_ts) = self.target_info_map.get_mut(target).and_then(|i| i.take_idle_reset()) {
-                idle_reset_targets.push((*target, reset_ts));
-            }
-        }
-        // Prune old packets for targets that had idle resets
-        for (target_id, reset_ts) in &idle_reset_targets {
-            self.data_storage.prune_target_before(*target_id, *reset_ts);
-            tracing::info!("Idle reset: target {} — pruned packets before {}", target_id, reset_ts);
-        }
 
         let mut dps_data = DpsData::new();
         dps_data.local_player_id = current_local_id;
 
         // Decide target
-        let (target_ids, target_name, tracking_id) = self.decide_target(&pdp_map, &actor_map, &nickname_data, &summon_data);
+        let (target_ids, target_name, tracking_id) = self.decide_target(&combat_data, &nickname_data, &summon_data);
         dps_data.target_name = target_name;
         dps_data.target_mode = self.target_selection_mode.id().to_string();
         self.current_target = tracking_id;
         dps_data.target_id = self.current_target;
         self.data_storage.set_current_target(self.current_target);
 
-        // Get packets for targets
-        let pdps: Vec<&ParsedDamagePacket> = if target_ids.len() > 1 || self.current_target == 0 {
-            target_ids.iter()
-                .flat_map(|tid| pdp_map.get(tid).into_iter().flatten())
-                .collect()
-        } else {
-            pdp_map.get(&self.current_target).map(|v| v.iter().collect()).unwrap_or_default()
-        };
+        // Collect actors from selected targets
+        let mut combined_actors: HashMap<i32, i64> = HashMap::new();
+        let mut combined_jobs: HashMap<i32, Option<JobClass>> = HashMap::new();
+        for &tid in &target_ids {
+            if let Some(target_data) = combat_data.get(&tid) {
+                for (&actor_id, actor_data) in &target_data.actors {
+                    *combined_actors.entry(actor_id).or_insert(0) += actor_data.total_damage;
+                    if actor_data.job.is_some() && combined_jobs.get(&actor_id).and_then(|j| j.as_ref()).is_none() {
+                        combined_jobs.insert(actor_id, actor_data.job);
+                    }
+                }
+            }
+        }
 
         // Calculate battle time
-        let mut battle_time = if let Some(info) = self.target_info_map.get(&self.current_target) {
-            info.battle_time()
+        let battle_time = if self.current_target != 0 {
+            combat_data.get(&self.current_target)
+                .map(|td| (td.last_damage_time - td.first_damage_time).max(0))
+                .unwrap_or(0)
+        } else if !target_ids.is_empty() {
+            // Multi-target: use max battle time across selected targets
+            target_ids.iter()
+                .filter_map(|tid| combat_data.get(tid))
+                .map(|td| (td.last_damage_time - td.first_damage_time).max(0))
+                .max()
+                .unwrap_or(0)
         } else {
             0
         };
 
-        if battle_time == 0 && !pdps.is_empty() {
-            battle_time = 1000;
-        }
-
-        if battle_time == 0 || pdps.is_empty() {
+        if (battle_time == 0 && combined_actors.is_empty()) || combined_actors.is_empty() {
             if let Some(ref mut snapshot) = self.last_dps_snapshot {
-                // Update target name in cache (may have changed due to language switch)
                 snapshot.target_name = dps_data.target_name.clone();
                 snapshot.target_mode = dps_data.target_mode.clone();
                 snapshot.target_id = dps_data.target_id;
                 return snapshot.clone();
             }
+            self.last_dps_snapshot = Some(dps_data.clone());
             return dps_data;
         }
 
+        // Build canonical nickname map from aggregates
+        let canonical = build_nickname_canonical_map_from_aggregates(&combined_actors, &summon_data, &nickname_data);
+
         let mut total_damage: f64 = 0.0;
 
-        // Build canonical ID map
-        let nickname_to_canonical = build_nickname_canonical_map(&pdps, &summon_data, &nickname_data);
-
-        for pdp in &pdps {
-            total_damage += pdp.total_damage() as f64;
-
-            let raw_uid = summon_resolver::resolve(pdp.actor_id(), &summon_data);
+        // Build PersonalData from aggregates (no packet iteration!)
+        for (&actor_id, &damage) in &combined_actors {
+            let raw_uid = summon_resolver::resolve(actor_id, &summon_data);
             if raw_uid <= 0 { continue; }
             let nickname = resolve_nickname(raw_uid, &nickname_data, &summon_data);
-            let uid = *nickname_to_canonical.get(&nickname).unwrap_or(&raw_uid);
+            let uid = *canonical.get(&nickname).unwrap_or(&raw_uid);
 
-            let raw_sc = pdp.skill_code();
-            let sc = {
-                let base = raw_sc - (raw_sc % 10000);
-                let bn = self.skill_lookup.get_skill_name(base);
-                if !bn.is_empty() {
-                    let rn = self.skill_lookup.get_skill_name(raw_sc);
-                    if rn.is_empty() || rn == bn { base } else { raw_sc }
-                } else { raw_sc }
-            };
-            let skill_name = self.skill_lookup.lookup_skill_name(sc);
+            total_damage += damage as f64;
 
             let entry = dps_data.map.entry(uid).or_insert_with(|| {
                 let cached_job = self.cached_job(&nickname);
@@ -223,15 +211,14 @@ impl DpsCalculator {
                 }
             });
 
-            // Update nickname if changed
             if entry.nickname != nickname {
                 entry.nickname = nickname.clone();
             }
 
-            entry.process_pdp(pdp, &skill_name);
+            entry.amount += damage as f64;
 
             if entry.job.is_empty() {
-                if let Some(job) = JobClass::convert_from_skill(pdp.skill_code()) {
+                if let Some(job) = combined_jobs.get(&actor_id).and_then(|j| *j) {
                     entry.job = job.class_name().to_string();
                     self.cache_job(&nickname, job.class_name());
                 }
@@ -263,6 +250,7 @@ impl DpsCalculator {
 
         // Filter and compute DPS
         let local_ids = self.resolve_local_ids(&summon_data);
+        let bt = battle_time.max(1000);
         let mut to_remove = Vec::new();
         for (&uid, data) in &mut dps_data.map {
             if data.job.is_empty() {
@@ -273,7 +261,7 @@ impl DpsCalculator {
                     continue;
                 }
             }
-            data.dps = data.amount / battle_time.max(1000) as f64 * 1000.0;
+            data.dps = data.amount / bt as f64 * 1000.0;
             data.damage_contribution = data.amount / total_damage * 100.0;
         }
         for uid in to_remove {
@@ -281,16 +269,13 @@ impl DpsCalculator {
         }
 
         dps_data.battle_time = battle_time;
-        if !dps_data.map.is_empty() {
-            self.last_dps_snapshot = Some(dps_data.clone());
-        }
+        self.last_dps_snapshot = Some(dps_data.clone());
         dps_data
     }
 
     fn decide_target(
         &mut self,
-        pdp_map: &HashMap<i32, Vec<ParsedDamagePacket>>,
-        _actor_map: &HashMap<i32, Vec<ParsedDamagePacket>>,
+        combat_data: &HashMap<i32, TargetCombatData>,
         _nickname_data: &HashMap<i32, String>,
         summon_data: &HashMap<i32, i32>,
     ) -> (HashSet<i32>, String, i32) {
@@ -298,10 +283,10 @@ impl DpsCalculator {
 
         match self.target_selection_mode {
             TargetSelectionMode::MostDamage => {
-                let best = self.target_info_map.iter()
-                    .max_by_key(|(_, info)| info.damaged_amount);
+                let best = combat_data.iter()
+                    .max_by_key(|(_, td)| td.total_damage);
                 match best {
-                    Some((&id, _info)) => {
+                    Some((&id, _)) => {
                         let name = self.resolve_target_name(id);
                         (HashSet::from([id]), name, id)
                     }
@@ -309,8 +294,8 @@ impl DpsCalculator {
                 }
             }
             TargetSelectionMode::MostRecent => {
-                let best = self.target_info_map.iter()
-                    .max_by_key(|(_, info)| info.last_damage_time());
+                let best = combat_data.iter()
+                    .max_by_key(|(_, td)| td.last_damage_time);
                 match best {
                     Some((&id, _)) => {
                         let name = self.resolve_target_name(id);
@@ -320,8 +305,7 @@ impl DpsCalculator {
                 }
             }
             TargetSelectionMode::BossTargets => {
-                // Find targets that are bosses
-                let boss_targets: Vec<_> = self.target_info_map.keys()
+                let boss_targets: Vec<_> = combat_data.keys()
                     .filter(|&&tid| {
                         if let Some(&mob_code) = mob_data.get(&tid) {
                             self.npc_lookup.is_boss(mob_code)
@@ -333,14 +317,14 @@ impl DpsCalculator {
                     .collect();
 
                 if let Some(&best) = boss_targets.iter()
-                    .max_by_key(|&&tid| self.target_info_map.get(&tid).map(|i| i.damaged_amount).unwrap_or(0))
+                    .max_by_key(|&&tid| combat_data.get(&tid).map(|td| td.total_damage).unwrap_or(0))
                 {
                     let name = self.resolve_target_name(best);
                     (HashSet::from([best]), name, best)
                 } else {
                     // Fall back to most damage
-                    let best = self.target_info_map.iter()
-                        .max_by_key(|(_, info)| info.damaged_amount);
+                    let best = combat_data.iter()
+                        .max_by_key(|(_, td)| td.total_damage);
                     match best {
                         Some((&id, _)) => {
                             let name = self.resolve_target_name(id);
@@ -351,11 +335,11 @@ impl DpsCalculator {
                 }
             }
             TargetSelectionMode::AllTargets => {
-                let all: HashSet<i32> = self.target_info_map.keys().cloned().collect();
+                let all: HashSet<i32> = combat_data.keys().cloned().collect();
                 (all, "All Targets".to_string(), 0)
             }
             TargetSelectionMode::TrainTargets => {
-                let trains: HashSet<i32> = self.target_info_map.keys()
+                let trains: HashSet<i32> = combat_data.keys()
                     .filter(|&&tid| {
                         mob_data.get(&tid).is_some_and(|code| TRAIN_MOB_CODES.contains(code))
                     })
@@ -366,15 +350,14 @@ impl DpsCalculator {
             TargetSelectionMode::LastHitByMe => {
                 let local_ids = self.resolve_local_ids(summon_data);
                 if let Some(ref ids) = local_ids {
-                    // Find the target most recently hit by the local player
                     let mut best_target: Option<(i32, i64)> = None;
-                    for (&target, packets) in pdp_map {
-                        for pdp in packets.iter().rev() {
-                            let resolved = summon_resolver::resolve(pdp.actor_id(), summon_data);
+                    for (&target_id, target_data) in combat_data {
+                        for (&actor_id, _) in &target_data.actors {
+                            let resolved = summon_resolver::resolve(actor_id, summon_data);
                             if ids.contains(&resolved) {
-                                let ts = pdp.timestamp();
+                                let ts = target_data.last_damage_time;
                                 if best_target.is_none() || ts > best_target.unwrap().1 {
-                                    best_target = Some((target, ts));
+                                    best_target = Some((target_id, ts));
                                 }
                                 break;
                             }
@@ -385,10 +368,9 @@ impl DpsCalculator {
                             let name = self.resolve_target_name(id);
                             (HashSet::from([id]), name, id)
                         }
-                        // Local player hasn't hit anything yet — fall back to most recent target
                         None => {
-                            let best = self.target_info_map.iter()
-                                .max_by_key(|(_, info)| info.last_damage_time());
+                            let best = combat_data.iter()
+                                .max_by_key(|(_, td)| td.last_damage_time);
                             match best {
                                 Some((&id, _)) => {
                                     let name = self.resolve_target_name(id);
@@ -399,9 +381,8 @@ impl DpsCalculator {
                         }
                     }
                 } else {
-                    // No local player identified yet — fall back to most damaged target
-                    let best = self.target_info_map.iter()
-                        .max_by_key(|(_, info)| info.damaged_amount);
+                    let best = combat_data.iter()
+                        .max_by_key(|(_, td)| td.total_damage);
                     match best {
                         Some((&id, _)) => {
                             let name = self.resolve_target_name(id);
@@ -429,7 +410,6 @@ impl DpsCalculator {
         let local_id = self.data_storage.local_player_id()? as i32;
         let mut ids = HashSet::new();
         ids.insert(local_id);
-        // Include summons owned by local player
         for (&summon, &owner) in summon_data {
             if summon_resolver::resolve(owner, summon_data) == local_id {
                 ids.insert(summon);
@@ -453,9 +433,6 @@ impl DpsCalculator {
         self.nickname_job_cache.insert(key, job.to_string());
     }
 
-    /// Create FightRecord snapshots for boss targets that have accumulated
-    /// enough data (>= 5 seconds of battle time and > 0 total damage) and have
-    /// not been saved before. Returns a list of records ready to be persisted.
     pub fn snapshot_boss_fights(&mut self) -> Vec<FightRecord> {
         self.snapshot_boss_fights_inner(false)
     }
@@ -466,6 +443,7 @@ impl DpsCalculator {
 
     fn snapshot_boss_fights_inner(&mut self, force: bool) -> Vec<FightRecord> {
         let mob_data = self.data_storage.get_mob_data();
+        let combat_data = self.data_storage.get_combat_snapshot();
         let now_ms = std::time::SystemTime::now()
             .duration_since(std::time::UNIX_EPOCH)
             .map(|d| d.as_millis() as i64)
@@ -473,8 +451,7 @@ impl DpsCalculator {
 
         let mut records = Vec::new();
 
-        // Find targets worth saving: bosses, or any fight with >= 10s battle time
-        let boss_target_ids: Vec<i32> = self.target_info_map.keys()
+        let boss_target_ids: Vec<i32> = combat_data.keys()
             .filter(|&&tid| {
                 if self.saved_boss_targets.contains(&tid) {
                     return false;
@@ -488,38 +465,34 @@ impl DpsCalculator {
             .cloned()
             .collect();
 
-
-
         if !boss_target_ids.is_empty() {
             tracing::debug!("snapshot_boss_fights: {} candidate targets", boss_target_ids.len());
         }
+
         for target_id in boss_target_ids {
-            let info = match self.target_info_map.get(&target_id) {
-                Some(i) => i,
+            let target_data = match combat_data.get(&target_id) {
+                Some(td) => td,
                 None => continue,
             };
 
-            let battle_time = info.battle_time();
-            if battle_time < 5_000 || info.damaged_amount <= 0 {
+            let battle_time = (target_data.last_damage_time - target_data.first_damage_time).max(0);
+            if battle_time < 5_000 || target_data.total_damage <= 0 {
                 continue;
             }
 
-            // Save when fight is idle (ended), periodically during long fights, or forced
-            let idle_time = now_ms - info.last_damage_time();
+            let idle_time = now_ms - target_data.last_damage_time;
             let is_ended = idle_time >= 10_000;
             let is_periodic = battle_time >= 15_000;
             if !force && !is_ended && !is_periodic {
                 continue;
             }
 
-            // Generate fight record via get_target_details
+            // Generate fight record
             let details = self.get_target_details(target_id, None);
             let nickname_data = self.data_storage.get_nicknames();
             let summon_data_snap = self.data_storage.get_summon_data();
 
-            // Build actors list with nicknames from the full nickname storage
-            // to ensure all actor IDs have their names resolved
-            let mut record_actors: HashMap<i32, (String, String)> = HashMap::new(); // id -> (nick, job)
+            let mut record_actors: HashMap<i32, (String, String)> = HashMap::new();
             for skill in &details.skills {
                 let uid = skill.actor_id;
                 record_actors.entry(uid).or_insert_with(|| {
@@ -528,13 +501,12 @@ impl DpsCalculator {
                         else { JobClass::convert_from_skill(skill.code).map(|j| j.class_name().to_string()).unwrap_or_default() };
                     (nick, job)
                 });
-                // Update job if empty
                 let entry = record_actors.get_mut(&uid).unwrap();
                 if entry.1.is_empty() && !skill.job.is_empty() {
                     entry.1 = skill.job.clone();
                 }
             }
-            // Obscure non-local player nicknames for privacy
+
             let local_id = self.data_storage.local_player_id().unwrap_or(-1) as i32;
             let actors: Vec<DetailsActorSummary> = record_actors.iter()
                 .map(|(&id, (nick, job))| {
@@ -544,7 +516,6 @@ impl DpsCalculator {
                         crate::entity::fight_record::obscure_nickname(nick)
                     };
                     let job_class = JobClass::convert_from_skill(
-                        // Find a skill code for this actor to determine job
                         details.skills.iter()
                             .find(|s| s.actor_id == id && !s.job.is_empty())
                             .map(|s| s.code)
@@ -559,11 +530,9 @@ impl DpsCalculator {
                 })
                 .collect();
 
-            // Get mob type code for i18n resolution
             let mob_code = mob_data.get(&target_id).copied().unwrap_or(0);
             let boss_name = self.resolve_target_name(target_id);
 
-            // Collect job IDs for language-independent storage
             let job_ids: Vec<i32> = actors.iter()
                 .filter(|a| a.job_id > 0)
                 .map(|a| a.job_id)
@@ -577,16 +546,16 @@ impl DpsCalculator {
                 .into_iter()
                 .collect();
 
-            let id = format!("auto_{}_{}", target_id, info.target_damage_started);
+            let id = format!("auto_{}_{}", target_id, target_data.first_damage_time);
 
             let is_train = TRAIN_MOB_CODES.contains(&mob_code);
             let record = FightRecord {
                 id,
                 boss_name,
                 target_id,
-                start_time_ms: info.target_damage_started,
+                start_time_ms: target_data.first_damage_time,
                 duration_ms: battle_time,
-                total_damage: info.damaged_amount as i32,
+                total_damage: target_data.total_damage as i32,
                 jobs,
                 job_ids,
                 details,
@@ -596,7 +565,6 @@ impl DpsCalculator {
                 mob_code,
             };
 
-            // Only mark as "saved" when fight has ended — allow periodic re-saves during active fights
             if is_ended {
                 self.saved_boss_targets.insert(target_id);
             }
@@ -607,43 +575,42 @@ impl DpsCalculator {
     }
 
     pub fn get_details_context(&self) -> DetailsContext {
-        let pdp_map = self.data_storage.get_by_target_snapshot();
+        let combat_data = self.data_storage.get_combat_snapshot();
         let nickname_data = self.data_storage.get_nicknames();
         let summon_data = self.data_storage.get_summon_data();
         let mob_hp_data = self.data_storage.get_mob_hp_data();
         let mob_data = self.data_storage.get_mob_data();
 
-        let mut actor_meta: HashMap<i32, (String, String)> = HashMap::new(); // uid -> (nickname, job)
+        let mut actor_meta: HashMap<i32, (String, String)> = HashMap::new();
         let mut targets = Vec::new();
 
-        for (&target_id, pdps) in &pdp_map {
-            let mut total_damage: i32 = 0;
+        for (&target_id, target_data) in &combat_data {
             let mut actor_damage: HashMap<i32, i32> = HashMap::new();
-            let pdp_refs: Vec<&ParsedDamagePacket> = pdps.iter().collect();
-            let canonical = build_nickname_canonical_map(&pdp_refs, &summon_data, &nickname_data);
+            let canonical = build_nickname_canonical_map_from_aggregates(
+                &target_data.actors.iter().map(|(&id, ad)| (id, ad.total_damage)).collect(),
+                &summon_data,
+                &nickname_data,
+            );
 
-            for pdp in pdps {
-                let raw_uid = summon_resolver::resolve(pdp.actor_id(), &summon_data);
+            for (&actor_id, actor_data) in &target_data.actors {
+                let raw_uid = summon_resolver::resolve(actor_id, &summon_data);
                 if raw_uid <= 0 { continue; }
                 let nickname = resolve_nickname(raw_uid, &nickname_data, &summon_data);
                 let uid = *canonical.get(&nickname).unwrap_or(&raw_uid);
-                let damage = pdp.total_damage();
-                total_damage += damage;
-                *actor_damage.entry(uid).or_insert(0) += damage;
+                *actor_damage.entry(uid).or_insert(0) += actor_data.total_damage as i32;
 
                 actor_meta.entry(uid).or_insert_with(|| {
                     (resolve_nickname(uid, &nickname_data, &summon_data), String::new())
                 });
 
                 if actor_meta.get(&uid).unwrap().1.is_empty() {
-                    if let Some(job) = JobClass::convert_from_skill(pdp.skill_code()) {
+                    if let Some(job) = actor_data.job {
                         actor_meta.get_mut(&uid).unwrap().1 = job.class_name().to_string();
                     }
                 }
             }
 
-            // Orphan summon inference: unlinked actors with detected job matching
-            // exactly one named player of that class get merged into that player.
+            // Orphan summon inference
             let target_actor_ids: HashSet<i32> = actor_damage.keys().copied().collect();
             let mut orphan_merges: Vec<(i32, i32)> = Vec::new();
             for (&uid, (_, job)) in &actor_meta {
@@ -684,30 +651,28 @@ impl DpsCalculator {
                 String::new()
             };
 
-            let info = self.target_info_map.get(&target_id);
             targets.push(DetailsTargetSummary {
                 target_id,
                 target_name,
                 max_hp: mob_hp_data.get(&target_id).copied().unwrap_or(0),
-                battle_time: info.map(|i| i.battle_time()).unwrap_or(0),
-                last_damage_time: info.map(|i| i.last_damage_time()).unwrap_or(0),
-                total_damage,
+                battle_time: (target_data.last_damage_time - target_data.first_damage_time).max(0),
+                last_damage_time: target_data.last_damage_time,
+                total_damage: target_data.total_damage as i32,
                 actor_damage,
             });
         }
 
         let actors: Vec<DetailsActorSummary> = actor_meta.iter()
             .map(|(&id, (nick, job))| {
-                let job_id = JobClass::convert_from_skill(
-                    // Find any skill from this actor to get job prefix
-                    pdp_map.values().flatten()
-                        .find(|p| {
-                            let resolved = summon_resolver::resolve(p.actor_id(), &summon_data);
-                            resolved == id && JobClass::convert_from_skill(p.skill_code()).is_some()
-                        })
-                        .map(|p| p.skill_code())
+                let job_id = if let Some(jc) = JobClass::convert_from_skill(
+                    // Find a skill code from this actor's aggregate data
+                    combat_data.values()
+                        .flat_map(|td| td.actors.get(&id))
+                        .flat_map(|ad| ad.skills.keys())
+                        .find(|&&(sc, _)| JobClass::convert_from_skill(sc).is_some())
+                        .map(|&(sc, _)| sc)
                         .unwrap_or(0)
-                ).map(|j| j.class_prefix()).unwrap_or(0);
+                ) { jc.class_prefix() } else { 0 };
                 DetailsActorSummary {
                     actor_id: id,
                     nickname: nick.clone(),
@@ -725,9 +690,9 @@ impl DpsCalculator {
     }
 
     pub fn get_target_details(&self, target_id: i32, actor_ids: Option<&[i32]>) -> TargetDetailsResponse {
-        let pdp_map = self.data_storage.get_by_target_snapshot();
-        let pdps = match pdp_map.get(&target_id) {
-            Some(p) => p,
+        let combat_data = self.data_storage.get_combat_snapshot();
+        let target_data = match combat_data.get(&target_id) {
+            Some(td) => td,
             None => return TargetDetailsResponse {
                 target_id,
                 max_hp: 0,
@@ -743,31 +708,36 @@ impl DpsCalculator {
         let nickname_data = self.data_storage.get_nicknames();
         let mob_hp_data = self.data_storage.get_mob_hp_data();
 
-        let pdp_refs: Vec<&ParsedDamagePacket> = pdps.iter().collect();
-        let canonical = build_nickname_canonical_map(&pdp_refs, &summon_data, &nickname_data);
+        let actor_damage_map: HashMap<i32, i64> = target_data.actors.iter()
+            .map(|(&id, ad)| (id, ad.total_damage))
+            .collect();
+        let canonical = build_nickname_canonical_map_from_aggregates(&actor_damage_map, &summon_data, &nickname_data);
 
-        // Build orphan summon map: orphan actor -> owner actor
-        // Matches logic in get_details_context orphan inference
+        // Build orphan summon map
         let mut orphan_to_owner: HashMap<i32, i32> = HashMap::new();
         {
             let mut actor_jobs: HashMap<i32, String> = HashMap::new();
-            for pdp in pdps {
-                let raw_uid = summon_resolver::resolve(pdp.actor_id(), &summon_data);
+            for (&actor_id, actor_data) in &target_data.actors {
+                let raw_uid = summon_resolver::resolve(actor_id, &summon_data);
                 if raw_uid <= 0 { continue; }
                 let uid = *canonical.get(&resolve_nickname(raw_uid, &nickname_data, &summon_data)).unwrap_or(&raw_uid);
                 if actor_jobs.contains_key(&uid) { continue; }
-                if let Some(job) = JobClass::convert_from_skill(pdp.skill_code()) {
+                if let Some(job) = actor_data.job {
                     actor_jobs.insert(uid, job.class_name().to_string());
                 }
             }
             let mut seen = HashSet::new();
-            for pdp in pdps {
-                let raw_uid = summon_resolver::resolve(pdp.actor_id(), &summon_data);
+            for (&actor_id, actor_data) in &target_data.actors {
+                let raw_uid = summon_resolver::resolve(actor_id, &summon_data);
                 if raw_uid <= 0 { continue; }
                 if summon_data.contains_key(&raw_uid) || nickname_data.contains_key(&raw_uid) { continue; }
                 if !seen.insert(raw_uid) { continue; }
-                let job = match JobClass::convert_from_skill_loose(pdp.skill_code()) {
-                    Some(j) => j.class_name().to_string(),
+                // Use loose detection from any skill this actor used
+                let job = actor_data.skills.keys()
+                    .find_map(|&(sc, _)| JobClass::convert_from_skill_loose(sc))
+                    .map(|j| j.class_name().to_string());
+                let job = match job {
+                    Some(j) => j,
                     None => continue,
                 };
                 let matching: Vec<i32> = actor_jobs.iter()
@@ -780,7 +750,7 @@ impl DpsCalculator {
             }
         }
 
-        // Build expanded actor ID set (includes summons owned by selected actors)
+        // Build expanded actor ID set for filtering
         let filter_uids: Option<HashSet<i32>> = actor_ids.map(|ids| {
             let canonical_ids: HashSet<i32> = ids.iter()
                 .map(|&id| {
@@ -789,11 +759,9 @@ impl DpsCalculator {
                 })
                 .collect();
             let mut expanded = HashSet::from_iter(ids.iter().copied());
-            // Include any actor whose canonical ID matches a selected player
-            for pdp in pdps {
-                let raw_uid = summon_resolver::resolve(pdp.actor_id(), &summon_data);
+            for (&actor_id, _) in &target_data.actors {
+                let raw_uid = summon_resolver::resolve(actor_id, &summon_data);
                 if raw_uid <= 0 { continue; }
-                // Remap orphan summons to their inferred owner
                 let remapped = *orphan_to_owner.get(&raw_uid).unwrap_or(&raw_uid);
                 let nick = resolve_nickname(remapped, &nickname_data, &summon_data);
                 let uid = *canonical.get(&nick).unwrap_or(&remapped);
@@ -801,7 +769,6 @@ impl DpsCalculator {
                     expanded.insert(raw_uid);
                 }
             }
-            // Also include orphan summons whose owner is selected
             for (&orphan, &owner) in &orphan_to_owner {
                 let nick = resolve_nickname(owner, &nickname_data, &summon_data);
                 let uid = *canonical.get(&nick).unwrap_or(&owner);
@@ -812,136 +779,109 @@ impl DpsCalculator {
             expanded
         });
 
-        // First pass: compute total damage and battle time from ALL actors (unfiltered)
-        let mut total_damage: i32 = 0;
-        let mut start_time: Option<i64> = None;
-        let mut end_time: Option<i64> = None;
-        for pdp in pdps {
-            let raw_uid = summon_resolver::resolve(pdp.actor_id(), &summon_data);
-            if raw_uid <= 0 { continue; }
-            total_damage += pdp.total_damage();
-            let ts = pdp.timestamp();
-            start_time = Some(start_time.map_or(ts, |s: i64| s.min(ts)));
-            end_time = Some(end_time.map_or(ts, |e: i64| e.max(ts)));
-        }
-
-        // Second pass: build skill entries (filtered by actor if specified)
+        // Build skill entries from aggregates (no packet iteration!)
         let mut skill_map: HashMap<(i32, i32), DetailSkillEntry> = HashMap::new();
-        for pdp in pdps {
-            let raw_uid = summon_resolver::resolve(pdp.actor_id(), &summon_data);
+        let fight_start = target_data.first_damage_time;
+
+        for (&actor_id, actor_data) in &target_data.actors {
+            let raw_uid = summon_resolver::resolve(actor_id, &summon_data);
             if raw_uid <= 0 { continue; }
 
-            // Filter by actor IDs if specified
             if let Some(ref filter) = filter_uids {
                 if !filter.contains(&raw_uid) { continue; }
             }
 
-            // Remap orphan summons to their inferred owner
             let remapped = *orphan_to_owner.get(&raw_uid).unwrap_or(&raw_uid);
             let nickname = resolve_nickname(remapped, &nickname_data, &summon_data);
             let uid = *canonical.get(&nickname).unwrap_or(&remapped);
 
-            let damage = pdp.total_damage();
-            let ts = pdp.timestamp();
-            let raw_skill = pdp.skill_code();
-            // Normalize skill code: variant -> base for aggregation and name lookup
-            let skill_code = {
-                let base = raw_skill - (raw_skill % 10000);
-                let base_name = self.skill_lookup.get_skill_name(base);
-                if !base_name.is_empty() {
-                    let raw_name = self.skill_lookup.get_skill_name(raw_skill);
-                    if raw_name.is_empty() || raw_name == base_name {
-                        base
-                    } else {
-                        raw_skill
-                    }
-                } else {
-                    raw_skill
+            for (&(raw_skill, is_dot), skill_data) in &actor_data.skills {
+                // Normalize skill code
+                let skill_code = {
+                    let base = raw_skill - (raw_skill % 10000);
+                    let base_name = self.skill_lookup.get_skill_name(base);
+                    if !base_name.is_empty() {
+                        let raw_name = self.skill_lookup.get_skill_name(raw_skill);
+                        if raw_name.is_empty() || raw_name == base_name { base } else { raw_skill }
+                    } else { raw_skill }
+                };
+
+                let dot_offset = if is_dot { 1_000_000_000 } else { 0 };
+                let key = (uid, skill_code + dot_offset);
+                let mut skill_name = self.skill_lookup.lookup_skill_name(skill_code);
+                if is_dot && !skill_name.is_empty() {
+                    skill_name = format!("{} - DOT", skill_name);
                 }
-            };
-            // Separate key for DOT vs hit entries so they don't merge
-            let dot_offset = if pdp.is_dot() { 1_000_000_000 } else { 0 };
-            let key = (uid, skill_code + dot_offset);
-            let mut skill_name = self.skill_lookup.lookup_skill_name(skill_code);
-            // Append " - DOT" so the frontend can pair DOTs with their parent skill
-            if pdp.is_dot() && !skill_name.is_empty() {
-                skill_name = format!("{} - DOT", skill_name);
-            }
-            let job = JobClass::convert_from_skill(skill_code)
-                .map(|j| j.class_name().to_string())
-                .unwrap_or_default();
+                let job = JobClass::convert_from_skill(skill_code)
+                    .map(|j| j.class_name().to_string())
+                    .unwrap_or_default();
 
-            let entry = skill_map.entry(key).or_insert_with(|| DetailSkillEntry {
-                actor_id: uid,
-                code: skill_code,
-                name: skill_name,
-                time: 0,
-                dmg: 0,
-                multi_hit_count: 0,
-                multi_hit_damage: 0,
-                multi_hit_hits: 0,
-                min_dmg: i32::MAX,
-                max_dmg: 0,
-                crit: 0,
-                parry: 0,
-                back: 0,
-                perfect: 0,
-                double: 0,
-                heal: 0,
-                job,
-                is_dot: pdp.is_dot(),
-                hit_timestamps: Vec::new(),
-                specs: pdp.spec_flags().to_vec(),
-            });
+                let entry = skill_map.entry(key).or_insert_with(|| DetailSkillEntry {
+                    actor_id: uid,
+                    code: skill_code,
+                    name: skill_name,
+                    time: 0,
+                    dmg: 0,
+                    multi_hit_count: 0,
+                    multi_hit_damage: 0,
+                    multi_hit_hits: 0,
+                    min_dmg: i32::MAX,
+                    max_dmg: 0,
+                    crit: 0,
+                    parry: 0,
+                    back: 0,
+                    perfect: 0,
+                    double: 0,
+                    heal: 0,
+                    job,
+                    is_dot,
+                    hit_timestamps: Vec::new(),
+                    specs: skill_data.spec_flags.to_vec(),
+                });
 
-            entry.time += 1;
-            entry.dmg += damage;
-            if pdp.multi_hit_count() > 0 {
-                entry.multi_hit_count += 1;
-                entry.multi_hit_damage += pdp.multi_hit_damage();
-                entry.multi_hit_hits += pdp.multi_hit_count();
+                entry.time += skill_data.hit_count;
+                entry.dmg += skill_data.total_damage;
+                entry.multi_hit_count += skill_data.multi_hit_count;
+                entry.multi_hit_damage += skill_data.multi_hit_damage;
+                entry.multi_hit_hits += skill_data.multi_hit_hits;
+                if skill_data.min_damage < entry.min_dmg { entry.min_dmg = skill_data.min_damage; }
+                if skill_data.max_damage > entry.max_dmg { entry.max_dmg = skill_data.max_damage; }
+                entry.crit += skill_data.crit_count;
+                entry.back += skill_data.back_count;
+                entry.parry += skill_data.parry_count;
+                entry.perfect += skill_data.perfect_count;
+                entry.double += skill_data.double_count;
+                entry.heal += skill_data.heal_amount;
+                // Add timestamps relative to fight start
+                for &ts in &skill_data.hit_timestamps {
+                    entry.hit_timestamps.push(ts - fight_start);
+                }
+                // Merge spec flags
+                for (i, &flag) in skill_data.spec_flags.iter().enumerate() {
+                    if flag && i < entry.specs.len() { entry.specs[i] = true; }
+                }
             }
-            let hit_dmg = pdp.damage();
-            if hit_dmg < entry.min_dmg { entry.min_dmg = hit_dmg; }
-            if hit_dmg > entry.max_dmg { entry.max_dmg = hit_dmg; }
-            if pdp.is_crit() { entry.crit += 1; }
-            if pdp.specials().contains(&crate::entity::special_damage::SpecialDamage::Back) { entry.back += 1; }
-            if pdp.specials().contains(&crate::entity::special_damage::SpecialDamage::Parry) { entry.parry += 1; }
-            if pdp.specials().contains(&crate::entity::special_damage::SpecialDamage::Perfect) { entry.perfect += 1; }
-            if pdp.specials().contains(&crate::entity::special_damage::SpecialDamage::Double) { entry.double += 1; }
-            entry.heal += pdp.heal_amount();
-            entry.hit_timestamps.push(ts);
         }
 
-        // Fix min_dmg and normalize timestamps relative to fight start
-        let fight_start = start_time.unwrap_or(0);
+        // Fix min_dmg sentinel
         for entry in skill_map.values_mut() {
             if entry.min_dmg == i32::MAX { entry.min_dmg = 0; }
-            for ts in &mut entry.hit_timestamps {
-                *ts -= fight_start;
-            }
         }
 
-        let battle_time = match (start_time, end_time) {
-            (Some(s), Some(e)) => (e - s).max(0),
-            _ => 0,
-        };
+        let battle_time = (target_data.last_damage_time - target_data.first_damage_time).max(0);
 
-        let ping_history = if start_time.is_some() && end_time.is_some() {
-            self.ping_tracker.get_ping_history(start_time.unwrap(), end_time.unwrap())
-                .into_iter()
-                .map(|(ts, ping)| PingPoint { ts_ms: ts - fight_start, ping_ms: ping })
-                .collect()
-        } else {
-            Vec::new()
-        };
+        let ping_history = self.ping_tracker.get_ping_history(
+            target_data.first_damage_time, target_data.last_damage_time
+        ).into_iter()
+            .map(|(ts, ping)| PingPoint { ts_ms: ts - fight_start, ping_ms: ping })
+            .collect();
 
         TargetDetailsResponse {
             target_id,
             max_hp: mob_hp_data.get(&target_id).copied().unwrap_or(0),
-            total_target_damage: total_damage,
+            total_target_damage: target_data.total_damage as i32,
             battle_time,
-            start_time: start_time.unwrap_or(0),
+            start_time: target_data.first_damage_time,
             skills: skill_map.into_values().collect(),
             ping_history,
         }
@@ -959,19 +899,18 @@ fn resolve_nickname(uid: i32, nicknames: &HashMap<i32, String>, summon_data: &Ha
     uid.to_string()
 }
 
-fn build_nickname_canonical_map(
-    pdps: &[&ParsedDamagePacket],
+fn build_nickname_canonical_map_from_aggregates(
+    actor_damage: &HashMap<i32, i64>,
     summon_data: &HashMap<i32, i32>,
     nickname_data: &HashMap<i32, String>,
 ) -> HashMap<String, i32> {
-    let mut nickname_damage: HashMap<String, HashMap<i32, i32>> = HashMap::new();
+    let mut nickname_damage: HashMap<String, HashMap<i32, i64>> = HashMap::new();
 
-    for pdp in pdps {
-        let uid = summon_resolver::resolve(pdp.actor_id(), summon_data);
+    for (&actor_id, &damage) in actor_damage {
+        let uid = summon_resolver::resolve(actor_id, summon_data);
         if uid <= 0 { continue; }
         let nickname = resolve_nickname(uid, nickname_data, summon_data);
-        let id_damage = nickname_damage.entry(nickname).or_default();
-        *id_damage.entry(uid).or_insert(0) += pdp.total_damage();
+        *nickname_damage.entry(nickname).or_default().entry(uid).or_insert(0) += damage;
     }
 
     let mut result = HashMap::new();

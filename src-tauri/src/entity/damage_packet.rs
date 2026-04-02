@@ -63,6 +63,7 @@ impl ParsedDamagePacket {
     pub fn set_heal_amount(&mut self, h: i32) { self.heal_amount = h; }
     pub fn set_hex_payload(&mut self, h: String) { self.hex_payload = h; }
     pub fn set_spec_flags(&mut self, f: [bool; 5]) { self.spec_flags = f; }
+    pub fn set_timestamp(&mut self, ts: i64) { self.timestamp = ts; }
 
     // Getters
     pub fn id(&self) -> i64 { self.id }

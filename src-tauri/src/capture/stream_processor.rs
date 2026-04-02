@@ -66,6 +66,8 @@ pub struct StreamProcessor {
     seen_embedded_hexes: BoundedHashSet,
     dot_damage_skill_ids: HashSet<i32>,
     pending_compact_skill_context: Option<PendingCompactSkillContext>,
+    /// When set, override the timestamp on all created packets (for replay mode).
+    override_timestamp: Option<i64>,
 }
 
 impl StreamProcessor {
@@ -76,11 +78,18 @@ impl StreamProcessor {
             seen_embedded_hexes: BoundedHashSet::new(16_384),
             dot_damage_skill_ids: HashSet::new(), // loaded lazily
             pending_compact_skill_context: None,
+            override_timestamp: None,
         }
     }
 
     pub fn set_dot_skill_ids(&mut self, ids: HashSet<i32>) {
         self.dot_damage_skill_ids = ids;
+    }
+
+    /// Set an override timestamp for all packets created by this processor.
+    /// Used in replay mode to use capture-time timestamps instead of wall clock.
+    pub fn set_override_timestamp(&mut self, ts: Option<i64>) {
+        self.override_timestamp = ts;
     }
 
     /// Parse as many complete packets as possible from the buffer.
@@ -318,6 +327,9 @@ impl StreamProcessor {
         }
 
         let mut pdp = ParsedDamagePacket::new();
+        if let Some(ts) = self.override_timestamp {
+            pdp.set_timestamp(ts);
+        }
         pdp.set_dot(true);
         pdp.set_target_id(target_info.value);
         pdp.set_actor_id(actor_info.value);
@@ -1393,6 +1405,9 @@ impl StreamProcessor {
 
             if actor_value != target_value {
                 let mut pdp = ParsedDamagePacket::new();
+                if let Some(ts) = self.override_timestamp {
+                    pdp.set_timestamp(ts);
+                }
                 pdp.set_target_id(target_value);
                 pdp.set_actor_id(actor_value);
                 pdp.set_skill_code(resolved_skill_code);

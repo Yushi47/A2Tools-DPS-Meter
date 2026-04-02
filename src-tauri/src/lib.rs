@@ -222,6 +222,21 @@ fn quit_app(app: tauri::AppHandle) {
 }
 
 #[tauri::command]
+fn read_cached_icon(state: tauri::State<'_, AppState>, key: String) -> Option<String> {
+    let path = state.app_data_dir.join("icon_cache").join(&key);
+    std::fs::read_to_string(&path).ok()
+}
+
+#[tauri::command]
+fn write_cached_icon(state: tauri::State<'_, AppState>, key: String, data: String) {
+    let cache_dir = state.app_data_dir.join("icon_cache");
+    let _ = std::fs::create_dir_all(&cache_dir);
+    let path = cache_dir.join(&key);
+    let _ = std::fs::write(&path, &data);
+}
+
+
+#[tauri::command]
 fn open_url(url: String) {
     #[cfg(windows)]
     {
@@ -341,6 +356,10 @@ async fn replay_file(state: tauri::State<'_, AppState>, file_path: String) -> Re
             if line.is_empty() || line.starts_with('#') { continue; }
             let parts: Vec<&str> = line.splitn(3, '|').collect();
             if parts.len() != 3 { continue; }
+            // Use capture-time timestamp from the row, not wall clock
+            if let Some(ts) = parse_replay_timestamp(parts[0].trim()) {
+                processor.set_override_timestamp(Some(ts));
+            }
             let hex = parts[2];
             let data = match decode_replay_hex(hex) {
                 Some(d) => d,
@@ -354,17 +373,108 @@ async fn replay_file(state: tauri::State<'_, AppState>, file_path: String) -> Re
         Ok(format!("Replay complete. {} packets, {} damage events.", packet_count, dmg))
     }).await.map_err(|e| format!("Replay task failed: {}", e))?;
 
-    // Force snapshot all boss fights from the replay (bypass idle timer)
-    let records = state.dps_calculator.lock().snapshot_boss_fights_force();
-    for record in &records {
-        if let Err(e) = state.fight_history.save_fight(record) {
-            tracing::warn!("Failed to save replay fight: {}", e);
-        } else {
-            tracing::info!("Saved replay fight: {} ({})", record.boss_name, record.id);
+    // Force snapshot boss fights from the replay
+    {
+        let mut calc = state.dps_calculator.lock();
+        let records = calc.snapshot_boss_fights_force();
+        let mut sorted = records;
+        sorted.sort_by(|a, b| b.total_damage.cmp(&a.total_damage));
+        for record in sorted.iter().take(10) {
+            if let Err(e) = state.fight_history.save_fight(record) {
+                tracing::warn!("Failed to save replay fight: {}", e);
+            } else {
+                tracing::info!("Saved replay fight: {} ({})", record.boss_name, record.id);
+            }
         }
+        // Mark all targets as saved so the periodic auto-save loop doesn't re-process them
+        calc.mark_all_targets_saved();
     }
 
     count
+}
+
+/// Parse an ISO 8601 timestamp (or plain epoch millis) into epoch milliseconds.
+fn parse_replay_timestamp(s: &str) -> Option<i64> {
+    // Try plain integer first (epoch millis)
+    if let Ok(ms) = s.parse::<i64>() {
+        return Some(ms);
+    }
+    // Parse ISO 8601: "2026-04-01T14:08:18.447814200-03:00"
+    // Manual parse to avoid adding a chrono dependency
+    // Format: YYYY-MM-DDTHH:MM:SS.fractional[+-]HH:MM
+    let t_pos = s.find('T')?;
+    let date_part = &s[..t_pos];
+    let time_and_tz = &s[t_pos + 1..];
+
+    let date_parts: Vec<&str> = date_part.split('-').collect();
+    if date_parts.len() != 3 { return None; }
+    let year: i64 = date_parts[0].parse().ok()?;
+    let month: i64 = date_parts[1].parse().ok()?;
+    let day: i64 = date_parts[2].parse().ok()?;
+
+    // Split time from timezone offset (look for + or - after the seconds)
+    let (time_part, tz_offset_mins) = if let Some(plus_pos) = time_and_tz.rfind('+') {
+        if plus_pos > 6 { // Must be after HH:MM:SS
+            let tz = &time_and_tz[plus_pos + 1..];
+            let tz_parts: Vec<&str> = tz.split(':').collect();
+            let h: i64 = tz_parts.first()?.parse().ok()?;
+            let m: i64 = tz_parts.get(1).and_then(|s| s.parse().ok()).unwrap_or(0);
+            (&time_and_tz[..plus_pos], h * 60 + m)
+        } else {
+            (time_and_tz, 0i64)
+        }
+    } else if let Some(minus_pos) = time_and_tz.rfind('-') {
+        if minus_pos > 6 {
+            let tz = &time_and_tz[minus_pos + 1..];
+            let tz_parts: Vec<&str> = tz.split(':').collect();
+            let h: i64 = tz_parts.first()?.parse().ok()?;
+            let m: i64 = tz_parts.get(1).and_then(|s| s.parse().ok()).unwrap_or(0);
+            (&time_and_tz[..minus_pos], -(h * 60 + m))
+        } else {
+            (time_and_tz, 0i64)
+        }
+    } else {
+        // No timezone, treat as UTC
+        let tp = time_and_tz.trim_end_matches('Z');
+        (tp, 0i64)
+    };
+
+    // Parse time: HH:MM:SS.fractional
+    let colon_parts: Vec<&str> = time_part.split(':').collect();
+    if colon_parts.len() < 3 { return None; }
+    let hour: i64 = colon_parts[0].parse().ok()?;
+    let minute: i64 = colon_parts[1].parse().ok()?;
+    let sec_parts: Vec<&str> = colon_parts[2].split('.').collect();
+    let second: i64 = sec_parts[0].parse().ok()?;
+    let millis: i64 = if sec_parts.len() > 1 {
+        let frac = sec_parts[1];
+        // Take first 3 digits for milliseconds
+        let padded = if frac.len() >= 3 { &frac[..3] } else { frac };
+        let mut ms: i64 = padded.parse().ok()?;
+        if frac.len() < 3 {
+            for _ in 0..(3 - frac.len()) { ms *= 10; }
+        }
+        ms
+    } else {
+        0
+    };
+
+    // Convert to Unix epoch using a simplified algorithm
+    // Days from epoch (1970-01-01)
+    let days = days_from_civil(year, month, day);
+    let total_secs = days * 86400 + hour * 3600 + minute * 60 + second - tz_offset_mins * 60;
+    Some(total_secs * 1000 + millis)
+}
+
+/// Days from 1970-01-01 for a given civil date (Howard Hinnant's algorithm).
+fn days_from_civil(y: i64, m: i64, d: i64) -> i64 {
+    let y = if m <= 2 { y - 1 } else { y };
+    let era = if y >= 0 { y } else { y - 399 } / 400;
+    let yoe = (y - era * 400) as i64;
+    let m_adj = if m > 2 { m - 3 } else { m + 9 };
+    let doy = (153 * m_adj + 2) / 5 + d - 1;
+    let doe = yoe * 365 + yoe / 4 - yoe / 100 + doy;
+    era * 146097 + doe - 719468
 }
 
 fn decode_replay_hex(hex: &str) -> Option<Vec<u8>> {
@@ -412,7 +522,8 @@ pub fn run() {
             let resource_dir = app.path().resource_dir()
                 .unwrap_or_else(|_| std::path::PathBuf::from("."));
             let candidate_dirs = [
-                resource_dir.join("data"),           // production bundle
+                resource_dir.join("data"),                        // production: resources/data
+                resource_dir.join("_up_").join("src").join("data"), // production: resources/_up_/src/data (from ../src/data)
                 resource_dir.join("..").join("src").join("data"), // dev: src-tauri/../src/data
                 std::path::PathBuf::from("src/data"),             // dev: cwd fallback
                 std::path::PathBuf::from("../src/data"),          // dev: from src-tauri/
@@ -584,8 +695,21 @@ pub fn run() {
                     tick_count += 1;
 
                     if let Some(state) = handle.try_state::<AppState>() {
-                        let dps = state.dps_calculator.lock().get_dps();
+                        let t0 = std::time::Instant::now();
+                        let lock_guard = state.dps_calculator.lock();
+                        let lock_ms = t0.elapsed().as_millis();
+                        let dps = {
+                            let mut calc = lock_guard;
+                            calc.get_dps()
+                        };
+                        let calc_ms = t0.elapsed().as_millis();
                         let _ = handle.emit("dps-update", &dps);
+                        let total_ms = t0.elapsed().as_millis();
+                        if total_ms > 200 {
+                            tracing::warn!("Slow: lock={}ms calc={}ms emit={}ms total={}ms gen={}",
+                                lock_ms, calc_ms - lock_ms, total_ms - calc_ms, total_ms,
+                                state.data_storage.damage_generation());
+                        }
 
                         if let Some(ping) = state.ping_tracker.current_ping_ms() {
                             let _ = handle.emit("ping-update", ping);
@@ -616,14 +740,25 @@ pub fn run() {
                             }
                         }
 
-                        // --- Auto-save boss fight history every ~5 seconds ---
-                        if tick_count % 10 == 0 {
-                            let records = state.dps_calculator.lock().snapshot_boss_fights();
-                            for record in &records {
-                                if let Err(e) = state.fight_history.save_fight(record) {
-                                    tracing::warn!("Failed to auto-save boss fight: {}", e);
-                                } else {
-                                    tracing::info!("Auto-saved boss fight: {} ({})", record.boss_name, record.id);
+                    }
+                }
+            });
+
+            // Separate task for boss fight auto-save (every 30s, on blocking thread)
+            let handle_save = app.handle().clone();
+            tauri::async_runtime::spawn(async move {
+                loop {
+                    tokio::time::sleep(Duration::from_secs(30)).await;
+                    if let Some(state) = handle_save.try_state::<AppState>() {
+                        if state.data_storage.damage_generation() > 0 {
+                            // Run on blocking thread to avoid starving the async runtime
+                            // snapshot_boss_fights acquires the dps_calculator lock
+                            // Run synchronously but only if lock is available
+                            if let Some(mut calc) = state.dps_calculator.try_lock() {
+                                let records = calc.snapshot_boss_fights();
+                                drop(calc);
+                                for record in &records {
+                                    let _ = state.fight_history.save_fight(record);
                                 }
                             }
                         }
@@ -660,6 +795,8 @@ pub fn run() {
             debug_status,
             quit_app,
             open_url,
+            read_cached_icon,
+            write_cached_icon,
             resize_window,
             capture_screenshot,
             start_drag,

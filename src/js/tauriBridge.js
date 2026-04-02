@@ -8,10 +8,7 @@
 
   const { invoke } = window.__TAURI__.core;
   const { listen } = window.__TAURI__.event;
-  const { getCurrentWindow } = window.__TAURI__.window;
   const { open: shellOpen } = window.__TAURI__.opener;
-
-  const appWindow = getCurrentWindow();
 
   // --- Cached state ---
   let settingsCache = {};
@@ -112,7 +109,7 @@
       }
     },
 
-    async getBattleDetail(actorId) {
+    async getBattleDetail(/* actorId */) {
       try {
         const dps = cachedDpsJson ? JSON.parse(cachedDpsJson) : null;
         const targetId = Number(dps?.targetId) || 0;
@@ -264,16 +261,8 @@
     },
 
     // --- Screenshots ---
-    captureScreenshotToClipboard(x, y, w, h, scale) {
+    captureScreenshotToClipboard(x, y, w, h) {
       try {
-        const canvas = document.createElement("canvas");
-        const dpr = scale || window.devicePixelRatio || 1;
-        canvas.width = Math.round(w * dpr);
-        canvas.height = Math.round(h * dpr);
-        const ctx = canvas.getContext("2d");
-        // Draw visible elements by iterating the container
-        // Use the simpler approach: capture via window print
-        // Actually, use the native Rust screenshot command
         invoke("capture_screenshot", {
           x: Math.round(x), y: Math.round(y),
           width: Math.round(w), height: Math.round(h),
@@ -379,8 +368,23 @@
       }
       return null;
     },
-    readCachedIcon() { return null; },
-    writeCachedIcon() {},
+    readCachedIcon(key) {
+      // Synchronous read from Rust via cached map
+      if (!key) return null;
+      if (window._iconCache?.[key] !== undefined) return window._iconCache[key];
+      // Trigger async load for next call
+      invoke("read_cached_icon", { key }).then((data) => {
+        if (!window._iconCache) window._iconCache = {};
+        window._iconCache[key] = data ?? null;
+      }).catch(() => {});
+      return null;
+    },
+    writeCachedIcon(key, data) {
+      if (!key || !data) return;
+      if (!window._iconCache) window._iconCache = {};
+      window._iconCache[key] = data;
+      invoke("write_cached_icon", { key, data }).catch(() => {});
+    },
 
     // --- Fetch ---
     fetchUrlAsync(url, callbackId) {
@@ -420,7 +424,6 @@
   setInterval(pollStatus, 3000);
 
   // ===== Dynamic window resizing =====
-  const METER_WIDTH = 400;
   const PANEL_WIDTH = 1540;
   const PANEL_HEIGHT = 820;
   const TOOLTIP_WIDTH = 800;
