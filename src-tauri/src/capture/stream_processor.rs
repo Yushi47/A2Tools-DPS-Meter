@@ -433,7 +433,7 @@ impl StreamProcessor {
             pos += meta_info.length as usize;
             if pos < packet.len() {
                 let name_len = packet[pos] as usize;
-                if (1..=32).contains(&name_len) && pos + 1 + name_len <= packet.len() {
+                if (1..=36).contains(&name_len) && pos + 1 + name_len <= packet.len() {
                     self.register_utf8_nickname(packet, owner_id, pos + 1, name_len);
                 }
             }
@@ -517,7 +517,7 @@ impl StreamProcessor {
                 continue;
             }
             let name_len = data[name_len_idx] as usize;
-            if !(2..=32).contains(&name_len) || name_len_idx + 1 + name_len > data.len() {
+            if !(2..=36).contains(&name_len) || name_len_idx + 1 + name_len > data.len() {
                 continue;
             }
             let name_bytes = &data[name_len_idx + 1..name_len_idx + 1 + name_len];
@@ -550,24 +550,62 @@ impl StreamProcessor {
     fn scan_for_embedded_40_36(&mut self, data: &[u8]) {
         let mut i = 0;
         while i + 5 < data.len() {
-            if data[i] == 0x40 && data[i + 1] == 0x36 {
+            if data[i + 1] == 0x36 && (data[i] == 0x40 || data[i] == 0x44) {
                 if i > 0 && data[i - 1] == 0x00 {
                     i += 2;
                     continue;
                 }
                 let target_info = read_varint(data, i + 2);
                 if target_info.length > 0 && (100..=9_999_999).contains(&target_info.value) {
-                    let mut real_id = target_info.value;
-                    if real_id > 1_000_000 {
-                        real_id = (real_id & 0x3FFF) | 0x4000;
-                    }
-                    if !self.data_storage.is_mob(real_id) {
-                        self.parse_summon_spawn_at(data, i + 2);
+                    if data[i] == 0x44 {
+                        // 44 36 = player spawn — extract name
+                        self.parse_player_spawn_name(data, i + 2);
+                    } else {
+                        // 40 36 = summon/mob spawn
+                        let mut real_id = target_info.value;
+                        if real_id > 1_000_000 {
+                            real_id = (real_id & 0x3FFF) | 0x4000;
+                        }
+                        if !self.data_storage.is_mob(real_id) {
+                            self.parse_summon_spawn_at(data, i + 2);
+                        }
                     }
                 }
                 i += 2 + target_info.length.max(0) as usize;
             } else {
                 i += 1;
+            }
+        }
+    }
+
+    /// Extract player name from a 44 36 player spawn sub-packet.
+    /// Structure: <actor_varint> <data...> 07 <name_length> <name_bytes>
+    fn parse_player_spawn_name(&self, data: &[u8], offset_after_opcode: usize) {
+        let actor_info = read_varint(data, offset_after_opcode);
+        if actor_info.length <= 0 || !(100..=99_999).contains(&actor_info.value) {
+            return;
+        }
+        let actor_id = actor_info.value;
+        let scan_start = offset_after_opcode + actor_info.length as usize;
+        let scan_end = std::cmp::min(data.len().saturating_sub(2), scan_start + 40);
+
+        for j in scan_start..scan_end {
+            if data[j] == 0x07 {
+                let len_idx = j + 1;
+                if len_idx >= data.len() { break; }
+                let name_len = data[len_idx] as usize;
+                if !(1..=36).contains(&name_len) { continue; }
+                let name_start = len_idx + 1;
+                let name_end = name_start + name_len;
+                if name_end > data.len() { break; }
+                if let Ok(name) = std::str::from_utf8(&data[name_start..name_end]) {
+                    if let Some(sanitized) = sanitize_nickname(name) {
+                        if sanitized.len() >= 2 {
+                            self.data_storage.append_nickname(actor_id, &sanitized);
+                            return;
+                        }
+                    }
+                }
             }
         }
     }
@@ -583,7 +621,15 @@ impl StreamProcessor {
         if offset + 1 >= packet.len() {
             return false;
         }
-        if packet[offset] != 0x40 || packet[offset + 1] != 0x36 {
+        if packet[offset + 1] != 0x36 {
+            return false;
+        }
+        if packet[offset] == 0x44 {
+            // Player spawn — extract name
+            self.parse_player_spawn_name(packet, offset + 2);
+            return false;
+        }
+        if packet[offset] != 0x40 {
             return false;
         }
         self.parse_summon_spawn_at(packet, offset + 2)
@@ -681,8 +727,8 @@ impl StreamProcessor {
 
         while i < packet.len() {
             if packet[i] == 0x36 {
-                // Skip 40 36 spawn opcode
-                if i > 0 && packet[i - 1] == 0x40 {
+                // Skip 40 36 / 44 36 spawn opcodes
+                if i > 0 && (packet[i - 1] == 0x40 || packet[i - 1] == 0x44) {
                     i += 1;
                     continue;
                 }
@@ -726,7 +772,7 @@ impl StreamProcessor {
             return None;
         }
         let name_length = packet[length_index] as usize;
-        if !(1..=32).contains(&name_length) {
+        if !(1..=36).contains(&name_length) {
             return None;
         }
         let name_start = length_index + 1;
@@ -750,7 +796,7 @@ impl StreamProcessor {
         if self.data_storage.is_summon(actor_id) {
             return false;
         }
-        if name_length == 0 || name_length > 32 {
+        if name_length == 0 || name_length > 36 {
             return false;
         }
         let name_end = name_start + name_length;
@@ -811,7 +857,7 @@ impl StreamProcessor {
                     continue;
                 }
                 let name_length = packet[length_idx] as usize;
-                if !(1..=24).contains(&name_length) {
+                if !(1..=36).contains(&name_length) {
                     idx += 1;
                     continue;
                 }
@@ -887,7 +933,7 @@ impl StreamProcessor {
                 let len_idx = search_offset + 2;
                 if len_idx < packet.len() {
                     let name_len = packet[len_idx] as usize;
-                    if (2..=32).contains(&name_len) && len_idx + 1 + name_len <= packet.len() {
+                    if (2..=36).contains(&name_len) && len_idx + 1 + name_len <= packet.len() {
                         let np = &packet[len_idx + 1..len_idx + 1 + name_len];
                         if let Ok(possible_name) = std::str::from_utf8(np) {
                             if !possible_name.is_empty() && possible_name.chars().next().unwrap().is_alphanumeric() {
@@ -941,7 +987,7 @@ impl StreamProcessor {
                                 let len_idx = block_scan + 2;
                                 if len_idx < packet.len() {
                                     let name_len = packet[len_idx] as usize;
-                                    if (2..=32).contains(&name_len) && len_idx + 1 + name_len <= packet.len() {
+                                    if (2..=36).contains(&name_len) && len_idx + 1 + name_len <= packet.len() {
                                         let np = &packet[len_idx + 1..len_idx + 1 + name_len];
                                         if let Ok(possible_name) = std::str::from_utf8(np) {
                                             if !possible_name.is_empty() && possible_name.chars().next().unwrap().is_alphanumeric() {
@@ -982,7 +1028,7 @@ impl StreamProcessor {
                                     && packet[scan_idx + 2] == 0x36
                                 {
                                     // Look backwards for name
-                                    for test_len in 2..=32usize {
+                                    for test_len in 2..=36usize {
                                         if scan_idx < test_len + 1 + id_idx {
                                             continue;
                                         }
@@ -1028,7 +1074,7 @@ impl StreamProcessor {
     }
 
     fn find_name_before(&self, packet: &[u8], before_idx: usize, min_idx: usize) -> Option<String> {
-        for test_len in 2..=32usize {
+        for test_len in 2..=36usize {
             for gap in 0..=1usize {
                 if before_idx < gap + test_len + 1 {
                     continue;
@@ -1069,7 +1115,7 @@ impl StreamProcessor {
             }
         }
         let length = packet[offset] as usize;
-        if !(1..=32).contains(&length) {
+        if !(1..=36).contains(&length) {
             return offset;
         }
         let name_start = offset + 1;

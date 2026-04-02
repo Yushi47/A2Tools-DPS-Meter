@@ -45,22 +45,34 @@ pub fn find_aion2_window() -> bool {
     false
 }
 
-/// Check if the foreground window belongs to the AION 2 process.
+/// Check if the foreground window belongs to the AION 2 process by checking
+/// the executable name (more reliable than window title matching).
 #[cfg(windows)]
 pub fn is_aion2_foreground() -> bool {
     use windows::Win32::Foundation::HWND;
-    use windows::Win32::UI::WindowsAndMessaging::{GetForegroundWindow, GetWindowTextW};
+    use windows::Win32::System::Threading::{OpenProcess, QueryFullProcessImageNameW, PROCESS_NAME_FORMAT, PROCESS_QUERY_LIMITED_INFORMATION};
+    use windows::Win32::UI::WindowsAndMessaging::{GetForegroundWindow, GetWindowThreadProcessId};
 
     unsafe {
         let hwnd: HWND = GetForegroundWindow();
         if hwnd.0.is_null() {
             return false;
         }
-        let mut buf = [0u16; 256];
-        let len = GetWindowTextW(hwnd, &mut buf) as usize;
-        if len >= 5 {
-            let title = String::from_utf16_lossy(&buf[..len]);
-            return title.starts_with("AION2");
+        let mut pid: u32 = 0;
+        GetWindowThreadProcessId(hwnd, Some(&mut pid));
+        if pid == 0 {
+            return false;
+        }
+        let Ok(handle) = OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, false, pid) else {
+            return false;
+        };
+        let mut buf = [0u16; 512];
+        let mut len = buf.len() as u32;
+        let pwstr = windows::core::PWSTR(buf.as_mut_ptr());
+        if QueryFullProcessImageNameW(handle, PROCESS_NAME_FORMAT(0), pwstr, &mut len).is_ok() {
+            let path = String::from_utf16_lossy(&buf[..len as usize]);
+            let exe_name = path.rsplit('\\').next().unwrap_or("");
+            return exe_name.eq_ignore_ascii_case("AION2.exe");
         }
         false
     }

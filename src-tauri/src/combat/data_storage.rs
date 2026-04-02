@@ -428,6 +428,15 @@ impl DataStorage {
     }
 }
 
+fn has_cjk(s: &str) -> bool {
+    s.chars().any(|ch| {
+        let cp = ch as u32;
+        (0x4E00..=0x9FFF).contains(&cp) || (0xAC00..=0xD7AF).contains(&cp)
+        || (0x3400..=0x4DBF).contains(&cp) || (0x20000..=0x2A6DF).contains(&cp)
+        || (0x1100..=0x11FF).contains(&cp)
+    })
+}
+
 fn append_nickname_inner(inner: &mut Inner, uid: i32, nickname: &str) {
     let existing = inner.nickname_storage.get(&uid);
     if let Some(existing) = existing {
@@ -439,9 +448,21 @@ fn append_nickname_inner(inner: &mut Inner, uid: i32, nickname: &str) {
             }
             return;
         }
-        if nickname.as_bytes().len() == 2 && nickname.as_bytes().len() < existing.as_bytes().len() {
+        // Don't replace a CJK name with a shorter ASCII-only name (likely false positive)
+        let existing_cjk = has_cjk(existing);
+        let new_cjk = has_cjk(nickname);
+        if existing_cjk && !new_cjk && nickname.len() < existing.len() {
+            tracing::debug!("Nickname: keeping CJK '{}' for {}, rejecting ASCII '{}'", existing, uid, nickname);
             return;
         }
+        // Don't replace a longer name with a short ASCII-only name (2-byte rule generalized)
+        if !new_cjk && nickname.as_bytes().len() <= 5 && existing.as_bytes().len() > nickname.as_bytes().len() {
+            tracing::debug!("Nickname: keeping '{}' for {}, rejecting shorter '{}'", existing, uid, nickname);
+            return;
+        }
+        tracing::debug!("Nickname: replacing '{}' with '{}' for {}", existing, nickname, uid);
+    } else {
+        tracing::debug!("Nickname: setting '{}' for {}", nickname, uid);
     }
 
     inner.nickname_storage.insert(uid, nickname.to_string());

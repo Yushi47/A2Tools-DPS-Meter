@@ -672,13 +672,14 @@ pub fn run() {
                 {
                     let h = hotkey_handle;
                     move || {
-                        // Toggle window visibility
+                        // Toggle window visibility (minimize to keep taskbar icon)
                         if let Some(window) = h.get_webview_window("main") {
-                            if window.is_visible().unwrap_or(false) {
-                                let _ = window.hide();
-                            } else {
+                            if window.is_minimized().unwrap_or(false) || !window.is_visible().unwrap_or(true) {
+                                let _ = window.unminimize();
                                 let _ = window.show();
                                 let _ = window.set_focus();
+                            } else {
+                                let _ = window.minimize();
                             }
                         }
                     }
@@ -723,9 +724,12 @@ pub fn run() {
                                 let aion_fg = platform::window_detector::is_aion2_foreground();
                                 let is_self_fg = window.is_focused().unwrap_or(false);
                                 if aion_fg || is_self_fg {
+                                    if window.is_minimized().unwrap_or(false) {
+                                        let _ = window.unminimize();
+                                    }
                                     let _ = window.show();
                                 } else {
-                                    let _ = window.hide();
+                                    let _ = window.minimize();
                                 }
                             }
                         }
