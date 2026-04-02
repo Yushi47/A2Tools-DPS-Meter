@@ -1,0 +1,673 @@
+pub mod capture;
+pub mod combat;
+pub mod config;
+pub mod entity;
+pub mod history;
+pub mod i18n;
+pub mod logging;
+pub mod platform;
+
+use std::collections::HashSet;
+use std::sync::Arc;
+use std::time::Duration;
+
+use parking_lot::Mutex;
+use tauri::{Emitter, Manager};
+use tokio::sync::mpsc;
+
+use capture::captured_payload::CapturedPayload;
+use capture::combat_port_detector::CombatPortDetector;
+use capture::pcap_capturer::PcapCapturer;
+use combat::capture_dispatcher::CaptureDispatcher;
+use combat::data_storage::DataStorage;
+use combat::dps_calculator::DpsCalculator;
+use combat::ping_tracker::PingTracker;
+use config::settings::Settings;
+use entity::dps_data::DpsData;
+use entity::fight_record::{FightRecord, FightSummary};
+use entity::details_context::{DetailsContext, TargetDetailsResponse};
+use history::fight_history::FightHistoryManager;
+use i18n::lookup::{NpcLookup, SkillLookup};
+
+/// Shared application state.
+pub struct AppState {
+    pub data_storage: Arc<DataStorage>,
+    pub dps_calculator: Mutex<DpsCalculator>,
+    pub ping_tracker: Arc<PingTracker>,
+    pub port_detector: Arc<CombatPortDetector>,
+    pub fight_history: FightHistoryManager,
+    pub settings: Settings,
+    pub skill_lookup: Arc<SkillLookup>,
+    pub npc_lookup: Arc<NpcLookup>,
+    pub app_data_dir: std::path::PathBuf,
+    pub i18n_data_dir: Option<std::path::PathBuf>,
+}
+
+// ===== TAURI COMMANDS =====
+
+#[tauri::command]
+fn get_dps_snapshot(state: tauri::State<'_, AppState>) -> DpsData {
+    state.dps_calculator.lock().get_dps()
+}
+
+#[tauri::command]
+fn get_skill_details(state: tauri::State<'_, AppState>, target_id: i32, actor_ids: Option<Vec<i32>>) -> TargetDetailsResponse {
+    state.dps_calculator.lock().get_target_details(target_id, actor_ids.as_deref())
+}
+
+#[tauri::command]
+fn get_details_context(state: tauri::State<'_, AppState>) -> DetailsContext {
+    state.dps_calculator.lock().get_details_context()
+}
+
+#[tauri::command]
+fn get_fight_history(state: tauri::State<'_, AppState>) -> Vec<FightSummary> {
+    state.fight_history.list_fights()
+}
+
+#[tauri::command]
+fn save_fight(state: tauri::State<'_, AppState>, record: FightRecord) -> Result<(), String> {
+    state.fight_history.save_fight(&record)
+}
+
+#[tauri::command]
+fn load_fight(state: tauri::State<'_, AppState>, id: String) -> Result<FightRecord, String> {
+    state.fight_history.load_fight(&id)
+}
+
+#[tauri::command]
+fn delete_fight(state: tauri::State<'_, AppState>, id: String) -> Result<(), String> {
+    state.fight_history.delete_fight(&id)
+}
+
+#[tauri::command]
+fn export_fight_json(state: tauri::State<'_, AppState>, record: FightRecord) -> Result<String, String> {
+    state.fight_history.export_fight_json(&record)
+}
+
+#[tauri::command]
+fn get_settings(state: tauri::State<'_, AppState>) -> std::collections::HashMap<String, String> {
+    state.settings.get_all()
+}
+
+#[tauri::command]
+fn update_settings(state: tauri::State<'_, AppState>, key: String, value: String) {
+    state.settings.set(&key, &value);
+}
+
+#[tauri::command]
+fn clear_settings(state: tauri::State<'_, AppState>) {
+    state.settings.clear();
+}
+
+#[tauri::command]
+fn get_ping(state: tauri::State<'_, AppState>) -> Option<i32> {
+    state.ping_tracker.current_ping_ms()
+}
+
+#[tauri::command]
+fn get_capture_status(state: tauri::State<'_, AppState>) -> serde_json::Value {
+    let port = state.port_detector.current_port();
+    let device = state.port_detector.current_device();
+    let local_id = state.data_storage.local_player_id();
+    let char_name = state.data_storage.local_character_name();
+    serde_json::json!({
+        "locked": port.is_some(),
+        "port": port,
+        "device": device.clone().unwrap_or_default(),
+        "ip": device.unwrap_or_else(|| "127.0.0.1".to_string()),
+        "localPlayerId": local_id,
+        "characterName": char_name,
+    })
+}
+
+#[tauri::command]
+fn set_target_mode(state: tauri::State<'_, AppState>, mode: String) {
+    state.dps_calculator.lock().set_target_selection_mode(&mode);
+}
+
+#[tauri::command]
+fn set_character_name(state: tauri::State<'_, AppState>, name: String) {
+    state.data_storage.set_local_character_name(Some(name));
+}
+
+#[tauri::command]
+fn bind_local_actor_id(state: tauri::State<'_, AppState>, actor_id: i64) {
+    // Skip if already bound to this ID
+    if state.data_storage.local_player_id() == Some(actor_id) {
+        return;
+    }
+    tracing::info!("bind_local_actor_id: {}", actor_id);
+    state.data_storage.set_local_player_id(Some(actor_id));
+    if let Some(name) = state.data_storage.local_character_name() {
+        if !name.trim().is_empty() {
+            state.data_storage.set_permanent_nickname(actor_id as i32, name.trim());
+        }
+    }
+}
+
+#[tauri::command]
+fn bind_local_nickname(state: tauri::State<'_, AppState>, actor_id: i64, nickname: String) {
+    if state.data_storage.local_player_id() == Some(actor_id)
+        && state.data_storage.has_nickname(actor_id as i32)
+    {
+        return;
+    }
+    tracing::info!("bind_local_nickname: {} -> '{}'", actor_id, nickname);
+    state.data_storage.set_local_player_id(Some(actor_id));
+    // Use set_permanent_nickname so it survives reset_nicknames() calls
+    state.data_storage.set_permanent_nickname(actor_id as i32, &nickname);
+}
+
+#[tauri::command]
+fn reset_combat(state: tauri::State<'_, AppState>) {
+    state.dps_calculator.lock().restart_target_selection(true);
+    // Don't reset port detector or ping — keep the network connection alive
+    // Only clear combat data and re-learn nicknames from future packets
+    state.data_storage.reset_nicknames();
+}
+
+#[tauri::command]
+fn is_admin() -> bool {
+    platform::admin::is_admin()
+}
+
+#[tauri::command]
+fn set_language(state: tauri::State<'_, AppState>, language: String) {
+    tracing::info!("Language change requested: {}", language);
+    if let Some(ref data_dir) = state.i18n_data_dir {
+        i18n::lookup::load_language(&state.skill_lookup, &state.npc_lookup, data_dir, &language);
+    } else {
+        tracing::warn!("No i18n data dir available for language reload");
+    }
+    state.settings.set("dpsMeter.language", &language);
+}
+
+#[tauri::command]
+fn set_debug_logging(state: tauri::State<'_, AppState>, enabled: bool) {
+    logging::logger::set_debug_enabled(enabled, &state.app_data_dir);
+    state.settings.set("dpsMeter.debugLoggingEnabled", if enabled { "true" } else { "false" });
+}
+
+#[tauri::command]
+fn set_packet_logging(state: tauri::State<'_, AppState>, enabled: bool) {
+    logging::logger::set_packet_log_enabled(enabled, &state.app_data_dir);
+    state.settings.set("dpsMeter.saveRawPackets", if enabled { "true" } else { "false" });
+}
+
+#[tauri::command]
+fn reset_auto_detection(state: tauri::State<'_, AppState>) {
+    state.port_detector.reset();
+    state.ping_tracker.reset();
+}
+
+#[tauri::command]
+fn get_available_devices() -> Vec<String> {
+    // Load wpcap.dll and enumerate devices
+    match crate::capture::pcap_capturer::list_device_labels() {
+        Ok(labels) => labels,
+        Err(_) => Vec::new(),
+    }
+}
+
+#[tauri::command]
+fn set_manual_device(state: tauri::State<'_, AppState>, device: String) {
+    let dev = if device.trim().is_empty() { None } else { Some(device) };
+    state.port_detector.set_preferred_device(dev);
+}
+
+#[tauri::command]
+fn quit_app(app: tauri::AppHandle) {
+    app.exit(0);
+}
+
+#[tauri::command]
+fn open_url(url: String) {
+    #[cfg(windows)]
+    {
+        let _ = std::process::Command::new("cmd")
+            .args(["/C", "start", "", &url])
+            .spawn();
+    }
+    #[cfg(not(windows))]
+    {
+        let _ = std::process::Command::new("xdg-open").arg(&url).spawn();
+    }
+}
+
+#[tauri::command]
+fn resize_window(app: tauri::AppHandle, width: f64, height: f64) {
+    if let Some(window) = app.get_webview_window("main") {
+        let _ = window.set_size(tauri::Size::Logical(tauri::LogicalSize { width, height }));
+    }
+}
+
+#[tauri::command]
+fn capture_screenshot(app: tauri::AppHandle, x: i32, y: i32, width: i32, height: i32) {
+    #[cfg(windows)]
+    {
+        if let Some(window) = app.get_webview_window("main") {
+            if let Ok(raw) = window.hwnd() {
+                let hwnd_val = raw.0 as isize;
+                std::thread::spawn(move || {
+                    platform::screenshot::capture_to_clipboard(hwnd_val, x, y, width, height);
+                });
+            }
+        }
+    }
+}
+
+#[tauri::command]
+fn start_drag(app: tauri::AppHandle) {
+    #[cfg(windows)]
+    {
+        use windows::Win32::Foundation::{HWND, WPARAM, LPARAM};
+        use windows::Win32::UI::WindowsAndMessaging::{PostMessageW, WM_NCLBUTTONDOWN};
+        use windows::Win32::UI::Input::KeyboardAndMouse::ReleaseCapture;
+
+        if let Some(window) = app.get_webview_window("main") {
+            if let Ok(raw) = window.hwnd() {
+                unsafe {
+                    let _ = ReleaseCapture();
+                    const HTCAPTION: usize = 2;
+                    let hwnd = HWND(raw.0);
+                    let _ = PostMessageW(Some(hwnd), WM_NCLBUTTONDOWN, WPARAM(HTCAPTION), LPARAM(0));
+                }
+            }
+        }
+    }
+}
+
+#[tauri::command]
+fn get_aion2_window_title() -> Option<String> {
+    platform::window_detector::find_aion2_window_title()
+}
+
+#[tauri::command]
+fn debug_status(state: tauri::State<'_, AppState>) -> serde_json::Value {
+    let port = state.port_detector.current_port();
+    let device = state.port_detector.current_device();
+    let ping = state.ping_tracker.current_ping_ms();
+    let dmg_gen = state.data_storage.damage_generation();
+    let window = platform::window_detector::find_aion2_window_title();
+    let admin = platform::admin::is_admin();
+    serde_json::json!({
+        "port": port,
+        "device": device,
+        "ping": ping,
+        "damageGeneration": dmg_gen,
+        "aion2Window": window,
+        "isAdmin": admin,
+    })
+}
+
+#[tauri::command]
+async fn replay_file(state: tauri::State<'_, AppState>, file_path: String) -> Result<String, String> {
+    // Reset existing data before replay
+    state.dps_calculator.lock().restart_target_selection(true);
+    state.data_storage.reset_nicknames();
+
+    // Feed packets directly to StreamProcessor, bypassing CaptureDispatcher
+    // (no AION2 window check, no port detection needed for replay)
+    let data_storage = state.data_storage.clone();
+    let skill_lookup = state.skill_lookup.clone();
+    let i18n_dir = state.i18n_data_dir.clone();
+
+    let count = tokio::task::spawn_blocking(move || {
+        use crate::capture::stream_processor::StreamProcessor;
+
+        let mut processor = StreamProcessor::new(data_storage.clone(), skill_lookup);
+        // Load DOT IDs
+        if let Some(ref data_dir) = i18n_dir {
+            let mut dot_ids = std::collections::HashSet::new();
+            if let Ok(text) = std::fs::read_to_string(data_dir.join("dot_skill_ids.json")) {
+                if let Ok(ids) = serde_json::from_str::<Vec<i32>>(&text) {
+                    for id in ids { dot_ids.insert(id); }
+                }
+            }
+            processor.set_dot_skill_ids(dot_ids);
+        }
+
+        // Each line in the replay file is a complete game payload — process directly
+        // without TCP reassembly (the assembler would incorrectly concatenate payloads)
+        let text = match std::fs::read_to_string(&file_path) {
+            Ok(t) => t.trim_start_matches('\u{feff}').to_string(), // Strip BOM
+            Err(e) => return Err(format!("Failed to read file: {}", e)),
+        };
+
+        let mut packet_count = 0;
+        for line in text.lines() {
+            let line = line.trim();
+            if line.is_empty() || line.starts_with('#') { continue; }
+            let parts: Vec<&str> = line.splitn(3, '|').collect();
+            if parts.len() != 3 { continue; }
+            let hex = parts[2];
+            let data = match decode_replay_hex(hex) {
+                Some(d) => d,
+                None => continue,
+            };
+            packet_count += 1;
+            processor.consume_stream(&data);
+        }
+
+        let dmg = data_storage.damage_generation();
+        Ok(format!("Replay complete. {} packets, {} damage events.", packet_count, dmg))
+    }).await.map_err(|e| format!("Replay task failed: {}", e))?;
+
+    // Force snapshot all boss fights from the replay (bypass idle timer)
+    let records = state.dps_calculator.lock().snapshot_boss_fights_force();
+    for record in &records {
+        if let Err(e) = state.fight_history.save_fight(record) {
+            tracing::warn!("Failed to save replay fight: {}", e);
+        } else {
+            tracing::info!("Saved replay fight: {} ({})", record.boss_name, record.id);
+        }
+    }
+
+    count
+}
+
+fn decode_replay_hex(hex: &str) -> Option<Vec<u8>> {
+    let clean: String = hex.chars().filter(|c| !c.is_whitespace()).collect();
+    if clean.len() % 2 != 0 { return None; }
+    let mut bytes = Vec::with_capacity(clean.len() / 2);
+    for chunk in clean.as_bytes().chunks(2) {
+        let h = match chunk[0] {
+            b'0'..=b'9' => chunk[0] - b'0',
+            b'a'..=b'f' => chunk[0] - b'a' + 10,
+            b'A'..=b'F' => chunk[0] - b'A' + 10,
+            _ => return None,
+        };
+        let l = match chunk[1] {
+            b'0'..=b'9' => chunk[1] - b'0',
+            b'a'..=b'f' => chunk[1] - b'a' + 10,
+            b'A'..=b'F' => chunk[1] - b'A' + 10,
+            _ => return None,
+        };
+        bytes.push((h << 4) | l);
+    }
+    Some(bytes)
+}
+
+// ===== APP SETUP =====
+
+#[cfg_attr(mobile, tauri::mobile_entry_point)]
+pub fn run() {
+    logging::logger::init_logging();
+
+    tauri::Builder::default()
+        .plugin(tauri_plugin_opener::init())
+        .plugin(tauri_plugin_process::init())
+        .setup(|app| {
+            // Resolve data directory
+            let app_data_dir = app.path().app_data_dir()
+                .unwrap_or_else(|_| std::path::PathBuf::from("."));
+            let _ = std::fs::create_dir_all(&app_data_dir);
+
+            // Load resources — try multiple paths (dev vs production)
+            let skill_lookup = SkillLookup::new();
+            let npc_lookup = NpcLookup::new();
+            let mut dot_ids: HashSet<i32> = HashSet::new();
+
+            let resource_dir = app.path().resource_dir()
+                .unwrap_or_else(|_| std::path::PathBuf::from("."));
+            let candidate_dirs = [
+                resource_dir.join("data"),           // production bundle
+                resource_dir.join("..").join("src").join("data"), // dev: src-tauri/../src/data
+                std::path::PathBuf::from("src/data"),             // dev: cwd fallback
+                std::path::PathBuf::from("../src/data"),          // dev: from src-tauri/
+            ];
+
+            // Find the data directory
+            let mut found_data_dir: Option<std::path::PathBuf> = None;
+            for data_dir in &candidate_dirs {
+                if data_dir.exists() && data_dir.join("i18n").join("skills").exists() {
+                    found_data_dir = Some(data_dir.clone());
+                    break;
+                }
+            }
+
+            if let Some(ref data_dir) = found_data_dir {
+                // Load DOT skill IDs (language-independent)
+                if let Ok(text) = std::fs::read_to_string(data_dir.join("dot_skill_ids.json")) {
+                    if let Ok(ids) = serde_json::from_str::<Vec<i32>>(&text) {
+                        for id in ids { dot_ids.insert(id); }
+                        tracing::info!("Loaded {} DOT skill IDs", dot_ids.len());
+                    }
+                }
+
+                // Load skill/NPC data in the user's language
+                let language = Settings::new(app_data_dir.clone())
+                    .get("dpsMeter.language")
+                    .unwrap_or_else(|| "en".to_string());
+                i18n::lookup::load_language(&skill_lookup, &npc_lookup, data_dir, &language);
+            } else {
+                tracing::warn!("Failed to find data directory!");
+            }
+
+            let skill_lookup = Arc::new(skill_lookup);
+            let npc_lookup = Arc::new(npc_lookup);
+
+            let data_storage = Arc::new(DataStorage::new());
+            let ping_tracker = Arc::new(PingTracker::new());
+            let port_detector = Arc::new(CombatPortDetector::new());
+
+            let dps_calculator = DpsCalculator::new(
+                data_storage.clone(),
+                skill_lookup.clone(),
+                npc_lookup.clone(),
+                ping_tracker.clone(),
+            );
+
+            let settings = Settings::new(app_data_dir.clone());
+
+            // Load logging settings from saved state
+            if settings.get("dpsMeter.debugLoggingEnabled").as_deref() == Some("true") {
+                logging::logger::set_debug_enabled(true, &app_data_dir);
+            }
+            if settings.get("dpsMeter.saveRawPackets").as_deref() == Some("true") {
+                logging::logger::set_packet_log_enabled(true, &app_data_dir);
+            }
+
+            let state = AppState {
+                data_storage: data_storage.clone(),
+                dps_calculator: Mutex::new(dps_calculator),
+                ping_tracker: ping_tracker.clone(),
+                port_detector: port_detector.clone(),
+                fight_history: FightHistoryManager::new(app_data_dir.clone()),
+                settings,
+                skill_lookup: skill_lookup.clone(),
+                npc_lookup: npc_lookup.clone(),
+                app_data_dir: app_data_dir.clone(),
+                i18n_data_dir: found_data_dir.clone(),
+            };
+
+            app.manage(state);
+
+            // Restore saved window position
+            if let Some(window) = app.get_webview_window("main") {
+                let state_ref = app.state::<AppState>();
+                if let (Some(x), Some(y)) = (state_ref.settings.get("window.x"), state_ref.settings.get("window.y")) {
+                    if let (Ok(x), Ok(y)) = (x.parse::<i32>(), y.parse::<i32>()) {
+                        let _ = window.set_position(tauri::Position::Physical(tauri::PhysicalPosition { x, y }));
+                    }
+                }
+            }
+
+            // Check if Npcap is available before starting capture
+            let npcap_available = unsafe { libloading::Library::new("wpcap.dll").is_ok() };
+            if !npcap_available {
+                tracing::error!("Npcap is not installed — packet capture disabled");
+                // Notify frontend to show install prompt
+                let handle_npcap = app.handle().clone();
+                tauri::async_runtime::spawn(async move {
+                    // Small delay so frontend has time to initialize
+                    tokio::time::sleep(Duration::from_secs(2)).await;
+                    let _ = handle_npcap.emit("npcap-missing", ());
+                });
+            }
+
+            // Start capture pipeline
+            let (tx, rx) = mpsc::channel::<CapturedPayload>(4096);
+
+            let capturer = PcapCapturer::new(tx);
+            if npcap_available {
+                capturer.start();
+            }
+
+            let mut dispatcher = CaptureDispatcher::new(
+                data_storage.clone(),
+                skill_lookup.clone(),
+                port_detector.clone(),
+                ping_tracker.clone(),
+            );
+            dispatcher.set_dot_skill_ids(dot_ids);
+
+            // Run dispatcher in background
+            tauri::async_runtime::spawn(async move {
+                dispatcher.run(rx).await;
+            });
+
+            // Register global hotkeys from saved settings (or defaults)
+            let hotkey_handle = app.handle().clone();
+            let hotkey_manager = platform::hotkeys::HotkeyManager::new();
+
+            let reload_label = app.state::<AppState>().settings
+                .get("dpsMeter.hotkey").unwrap_or_default();
+            let toggle_label = app.state::<AppState>().settings
+                .get("dpsMeter.toggleWindowHotkey").unwrap_or_default();
+
+            let (reload_mods, reload_vk) = platform::hotkeys::parse_hotkey_label(&reload_label)
+                .unwrap_or((0x0002 | 0x0001, 0x52)); // Default: Ctrl+Alt+R
+            let (toggle_mods, toggle_vk) = platform::hotkeys::parse_hotkey_label(&toggle_label)
+                .unwrap_or((0x0002 | 0x0001, 0x26)); // Default: Ctrl+Alt+Up
+
+            hotkey_manager.start(
+                reload_mods, reload_vk,
+                toggle_mods, toggle_vk,
+                {
+                    let h = hotkey_handle.clone();
+                    move || {
+                        tracing::info!("Hotkey: reload triggered");
+                        if let Some(state) = h.try_state::<AppState>() {
+                            state.dps_calculator.lock().restart_target_selection(true);
+                            state.data_storage.reset_nicknames();
+                        }
+                        // Notify frontend to clear UI
+                        let _ = h.emit("combat-reset", ());
+                        let _ = h.emit("dps-update", &entity::dps_data::DpsData::new());
+                    }
+                },
+                {
+                    let h = hotkey_handle;
+                    move || {
+                        // Toggle window visibility
+                        if let Some(window) = h.get_webview_window("main") {
+                            if window.is_visible().unwrap_or(false) {
+                                let _ = window.hide();
+                            } else {
+                                let _ = window.show();
+                                let _ = window.set_focus();
+                            }
+                        }
+                    }
+                },
+            );
+
+            // Periodic DPS update emission (every 500ms)
+            let handle = app.handle().clone();
+            tauri::async_runtime::spawn(async move {
+                let mut interval = tokio::time::interval(Duration::from_millis(500));
+                let mut tick_count: u64 = 0;
+                loop {
+                    interval.tick().await;
+                    tick_count += 1;
+
+                    if let Some(state) = handle.try_state::<AppState>() {
+                        let dps = state.dps_calculator.lock().get_dps();
+                        let _ = handle.emit("dps-update", &dps);
+
+                        if let Some(ping) = state.ping_tracker.current_ping_ms() {
+                            let _ = handle.emit("ping-update", ping);
+                        }
+
+                        // --- Auto-hide when AION2 loses focus (every tick) ---
+                        let auto_hide = state.settings.get("dpsMeter.autoHideMeter")
+                            .unwrap_or_default() == "true";
+                        if auto_hide {
+                            if let Some(window) = handle.get_webview_window("main") {
+                                let aion_fg = platform::window_detector::is_aion2_foreground();
+                                let is_self_fg = window.is_focused().unwrap_or(false);
+                                if aion_fg || is_self_fg {
+                                    let _ = window.show();
+                                } else {
+                                    let _ = window.hide();
+                                }
+                            }
+                        }
+
+                        // --- Save window position every ~5 seconds (every 10 ticks) ---
+                        if tick_count % 10 == 0 {
+                            if let Some(window) = handle.get_webview_window("main") {
+                                if let Ok(pos) = window.outer_position() {
+                                    state.settings.set("window.x", &pos.x.to_string());
+                                    state.settings.set("window.y", &pos.y.to_string());
+                                }
+                            }
+                        }
+
+                        // --- Auto-save boss fight history every ~5 seconds ---
+                        if tick_count % 10 == 0 {
+                            let records = state.dps_calculator.lock().snapshot_boss_fights();
+                            for record in &records {
+                                if let Err(e) = state.fight_history.save_fight(record) {
+                                    tracing::warn!("Failed to auto-save boss fight: {}", e);
+                                } else {
+                                    tracing::info!("Auto-saved boss fight: {} ({})", record.boss_name, record.id);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            Ok(())
+        })
+        .invoke_handler(tauri::generate_handler![
+            get_dps_snapshot,
+            get_skill_details,
+            get_details_context,
+            get_fight_history,
+            save_fight,
+            load_fight,
+            delete_fight,
+            export_fight_json,
+            get_settings,
+            update_settings,
+            get_ping,
+            get_capture_status,
+            set_target_mode,
+            set_character_name,
+            bind_local_actor_id,
+            bind_local_nickname,
+            clear_settings,
+            reset_combat,
+            is_admin,
+            set_language,
+            set_debug_logging,
+            set_packet_logging,
+            get_aion2_window_title,
+            debug_status,
+            quit_app,
+            open_url,
+            resize_window,
+            capture_screenshot,
+            start_drag,
+            reset_auto_detection,
+            get_available_devices,
+            set_manual_device,
+            replay_file,
+        ])
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
+}

@@ -1,0 +1,216 @@
+use std::collections::HashMap;
+use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::Arc;
+use std::time::{SystemTime, UNIX_EPOCH};
+
+use tokio::sync::mpsc;
+use tracing::info;
+
+use crate::capture::captured_payload::CapturedPayload;
+use crate::capture::combat_port_detector::CombatPortDetector;
+use crate::capture::stream_assembler::StreamAssembler;
+use crate::capture::stream_processor::StreamProcessor;
+use crate::combat::data_storage::DataStorage;
+use crate::combat::ping_tracker::PingTracker;
+use crate::i18n::lookup::SkillLookup;
+use crate::platform::window_detector;
+
+const MAGIC: [u8; 3] = [0x06, 0x00, 0x36];
+const TLS_CONTENT_TYPES: [u8; 4] = [0x14, 0x15, 0x16, 0x17];
+const TLS_VERSIONS: [u8; 5] = [0x00, 0x01, 0x02, 0x03, 0x04];
+const WINDOW_CHECK_STOPPED_MS: i64 = 10_000;
+const WINDOW_CHECK_RUNNING_MS: i64 = 60_000;
+const STALE_CONNECTION_MS: i64 = 120_000;
+
+fn now_ms() -> i64 {
+    SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .unwrap_or_default()
+        .as_millis() as i64
+}
+
+/// Routes captured packets through port detection, filtering, and the parsing pipeline.
+pub struct CaptureDispatcher {
+    data_storage: Arc<DataStorage>,
+    skill_lookup: Arc<SkillLookup>,
+    port_detector: Arc<CombatPortDetector>,
+    ping_tracker: Arc<PingTracker>,
+    dot_skill_ids: std::collections::HashSet<i32>,
+    suspended: Arc<AtomicBool>,
+}
+
+impl CaptureDispatcher {
+    pub fn new(
+        data_storage: Arc<DataStorage>,
+        skill_lookup: Arc<SkillLookup>,
+        port_detector: Arc<CombatPortDetector>,
+        ping_tracker: Arc<PingTracker>,
+    ) -> Self {
+        Self {
+            data_storage,
+            skill_lookup,
+            port_detector,
+            ping_tracker,
+            dot_skill_ids: std::collections::HashSet::new(),
+            suspended: Arc::new(AtomicBool::new(false)),
+        }
+    }
+
+    pub fn set_dot_skill_ids(&mut self, ids: std::collections::HashSet<i32>) {
+        self.dot_skill_ids = ids;
+    }
+
+    pub fn set_suspended(&self, suspended: bool) {
+        self.suspended.store(suspended, Ordering::SeqCst);
+    }
+
+    /// Run the dispatch loop, consuming packets from the channel.
+    pub async fn run(&self, mut receiver: mpsc::Receiver<CapturedPayload>) {
+        let mut assemblers: HashMap<(u16, u16), (StreamAssembler, StreamProcessor)> = HashMap::new();
+        let mut last_window_check_ms: i64 = 0;
+        let mut is_aion_running = false;
+
+        while let Some(cap) = receiver.recv().await {
+            if self.suspended.load(Ordering::SeqCst) {
+                continue;
+            }
+
+            // Check AION window
+            let now = now_ms();
+            let interval = if is_aion_running { WINDOW_CHECK_RUNNING_MS } else { WINDOW_CHECK_STOPPED_MS };
+            if now - last_window_check_ms >= interval {
+                last_window_check_ms = now;
+                let running = window_detector::find_aion2_window();
+                if !running && is_aion_running {
+                    self.port_detector.reset();
+                    self.ping_tracker.reset();
+                    assemblers.clear();
+                }
+                is_aion_running = running;
+            }
+
+            if !is_aion_running {
+                continue;
+            }
+
+            // Stale connection check
+            if is_aion_running && self.port_detector.current_port().is_some() {
+                let last_parsed = self.port_detector.last_parsed_at_ms();
+                if last_parsed > 0 && now - last_parsed > STALE_CONNECTION_MS {
+                    info!("No packets parsed for {}ms, resetting lock", now - last_parsed);
+                    self.port_detector.reset();
+                    self.ping_tracker.reset();
+                    assemblers.clear();
+                }
+            }
+
+            let current_port = self.port_detector.current_port();
+            let locked_device = self.port_detector.current_device();
+
+            // Device filter
+            if let Some(ref dev) = locked_device {
+                if !device_matches(dev, cap.device_name.as_deref()) {
+                    continue;
+                }
+            }
+
+            // Preferred device filter
+            if current_port.is_none() {
+                if let Some(ref pref) = self.port_detector.preferred_device() {
+                    if !device_matches(pref, cap.device_name.as_deref()) {
+                        continue;
+                    }
+                }
+            }
+
+            // Port filter
+            if let Some(port) = current_port {
+                if cap.src_port != port && cap.dst_port != port {
+                    continue;
+                }
+            }
+
+            // Feed to ping tracker — also marks connection alive to prevent stale reset
+            if current_port.is_some() {
+                let had_ping_before = self.ping_tracker.current_ping_ms();
+                self.ping_tracker.on_packet(&cap);
+                let has_ping_now = self.ping_tracker.current_ping_ms();
+                // If a new ping was received, mark the connection as active
+                if has_ping_now != had_ping_before {
+                    self.port_detector.mark_packet_parsed();
+                }
+            }
+
+            // Only parse server->client (src == locked port)
+            if let Some(port) = current_port {
+                if cap.src_port != port {
+                    continue;
+                }
+            }
+
+            // Pre-lock filters
+            let unlocked = current_port.is_none();
+            let tls_payload = looks_like_tls(&cap.data);
+
+            if unlocked && tls_payload {
+                continue;
+            }
+
+            let has_magic = if tls_payload { false } else { contains_bytes(&cap.data, &MAGIC) };
+            if unlocked && !has_magic {
+                continue;
+            }
+
+            // Log raw packet if packet logging is enabled
+            crate::logging::logger::log_packet(&cap);
+
+            // Get or create assembler
+            let a = cap.src_port.min(cap.dst_port);
+            let b = cap.src_port.max(cap.dst_port);
+            let key = (a, b);
+
+            let (assembler, processor) = assemblers.entry(key).or_insert_with(|| {
+                let mut proc = StreamProcessor::new(self.data_storage.clone(), self.skill_lookup.clone());
+                proc.set_dot_skill_ids(self.dot_skill_ids.clone());
+                (StreamAssembler::new(), proc)
+            });
+
+            if unlocked {
+                self.port_detector.register_candidate(cap.src_port, key, cap.device_name.as_deref());
+            }
+
+            let parsed = assembler.process_chunk(&cap.data, processor);
+
+            if parsed && self.port_detector.current_port().is_none() {
+                self.port_detector.confirm_candidate(cap.src_port, cap.dst_port, cap.device_name.as_deref());
+                // GC orphaned assemblers
+                assemblers.retain(|k, _| *k == key);
+            }
+
+            if parsed {
+                self.port_detector.mark_packet_parsed();
+            }
+        }
+    }
+}
+
+fn looks_like_tls(data: &[u8]) -> bool {
+    if data.len() < 3 {
+        return false;
+    }
+    let content_type = data[0];
+    let major = data[1];
+    let minor = data[2];
+    TLS_CONTENT_TYPES.contains(&content_type) && major == 0x03 && TLS_VERSIONS.contains(&minor)
+}
+
+fn contains_bytes(data: &[u8], needle: &[u8]) -> bool {
+    data.windows(needle.len()).any(|w| w == needle)
+}
+
+fn device_matches(locked: &str, packet_device: Option<&str>) -> bool {
+    match packet_device {
+        Some(d) if !d.trim().is_empty() => d.trim().eq_ignore_ascii_case(locked),
+        _ => false,
+    }
+}

@@ -1,0 +1,283 @@
+{
+  "header": {
+    "title": "DPS METER",
+    "display": {
+      "dps": "DPS",
+      "total": "DMG",
+      "ariaDps": "Showing DPS",
+      "ariaDamage": "Showing total damage"
+    }
+  },
+  "details": {
+    "header": "Details",
+    "title": "{name} Details",
+    "tooltip": "Damage over time hits are not included in total crit, double, perfect, back attack, or parry ratios.",
+    "settings": {
+      "ariaLabel": "Open details settings"
+    },
+    "panelBackground": "Panel background",
+    "fontSize": {
+      "label": "Font size"
+    },
+    "iconSize": {
+      "label": "Skill icon size"
+    },
+    "screenshots": {
+      "label": "Screenshots",
+      "includeMeter": "Include main DPS meter",
+      "saveToFolder": "Save screenshots to folder"
+    },
+    "columns": {
+      "label": "Skill columns"
+    },
+    "screenshot": {
+      "ariaLabel": "Save screenshot to clipboard",
+      "captured": "Captured Screenshot",
+      "savedToClipboard": "Saved to clipboard"
+    },
+    "sort": {
+      "recent": "Recent",
+      "time": "Time",
+      "damage": "Damage"
+    },
+    "skills": {
+      "skill": "Skill",
+      "skillTooltip": "Skill Name",
+      "hits": "Casts",
+      "hitsTooltip": "Casts",
+      "dmg": "Dmg",
+      "dmgTooltip": "Damage",
+      "dmgPct": "D%",
+      "dmgPctTooltip": "Damage %",
+      "crit": "Crit",
+      "critTooltip": "Crit %",
+      "parry": "Par",
+      "parryTooltip": "Parry %",
+      "perfect": "Per",
+      "perfectTooltip": "Perfect %",
+      "double": "Dbl",
+      "doubleTooltip": "Double %",
+      "back": "Back",
+      "backTooltip": "Back Attack %",
+      "multiHit": "MH%",
+      "multiHitTooltip": "Multi-hit %",
+      "multiHitDamage": "MHD",
+      "multiHitDamageTooltip": "Multi-hit Damage",
+      "minDmg": "Min",
+      "minDmgTooltip": "Min Damage",
+      "avgDmg": "Avg",
+      "avgDmgTooltip": "Avg Damage",
+      "maxDmg": "Max",
+      "maxDmgTooltip": "Max Damage"
+    },
+    "stats": {
+      "totalDamage": "Total Damage",
+      "contribution": "Contribution",
+      "hits": "Hits",
+      "critRate": "Crit Rate",
+      "perfectRate": "Perfect Rate",
+      "doubleRate": "Double Rate",
+      "backRate": "Back Attack Rate",
+      "parryRate": "Parry Rate",
+      "combatTime": "Combat Time",
+      "selfHealing": "Self-Healing",
+      "multiHitDamage": "Multi-Hit Damage",
+      "multiHitHits": "Multi-Hits",
+      "maxHp": "Max HP"
+    },
+    "titleFor": "for",
+    "titleVs": "vs",
+    "fightVs": "Fight vs",
+    "all": "All",
+    "history": {
+      "allPlayers": "All Players"
+    },
+    "dpsChart": "DPS Chart",
+    "historyBtn": "History",
+    "timeline": "Timeline"
+  },
+  "history": {
+    "title": "Battle History",
+    "empty": "No boss fights recorded yet.",
+    "delete": "Delete",
+    "showTraining": "Show Training",
+    "hideTraining": "Hide Training",
+    "showTrainingBattles": "Show Training Battles",
+    "hideTrainingBattles": "Hide Training Battles",
+    "trainBadge": "Training",
+    "liveBadge": "Live",
+    "filterBoss": "Boss name...",
+    "filterPlayer": "Player class...",
+    "filterDate": "Date (YYYY-MM-DD)..."
+  },
+  "settings": {
+    "title": "Settings",
+    "lockedPort": "Detected device/port",
+    "resetDetection": "Reset",
+    "characterName": "Name#ID",
+    "characterNamePlaceholder": "Enter your character name",
+    "pinMeToTop": "Always show me at the top",
+    "slimMode": "Slim mode",
+    "appearance": "Appearance",
+    "connection": "Connection",
+    "advanced": "Advanced",
+    "bossLogs": "Enable per-boss logs",
+    "saveRawPackets": "Enable packet logging",
+    "resetAllSettings": "Reset all settings",
+    "bold": {
+      "label": "Bold",
+      "names": "Names",
+      "dps": "DPS"
+    },
+    "showPing": "Show ping",
+    "showTotalDps": "Show total DPS/DMG",
+    "autoHideMeter": "Auto-hide meter",
+    "showSuspendBtn": "Show suspend button",
+    "playerLimit": {
+      "label": "Max players shown"
+    },
+    "debugLogging": "Enable debug logging",
+    "quit": "Quit",
+    "discord": "Discord",
+    "version": "Version",
+    "theme": {
+      "label": "Theme",
+      "options": {
+        "aion2": "AION2",
+        "asmodian": "Asmodian",
+        "cogni": "Cogni",
+        "elyos": "Elyos",
+        "ember": "Ember",
+        "fera": "Fera",
+        "frost": "Frost",
+        "natura": "Natura",
+        "obsidian": "Obsidian",
+        "varian": "Varian"
+      }
+    },
+    "language": {
+      "label": "Language"
+    },
+    "windowOpacity": {
+      "label": "Main window opacity"
+    },
+    "meterOpacity": {
+      "label": "Meter bar opacity"
+    },
+    "targetWindow": {
+      "label": "Target time range",
+      "options": {
+        "5s": "5 seconds",
+        "10s": "10 seconds",
+        "15s": "15 seconds",
+        "20s": "20 seconds",
+        "30s": "30 seconds"
+      }
+    },
+    "targetSelection": {
+      "label": "Target selection (experimental)",
+      "options": {
+        "mostDamage": "Most damage (current)",
+        "mostRecent": "Most recently damaged",
+        "lastHitByMe": "Last hit by me",
+        "allTargets": "All targets combined"
+      }
+    },
+    "allTargetsWindow": {
+      "label": "All Targets time range",
+      "options": {
+        "30s": "30 seconds",
+        "1m": "1 minute",
+        "2m": "2 minutes",
+        "3m": "3 minutes",
+        "5m": "5 minutes"
+      }
+    },
+    "meterSettings": "Meter Settings",
+    "keybinds": "Keybinds",
+    "keybind": {
+      "reload": "Reload data",
+      "toggle": "Show/Hide window",
+      "pressKeys": "Press keys...",
+      "needModifiers": "Need 2+ modifiers"
+    },
+    "defaultMeterMode": {
+      "label": "Default mode"
+    },
+    "trainingMode": {
+      "label": "Training Mode target",
+      "options": {
+        "all": "All",
+        "highestDamage": "Highest Damage"
+      }
+    }
+  },
+  "support": {
+    "button": "Support Me",
+    "title": "Support the author on Ko-fi",
+    "titleWechat": "Support the author on WeChat",
+    "label": {
+      "wechat": "WeChat"
+    },
+    "copy": {
+      "btc": "BTC address copied",
+      "eth": "ETH address copied",
+      "usdc": "USDC address copied"
+    },
+    "aria": {
+      "afdian": "Open Afdian",
+      "kofi": "Open Ko-fi",
+      "close": "Close support modal",
+      "wechat": "Show WeChat QR code",
+      "paypal": "Open PayPal",
+      "btc": "Copy BTC address",
+      "eth": "Copy ETH address",
+      "usdc": "Copy USDC address"
+    }
+  },
+  "battleTime": {
+    "analysing": "Monitoring data...",
+    "idle": "Idle",
+    "notRunning": "AION2 not running",
+    "suspended": "App suspended"
+  },
+  "meter": {
+    "identifyingPlayer": "#{id}",
+    "dpsSuffix": "/s"
+  },
+  "skills": {
+    "fallback": "Skill {code}",
+    "dot": "{name} - DOT"
+  },
+  "update": {
+    "title": "New update available",
+    "install": "Install Now",
+    "notes": "Release Notes",
+    "manual": "Manual Install",
+    "later": "Update Later",
+    "text": "A new update is available!\n\nCurrent version: {current}\nLatest version: {latest}",
+    "installing": "Installing update...",
+    "downloadError": "Download failed. Please try again or install manually."
+  },
+  "connection": {
+    "auto": "Auto",
+    "detecting": "Detecting AION2 connection...",
+    "loopback": "Local Loopback"
+  },
+  "target": {
+    "all": "All Targets",
+    "identifying": "Identifying you...",
+    "train": "Training Scarecrow",
+    "boss": "Boss Targets"
+  },
+  "classes": {
+    "GLADIATOR": "Gladiator",
+    "TEMPLAR": "Templar",
+    "RANGER": "Ranger",
+    "ASSASSIN": "Assassin",
+    "SORCERER": "Sorcerer",
+    "CLERIC": "Cleric",
+    "ELEMENTALIST": "Elementalist",
+    "CHANTER": "Chanter"
+  }
+}
