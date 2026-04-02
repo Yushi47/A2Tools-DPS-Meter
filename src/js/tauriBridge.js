@@ -128,7 +128,7 @@
     },
 
     getVersion() {
-      return "2.0.0-beta.1";
+      return "2.0.1";
     },
   };
 
