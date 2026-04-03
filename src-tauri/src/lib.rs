@@ -133,6 +133,12 @@ fn set_character_name(state: tauri::State<'_, AppState>, name: String) {
 
 #[tauri::command]
 fn bind_local_actor_id(state: tauri::State<'_, AppState>, actor_id: i64) {
+    if actor_id <= 0 {
+        // Clear manual binding — auto-detection will take over
+        tracing::info!("bind_local_actor_id: cleared");
+        state.data_storage.set_local_player_id(None);
+        return;
+    }
     // Skip if already bound to this ID
     if state.data_storage.local_player_id() == Some(actor_id) {
         return;
@@ -237,6 +243,109 @@ fn write_cached_icon(state: tauri::State<'_, AppState>, key: String, data: Strin
 
 
 #[tauri::command]
+async fn show_update_window(app: tauri::AppHandle, current: String, latest: String, msi_url: String) -> Result<bool, String> {
+    let msg = format!("A new update is available!\n\nCurrent: {}\nLatest: {}\n\nDownload and install now?", current, latest);
+
+    let accepted = tokio::task::spawn_blocking(move || {
+        #[cfg(windows)]
+        {
+            use windows::Win32::UI::WindowsAndMessaging::*;
+            use windows::core::PCWSTR;
+            let msg_w: Vec<u16> = msg.encode_utf16().chain(std::iter::once(0)).collect();
+            let title: Vec<u16> = "A2Tools - Update Available".encode_utf16().chain(std::iter::once(0)).collect();
+            let result = unsafe {
+                MessageBoxW(None, PCWSTR(msg_w.as_ptr()), PCWSTR(title.as_ptr()), MB_YESNO | MB_ICONINFORMATION | MB_TOPMOST | MB_SETFOREGROUND)
+            };
+            result == IDYES
+        }
+        #[cfg(not(windows))]
+        { false }
+    }).await.unwrap_or(false);
+
+    if accepted && !msi_url.is_empty() {
+        // Download and install in background
+        let app2 = app.clone();
+        let url = msi_url.clone();
+        tauri::async_runtime::spawn(async move {
+            if let Err(e) = download_and_install_msi_inner(&app2, &url).await {
+                tracing::error!("Update download failed: {}", e);
+                // Show error dialog
+                let _ = tokio::task::spawn_blocking(move || {
+                    #[cfg(windows)]
+                    {
+                        use windows::Win32::UI::WindowsAndMessaging::*;
+                        use windows::core::PCWSTR;
+                        let msg: Vec<u16> = format!("Download failed: {}\n\nPlease download manually.", e)
+                            .encode_utf16().chain(std::iter::once(0)).collect();
+                        let title: Vec<u16> = "A2Tools - Update Error".encode_utf16().chain(std::iter::once(0)).collect();
+                        unsafe { MessageBoxW(None, PCWSTR(msg.as_ptr()), PCWSTR(title.as_ptr()), MB_OK | MB_ICONERROR | MB_TOPMOST); }
+                    }
+                }).await;
+            }
+        });
+    } else if accepted {
+        // No MSI URL, open releases page
+        let _ = std::process::Command::new("cmd").args(["/C", "start", "", "https://github.com/taengu/A2Tools-DPS-Meter/releases"]).spawn();
+    }
+
+    Ok(accepted)
+}
+
+async fn download_and_install_msi_inner(app: &tauri::AppHandle, url: &str) -> Result<(), String> {
+    use tokio::io::AsyncWriteExt;
+    use futures_util::StreamExt;
+
+    // Show progress dialog on a blocking thread
+    let app_clone = app.clone();
+    let url_owned = url.to_string();
+
+    let response = reqwest::get(&url_owned).await.map_err(|e| e.to_string())?;
+    let total_size = response.content_length().unwrap_or(0);
+    let file_name = url_owned.rsplit('/').next().unwrap_or("update.msi");
+    let msi_path = std::env::temp_dir().join(file_name);
+
+    let mut file = tokio::fs::File::create(&msi_path).await.map_err(|e| e.to_string())?;
+    let mut downloaded: u64 = 0;
+    let mut stream = response.bytes_stream();
+    let mut last_pct: u64 = 0;
+
+    while let Some(chunk) = stream.next().await {
+        let chunk = chunk.map_err(|e| e.to_string())?;
+        file.write_all(&chunk).await.map_err(|e| e.to_string())?;
+        downloaded += chunk.len() as u64;
+        if total_size > 0 {
+            let pct = (downloaded * 100 / total_size).min(100);
+            if pct != last_pct {
+                last_pct = pct;
+                let _ = app_clone.emit("download-progress", pct);
+                tracing::info!("Download: {}%", pct);
+            }
+        }
+    }
+    file.flush().await.map_err(|e| e.to_string())?;
+    drop(file);
+
+    tracing::info!("Download complete, launching installer: {}", msi_path.display());
+
+    // Launch the MSI installer
+    std::process::Command::new("msiexec")
+        .args(["/i", &msi_path.to_string_lossy(), "/passive"])
+        .spawn()
+        .map_err(|e| e.to_string())?;
+
+    // Give installer time to start, then exit
+    tokio::time::sleep(std::time::Duration::from_secs(2)).await;
+    app_clone.exit(0);
+    Ok(())
+}
+
+#[tauri::command]
+async fn fetch_url(url: String) -> Result<String, String> {
+    reqwest::get(&url).await.map_err(|e| e.to_string())?
+        .text().await.map_err(|e| e.to_string())
+}
+
+#[tauri::command]
 fn open_url(url: String) {
     #[cfg(windows)]
     {
@@ -296,6 +405,16 @@ fn start_drag(app: tauri::AppHandle) {
 #[tauri::command]
 fn get_aion2_window_title() -> Option<String> {
     platform::window_detector::find_aion2_window_title()
+}
+
+#[tauri::command]
+fn test_auto_hide() -> serde_json::Value {
+    let aion_fg = platform::window_detector::is_aion2_foreground();
+    let aion_title = platform::window_detector::find_aion2_window_title();
+    serde_json::json!({
+        "aion2_foreground": aion_fg,
+        "aion2_title": aion_title,
+    })
 }
 
 #[tauri::command]
@@ -595,14 +714,18 @@ pub fn run() {
 
             app.manage(state);
 
-            // Restore saved window position
+            // Restore saved window position and ensure always-on-top
             if let Some(window) = app.get_webview_window("main") {
                 let state_ref = app.state::<AppState>();
                 if let (Some(x), Some(y)) = (state_ref.settings.get("window.x"), state_ref.settings.get("window.y")) {
                     if let (Ok(x), Ok(y)) = (x.parse::<i32>(), y.parse::<i32>()) {
-                        let _ = window.set_position(tauri::Position::Physical(tauri::PhysicalPosition { x, y }));
+                        // Don't restore minimized positions (Windows uses -32000,-32000)
+                        if x > -10000 && y > -10000 {
+                            let _ = window.set_position(tauri::Position::Physical(tauri::PhysicalPosition { x, y }));
+                        }
                     }
                 }
+                let _ = window.set_always_on_top(true);
             }
 
             // Check if Npcap is available before starting capture
@@ -672,14 +795,14 @@ pub fn run() {
                 {
                     let h = hotkey_handle;
                     move || {
-                        // Toggle window visibility (minimize to keep taskbar icon)
+                        // Toggle window visibility
                         if let Some(window) = h.get_webview_window("main") {
-                            if window.is_minimized().unwrap_or(false) || !window.is_visible().unwrap_or(true) {
-                                let _ = window.unminimize();
-                                let _ = window.show();
-                                let _ = window.set_focus();
+                            if window.is_visible().unwrap_or(false) {
+                                let _ = window.hide();
                             } else {
-                                let _ = window.minimize();
+                                let _ = window.show();
+                                let _ = window.set_always_on_top(true);
+                                let _ = window.set_focus();
                             }
                         }
                     }
@@ -691,6 +814,7 @@ pub fn run() {
             tauri::async_runtime::spawn(async move {
                 let mut interval = tokio::time::interval(Duration::from_millis(500));
                 let mut tick_count: u64 = 0;
+                let mut hide_delay: u64 = 0; // ticks to wait before hiding
                 loop {
                     interval.tick().await;
                     tick_count += 1;
@@ -717,19 +841,53 @@ pub fn run() {
                         }
 
                         // --- Auto-hide when AION2 loses focus (every tick) ---
-                        let auto_hide = state.settings.get("dpsMeter.autoHideMeter")
-                            .unwrap_or_default() == "true";
+                        let auto_hide = tick_count > 20
+                            && state.settings.get("dpsMeter.autoHideMeter")
+                                .unwrap_or_default() == "true";
                         if auto_hide {
                             if let Some(window) = handle.get_webview_window("main") {
                                 let aion_fg = platform::window_detector::is_aion2_foreground();
                                 let is_self_fg = window.is_focused().unwrap_or(false);
-                                if aion_fg || is_self_fg {
-                                    if window.is_minimized().unwrap_or(false) {
-                                        let _ = window.unminimize();
+                                let is_visible = window.is_visible().unwrap_or(true);
+                                let is_minimized = window.is_minimized().unwrap_or(false);
+                                if tick_count % 4 == 0 {
+                                    tracing::debug!("auto-hide: aion_fg={} self_fg={} visible={} minimized={} hide_delay={}",
+                                        aion_fg, is_self_fg, is_visible, is_minimized, hide_delay);
+                                }
+                                #[cfg(windows)]
+                                {
+                                    use windows::Win32::Foundation::HWND;
+                                    use windows::Win32::UI::WindowsAndMessaging::*;
+                                    if let Ok(raw) = window.hwnd() {
+                                        let hwnd = HWND(raw.0);
+                                        if aion_fg || is_self_fg {
+                                            hide_delay = 0;
+                                            if !is_visible || is_minimized {
+                                                unsafe {
+                                                    let _ = ShowWindow(hwnd, SW_SHOWNOACTIVATE);
+                                                    let _ = SetWindowPos(
+                                                        hwnd, Some(HWND_TOPMOST),
+                                                        0, 0, 0, 0,
+                                                        SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_SHOWWINDOW,
+                                                    );
+                                                }
+                                            }
+                                        } else if is_visible && !is_minimized {
+                                            // Wait 3 ticks (1.5s) before hiding to avoid
+                                            // flickering during alt-tab transitions
+                                            hide_delay += 1;
+                                            if hide_delay >= 3 {
+                                                unsafe {
+                                                    let _ = SetWindowPos(
+                                                        hwnd, Some(HWND_NOTOPMOST),
+                                                        0, 0, 0, 0,
+                                                        SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE,
+                                                    );
+                                                    let _ = ShowWindow(hwnd, SW_MINIMIZE);
+                                                }
+                                            }
+                                        }
                                     }
-                                    let _ = window.show();
-                                } else {
-                                    let _ = window.minimize();
                                 }
                             }
                         }
@@ -738,8 +896,11 @@ pub fn run() {
                         if tick_count % 10 == 0 {
                             if let Some(window) = handle.get_webview_window("main") {
                                 if let Ok(pos) = window.outer_position() {
-                                    state.settings.set("window.x", &pos.x.to_string());
-                                    state.settings.set("window.y", &pos.y.to_string());
+                                    // Don't save minimized/hidden positions
+                                    if pos.x > -10000 && pos.y > -10000 {
+                                        state.settings.set("window.x", &pos.x.to_string());
+                                        state.settings.set("window.y", &pos.y.to_string());
+                                    }
                                 }
                             }
                         }
@@ -808,6 +969,9 @@ pub fn run() {
             get_available_devices,
             set_manual_device,
             replay_file,
+            test_auto_hide,
+            fetch_url,
+            show_update_window,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

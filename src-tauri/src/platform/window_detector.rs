@@ -45,19 +45,38 @@ pub fn find_aion2_window() -> bool {
     false
 }
 
-/// Check if the foreground window belongs to the AION 2 process by checking
-/// the executable name (more reliable than window title matching).
+/// Check if the foreground window belongs to AION 2.
+/// Uses window title check first (works without elevated privileges),
+/// falls back to process name check.
 #[cfg(windows)]
 pub fn is_aion2_foreground() -> bool {
     use windows::Win32::Foundation::HWND;
-    use windows::Win32::System::Threading::{OpenProcess, QueryFullProcessImageNameW, PROCESS_NAME_FORMAT, PROCESS_QUERY_LIMITED_INFORMATION};
-    use windows::Win32::UI::WindowsAndMessaging::{GetForegroundWindow, GetWindowThreadProcessId};
+    use windows::Win32::UI::WindowsAndMessaging::{GetForegroundWindow, GetWindowTextW};
 
     unsafe {
         let hwnd: HWND = GetForegroundWindow();
         if hwnd.0.is_null() {
             return false;
         }
+        let mut buf = [0u16; 256];
+        let len = GetWindowTextW(hwnd, &mut buf) as usize;
+        if len >= 5 {
+            let title = String::from_utf16_lossy(&buf[..len]);
+            if title.starts_with("AION2") {
+                return true;
+            }
+        }
+        // Fallback: check process exe name (may fail without admin)
+        is_aion2_process(hwnd)
+    }
+}
+
+#[cfg(windows)]
+fn is_aion2_process(hwnd: windows::Win32::Foundation::HWND) -> bool {
+    use windows::Win32::System::Threading::{OpenProcess, QueryFullProcessImageNameW, PROCESS_NAME_FORMAT, PROCESS_QUERY_LIMITED_INFORMATION};
+    use windows::Win32::UI::WindowsAndMessaging::GetWindowThreadProcessId;
+
+    unsafe {
         let mut pid: u32 = 0;
         GetWindowThreadProcessId(hwnd, Some(&mut pid));
         if pid == 0 {

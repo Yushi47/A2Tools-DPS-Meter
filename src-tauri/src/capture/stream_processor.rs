@@ -1755,11 +1755,7 @@ fn sanitize_nickname(nickname: &str) -> Option<String> {
         return None;
     }
 
-    let has_letter = result.chars().any(|c| c.is_alphabetic());
-    let has_digit = result.chars().any(|c| c.is_ascii_digit());
-    let is_short_alphanum = result.len() == 2 && has_letter && has_digit;
-
-    if result.chars().count() < 3 && !has_cjk && !is_short_alphanum {
+    if result.chars().count() < 2 && !has_cjk {
         return None;
     }
 
