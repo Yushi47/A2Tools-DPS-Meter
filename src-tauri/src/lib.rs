@@ -300,6 +300,9 @@ async fn download_and_install_msi_inner(app: &tauri::AppHandle, url: &str) -> Re
     let url_owned = url.to_string();
 
     let response = reqwest::get(&url_owned).await.map_err(|e| e.to_string())?;
+    if !response.status().is_success() {
+        return Err(format!("HTTP {}", response.status()));
+    }
     let total_size = response.content_length().unwrap_or(0);
     let file_name = url_owned.rsplit('/').next().unwrap_or("update.msi");
     let msi_path = std::env::temp_dir().join(file_name);
@@ -327,9 +330,20 @@ async fn download_and_install_msi_inner(app: &tauri::AppHandle, url: &str) -> Re
 
     tracing::info!("Download complete, launching installer: {}", msi_path.display());
 
-    // Launch the MSI installer
+    // Detect current install directory from the running executable's location
+    let current_exe = std::env::current_exe().map_err(|e| e.to_string())?;
+    let install_dir = current_exe.parent()
+        .ok_or("Could not determine install directory")?
+        .to_string_lossy();
+
+    // Launch the MSI installer into the same directory
     std::process::Command::new("msiexec")
-        .args(["/i", &msi_path.to_string_lossy(), "/passive"])
+        .args([
+            "/i", &msi_path.to_string_lossy(),
+            "/passive",
+            &format!("INSTALLDIR={}", install_dir),
+            "AUTOLAUNCHAPP=1",
+        ])
         .spawn()
         .map_err(|e| e.to_string())?;
 
