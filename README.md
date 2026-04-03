@@ -75,9 +75,16 @@ A: Reinstall Npcap and ensure "WinPcap API-compatible Mode" is checked during in
 
 ## Support
 
-- [Ko-fi](https://ko-fi.com/W7W51T1YW9)
-- [PayPal](https://www.paypal.me/taengoo)
-- [Crypto](https://nowpayments.io/donation/thehiddencube)
+Say thanks and fund new cool projects & features!
+
+- <img src="wechat.png" width="150">
+- ☕ [Buy me a Coffee](https://ko-fi.com/hiddencube)
+- ☕ [在爱发电支持我](https://afdian.com/a/hiddencube)
+- 🅿️ [Send with PayPal](https://www.paypal.me/taengoo)
+- 🎁 [Donate with Crypto](https://nowpayments.io/donation/thehiddencube)
+- **BTC**: `1GexKhgVZPYRqpfCKydXLoNUXRRRUoAUwT`
+- **ETH**: `0x38F0bc371A563A24eCa6034cFf77eB6173c7e3e7`
+- **USDC**: `0xA9571Fc95666350f6DFFB8Fb80ee27eE7db46b56`
 
 ## License
 

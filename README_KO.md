@@ -62,9 +62,16 @@ npm run tauri dev
 
 ## 후원
 
-- [Ko-fi](https://ko-fi.com/W7W51T1YW9)
-- [PayPal](https://www.paypal.me/taengoo)
-- [Crypto](https://nowpayments.io/donation/thehiddencube)
+개발을 응원해 주세요!
+
+- <img src="wechat.png" width="150">
+- ☕ [Ko-fi](https://ko-fi.com/hiddencube)
+- ☕ [아이파디엔 (爱发电)](https://afdian.com/a/hiddencube)
+- 🅿️ [PayPal](https://www.paypal.me/taengoo)
+- 🎁 [암호화폐 기부](https://nowpayments.io/donation/thehiddencube)
+- **BTC**: `1GexKhgVZPYRqpfCKydXLoNUXRRRUoAUwT`
+- **ETH**: `0x38F0bc371A563A24eCa6034cFf77eB6173c7e3e7`
+- **USDC**: `0xA9571Fc95666350f6DFFB8Fb80ee27eE7db46b56`
 
 ## 라이선스
 

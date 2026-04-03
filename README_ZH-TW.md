@@ -62,9 +62,14 @@ npm run tauri dev
 
 如果本工具對您有幫助，歡迎支持開發者！
 
-- ☕ **Ko-fi：** https://ko-fi.com/W7W51T1YW9
-- 💳 **PayPal：** https://www.paypal.me/taengoo
-- 🪙 **加密貨幣：** https://nowpayments.io/donation/thehiddencube
+- <img src="wechat.png" width="150">
+- ☕ [Ko-fi](https://ko-fi.com/hiddencube)
+- ☕ [愛發電](https://afdian.com/a/hiddencube)
+- 🅿️ [PayPal](https://www.paypal.me/taengoo)
+- 🎁 [加密貨幣捐贈](https://nowpayments.io/donation/thehiddencube)
+- **BTC**: `1GexKhgVZPYRqpfCKydXLoNUXRRRUoAUwT`
+- **ETH**: `0x38F0bc371A563A24eCa6034cFf77eB6173c7e3e7`
+- **USDC**: `0xA9571Fc95666350f6DFFB8Fb80ee27eE7db46b56`
 
 ## 授權條款
 
