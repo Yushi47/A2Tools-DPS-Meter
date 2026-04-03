@@ -1,5 +1,9 @@
 # A2Tools DPS Meter
 
+[![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
+[![GitHub Issues](https://img.shields.io/github/issues/taengu/A2Tools-DPS-Meter)](https://github.com/taengu/A2Tools-DPS-Meter/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/taengu/A2Tools-DPS-Meter)](https://github.com/taengu/A2Tools-DPS-Meter/pulls)
+
 AION 2 실시간 DPS 미터 오버레이. 게임 네트워크 패킷을 캡처하여 데미지, 스킬, 전투 통계를 표시합니다.
 
 **[최신 버전 다운로드](https://github.com/taengu/A2Tools-DPS-Meter/releases)** | **[A2Tools.app](https://a2tools.app)**

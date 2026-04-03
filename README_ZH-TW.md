@@ -1,5 +1,9 @@
 # A2Tools DPS Meter
 
+[![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
+[![GitHub Issues](https://img.shields.io/github/issues/taengu/A2Tools-DPS-Meter)](https://github.com/taengu/A2Tools-DPS-Meter/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/taengu/A2Tools-DPS-Meter)](https://github.com/taengu/A2Tools-DPS-Meter/pulls)
+
 適用於 **AION 2**（永恆之塔2）的即時 DPS 統計工具。透過擷取遊戲網路封包來顯示傷害、技能和戰鬥統計數據。
 
 **[下載最新版本](https://github.com/taengu/A2Tools-DPS-Meter/releases)** | **[A2Tools.app](https://a2tools.app)**
