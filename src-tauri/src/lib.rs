@@ -459,12 +459,13 @@ async fn replay_file(state: tauri::State<'_, AppState>, file_path: String) -> Re
     // (no AION2 window check, no port detection needed for replay)
     let data_storage = state.data_storage.clone();
     let skill_lookup = state.skill_lookup.clone();
+    let npc_lookup = state.npc_lookup.clone();
     let i18n_dir = state.i18n_data_dir.clone();
 
     let count = tokio::task::spawn_blocking(move || {
         use crate::capture::stream_processor::StreamProcessor;
 
-        let mut processor = StreamProcessor::new(data_storage.clone(), skill_lookup);
+        let mut processor = StreamProcessor::new(data_storage.clone(), skill_lookup, npc_lookup);
         // Load DOT IDs
         if let Some(ref data_dir) = i18n_dir {
             let mut dot_ids = std::collections::HashSet::new();
@@ -766,6 +767,7 @@ pub fn run() {
             let mut dispatcher = CaptureDispatcher::new(
                 data_storage.clone(),
                 skill_lookup.clone(),
+                npc_lookup.clone(),
                 port_detector.clone(),
                 ping_tracker.clone(),
             );

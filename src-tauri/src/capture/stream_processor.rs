@@ -6,7 +6,7 @@ use lz4_flex::decompress;
 use crate::combat::data_storage::DataStorage;
 use crate::entity::damage_packet::ParsedDamagePacket;
 use crate::entity::special_damage::SpecialDamage;
-use crate::i18n::lookup::SkillLookup;
+use crate::i18n::lookup::{NpcLookup, SkillLookup};
 
 /// VarInt decode result.
 #[derive(Debug, Clone, Copy)]
@@ -63,6 +63,7 @@ impl BoundedHashSet {
 pub struct StreamProcessor {
     data_storage: Arc<DataStorage>,
     skill_lookup: Arc<SkillLookup>,
+    npc_lookup: Arc<NpcLookup>,
     seen_embedded_hexes: BoundedHashSet,
     dot_damage_skill_ids: HashSet<i32>,
     pending_compact_skill_context: Option<PendingCompactSkillContext>,
@@ -71,10 +72,11 @@ pub struct StreamProcessor {
 }
 
 impl StreamProcessor {
-    pub fn new(data_storage: Arc<DataStorage>, skill_lookup: Arc<SkillLookup>) -> Self {
+    pub fn new(data_storage: Arc<DataStorage>, skill_lookup: Arc<SkillLookup>, npc_lookup: Arc<NpcLookup>) -> Self {
         Self {
             data_storage,
             skill_lookup,
+            npc_lookup,
             seen_embedded_hexes: BoundedHashSet::new(16_384),
             dot_damage_skill_ids: HashSet::new(), // loaded lazily
             pending_compact_skill_context: None,
@@ -248,12 +250,56 @@ impl StreamProcessor {
             || self.parse_loot_attribution_actor_name(packet)
             || self.parsing_nickname(packet);
         let parsed_hp = self.parse_hp_mp_update_packet(packet);
+        self.parse_death_packet(packet);
 
         if !parsed_damage && !parsed_name && !parsed_summon && !parsed_ownership && !parsed_hp {
             self.parse_dot_packet(packet);
         }
 
         parsed_damage || parsed_name
+    }
+
+    // ===== DEATH PACKET (41 36) =====
+
+    fn parse_death_packet(&self, packet: &[u8]) {
+        let length_info = read_varint(packet, 0);
+        if length_info.length < 0 {
+            return;
+        }
+        let offset = length_info.length as usize;
+        if offset + 1 >= packet.len() {
+            return;
+        }
+        // Opcode 0x3641 appears as [0x41, 0x36] in the stream (little-endian)
+        if packet[offset] != 0x41 || packet[offset + 1] != 0x36 {
+            return;
+        }
+        let mut pos = offset + 2;
+
+        let entity_info = read_varint(packet, pos);
+        if entity_info.length <= 0 {
+            return;
+        }
+        let entity_id = entity_info.value;
+        pos += entity_info.length as usize;
+
+        // Skip VarInt (always 0)
+        let skip_info = read_varint(packet, pos);
+        if skip_info.length <= 0 {
+            return;
+        }
+        pos += skip_info.length as usize;
+
+        // Death flag: 1 = zone-init (entity loaded dead), 3 = combat death
+        let flag_info = read_varint(packet, pos);
+        if flag_info.length <= 0 {
+            return;
+        }
+
+        if flag_info.value == 3 {
+            tracing::debug!("Death event: entity {} killed in combat", entity_id);
+            self.data_storage.mark_entity_dead(entity_id);
+        }
     }
 
     // ===== DOT PACKET =====
@@ -283,9 +329,10 @@ impl StreamProcessor {
         }
         let effect_type = packet[offset] as u32;
         offset += 1;
-        // Effect type uses bit flags: bit 1 (0x02) = damage.
-        // Values seen: 0x02 (damage), 0x0A (damage+flags), 0x00 (status), 0x01 (heal)
-        if effect_type & 0x02 == 0 {
+        // Effect type: 0x02 = damage (pre-patch), 0x0A = damage (post-patch 2026-04-01).
+        // Non-damage values: 0x00 = status, 0x01 = heal, 0x08 = buff, 0x09 = heal, 0x0B = HoT.
+        // Must use exact match, NOT bitmask — 0x0B (HoT) has bit 1 set and would leak through.
+        if effect_type != 0x02 && effect_type != 0x0A {
             return;
         }
 
@@ -694,6 +741,11 @@ impl StreamProcessor {
                     let b3 = packet[scan_offset - 1] as i32;
                     let mob_type_id = b1 | (b2 << 8) | (b3 << 16);
                     self.data_storage.append_mob(real_actor_id, mob_type_id);
+
+                    // Register boss entities from NPC DB
+                    if self.npc_lookup.is_boss(mob_type_id) {
+                        self.data_storage.register_boss(real_actor_id);
+                    }
 
                     // Try to extract HP
                     let mut hp_scan = scan_offset + 3;
@@ -1285,6 +1337,7 @@ impl StreamProcessor {
                 if special_byte & 0x08 != 0 { specials.push(SpecialDamage::Perfect); }
                 if special_byte & 0x10 != 0 { specials.push(SpecialDamage::Double); }
                 if special_byte & 0x40 != 0 { specials.push(SpecialDamage::Smite); }
+                if special_byte & 0x80 != 0 { specials.push(SpecialDamage::PowerShard); }
             }
             if damage_type == 3 {
                 specials.push(SpecialDamage::Critical);
@@ -1445,6 +1498,20 @@ impl StreamProcessor {
                 self.pending_compact_skill_context = None;
             }
 
+            // Heal/life-steal suffix: [0x03, 0x00] marker + HealAmount VarInt
+            let mut heal_amount = 0;
+            if offset + 1 < packet.len()
+                && packet[offset] == 0x03
+                && packet[offset + 1] == 0x00
+            {
+                offset += 2;
+                if let Some(heal_val) = try_read_varint(packet, &mut offset) {
+                    if heal_val > 0 && heal_val < 10_000_000 {
+                        heal_amount = heal_val;
+                    }
+                }
+            }
+
             if require_trusted && !self.is_trusted_recovered_damage_shape(actor_value, target_value, dummy_type as u8, final_damage, resolved_skill_code) {
                 break;
             }
@@ -1462,7 +1529,7 @@ impl StreamProcessor {
                 pdp.set_specials(specials);
                 pdp.set_multi_hit_count(multi_hit_count);
                 pdp.set_multi_hit_damage(multi_hit_damage);
-                pdp.set_heal_amount(0);
+                pdp.set_heal_amount(heal_amount);
                 pdp.set_damage(final_damage);
                 pdp.set_hex_payload(to_hex(packet));
 

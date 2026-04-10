@@ -26,6 +26,8 @@ pub struct SkillCombatData {
     pub parry_count: i32,
     pub perfect_count: i32,
     pub double_count: i32,
+    pub smite_count: i32,
+    pub powershard_count: i32,
     pub multi_hit_count: i32,
     pub multi_hit_damage: i32,
     pub multi_hit_hits: i32,
@@ -48,6 +50,8 @@ impl SkillCombatData {
             parry_count: 0,
             perfect_count: 0,
             double_count: 0,
+            smite_count: 0,
+            powershard_count: 0,
             multi_hit_count: 0,
             multi_hit_damage: 0,
             multi_hit_hits: 0,
@@ -61,6 +65,10 @@ impl SkillCombatData {
 #[derive(Debug, Clone)]
 pub struct ActorCombatData {
     pub total_damage: i64,
+    pub party_heal: i64,
+    pub regen: i64,
+    pub damage_received: i64,
+    pub hits_received: i32,
     pub job: Option<JobClass>,
     /// Skills keyed by (raw_skill_code, is_dot)
     pub skills: HashMap<(i32, bool), SkillCombatData>,
@@ -70,6 +78,10 @@ impl ActorCombatData {
     fn new() -> Self {
         Self {
             total_damage: 0,
+            party_heal: 0,
+            regen: 0,
+            damage_received: 0,
+            hits_received: 0,
             job: None,
             skills: HashMap::new(),
         }
@@ -122,6 +134,11 @@ struct Inner {
     known_player_ids: HashSet<i32>,
     confirmed_summon_ids: HashSet<i32>,
     hostile_target_ids: HashSet<i32>,
+    dead_entity_ids: HashSet<i32>,
+    /// Boss entity IDs identified from NPC DB boss flags
+    boss_entity_ids: HashSet<i32>,
+    /// Whether the current combat segment has any boss damage
+    has_boss_in_segment: bool,
     current_target: i32,
 
     // Local player
@@ -144,6 +161,9 @@ impl DataStorage {
                 known_player_ids: HashSet::new(),
                 confirmed_summon_ids: HashSet::new(),
                 hostile_target_ids: HashSet::new(),
+                dead_entity_ids: HashSet::new(),
+                boss_entity_ids: HashSet::new(),
+                has_boss_in_segment: false,
                 current_target: 0,
                 local_player_id: None,
                 local_character_name: None,
@@ -178,12 +198,24 @@ impl DataStorage {
         let actor_id = pdp.actor_id();
         let target_id = pdp.target_id();
 
-        // Skip NPC actors using NPC skills
+        // NPC actors using NPC skills: track damage received on the player target, then skip
         let uses_npc_skill = (1_000_000..=9_999_999).contains(&skill_code);
         if inner.mob_storage.contains_key(&actor_id)
             && !inner.summon_storage.contains_key(&actor_id)
             && uses_npc_skill
         {
+            // Track damage received on the player target
+            let resolved_target = summon_resolver::resolve(target_id, &inner.summon_storage);
+            if inner.known_player_ids.contains(&resolved_target) {
+                let dmg = pdp.total_damage() as i64;
+                for target_data in inner.target_combat.values_mut() {
+                    if let Some(actor_data) = target_data.actors.get_mut(&resolved_target) {
+                        actor_data.damage_received += dmg;
+                        actor_data.hits_received += 1;
+                        break;
+                    }
+                }
+            }
             return;
         }
 
@@ -196,8 +228,18 @@ impl DataStorage {
             }
         }
 
-        // Skip friendly actions
+        // Party healing: player-on-player damage is actually healing/buffs
         if is_friendly_action(&inner, actor_id, target_id) {
+            let heal_amount = pdp.total_damage();
+            if heal_amount > 0 {
+                // Record party heal on the actor's data in all targets they appear in
+                for target_data in inner.target_combat.values_mut() {
+                    if let Some(actor_data) = target_data.actors.get_mut(&actor_id) {
+                        actor_data.party_heal += heal_amount as i64;
+                        break;
+                    }
+                }
+            }
             return;
         }
 
@@ -210,6 +252,18 @@ impl DataStorage {
         // Track actor job
         if let Some(job) = JobClass::convert_from_skill(skill_code) {
             inner.actor_jobs.entry(actor_id).or_insert(job);
+        }
+
+        // Boss encounter auto-reset: if this target is a boss and the current
+        // segment has no boss yet, clear the trash segment so boss gets clean data.
+        let is_boss_target = inner.boss_entity_ids.contains(&target_id);
+        if is_boss_target && !inner.has_boss_in_segment && !inner.target_combat.is_empty() {
+            tracing::info!("Boss encounter auto-reset: boss entity {} hit, clearing trash segment", target_id);
+            inner.target_combat.clear();
+            inner.dead_entity_ids.clear();
+            inner.has_boss_in_segment = true;
+        } else if is_boss_target {
+            inner.has_boss_in_segment = true;
         }
 
         let timestamp = pdp.timestamp();
@@ -262,12 +316,18 @@ impl DataStorage {
         if pdp.specials().contains(&SpecialDamage::Parry) { skill_data.parry_count += 1; }
         if pdp.specials().contains(&SpecialDamage::Perfect) { skill_data.perfect_count += 1; }
         if pdp.specials().contains(&SpecialDamage::Double) { skill_data.double_count += 1; }
+        if pdp.specials().contains(&SpecialDamage::Smite) { skill_data.smite_count += 1; }
+        if pdp.specials().contains(&SpecialDamage::PowerShard) { skill_data.powershard_count += 1; }
         if pdp.multi_hit_count() > 0 {
             skill_data.multi_hit_count += 1;
             skill_data.multi_hit_damage += pdp.multi_hit_damage();
             skill_data.multi_hit_hits += pdp.multi_hit_count();
         }
         skill_data.heal_amount += pdp.heal_amount();
+        // Track regen (life-steal) on the actor aggregate
+        if pdp.heal_amount() > 0 {
+            actor_data.regen += pdp.heal_amount() as i64;
+        }
         skill_data.hit_timestamps.push(timestamp);
         for (i, &flag) in pdp.spec_flags().iter().enumerate() {
             if flag { skill_data.spec_flags[i] = true; }
@@ -280,13 +340,47 @@ impl DataStorage {
     }
 
     pub fn append_mob(&self, mid: i32, code: i32) {
-        self.inner.write().mob_storage.insert(mid, code);
+        let mut inner = self.inner.write();
+        inner.mob_storage.insert(mid, code);
+
+        // NPC unclassification: if this entity was previously classified as a player
+        // (damage with player-band skills arrived before the 0x3640 spawn packet),
+        // undo the classification and scrub ghost player damage from aggregates.
+        if inner.known_player_ids.remove(&mid) {
+            tracing::info!("NPC unclassification: entity {} reclassified as mob (code {})", mid, code);
+            // Subtract ghost player damage from target totals
+            for target_data in inner.target_combat.values_mut() {
+                if let Some(actor_data) = target_data.actors.remove(&mid) {
+                    target_data.total_damage -= actor_data.total_damage;
+                }
+            }
+        }
     }
 
     pub fn append_mob_hp(&self, mid: i32, hp: i32) {
         if hp > 0 {
             self.inner.write().mob_hp_data.insert(mid, hp);
         }
+    }
+
+    pub fn mark_entity_dead(&self, entity_id: i32) {
+        self.inner.write().dead_entity_ids.insert(entity_id);
+    }
+
+    pub fn is_entity_dead(&self, entity_id: i32) -> bool {
+        self.inner.read().dead_entity_ids.contains(&entity_id)
+    }
+
+    pub fn get_dead_entities(&self) -> HashSet<i32> {
+        self.inner.read().dead_entity_ids.clone()
+    }
+
+    pub fn register_boss(&self, entity_id: i32) {
+        self.inner.write().boss_entity_ids.insert(entity_id);
+    }
+
+    pub fn is_boss(&self, entity_id: i32) -> bool {
+        self.inner.read().boss_entity_ids.contains(&entity_id)
     }
 
     pub fn is_mob(&self, id: i32) -> bool {
@@ -413,6 +507,8 @@ impl DataStorage {
         inner.known_player_ids.clear();
         inner.confirmed_summon_ids.clear();
         inner.hostile_target_ids.clear();
+        inner.dead_entity_ids.clear();
+        inner.has_boss_in_segment = false;
         inner.mob_hp_data.clear();
         inner.current_target = 0;
     }
@@ -463,6 +559,24 @@ fn append_nickname_inner(inner: &mut Inner, uid: i32, nickname: &str) {
         tracing::debug!("Nickname: replacing '{}' with '{}' for {}", existing, nickname, uid);
     } else {
         tracing::debug!("Nickname: setting '{}' for {}", nickname, uid);
+    }
+
+    // Name eviction: character names are unique per server, so if this name
+    // already belongs to a different entity ID, that old ID is stale (zone change).
+    // Evict the old entity's name, player status, and summon mappings.
+    let mut evicted_id = None;
+    for (&old_id, old_name) in inner.nickname_storage.iter() {
+        if old_name == nickname && old_id != uid && inner.known_player_ids.contains(&old_id) {
+            evicted_id = Some(old_id);
+            break;
+        }
+    }
+    if let Some(old_id) = evicted_id {
+        tracing::debug!("Name eviction: '{}' moved from entity {} to {}", nickname, old_id, uid);
+        inner.nickname_storage.remove(&old_id);
+        inner.known_player_ids.remove(&old_id);
+        // Remove summon mappings pointing to the stale owner
+        inner.summon_storage.retain(|_, &mut owner| owner != old_id);
     }
 
     inner.nickname_storage.insert(uid, nickname.to_string());
@@ -529,5 +643,10 @@ fn purge_friendly_damage(inner: &mut Inner, _uid: i32) {
 }
 
 pub fn is_player_skill(skill_code: i32) -> bool {
-    (10_000_000..=29_999_999).contains(&skill_code) || (30_000_000..=30_999_999).contains(&skill_code)
+    // Class skills: 11M-19M (post-divide 110K-190K, encodes class in first 2 digits)
+    // Alternate band: 3M-3.99M (post-divide 30K-39.9K)
+    // Basic/special attacks: 100K-199K (post-divide 1K-1.9K)
+    (11_000_000..=19_999_999).contains(&skill_code)
+        || (3_000_000..=3_999_999).contains(&skill_code)
+        || (100_000..=199_999).contains(&skill_code)
 }

@@ -10,6 +10,14 @@ pub struct DetailsActorSummary {
     /// Job class prefix ID (e.g. 11=Gladiator) for language-independent storage
     #[serde(default)]
     pub job_id: i32,
+    #[serde(default)]
+    pub party_heal: i64,
+    #[serde(default)]
+    pub regen: i64,
+    #[serde(default)]
+    pub damage_received: i64,
+    #[serde(default)]
+    pub hits_received: i32,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -55,7 +63,9 @@ pub struct DetailSkillEntry {
     pub back: i32,
     pub perfect: i32,
     pub double: i32,
-    pub heal: i32,
+    pub smite: i32,
+    pub powershard: i32,
+    pub regen: i32,
     #[serde(default)]
     pub job: String,
     #[serde(default)]
