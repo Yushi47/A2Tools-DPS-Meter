@@ -521,11 +521,25 @@ impl DpsCalculator {
                             .map(|s| s.code)
                             .unwrap_or(0)
                     );
+                    // Aggregate per-actor stats across all targets
+                    let (mut party_heal, mut regen, mut dmg_recv, mut hits_recv) = (0i64, 0i64, 0i64, 0i32);
+                    for td in combat_data.values() {
+                        if let Some(ad) = td.actors.get(&id) {
+                            party_heal += ad.party_heal;
+                            regen += ad.regen;
+                            dmg_recv += ad.damage_received;
+                            hits_recv += ad.hits_received;
+                        }
+                    }
                     DetailsActorSummary {
                         actor_id: id,
                         nickname: display_nick,
                         job: job.clone(),
                         job_id: job_class.map(|j| j.class_prefix()).unwrap_or(0),
+                        party_heal,
+                        regen,
+                        damage_received: dmg_recv,
+                        hits_received: hits_recv,
                     }
                 })
                 .collect();
@@ -673,11 +687,25 @@ impl DpsCalculator {
                         .map(|&(sc, _)| sc)
                         .unwrap_or(0)
                 ) { jc.class_prefix() } else { 0 };
+                // Aggregate per-actor stats
+                let (mut party_heal, mut regen, mut dmg_recv, mut hits_recv) = (0i64, 0i64, 0i64, 0i32);
+                for td in combat_data.values() {
+                    if let Some(ad) = td.actors.get(&id) {
+                        party_heal += ad.party_heal;
+                        regen += ad.regen;
+                        dmg_recv += ad.damage_received;
+                        hits_recv += ad.hits_received;
+                    }
+                }
                 DetailsActorSummary {
                     actor_id: id,
                     nickname: nick.clone(),
                     job: job.clone(),
                     job_id,
+                    party_heal,
+                    regen,
+                    damage_received: dmg_recv,
+                    hits_received: hits_recv,
                 }
             })
             .collect();
@@ -832,7 +860,9 @@ impl DpsCalculator {
                     back: 0,
                     perfect: 0,
                     double: 0,
-                    heal: 0,
+                    smite: 0,
+                    powershard: 0,
+                    regen: 0,
                     job,
                     is_dot,
                     hit_timestamps: Vec::new(),
@@ -851,7 +881,9 @@ impl DpsCalculator {
                 entry.parry += skill_data.parry_count;
                 entry.perfect += skill_data.perfect_count;
                 entry.double += skill_data.double_count;
-                entry.heal += skill_data.heal_amount;
+                entry.smite += skill_data.smite_count;
+                entry.powershard += skill_data.powershard_count;
+                entry.regen += skill_data.heal_amount;
                 // Add timestamps relative to fight start
                 for &ts in &skill_data.hit_timestamps {
                     entry.hit_timestamps.push(ts - fight_start);

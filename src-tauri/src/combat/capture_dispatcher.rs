@@ -12,7 +12,7 @@ use crate::capture::stream_assembler::StreamAssembler;
 use crate::capture::stream_processor::StreamProcessor;
 use crate::combat::data_storage::DataStorage;
 use crate::combat::ping_tracker::PingTracker;
-use crate::i18n::lookup::SkillLookup;
+use crate::i18n::lookup::{NpcLookup, SkillLookup};
 use crate::platform::window_detector;
 
 const MAGIC: [u8; 3] = [0x06, 0x00, 0x36];
@@ -33,6 +33,7 @@ fn now_ms() -> i64 {
 pub struct CaptureDispatcher {
     data_storage: Arc<DataStorage>,
     skill_lookup: Arc<SkillLookup>,
+    npc_lookup: Arc<NpcLookup>,
     port_detector: Arc<CombatPortDetector>,
     ping_tracker: Arc<PingTracker>,
     dot_skill_ids: std::collections::HashSet<i32>,
@@ -43,12 +44,14 @@ impl CaptureDispatcher {
     pub fn new(
         data_storage: Arc<DataStorage>,
         skill_lookup: Arc<SkillLookup>,
+        npc_lookup: Arc<NpcLookup>,
         port_detector: Arc<CombatPortDetector>,
         ping_tracker: Arc<PingTracker>,
     ) -> Self {
         Self {
             data_storage,
             skill_lookup,
+            npc_lookup,
             port_detector,
             ping_tracker,
             dot_skill_ids: std::collections::HashSet::new(),
@@ -170,7 +173,7 @@ impl CaptureDispatcher {
             let key = (a, b);
 
             let (assembler, processor) = assemblers.entry(key).or_insert_with(|| {
-                let mut proc = StreamProcessor::new(self.data_storage.clone(), self.skill_lookup.clone());
+                let mut proc = StreamProcessor::new(self.data_storage.clone(), self.skill_lookup.clone(), self.npc_lookup.clone());
                 proc.set_dot_skill_ids(self.dot_skill_ids.clone());
                 (StreamAssembler::new(), proc)
             });
