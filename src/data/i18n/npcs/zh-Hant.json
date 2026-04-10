@@ -7,20 +7,8 @@
     "name": "沙包",
     "isBoss": false
   },
-  "2000002": {
-    "name": "德拉克紐特弓手",
-    "isBoss": false
-  },
-  "2000003": {
-    "name": "改造克拉爾戰士",
-    "isBoss": false
-  },
   "2000004": {
     "name": "奧德蜘蛛",
-    "isBoss": false
-  },
-  "2000053": {
-    "name": "改造克拉爾戰士",
     "isBoss": false
   },
   "2000059": {
@@ -103,48 +91,32 @@
     "name": "枯枝蜘蛛",
     "isBoss": false
   },
-  "2090001": {
-    "name": "森林精靈",
-    "isBoss": false
-  },
-  "2090002": {
-    "name": "森林精靈",
-    "isBoss": false
-  },
-  "2090003": {
-    "name": "阿爾拉烏魔法師",
-    "isBoss": false
-  },
-  "2090004": {
-    "name": "中型怪物",
-    "isBoss": false
-  },
-  "2090005": {
-    "name": "幻影破片",
-    "isBoss": false
-  },
-  "2090006": {
-    "name": "波奇",
-    "isBoss": false
-  },
-  "2090007": {
-    "name": "幻影破片",
-    "isBoss": false
-  },
-  "2090008": {
-    "name": "幻影破片",
-    "isBoss": false
-  },
-  "2090009": {
-    "name": "古代冤魂騎士",
-    "isBoss": false
-  },
   "2090010": {
     "name": "波克斯",
     "isBoss": false
   },
   "2090011": {
     "name": "炸彈型機關(樣本)",
+    "isBoss": false
+  },
+  "2090012": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2090013": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2090014": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2090015": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2090016": {
+    "name": "None",
     "isBoss": false
   },
   "2090017": {
@@ -190,10 +162,6 @@
   "2090027": {
     "name": "怪物(樣本)",
     "isBoss": true
-  },
-  "2090029": {
-    "name": "毒氣花",
-    "isBoss": false
   },
   "2090030": {
     "name": "平衡測試1",
@@ -631,6 +599,10 @@
     "name": "布里特拉空襲部隊軍官",
     "isBoss": false
   },
+  "2090155": {
+    "name": "None",
+    "isBoss": false
+  },
   "2090157": {
     "name": "測試怪_Hidden",
     "isBoss": false
@@ -646,6 +618,10 @@
   "2090160": {
     "name": "暗黑精靈",
     "isBoss": false
+  },
+  "2090161": {
+    "name": "None",
+    "isBoss": true
   },
   "2090162": {
     "name": "怪物(樣本)",
@@ -683,8 +659,16 @@
     "name": "Water",
     "isBoss": false
   },
+  "2090172": {
+    "name": "None",
+    "isBoss": false
+  },
   "2090173": {
     "name": "改造克拉爾戰士",
+    "isBoss": false
+  },
+  "2090174": {
+    "name": "None",
     "isBoss": false
   },
   "2090175": {
@@ -766,6 +750,14 @@
   "2090199": {
     "name": "布洛尼工人男性",
     "isBoss": false
+  },
+  "2090216": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2090218": {
+    "name": "None",
+    "isBoss": true
   },
   "2090220": {
     "name": "變異修羅魔法師",
@@ -931,6 +923,10 @@
     "name": "怪物(樣本)",
     "isBoss": true
   },
+  "2090276": {
+    "name": "None",
+    "isBoss": true
+  },
   "2090277": {
     "name": "怪物(樣本)",
     "isBoss": true
@@ -967,54 +963,6 @@
     "name": "炸彈型機關(樣本)",
     "isBoss": false
   },
-  "2090331": {
-    "name": "小兵第1階段",
-    "isBoss": false
-  },
-  "2090332": {
-    "name": "小兵第2階段",
-    "isBoss": false
-  },
-  "2090333": {
-    "name": "小兵第3階段",
-    "isBoss": false
-  },
-  "2090334": {
-    "name": "小兵第4階段",
-    "isBoss": false
-  },
-  "2090335": {
-    "name": "砲塔第1階段",
-    "isBoss": false
-  },
-  "2090336": {
-    "name": "砲塔第2階段",
-    "isBoss": false
-  },
-  "2090337": {
-    "name": "砲塔第3階段",
-    "isBoss": false
-  },
-  "2090338": {
-    "name": "砲塔第4階段",
-    "isBoss": false
-  },
-  "2090381": {
-    "name": "無敵德拉坎",
-    "isBoss": false
-  },
-  "2090382": {
-    "name": "氣絕拉克修米",
-    "isBoss": false
-  },
-  "2090383": {
-    "name": "快速凱尼爾",
-    "isBoss": false
-  },
-  "2090384": {
-    "name": "逮捕烏拉克",
-    "isBoss": false
-  },
   "2090397": {
     "name": "怪物(樣本)",
     "isBoss": true
@@ -1022,14 +970,6 @@
   "2090398": {
     "name": "塔辛(樣本)",
     "isBoss": false
-  },
-  "2090401": {
-    "name": "天族核",
-    "isBoss": true
-  },
-  "2090402": {
-    "name": "魔族核",
-    "isBoss": true
   },
   "2090404": {
     "name": "怪鳥路比利尼",
@@ -1043,42 +983,6 @@
     "name": "怪鳥路比利尼",
     "isBoss": false
   },
-  "2090407": {
-    "name": "恢復德拉坎",
-    "isBoss": false
-  },
-  "2090408": {
-    "name": "睡眠拉克修米",
-    "isBoss": false
-  },
-  "2090409": {
-    "name": "神速凱尼爾",
-    "isBoss": false
-  },
-  "2090410": {
-    "name": "弱化烏拉克",
-    "isBoss": false
-  },
-  "2090411": {
-    "name": "天族外部砲塔",
-    "isBoss": false
-  },
-  "2090412": {
-    "name": "魔族外部砲塔",
-    "isBoss": false
-  },
-  "2090413": {
-    "name": "天族內部砲塔",
-    "isBoss": false
-  },
-  "2090414": {
-    "name": "魔族內部砲塔",
-    "isBoss": false
-  },
-  "2090428": {
-    "name": "超越的巴卡爾摩",
-    "isBoss": true
-  },
   "2090433": {
     "name": "佩迪夫亡靈",
     "isBoss": true
@@ -1089,6 +993,10 @@
   },
   "2090435": {
     "name": "佩迪夫亡靈",
+    "isBoss": true
+  },
+  "2090437": {
+    "name": "None",
     "isBoss": true
   },
   "2090438": {
@@ -1155,6 +1063,10 @@
     "name": "沙包",
     "isBoss": false
   },
+  "2090455": {
+    "name": "None",
+    "isBoss": false
+  },
   "2090456": {
     "name": "奧德蜘蛛",
     "isBoss": false
@@ -1165,7 +1077,7 @@
   },
   "2090458": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": true
   },
   "2090463": {
     "name": "德拉坎命名怪物",
@@ -1227,6 +1139,10 @@
     "name": "眩暈測試_Temporary_GroggyAttack",
     "isBoss": true
   },
+  "2090610": {
+    "name": "None",
+    "isBoss": false
+  },
   "2090613": {
     "name": "改造克拉爾戰士",
     "isBoss": false
@@ -1243,8 +1159,32 @@
     "name": "改造克拉爾戰士",
     "isBoss": false
   },
+  "2090632": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2090633": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2090635": {
+    "name": "None",
+    "isBoss": false
+  },
   "2090636": {
     "name": "奧德碎晶暴風",
+    "isBoss": false
+  },
+  "2090638": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2090639": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2090648": {
+    "name": "None",
     "isBoss": false
   },
   "2090649": {
@@ -1271,16 +1211,8 @@
     "name": "父母40/None/None",
     "isBoss": false
   },
-  "2090656": {
-    "name": "沙包",
-    "isBoss": false
-  },
-  "2090657": {
-    "name": "沙包",
-    "isBoss": false
-  },
-  "2090658": {
-    "name": "沙包",
+  "2090662": {
+    "name": "None",
     "isBoss": false
   },
   "2090663": {
@@ -1491,10 +1423,6 @@
     "name": "海岸奧德蜘蛛",
     "isBoss": false
   },
-  "2100035": {
-    "name": "小奧德蜘蛛",
-    "isBoss": false
-  },
   "2100036": {
     "name": "山丘光蟲",
     "isBoss": false
@@ -1513,10 +1441,6 @@
   },
   "2100041": {
     "name": "紅帽波奇",
-    "isBoss": false
-  },
-  "2100042": {
-    "name": "沼地小蜘蛛",
     "isBoss": false
   },
   "2100044": {
@@ -2081,10 +2005,6 @@
   },
   "2100461": {
     "name": "沼澤波奇",
-    "isBoss": false
-  },
-  "2100464": {
-    "name": "啟用的龍族大型圖騰",
     "isBoss": false
   },
   "2100468": {
@@ -3501,6 +3421,10 @@
   },
   "2101126": {
     "name": "托爾巴斯魔法格拉比",
+    "isBoss": false
+  },
+  "2101127": {
+    "name": "None",
     "isBoss": false
   },
   "2101128": {
@@ -6247,6 +6171,14 @@
     "name": "熱水口",
     "isBoss": false
   },
+  "2300162": {
+    "name": "杜勒巴提毒液",
+    "isBoss": true
+  },
+  "2300170": {
+    "name": "None",
+    "isBoss": false
+  },
   "2300171": {
     "name": "完成體貝爾克",
     "isBoss": true
@@ -6263,13 +6195,37 @@
     "name": "完成體貝爾克",
     "isBoss": true
   },
+  "2300175": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2300176": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2300177": {
+    "name": "None",
+    "isBoss": true
+  },
   "2300178": {
     "name": "完成體貝爾克",
+    "isBoss": true
+  },
+  "2300179": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2300180": {
+    "name": "None",
     "isBoss": true
   },
   "2300181": {
     "name": "克羅馬",
     "isBoss": false
+  },
+  "2300182": {
+    "name": "None",
+    "isBoss": true
   },
   "2300183": {
     "name": "扭曲的克羅卡",
@@ -6399,6 +6355,10 @@
     "name": "火之神殿熔岩塊狀怪",
     "isBoss": false
   },
+  "2300303": {
+    "name": "None",
+    "isBoss": false
+  },
   "2300304": {
     "name": "熔岩蜘蛛",
     "isBoss": false
@@ -6437,6 +6397,10 @@
   },
   "2300313": {
     "name": "火焰石守護像",
+    "isBoss": false
+  },
+  "2300314": {
+    "name": "None",
     "isBoss": false
   },
   "2300315": {
@@ -6621,6 +6585,10 @@
   },
   "2300517": {
     "name": "腐敗的杜勒巴提(樣本)",
+    "isBoss": true
+  },
+  "2300519": {
+    "name": "杜勒巴提毒液",
     "isBoss": true
   },
   "2300601": {
@@ -6943,6 +6911,18 @@
     "name": "永劫盧德萊",
     "isBoss": true
   },
+  "2301015": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2301016": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2301017": {
+    "name": "None",
+    "isBoss": false
+  },
   "2301018": {
     "name": "深淵德拉坎武裝兵",
     "isBoss": false
@@ -6961,6 +6941,78 @@
   },
   "2301022": {
     "name": "深淵德拉坎偵察士官",
+    "isBoss": false
+  },
+  "2301201": {
+    "name": "被汙染的修羅魔道師",
+    "isBoss": false
+  },
+  "2301202": {
+    "name": "被汙染的修羅士兵",
+    "isBoss": false
+  },
+  "2301203": {
+    "name": "變質的毒血",
+    "isBoss": false
+  },
+  "2301204": {
+    "name": "變質的修羅隊長",
+    "isBoss": false
+  },
+  "2301205": {
+    "name": "被汙染的史萊姆",
+    "isBoss": false
+  },
+  "2301206": {
+    "name": "被汙染的老鼠",
+    "isBoss": false
+  },
+  "2301207": {
+    "name": "黑血布拉特",
+    "isBoss": true
+  },
+  "2301208": {
+    "name": "聚合物巴考特",
+    "isBoss": true
+  },
+  "2301209": {
+    "name": "捕食的紐特拉",
+    "isBoss": true
+  },
+  "2301210": {
+    "name": "毒性氣體",
+    "isBoss": false
+  },
+  "2301211": {
+    "name": "毒性氣體",
+    "isBoss": false
+  },
+  "2301212": {
+    "name": "汙廢水",
+    "isBoss": false
+  },
+  "2301213": {
+    "name": "汙廢水",
+    "isBoss": false
+  },
+  "2301214": {
+    "name": "被汙染的毒袋",
+    "isBoss": false
+  },
+  "2301215": {
+    "name": "變質的毒袋",
+    "isBoss": false
+  },
+  "2301216": {
+    "name": "監視裝置",
+    "isBoss": true
+  },
+  "2301217": {
+    "name": "變質的修羅隊長",
+    "isBoss": false
+  },
+  "2301218": {
+    "name": "逆流的汙染淨化器",
     "isBoss": false
   },
   "2301301": {
@@ -7042,6 +7094,66 @@
   "2301323": {
     "name": "亞空間蟲子",
     "isBoss": false
+  },
+  "2301401": {
+    "name": "格蕾絲貝因",
+    "isBoss": true
+  },
+  "2301402": {
+    "name": "那薩拉克",
+    "isBoss": true
+  },
+  "2301403": {
+    "name": "納特哈拉",
+    "isBoss": true
+  },
+  "2301404": {
+    "name": "幻影守護星靈魂",
+    "isBoss": false
+  },
+  "2301405": {
+    "name": "幻影弓星靈魂",
+    "isBoss": false
+  },
+  "2301406": {
+    "name": "迴廊執行者",
+    "isBoss": false
+  },
+  "2301407": {
+    "name": "被遺忘的修羅騎士",
+    "isBoss": false
+  },
+  "2301408": {
+    "name": "被遺忘的修羅祭司",
+    "isBoss": false
+  },
+  "2301409": {
+    "name": "被遺忘的修羅戰士",
+    "isBoss": false
+  },
+  "2301410": {
+    "name": "幻影幽靈",
+    "isBoss": false
+  },
+  "2301411": {
+    "name": "分裂的幻影幽靈",
+    "isBoss": false
+  },
+  "2301412": {
+    "name": "迴廊監視者",
+    "isBoss": false
+  },
+  "2301413": {
+    "name": "幻影帳幕",
+    "isBoss": false
+  },
+  "2301415": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2301416": {
+    "name": "None",
+    "isBoss": true
   },
   "2301501": {
     "name": "沉沒的艾蒙",
@@ -7143,6 +7255,10 @@
     "name": "狙擊的克羅卡",
     "isBoss": false
   },
+  "2310170": {
+    "name": "None",
+    "isBoss": false
+  },
   "2310171": {
     "name": "完成體貝爾克",
     "isBoss": true
@@ -7159,13 +7275,37 @@
     "name": "完成體貝爾克",
     "isBoss": true
   },
+  "2310175": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2310176": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2310177": {
+    "name": "None",
+    "isBoss": true
+  },
   "2310178": {
     "name": "完成體貝爾克",
+    "isBoss": true
+  },
+  "2310179": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2310180": {
+    "name": "None",
     "isBoss": true
   },
   "2310181": {
     "name": "克羅馬",
     "isBoss": false
+  },
+  "2310182": {
+    "name": "None",
+    "isBoss": true
   },
   "2310183": {
     "name": "扭曲的克羅卡",
@@ -7299,6 +7439,10 @@
     "name": "火之神殿熔岩塊狀怪",
     "isBoss": false
   },
+  "2310303": {
+    "name": "None",
+    "isBoss": false
+  },
   "2310304": {
     "name": "熔岩蜘蛛",
     "isBoss": false
@@ -7337,6 +7481,10 @@
   },
   "2310313": {
     "name": "火焰石守護像",
+    "isBoss": false
+  },
+  "2310314": {
+    "name": "None",
     "isBoss": false
   },
   "2310315": {
@@ -7509,6 +7657,10 @@
   },
   "2310517": {
     "name": "腐敗的杜勒巴提(樣本)",
+    "isBoss": true
+  },
+  "2310519": {
+    "name": "杜勒巴提毒液",
     "isBoss": true
   },
   "2310601": {
@@ -7815,6 +7967,74 @@
     "name": "亞空間蟲子",
     "isBoss": false
   },
+  "2311401": {
+    "name": "格蕾絲貝因",
+    "isBoss": true
+  },
+  "2311402": {
+    "name": "那薩拉克",
+    "isBoss": true
+  },
+  "2311403": {
+    "name": "納特哈拉",
+    "isBoss": true
+  },
+  "2311404": {
+    "name": "幻影守護星靈魂",
+    "isBoss": false
+  },
+  "2311405": {
+    "name": "幻影弓星靈魂",
+    "isBoss": false
+  },
+  "2311406": {
+    "name": "迴廊執行者",
+    "isBoss": false
+  },
+  "2311407": {
+    "name": "被遺忘的修羅騎士",
+    "isBoss": false
+  },
+  "2311408": {
+    "name": "被遺忘的修羅祭司",
+    "isBoss": false
+  },
+  "2311409": {
+    "name": "被遺忘的修羅戰士",
+    "isBoss": false
+  },
+  "2311410": {
+    "name": "幻影幽靈",
+    "isBoss": false
+  },
+  "2311411": {
+    "name": "分裂的幻影幽靈",
+    "isBoss": false
+  },
+  "2311412": {
+    "name": "迴廊監視者",
+    "isBoss": false
+  },
+  "2311413": {
+    "name": "幻影天培爾祭司",
+    "isBoss": false
+  },
+  "2311414": {
+    "name": "幻影帳幕",
+    "isBoss": false
+  },
+  "2311416": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2311417": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2311418": {
+    "name": "魂靈炸彈",
+    "isBoss": false
+  },
   "2320101": {
     "name": "克勞魔法實驗體",
     "isBoss": false
@@ -7859,6 +8079,10 @@
     "name": "克勞磁場",
     "isBoss": false
   },
+  "2320170": {
+    "name": "None",
+    "isBoss": false
+  },
   "2320171": {
     "name": "完成體貝爾克",
     "isBoss": true
@@ -7875,13 +8099,37 @@
     "name": "完成體貝爾克",
     "isBoss": true
   },
+  "2320175": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2320176": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2320177": {
+    "name": "None",
+    "isBoss": true
+  },
   "2320178": {
     "name": "完成體貝爾克",
+    "isBoss": true
+  },
+  "2320179": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2320180": {
+    "name": "None",
     "isBoss": true
   },
   "2320181": {
     "name": "克羅馬",
     "isBoss": false
+  },
+  "2320182": {
+    "name": "None",
+    "isBoss": true
   },
   "2320183": {
     "name": "扭曲的克羅卡",
@@ -8011,6 +8259,10 @@
     "name": "火之神殿熔岩塊狀怪",
     "isBoss": false
   },
+  "2320303": {
+    "name": "None",
+    "isBoss": false
+  },
   "2320304": {
     "name": "熔岩蜘蛛",
     "isBoss": false
@@ -8049,6 +8301,10 @@
   },
   "2320313": {
     "name": "火焰石守護像",
+    "isBoss": false
+  },
+  "2320314": {
+    "name": "None",
     "isBoss": false
   },
   "2320315": {
@@ -8237,6 +8493,10 @@
   },
   "2320518": {
     "name": "年幼的水生德利頓",
+    "isBoss": false
+  },
+  "2320519": {
+    "name": "杜勒巴提毒液",
     "isBoss": false
   },
   "2320601": {
@@ -8467,6 +8727,10 @@
     "name": "深淵路比利尼",
     "isBoss": false
   },
+  "2321215": {
+    "name": "None",
+    "isBoss": false
+  },
   "2321301": {
     "name": "苦惱的巴卡爾摩",
     "isBoss": true
@@ -8551,6 +8815,74 @@
     "name": "亞空間蟲子",
     "isBoss": false
   },
+  "2321401": {
+    "name": "格蕾絲貝因",
+    "isBoss": true
+  },
+  "2321402": {
+    "name": "那薩拉克",
+    "isBoss": true
+  },
+  "2321403": {
+    "name": "納特哈拉",
+    "isBoss": true
+  },
+  "2321404": {
+    "name": "幻影守護星靈魂",
+    "isBoss": false
+  },
+  "2321405": {
+    "name": "幻影弓星靈魂",
+    "isBoss": false
+  },
+  "2321406": {
+    "name": "迴廊執行者",
+    "isBoss": false
+  },
+  "2321407": {
+    "name": "被遺忘的修羅騎士",
+    "isBoss": false
+  },
+  "2321408": {
+    "name": "被遺忘的修羅祭司",
+    "isBoss": false
+  },
+  "2321409": {
+    "name": "被遺忘的修羅戰士",
+    "isBoss": false
+  },
+  "2321410": {
+    "name": "幻影幽靈",
+    "isBoss": false
+  },
+  "2321411": {
+    "name": "分裂的幻影幽靈",
+    "isBoss": false
+  },
+  "2321412": {
+    "name": "迴廊監視者",
+    "isBoss": false
+  },
+  "2321413": {
+    "name": "幻影天培爾祭司",
+    "isBoss": false
+  },
+  "2321414": {
+    "name": "幻影帳幕",
+    "isBoss": false
+  },
+  "2321416": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2321417": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2321418": {
+    "name": "魂靈炸彈",
+    "isBoss": false
+  },
   "2321500": {
     "name": "德拉多納",
     "isBoss": false
@@ -8625,6 +8957,10 @@
   },
   "2321518": {
     "name": "年幼的水生德利頓",
+    "isBoss": false
+  },
+  "2321519": {
+    "name": "杜勒巴提毒液",
     "isBoss": false
   },
   "2322500": {
@@ -8703,6 +9039,10 @@
     "name": "年幼的水生德利頓",
     "isBoss": false
   },
+  "2322519": {
+    "name": "杜勒巴提毒液",
+    "isBoss": false
+  },
   "2323500": {
     "name": "德拉多納",
     "isBoss": false
@@ -8777,6 +9117,14 @@
   },
   "2323518": {
     "name": "年幼的水生德利頓",
+    "isBoss": false
+  },
+  "2323519": {
+    "name": "杜勒巴提毒液",
+    "isBoss": false
+  },
+  "2323520": {
+    "name": "STR_M_PD_PollutedGrass_01_CV01_001",
     "isBoss": false
   },
   "2324500": {
@@ -8855,6 +9203,14 @@
     "name": "年幼的水生德利頓",
     "isBoss": false
   },
+  "2324519": {
+    "name": "杜勒巴提毒液",
+    "isBoss": false
+  },
+  "2324520": {
+    "name": "STR_M_PD_PollutedGrass_01_CV01_001",
+    "isBoss": false
+  },
   "2325500": {
     "name": "德拉多納",
     "isBoss": false
@@ -8929,6 +9285,14 @@
   },
   "2325518": {
     "name": "年幼的水生德利頓",
+    "isBoss": false
+  },
+  "2325519": {
+    "name": "杜勒巴提毒液",
+    "isBoss": false
+  },
+  "2325520": {
+    "name": "STR_M_PD_PollutedGrass_01_CV01_001",
     "isBoss": false
   },
   "2326500": {
@@ -9007,6 +9371,18 @@
     "name": "年幼的水生德利頓",
     "isBoss": false
   },
+  "2326519": {
+    "name": "杜勒巴提毒液",
+    "isBoss": false
+  },
+  "2326520": {
+    "name": "STR_M_PD_PollutedGrass_01_CV01_001",
+    "isBoss": false
+  },
+  "2326521": {
+    "name": "STR_M_PD_BeritraA_02_V02_001",
+    "isBoss": false
+  },
   "2327500": {
     "name": "德拉多納",
     "isBoss": false
@@ -9081,6 +9457,18 @@
   },
   "2327518": {
     "name": "年幼的水生德利頓",
+    "isBoss": false
+  },
+  "2327519": {
+    "name": "杜勒巴提毒液",
+    "isBoss": false
+  },
+  "2327520": {
+    "name": "STR_M_PD_PollutedGrass_01_CV01_001",
+    "isBoss": false
+  },
+  "2327521": {
+    "name": "STR_M_PD_BeritraA_02_V02_001",
     "isBoss": false
   },
   "2328500": {
@@ -9159,6 +9547,18 @@
     "name": "年幼的水生德利頓",
     "isBoss": false
   },
+  "2328519": {
+    "name": "杜勒巴提毒液",
+    "isBoss": false
+  },
+  "2328520": {
+    "name": "STR_M_PD_PollutedGrass_01_CV01_001",
+    "isBoss": false
+  },
+  "2328521": {
+    "name": "STR_M_PD_BeritraA_02_V02_001",
+    "isBoss": false
+  },
   "2329500": {
     "name": "德拉多納",
     "isBoss": false
@@ -9233,6 +9633,18 @@
   },
   "2329518": {
     "name": "年幼的水生德利頓",
+    "isBoss": false
+  },
+  "2329519": {
+    "name": "杜勒巴提毒液",
+    "isBoss": false
+  },
+  "2329520": {
+    "name": "STR_M_PD_PollutedGrass_01_CV01_001",
+    "isBoss": false
+  },
+  "2329521": {
+    "name": "STR_M_PD_BeritraA_02_V02_001",
     "isBoss": false
   },
   "2330101": {
@@ -9395,6 +9807,10 @@
     "name": "火之神殿熔岩塊狀怪",
     "isBoss": false
   },
+  "2330303": {
+    "name": "None",
+    "isBoss": false
+  },
   "2330304": {
     "name": "熔岩蜘蛛",
     "isBoss": false
@@ -9433,6 +9849,10 @@
   },
   "2330313": {
     "name": "火焰石守護像",
+    "isBoss": false
+  },
+  "2330314": {
+    "name": "None",
     "isBoss": false
   },
   "2330371": {
@@ -9767,6 +10187,14 @@
     "name": "樹古祕密兵器",
     "isBoss": false
   },
+  "2340111": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340112": {
+    "name": "None",
+    "isBoss": false
+  },
   "2340113": {
     "name": "盜賊團大砲",
     "isBoss": false
@@ -9859,6 +10287,14 @@
     "name": "被汙染的沼澤守護者",
     "isBoss": false
   },
+  "2340165": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340166": {
+    "name": "None",
+    "isBoss": false
+  },
   "2340201": {
     "name": "竊賊斯拉克",
     "isBoss": false
@@ -9943,6 +10379,14 @@
     "name": "守護者亡靈墳墓",
     "isBoss": false
   },
+  "2340301": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340302": {
+    "name": "None",
+    "isBoss": false
+  },
   "2340351": {
     "name": "跳躍雷射",
     "isBoss": false
@@ -9955,12 +10399,52 @@
     "name": "跳躍雷射",
     "isBoss": false
   },
+  "2340354": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340355": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340401": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340411": {
+    "name": "None",
+    "isBoss": false
+  },
   "2340412": {
     "name": "時間漩渦(樣本)",
     "isBoss": false
   },
   "2340413": {
     "name": "時間漩渦",
+    "isBoss": false
+  },
+  "2340501": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340502": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340503": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340504": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340505": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340506": {
+    "name": "None",
     "isBoss": false
   },
   "2340507": {
@@ -9996,6 +10480,10 @@
     "isBoss": false
   },
   "2340515": {
+    "name": "球",
+    "isBoss": false
+  },
+  "2340516": {
     "name": "球",
     "isBoss": false
   },
@@ -10478,6 +10966,10 @@
   "2345107": {
     "name": "格蘭迪奧斯",
     "isBoss": true
+  },
+  "2345203": {
+    "name": "None",
+    "isBoss": false
   },
   "2345601": {
     "name": "亞提埃爾",
@@ -11595,8 +12087,28 @@
     "name": "德雷得奇安法夫尼恩轉換器",
     "isBoss": false
   },
+  "2370032": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370033": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370034": {
     "name": "布里特拉飛行偵察兵",
+    "isBoss": false
+  },
+  "2370035": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370036": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370037": {
+    "name": "None",
     "isBoss": false
   },
   "2370038": {
@@ -11721,6 +12233,14 @@
   },
   "2370068": {
     "name": "德雷得奇安法夫尼恩轉換器",
+    "isBoss": false
+  },
+  "2370069": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370070": {
+    "name": "None",
     "isBoss": false
   },
   "2370071": {
@@ -11851,8 +12371,28 @@
     "name": "德雷得奇安法夫尼恩轉換器",
     "isBoss": false
   },
+  "2370103": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370104": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370105": {
     "name": "布里特拉飛行偵察兵",
+    "isBoss": false
+  },
+  "2370106": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370107": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370108": {
+    "name": "None",
     "isBoss": false
   },
   "2370201": {
@@ -11879,12 +12419,36 @@
     "name": "德雷得奇安法夫尼恩轉換器",
     "isBoss": false
   },
+  "2370207": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370208": {
     "name": "魔法裝置",
     "isBoss": false
   },
+  "2370209": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370210": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370211": {
     "name": "布里特拉飛行偵察兵",
+    "isBoss": false
+  },
+  "2370212": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370213": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370214": {
+    "name": "None",
     "isBoss": false
   },
   "2370215": {
@@ -11935,12 +12499,36 @@
     "name": "德雷得奇安法夫尼恩轉換器",
     "isBoss": false
   },
+  "2370227": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370228": {
     "name": "魔法裝置",
     "isBoss": false
   },
+  "2370229": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370230": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370231": {
     "name": "布里特拉飛行偵察兵",
+    "isBoss": false
+  },
+  "2370232": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370233": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370234": {
+    "name": "None",
     "isBoss": false
   },
   "2370235": {
@@ -11991,12 +12579,36 @@
     "name": "德雷得奇安法夫尼恩轉換器",
     "isBoss": false
   },
+  "2370247": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370248": {
     "name": "魔法裝置",
     "isBoss": false
   },
+  "2370249": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370250": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370251": {
     "name": "布里特拉飛行偵察兵",
+    "isBoss": false
+  },
+  "2370252": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370253": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370254": {
+    "name": "None",
     "isBoss": false
   },
   "2370255": {
@@ -12111,6 +12723,14 @@
     "name": "資源基地偵察部隊長",
     "isBoss": true
   },
+  "2370405": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370406": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370407": {
     "name": "德雷得奇安大型圖騰",
     "isBoss": false
@@ -12199,6 +12819,10 @@
     "name": "德拉多納工人",
     "isBoss": false
   },
+  "2370429": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370430": {
     "name": "軍需司令官亞德比爾",
     "isBoss": true
@@ -12214,6 +12838,14 @@
   "2370433": {
     "name": "資源基地偵察部隊長",
     "isBoss": true
+  },
+  "2370434": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370435": {
+    "name": "None",
+    "isBoss": false
   },
   "2370436": {
     "name": "德雷得奇安大型圖騰",
@@ -12303,6 +12935,10 @@
     "name": "德拉多納工人",
     "isBoss": false
   },
+  "2370458": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370460": {
     "name": "軍需司令官亞德比爾",
     "isBoss": true
@@ -12318,6 +12954,14 @@
   "2370463": {
     "name": "資源基地偵察部隊長",
     "isBoss": true
+  },
+  "2370464": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370465": {
+    "name": "None",
+    "isBoss": false
   },
   "2370466": {
     "name": "德雷得奇安大型圖騰",
@@ -12407,6 +13051,10 @@
     "name": "德拉多納工人",
     "isBoss": false
   },
+  "2370488": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370502": {
     "name": "軍需司令官亞德比爾",
     "isBoss": true
@@ -12422,6 +13070,14 @@
   "2370505": {
     "name": "資源基地偵察部隊長",
     "isBoss": true
+  },
+  "2370506": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370507": {
+    "name": "None",
+    "isBoss": false
   },
   "2370508": {
     "name": "提煉所警報裝置",
@@ -12539,6 +13195,14 @@
     "name": "資源基地偵察部隊長",
     "isBoss": true
   },
+  "2370537": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370538": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370539": {
     "name": "提煉所警報裝置",
     "isBoss": false
@@ -12655,6 +13319,14 @@
     "name": "資源基地偵察部隊長",
     "isBoss": true
   },
+  "2370568": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370569": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370570": {
     "name": "提煉所警報裝置",
     "isBoss": false
@@ -12755,6 +13427,10 @@
     "name": "德拉克紐特武裝警備兵",
     "isBoss": false
   },
+  "2370595": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370700": {
     "name": "軍需司令官亞德比爾",
     "isBoss": true
@@ -12770,6 +13446,14 @@
   "2370703": {
     "name": "資源基地偵察部隊長",
     "isBoss": true
+  },
+  "2370704": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370705": {
+    "name": "None",
+    "isBoss": false
   },
   "2370706": {
     "name": "德雷得奇安大型圖騰",
@@ -12859,6 +13543,10 @@
     "name": "德拉多納工人",
     "isBoss": false
   },
+  "2370728": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370735": {
     "name": "軍需司令官亞德比爾",
     "isBoss": true
@@ -12874,6 +13562,14 @@
   "2370738": {
     "name": "資源基地偵察部隊長",
     "isBoss": true
+  },
+  "2370739": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370740": {
+    "name": "None",
+    "isBoss": false
   },
   "2370741": {
     "name": "德雷得奇安大型圖騰",
@@ -12963,6 +13659,10 @@
     "name": "德拉多納工人",
     "isBoss": false
   },
+  "2370763": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370770": {
     "name": "軍需司令官亞德比爾",
     "isBoss": true
@@ -12978,6 +13678,14 @@
   "2370773": {
     "name": "資源基地偵察部隊長",
     "isBoss": true
+  },
+  "2370774": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370775": {
+    "name": "None",
+    "isBoss": false
   },
   "2370776": {
     "name": "德雷得奇安大型圖騰",
@@ -13067,6 +13775,10 @@
     "name": "德拉多納工人",
     "isBoss": false
   },
+  "2370798": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370800": {
     "name": "軍需司令官亞德比爾",
     "isBoss": true
@@ -13082,6 +13794,14 @@
   "2370803": {
     "name": "資源基地偵察部隊長",
     "isBoss": true
+  },
+  "2370804": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370805": {
+    "name": "None",
+    "isBoss": false
   },
   "2370806": {
     "name": "提煉所警報裝置",
@@ -13199,6 +13919,14 @@
     "name": "資源基地偵察部隊長",
     "isBoss": true
   },
+  "2370835": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370836": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370837": {
     "name": "提煉所警報裝置",
     "isBoss": false
@@ -13314,6 +14042,14 @@
   "2370865": {
     "name": "資源基地偵察部隊長",
     "isBoss": true
+  },
+  "2370866": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370867": {
+    "name": "None",
+    "isBoss": false
   },
   "2370868": {
     "name": "提煉所警報裝置",
@@ -15683,6 +16419,10 @@
     "name": "指揮軍官拉特里馬",
     "isBoss": true
   },
+  "2405195": {
+    "name": "None",
+    "isBoss": false
+  },
   "2405196": {
     "name": "拉特里馬侍從",
     "isBoss": false
@@ -17484,11 +18224,11 @@
     "isBoss": true
   },
   "2600091": {
-    "name": "特米倫航線守護者",
+    "name": "西部陣營航線守護者",
     "isBoss": false
   },
   "2600092": {
-    "name": "普利姆航線守護者",
+    "name": "東部陣營航線守護者",
     "isBoss": false
   },
   "2600093": {
@@ -17498,6 +18238,10 @@
   "2600094": {
     "name": "守護神將納赫瑪",
     "isBoss": true
+  },
+  "2600095": {
+    "name": "蘊含靈魂的甲冑",
+    "isBoss": false
   },
   "2600101": {
     "name": "黃昏卡克蓋崙",
@@ -17702,6 +18446,10 @@
   "2600156": {
     "name": "憤怒的守護神將納赫瑪",
     "isBoss": true
+  },
+  "2600157": {
+    "name": "拒絕死亡的騎士",
+    "isBoss": false
   },
   "2600201": {
     "name": "封印的暗影靈魂",
@@ -18359,8 +19107,556 @@
     "name": "守護神將普拉薩達",
     "isBoss": true
   },
+  "2600401": {
+    "name": "深淵蟲子",
+    "isBoss": false
+  },
+  "2600402": {
+    "name": "深淵紐特",
+    "isBoss": false
+  },
+  "2600403": {
+    "name": "深淵舊刃羅坦",
+    "isBoss": false
+  },
+  "2600404": {
+    "name": "深淵克拉爾搜索劍齒豹",
+    "isBoss": false
+  },
+  "2600405": {
+    "name": "深淵德拉坎搜索偵察兵",
+    "isBoss": false
+  },
+  "2600406": {
+    "name": "深淵克拉爾搜索弓手",
+    "isBoss": false
+  },
+  "2600407": {
+    "name": "深淵德拉坎搜索工兵",
+    "isBoss": false
+  },
+  "2600408": {
+    "name": "深淵墮落的戰士",
+    "isBoss": false
+  },
+  "2600409": {
+    "name": "深淵不死警備兵",
+    "isBoss": false
+  },
+  "2600411": {
+    "name": "深淵蟲子",
+    "isBoss": false
+  },
+  "2600412": {
+    "name": "深淵紐特",
+    "isBoss": false
+  },
+  "2600413": {
+    "name": "深淵舊刃羅坦",
+    "isBoss": false
+  },
+  "2600414": {
+    "name": "深淵克拉爾搜索劍齒豹",
+    "isBoss": false
+  },
+  "2600415": {
+    "name": "深淵德拉坎搜索偵察兵",
+    "isBoss": false
+  },
+  "2600416": {
+    "name": "深淵克拉爾搜索弓手",
+    "isBoss": false
+  },
+  "2600417": {
+    "name": "深淵德拉坎搜索工兵",
+    "isBoss": false
+  },
+  "2600418": {
+    "name": "深淵墮落的戰士",
+    "isBoss": false
+  },
+  "2600419": {
+    "name": "深淵不死警備兵",
+    "isBoss": false
+  },
+  "2600421": {
+    "name": "深淵蟲子",
+    "isBoss": false
+  },
+  "2600422": {
+    "name": "深淵蟲子群體",
+    "isBoss": false
+  },
+  "2600423": {
+    "name": "深淵硫磺史萊姆",
+    "isBoss": false
+  },
+  "2600424": {
+    "name": "深淵硫磺斯卡馬",
+    "isBoss": false
+  },
+  "2600425": {
+    "name": "深淵硫磺食人蟲",
+    "isBoss": false
+  },
+  "2600426": {
+    "name": "深淵沼澤怪物",
+    "isBoss": false
+  },
+  "2600427": {
+    "name": "深淵硫磺偵察樹",
+    "isBoss": false
+  },
+  "2600428": {
+    "name": "深淵硫磺貪欲樹",
+    "isBoss": false
+  },
+  "2600429": {
+    "name": "深淵變異紐特",
+    "isBoss": false
+  },
+  "2600430": {
+    "name": "深淵德拉那變異體",
+    "isBoss": false
+  },
+  "2600431": {
+    "name": "深淵德拉克紐特狙擊兵",
+    "isBoss": false
+  },
+  "2600432": {
+    "name": "深淵德拉那巨大變異體",
+    "isBoss": false
+  },
+  "2600433": {
+    "name": "深淵德拉克紐特分隊長",
+    "isBoss": false
+  },
+  "2600436": {
+    "name": "深淵納迦蘭特鬥士",
+    "isBoss": false
+  },
+  "2600437": {
+    "name": "深淵納迦暗黑法師",
+    "isBoss": false
+  },
+  "2600438": {
+    "name": "變異的古代卡拉斯戰士",
+    "isBoss": false
+  },
+  "2600439": {
+    "name": "變異的卡拉斯精銳戰士",
+    "isBoss": false
+  },
+  "2600440": {
+    "name": "完全變異的古代卡拉斯",
+    "isBoss": false
+  },
+  "2600441": {
+    "name": "深淵納迦蘭特鬥士",
+    "isBoss": false
+  },
+  "2600442": {
+    "name": "深淵納迦暗黑法師",
+    "isBoss": false
+  },
+  "2600443": {
+    "name": "深淵德拉坎刺殺部隊員",
+    "isBoss": false
+  },
+  "2600444": {
+    "name": "深淵德拉坎刺殺部隊長",
+    "isBoss": false
+  },
+  "2600445": {
+    "name": "深淵德拉那變異蜜蜂",
+    "isBoss": false
+  },
+  "2600446": {
+    "name": "深淵奧德變異蟲",
+    "isBoss": false
+  },
+  "2600447": {
+    "name": "深淵年幼的蜥蜴",
+    "isBoss": false
+  },
+  "2600448": {
+    "name": "深淵蜥蜴",
+    "isBoss": false
+  },
+  "2600449": {
+    "name": "深淵噁心的拉普蕾西亞",
+    "isBoss": false
+  },
+  "2600450": {
+    "name": "深淵純淨的精靈",
+    "isBoss": false
+  },
+  "2600451": {
+    "name": "深淵奧德石靈魂石",
+    "isBoss": false
+  },
+  "2600452": {
+    "name": "馴養的野狼",
+    "isBoss": false
+  },
+  "2600453": {
+    "name": "座狼戰士",
+    "isBoss": false
+  },
+  "2600454": {
+    "name": "森林守護者弓手",
+    "isBoss": false
+  },
+  "2600455": {
+    "name": "座狼狂戰士",
+    "isBoss": false
+  },
+  "2600456": {
+    "name": "深淵進化的靈魂石",
+    "isBoss": false
+  },
+  "2600457": {
+    "name": "深淵德拉那變異體",
+    "isBoss": false
+  },
+  "2600458": {
+    "name": "深淵德拉那巨大變異體",
+    "isBoss": false
+  },
+  "2600459": {
+    "name": "深淵德拉坎搜索偵察兵",
+    "isBoss": false
+  },
+  "2600460": {
+    "name": "深淵德拉坎搜索工兵",
+    "isBoss": false
+  },
+  "2600461": {
+    "name": "深淵可拉敦",
+    "isBoss": false
+  },
+  "2600462": {
+    "name": "深淵德拉坎搜索戰鬥兵",
+    "isBoss": false
+  },
+  "2600463": {
+    "name": "無魂的破壞執政官劍星",
+    "isBoss": false
+  },
+  "2600464": {
+    "name": "無魂的諾爾尼爾",
+    "isBoss": false
+  },
+  "2600465": {
+    "name": "無魂的破壞執政官精銳兵",
+    "isBoss": false
+  },
+  "2600466": {
+    "name": "精靈王護衛戰士",
+    "isBoss": false
+  },
+  "2600468": {
+    "name": "精靈王阿格羅",
+    "isBoss": true
+  },
+  "2600469": {
+    "name": "深淵墮落的精靈",
+    "isBoss": false
+  },
+  "2600470": {
+    "name": "深淵靈魂石",
+    "isBoss": false
+  },
+  "2600471": {
+    "name": "深淵根偵察樹",
+    "isBoss": false
+  },
+  "2600472": {
+    "name": "深淵永恆戰鬥兵",
+    "isBoss": false
+  },
+  "2600473": {
+    "name": "無魂的諾爾尼爾",
+    "isBoss": false
+  },
+  "2600474": {
+    "name": "破片守護者盾牌兵",
+    "isBoss": false
+  },
+  "2600475": {
+    "name": "破片守護者精銳劍兵",
+    "isBoss": false
+  },
+  "2600476": {
+    "name": "無魂的諾爾尼爾",
+    "isBoss": false
+  },
+  "2600477": {
+    "name": "破片守護者精銳盾牌兵",
+    "isBoss": false
+  },
+  "2600478": {
+    "name": "憤怒的守護神將納赫瑪",
+    "isBoss": true
+  },
+  "2600479": {
+    "name": "憤怒的守護神將納赫瑪",
+    "isBoss": true
+  },
+  "2600480": {
+    "name": "憤怒的守護神將納赫瑪",
+    "isBoss": true
+  },
+  "2600481": {
+    "name": "深淵舊刃羅坦",
+    "isBoss": false
+  },
+  "2600482": {
+    "name": "深淵克拉爾搜索劍齒豹",
+    "isBoss": false
+  },
+  "2600483": {
+    "name": "深淵克拉爾搜索劍齒豹",
+    "isBoss": false
+  },
+  "2600484": {
+    "name": "深淵德拉坎搜索偵察兵",
+    "isBoss": false
+  },
+  "2600485": {
+    "name": "深淵克拉爾搜索弓手",
+    "isBoss": false
+  },
+  "2600486": {
+    "name": "深淵墮落的戰士",
+    "isBoss": false
+  },
+  "2600487": {
+    "name": "深淵墮落的戰士",
+    "isBoss": false
+  },
+  "2600488": {
+    "name": "深淵不死警備兵",
+    "isBoss": false
+  },
+  "2600489": {
+    "name": "深淵不死警備兵",
+    "isBoss": false
+  },
+  "2600491": {
+    "name": "深淵舊刃羅坦",
+    "isBoss": false
+  },
+  "2600492": {
+    "name": "深淵克拉爾搜索劍齒豹",
+    "isBoss": false
+  },
+  "2600493": {
+    "name": "深淵克拉爾搜索劍齒豹",
+    "isBoss": false
+  },
+  "2600494": {
+    "name": "深淵德拉坎搜索偵察兵",
+    "isBoss": false
+  },
+  "2600495": {
+    "name": "深淵克拉爾搜索弓手",
+    "isBoss": false
+  },
+  "2600496": {
+    "name": "深淵墮落的戰士",
+    "isBoss": false
+  },
+  "2600497": {
+    "name": "深淵墮落的戰士",
+    "isBoss": false
+  },
+  "2600498": {
+    "name": "深淵不死警備兵",
+    "isBoss": false
+  },
+  "2600499": {
+    "name": "深淵不死警備兵",
+    "isBoss": false
+  },
+  "2600501": {
+    "name": "深淵蟲子群體",
+    "isBoss": false
+  },
+  "2600502": {
+    "name": "深淵沼澤怪物",
+    "isBoss": false
+  },
+  "2600503": {
+    "name": "深淵硫磺貪欲樹",
+    "isBoss": false
+  },
+  "2600504": {
+    "name": "深淵變異紐特",
+    "isBoss": false
+  },
+  "2600505": {
+    "name": "深淵德拉那變異體",
+    "isBoss": false
+  },
+  "2600506": {
+    "name": "深淵德拉克紐特狙擊兵",
+    "isBoss": false
+  },
+  "2600507": {
+    "name": "變異的卡拉斯精銳戰士",
+    "isBoss": false
+  },
+  "2600508": {
+    "name": "變異的卡拉斯精銳戰士",
+    "isBoss": false
+  },
+  "2600511": {
+    "name": "深淵噁心的拉普蕾西亞",
+    "isBoss": false
+  },
+  "2600512": {
+    "name": "深淵純淨的精靈",
+    "isBoss": false
+  },
+  "2600513": {
+    "name": "深淵奧德石靈魂石",
+    "isBoss": false
+  },
+  "2600514": {
+    "name": "座狼戰士",
+    "isBoss": false
+  },
+  "2600515": {
+    "name": "座狼狂戰士",
+    "isBoss": false
+  },
+  "2600516": {
+    "name": "次元核",
+    "isBoss": true
+  },
+  "2600517": {
+    "name": "次元核",
+    "isBoss": true
+  },
+  "2600518": {
+    "name": "次元核",
+    "isBoss": true
+  },
+  "2600519": {
+    "name": "古代冤魂騎士",
+    "isBoss": false
+  },
   "2680000": {
     "name": "奧德碎晶暴風",
+    "isBoss": false
+  },
+  "2680001": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680002": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680003": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680004": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680005": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680006": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680007": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680008": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680009": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680010": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680011": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680012": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680013": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680014": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680016": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680017": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680018": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680019": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680020": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680021": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680022": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680023": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680024": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680025": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680026": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680027": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680028": {
+    "name": "None",
     "isBoss": false
   },
   "2700000": {
@@ -18411,86 +19707,6 @@
     "name": "中毒的修羅鬥士",
     "isBoss": false
   },
-  "2700070": {
-    "name": "儲藏庫阿爾拉烏追擊兵",
-    "isBoss": false
-  },
-  "2700071": {
-    "name": "儲藏庫可努提追蹤員",
-    "isBoss": false
-  },
-  "2700072": {
-    "name": "根之阿爾拉烏祭司",
-    "isBoss": false
-  },
-  "2700076": {
-    "name": "根之阿爾拉烏警備兵",
-    "isBoss": false
-  },
-  "2700077": {
-    "name": "根之阿爾拉烏警戒兵",
-    "isBoss": false
-  },
-  "2700078": {
-    "name": "根之阿爾拉烏咒術士",
-    "isBoss": false
-  },
-  "2700079": {
-    "name": "儲藏庫阿爾拉烏追擊兵",
-    "isBoss": false
-  },
-  "2700080": {
-    "name": "儲藏庫可努提追蹤員",
-    "isBoss": false
-  },
-  "2700081": {
-    "name": "儲藏庫可努提工人",
-    "isBoss": false
-  },
-  "2700082": {
-    "name": "儲藏庫皮諾工人",
-    "isBoss": false
-  },
-  "2700083": {
-    "name": "根儲藏庫皮諾打手",
-    "isBoss": false
-  },
-  "2700085": {
-    "name": "根之阿爾拉烏爆炸圖騰",
-    "isBoss": false
-  },
-  "2700086": {
-    "name": "根之阿爾拉烏香爐",
-    "isBoss": false
-  },
-  "2700087": {
-    "name": "根之圖騰術士",
-    "isBoss": false
-  },
-  "2700088": {
-    "name": "根之圖騰術士",
-    "isBoss": false
-  },
-  "2700089": {
-    "name": "守門人皮諾彼",
-    "isBoss": true
-  },
-  "2700090": {
-    "name": "根之圖騰術士",
-    "isBoss": false
-  },
-  "2700091": {
-    "name": "奧特羅斯",
-    "isBoss": true
-  },
-  "2700092": {
-    "name": "奧特羅斯",
-    "isBoss": true
-  },
-  "2700093": {
-    "name": "守門人皮諾彼",
-    "isBoss": false
-  },
   "2700094": {
     "name": "腐敗的卡拉斯",
     "isBoss": false
@@ -18514,10 +19730,6 @@
   "2700100": {
     "name": "希爾拉德",
     "isBoss": true
-  },
-  "2700209": {
-    "name": "根之阿爾拉烏召喚師",
-    "isBoss": false
   },
   "2700238": {
     "name": "夢之守護兵",
@@ -18671,6 +19883,10 @@
     "name": "被支配的阿爾拉烏戰士",
     "isBoss": false
   },
+  "2700621": {
+    "name": "None",
+    "isBoss": false
+  },
   "2700622": {
     "name": "還魂之石",
     "isBoss": false
@@ -18685,6 +19901,22 @@
   },
   "2700625": {
     "name": "支配之石",
+    "isBoss": false
+  },
+  "2700684": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2700685": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2700686": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2700687": {
+    "name": "None",
     "isBoss": false
   },
   "2700691": {
@@ -18835,6 +20067,10 @@
     "name": "要塞守護者諾頓",
     "isBoss": true
   },
+  "2700746": {
+    "name": "None",
+    "isBoss": true
+  },
   "2700747": {
     "name": "要塞執政官冤魂",
     "isBoss": false
@@ -18874,6 +20110,10 @@
   "2700845": {
     "name": "伊德里斯",
     "isBoss": true
+  },
+  "2700846": {
+    "name": "None",
+    "isBoss": false
   },
   "2700847": {
     "name": "吉凱爾思念體",
@@ -19612,7 +20852,7 @@
     "isBoss": false
   },
   "2701092": {
-    "name": "損壞的守護者",
+    "name": "墮落的守護者",
     "isBoss": false
   },
   "2701093": {
@@ -19951,6 +21191,10 @@
     "name": "狂信徒烏里姆斯",
     "isBoss": true
   },
+  "2701203": {
+    "name": "None",
+    "isBoss": false
+  },
   "2701204": {
     "name": "克拉爾看守",
     "isBoss": false
@@ -20057,6 +21301,10 @@
   },
   "2701235": {
     "name": "亡命軍團戰士",
+    "isBoss": false
+  },
+  "2701236": {
+    "name": "None",
     "isBoss": false
   },
   "2701238": {
@@ -21355,6 +22603,10 @@
     "name": "洞穴德拉多納幼體",
     "isBoss": false
   },
+  "2701634": {
+    "name": "None",
+    "isBoss": false
+  },
   "2701635": {
     "name": "毒袋",
     "isBoss": false
@@ -21855,6 +23107,18 @@
     "name": "伊修特勒部隊德拉坎",
     "isBoss": false
   },
+  "2701771": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2701772": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2701773": {
+    "name": "None",
+    "isBoss": false
+  },
   "2701774": {
     "name": "羽毛砲火杜杜里",
     "isBoss": true
@@ -21904,7 +23168,7 @@
     "isBoss": false
   },
   "2701788": {
-    "name": "睜開眼的猛禽多多里",
+    "name": "覺醒的猛禽多多里",
     "isBoss": true
   },
   "2701789": {
@@ -22000,7 +23264,7 @@
     "isBoss": true
   },
   "2701830": {
-    "name": "睜開眼的猛禽多多里",
+    "name": "覺醒的猛禽多多里",
     "isBoss": true
   },
   "2701831": {
@@ -22048,7 +23312,7 @@
     "isBoss": true
   },
   "2701842": {
-    "name": "睜開眼的猛禽多多里",
+    "name": "覺醒的猛禽多多里",
     "isBoss": true
   },
   "2701843": {
@@ -22096,7 +23360,7 @@
     "isBoss": true
   },
   "2701854": {
-    "name": "睜開眼的猛禽多多里",
+    "name": "覺醒的猛禽多多里",
     "isBoss": true
   },
   "2701855": {
@@ -22543,10 +23807,6 @@
     "name": "狂暴的冤魂",
     "isBoss": false
   },
-  "2702022": {
-    "name": "根之圖騰術士",
-    "isBoss": false
-  },
   "2702023": {
     "name": "萊卡恩治癒兵",
     "isBoss": false
@@ -22903,6 +24163,26 @@
     "name": "代筆人卡勒頓",
     "isBoss": true
   },
+  "2702112": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2702113": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2702114": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2702115": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2702116": {
+    "name": "None",
+    "isBoss": false
+  },
   "2702174": {
     "name": "不穩定的奧德石原石",
     "isBoss": false
@@ -23075,20 +24355,204 @@
     "name": "破滅猛禽戰士",
     "isBoss": false
   },
-  "2920015": {
-    "name": "結縛圈套",
+  "2702372": {
+    "name": "羽毛砲火杜杜里",
+    "isBoss": true
+  },
+  "2702373": {
+    "name": "覺醒的猛禽多多里",
+    "isBoss": true
+  },
+  "2702374": {
+    "name": "絕望警備隊長",
     "isBoss": false
   },
-  "2920016": {
-    "name": "結縛圈套",
+  "2702375": {
+    "name": "絕望上級德拉坎",
     "isBoss": false
   },
-  "2920017": {
-    "name": "結縛圈套",
+  "2702376": {
+    "name": "絕望德拉坎指揮官",
     "isBoss": false
   },
-  "2920018": {
-    "name": "結縛圈套",
+  "2702377": {
+    "name": "絕望龍族戰士",
+    "isBoss": false
+  },
+  "2702378": {
+    "name": "絕望龍族弓兵",
+    "isBoss": false
+  },
+  "2702379": {
+    "name": "絕望深淵蟲子",
+    "isBoss": false
+  },
+  "2702380": {
+    "name": "絕望德拉坎武裝兵",
+    "isBoss": false
+  },
+  "2702381": {
+    "name": "絕望德拉坎魔力士",
+    "isBoss": false
+  },
+  "2702382": {
+    "name": "絕望精銳鬥士",
+    "isBoss": false
+  },
+  "2702383": {
+    "name": "絕望精銳監視者",
+    "isBoss": false
+  },
+  "2702384": {
+    "name": "羽毛砲火杜杜里",
+    "isBoss": true
+  },
+  "2702385": {
+    "name": "覺醒的猛禽多多里",
+    "isBoss": true
+  },
+  "2702386": {
+    "name": "破滅警備隊長",
+    "isBoss": false
+  },
+  "2702387": {
+    "name": "破滅上級德拉坎",
+    "isBoss": false
+  },
+  "2702388": {
+    "name": "破滅德拉坎指揮官",
+    "isBoss": false
+  },
+  "2702389": {
+    "name": "破滅龍族戰士",
+    "isBoss": false
+  },
+  "2702390": {
+    "name": "破滅龍族弓兵",
+    "isBoss": false
+  },
+  "2702391": {
+    "name": "破滅深淵蟲子",
+    "isBoss": false
+  },
+  "2702392": {
+    "name": "破滅德拉坎武裝兵",
+    "isBoss": false
+  },
+  "2702393": {
+    "name": "破滅德拉坎魔力士",
+    "isBoss": false
+  },
+  "2702394": {
+    "name": "破滅精銳鬥士",
+    "isBoss": false
+  },
+  "2702395": {
+    "name": "破滅精銳監視者",
+    "isBoss": false
+  },
+  "2702396": {
+    "name": "分裂體阿布諾斯",
+    "isBoss": true
+  },
+  "2702397": {
+    "name": "絕望守護兵",
+    "isBoss": false
+  },
+  "2702398": {
+    "name": "絕望監視兵",
+    "isBoss": false
+  },
+  "2702399": {
+    "name": "絕望守護者巡查者",
+    "isBoss": false
+  },
+  "2702400": {
+    "name": "絕望精銳盾牌兵",
+    "isBoss": false
+  },
+  "2702401": {
+    "name": "絕望精銳突擊兵",
+    "isBoss": false
+  },
+  "2702402": {
+    "name": "絕望黑魔法師",
+    "isBoss": false
+  },
+  "2702403": {
+    "name": "古籍守護裝置",
+    "isBoss": false
+  },
+  "2702404": {
+    "name": "古籍守護裝置",
+    "isBoss": false
+  },
+  "2702405": {
+    "name": "絕望監視兵",
+    "isBoss": false
+  },
+  "2702406": {
+    "name": "絕望守護者巡查者",
+    "isBoss": false
+  },
+  "2702407": {
+    "name": "絕望精銳突擊兵",
+    "isBoss": false
+  },
+  "2702408": {
+    "name": "絕望黑魔法師",
+    "isBoss": false
+  },
+  "2702409": {
+    "name": "分裂體阿布諾斯",
+    "isBoss": true
+  },
+  "2702410": {
+    "name": "破滅守護兵",
+    "isBoss": false
+  },
+  "2702411": {
+    "name": "破滅監視兵",
+    "isBoss": false
+  },
+  "2702412": {
+    "name": "破滅守護者巡查者",
+    "isBoss": false
+  },
+  "2702413": {
+    "name": "破滅精銳盾牌兵",
+    "isBoss": false
+  },
+  "2702414": {
+    "name": "破滅精銳突擊兵",
+    "isBoss": false
+  },
+  "2702415": {
+    "name": "破滅黑魔法師",
+    "isBoss": false
+  },
+  "2702416": {
+    "name": "古籍守護裝置",
+    "isBoss": false
+  },
+  "2702417": {
+    "name": "古籍守護裝置",
+    "isBoss": false
+  },
+  "2702418": {
+    "name": "破滅監視兵",
+    "isBoss": false
+  },
+  "2702419": {
+    "name": "破滅守護者巡查者",
+    "isBoss": false
+  },
+  "2702420": {
+    "name": "破滅精銳突擊兵",
+    "isBoss": false
+  },
+  "2702421": {
+    "name": "破滅黑魔法師",
     "isBoss": false
   },
   "2920029": {
@@ -23105,6 +24569,10 @@
   },
   "2920033": {
     "name": "中型怪物",
+    "isBoss": false
+  },
+  "2920037": {
+    "name": "None",
     "isBoss": false
   },
   "2920059": {
@@ -23133,6 +24601,10 @@
   },
   "2920201": {
     "name": "火焰地帶",
+    "isBoss": false
+  },
+  "2920210": {
+    "name": "None",
     "isBoss": false
   },
   "2920213": {
@@ -23203,6 +24675,10 @@
     "name": "馴養的波沙屍體(樣本)",
     "isBoss": false
   },
+  "2920365": {
+    "name": "None",
+    "isBoss": false
+  },
   "2920367": {
     "name": "巴克隆尖刺藤蔓",
     "isBoss": true
@@ -23239,6 +24715,10 @@
     "name": "黑暗氣息",
     "isBoss": false
   },
+  "2920401": {
+    "name": "None",
+    "isBoss": false
+  },
   "2920445": {
     "name": "亞提埃爾",
     "isBoss": true
@@ -23271,6 +24751,10 @@
     "name": "洞穴德拉多納幼體",
     "isBoss": false
   },
+  "2920518": {
+    "name": "None",
+    "isBoss": false
+  },
   "2920586": {
     "name": "孩子20/Exceed/None",
     "isBoss": false
@@ -23291,6 +24775,14 @@
     "name": "孩子20/All/Exceed",
     "isBoss": false
   },
+  "2920636": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2920663": {
+    "name": "巴克隆尖刺束縛",
+    "isBoss": false
+  },
   "2920710": {
     "name": "凱西內爾心腹",
     "isBoss": true
@@ -23299,9 +24791,17 @@
     "name": "深淵捕食者",
     "isBoss": false
   },
+  "2920896": {
+    "name": "None",
+    "isBoss": false
+  },
   "2920906": {
     "name": "岩石",
     "isBoss": false
+  },
+  "2920908": {
+    "name": "液壓衝床",
+    "isBoss": true
   },
   "2920924": {
     "name": "岩石",
@@ -23314,6 +24814,14 @@
   "2920939": {
     "name": "德拉多納大塊頭",
     "isBoss": false
+  },
+  "2920972": {
+    "name": "定時炸彈",
+    "isBoss": false
+  },
+  "2920973": {
+    "name": "紐特",
+    "isBoss": true
   },
   "2921008": {
     "name": "德拉多納卵",
@@ -23333,6 +24841,38 @@
   },
   "2921044": {
     "name": "背叛",
+    "isBoss": false
+  },
+  "2921069": {
+    "name": "聚合物巴考特",
+    "isBoss": false
+  },
+  "2921072": {
+    "name": "定時炸彈",
+    "isBoss": false
+  },
+  "2921073": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2921096": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2921097": {
+    "name": "聚合物巴考特",
+    "isBoss": false
+  },
+  "2921098": {
+    "name": "聚合物巴考特",
+    "isBoss": false
+  },
+  "2921167": {
+    "name": "幻影天培爾祭司",
+    "isBoss": false
+  },
+  "2921168": {
+    "name": "幻影天培爾祭司",
     "isBoss": false
   },
   "2980000": {
@@ -23496,43 +25036,43 @@
     "isBoss": true
   },
   "2980050": {
-    "name": "奧特羅斯",
+    "name": "根之怪鳥奧特羅斯",
     "isBoss": true
   },
   "2980051": {
-    "name": "奧特羅斯",
+    "name": "根之怪鳥奧特羅斯",
     "isBoss": true
   },
   "2980052": {
-    "name": "奧特羅斯",
+    "name": "根之怪鳥奧特羅斯",
     "isBoss": true
   },
   "2980053": {
-    "name": "奧特羅斯",
+    "name": "根之怪鳥奧特羅斯",
     "isBoss": true
   },
   "2980054": {
-    "name": "奧特羅斯",
+    "name": "根之怪鳥奧特羅斯",
     "isBoss": true
   },
   "2980055": {
-    "name": "奧特羅斯",
+    "name": "根之怪鳥奧特羅斯",
     "isBoss": true
   },
   "2980056": {
-    "name": "奧特羅斯",
+    "name": "根之怪鳥奧特羅斯",
     "isBoss": true
   },
   "2980057": {
-    "name": "奧特羅斯",
+    "name": "根之怪鳥奧特羅斯",
     "isBoss": true
   },
   "2980058": {
-    "name": "奧特羅斯",
+    "name": "根之怪鳥奧特羅斯",
     "isBoss": true
   },
   "2980059": {
-    "name": "奧特羅斯",
+    "name": "根之怪鳥奧特羅斯",
     "isBoss": true
   },
   "2980060": {
@@ -24096,43 +25636,43 @@
     "isBoss": true
   },
   "2980200": {
-    "name": "暴走的暴君塔辛",
+    "name": "暴君塔辛",
     "isBoss": true
   },
   "2980201": {
-    "name": "暴走的暴君塔辛",
+    "name": "暴君塔辛",
     "isBoss": true
   },
   "2980202": {
-    "name": "暴走的暴君塔辛",
+    "name": "暴君塔辛",
     "isBoss": true
   },
   "2980203": {
-    "name": "暴走的暴君塔辛",
+    "name": "暴君塔辛",
     "isBoss": true
   },
   "2980204": {
-    "name": "暴走的暴君塔辛",
+    "name": "暴君塔辛",
     "isBoss": true
   },
   "2980205": {
-    "name": "暴走的暴君塔辛",
+    "name": "暴君塔辛",
     "isBoss": true
   },
   "2980206": {
-    "name": "暴走的暴君塔辛",
+    "name": "暴君塔辛",
     "isBoss": true
   },
   "2980207": {
-    "name": "暴走的暴君塔辛",
+    "name": "暴君塔辛",
     "isBoss": true
   },
   "2980208": {
-    "name": "暴走的暴君塔辛",
+    "name": "暴君塔辛",
     "isBoss": true
   },
   "2980209": {
-    "name": "暴走的暴君塔辛",
+    "name": "暴君塔辛",
     "isBoss": true
   },
   "2980210": {

@@ -7,20 +7,8 @@
     "name": "샌드백",
     "isBoss": false
   },
-  "2000002": {
-    "name": "드라코뉴트 궁수",
-    "isBoss": false
-  },
-  "2000003": {
-    "name": "개조 크랄 전사",
-    "isBoss": false
-  },
   "2000004": {
     "name": "오드 거미",
-    "isBoss": false
-  },
-  "2000053": {
-    "name": "개조 크랄 전사",
     "isBoss": false
   },
   "2000059": {
@@ -103,48 +91,32 @@
     "name": "마른 가지 거미",
     "isBoss": false
   },
-  "2090001": {
-    "name": "숲 정령",
-    "isBoss": false
-  },
-  "2090002": {
-    "name": "숲 정령",
-    "isBoss": false
-  },
-  "2090003": {
-    "name": "아울라우 마법사",
-    "isBoss": false
-  },
-  "2090004": {
-    "name": "중형 괴물",
-    "isBoss": false
-  },
-  "2090005": {
-    "name": "환영 파편",
-    "isBoss": false
-  },
-  "2090006": {
-    "name": "펑기",
-    "isBoss": false
-  },
-  "2090007": {
-    "name": "환영 파편",
-    "isBoss": false
-  },
-  "2090008": {
-    "name": "환영 파편",
-    "isBoss": false
-  },
-  "2090009": {
-    "name": "고대 원혼 기사",
-    "isBoss": false
-  },
   "2090010": {
     "name": "펑거스",
     "isBoss": false
   },
   "2090011": {
     "name": "폭탄형 기믹 (표본)",
+    "isBoss": false
+  },
+  "2090012": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2090013": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2090014": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2090015": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2090016": {
+    "name": "None",
     "isBoss": false
   },
   "2090017": {
@@ -190,10 +162,6 @@
   "2090027": {
     "name": "몬스터 (표본)",
     "isBoss": true
-  },
-  "2090029": {
-    "name": "독기꽃",
-    "isBoss": false
   },
   "2090030": {
     "name": "밸런스테스트1",
@@ -600,7 +568,7 @@
     "isBoss": false
   },
   "2090131": {
-    "name": "평타 (레벨 스케일링 테스트)",
+    "name": "기본공격 (레벨 스케일링 테스트)",
     "isBoss": false
   },
   "2090132": {
@@ -631,6 +599,10 @@
     "name": "브리트라 공습부대 장교",
     "isBoss": false
   },
+  "2090155": {
+    "name": "None",
+    "isBoss": false
+  },
   "2090157": {
     "name": "테스트몹_Hidden",
     "isBoss": false
@@ -646,6 +618,10 @@
   "2090160": {
     "name": "암흑 정령",
     "isBoss": false
+  },
+  "2090161": {
+    "name": "None",
+    "isBoss": true
   },
   "2090162": {
     "name": "몬스터 (표본)",
@@ -683,8 +659,16 @@
     "name": "Water",
     "isBoss": false
   },
+  "2090172": {
+    "name": "None",
+    "isBoss": false
+  },
   "2090173": {
     "name": "개조 크랄 전사",
+    "isBoss": false
+  },
+  "2090174": {
+    "name": "None",
     "isBoss": false
   },
   "2090175": {
@@ -766,6 +750,14 @@
   "2090199": {
     "name": "브라우니 일꾼 남성",
     "isBoss": false
+  },
+  "2090216": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2090218": {
+    "name": "None",
+    "isBoss": true
   },
   "2090220": {
     "name": "변이 수라 마법사",
@@ -931,6 +923,10 @@
     "name": "몬스터 (표본)",
     "isBoss": true
   },
+  "2090276": {
+    "name": "None",
+    "isBoss": true
+  },
   "2090277": {
     "name": "몬스터 (표본)",
     "isBoss": true
@@ -967,54 +963,6 @@
     "name": "폭탄형 기믹 (표본)",
     "isBoss": false
   },
-  "2090331": {
-    "name": "미니언 1단계",
-    "isBoss": false
-  },
-  "2090332": {
-    "name": "미니언 2단계",
-    "isBoss": false
-  },
-  "2090333": {
-    "name": "미니언 3단계",
-    "isBoss": false
-  },
-  "2090334": {
-    "name": "미니언 4단계",
-    "isBoss": false
-  },
-  "2090335": {
-    "name": "포탑 1단계",
-    "isBoss": false
-  },
-  "2090336": {
-    "name": "포탑 2단계",
-    "isBoss": false
-  },
-  "2090337": {
-    "name": "포탑 3단계",
-    "isBoss": false
-  },
-  "2090338": {
-    "name": "포탑 4단계",
-    "isBoss": false
-  },
-  "2090381": {
-    "name": "무적의 드라칸",
-    "isBoss": false
-  },
-  "2090382": {
-    "name": "기절의 라크슈미",
-    "isBoss": false
-  },
-  "2090383": {
-    "name": "쾌속의 케네이르",
-    "isBoss": false
-  },
-  "2090384": {
-    "name": "나포의 울라크",
-    "isBoss": false
-  },
   "2090397": {
     "name": "몬스터 (표본)",
     "isBoss": true
@@ -1022,14 +970,6 @@
   "2090398": {
     "name": "타신 (표본)",
     "isBoss": false
-  },
-  "2090401": {
-    "name": "천족 핵",
-    "isBoss": true
-  },
-  "2090402": {
-    "name": "마족 핵",
-    "isBoss": true
   },
   "2090404": {
     "name": "괴조 루필리니",
@@ -1043,42 +983,6 @@
     "name": "괴조 루필리니",
     "isBoss": false
   },
-  "2090407": {
-    "name": "회복의 드라칸",
-    "isBoss": false
-  },
-  "2090408": {
-    "name": "수면의 라크슈미",
-    "isBoss": false
-  },
-  "2090409": {
-    "name": "신속의 케네이르",
-    "isBoss": false
-  },
-  "2090410": {
-    "name": "약화의 울라크",
-    "isBoss": false
-  },
-  "2090411": {
-    "name": "천족 외부 포탑",
-    "isBoss": false
-  },
-  "2090412": {
-    "name": "마족 외부 포탑",
-    "isBoss": false
-  },
-  "2090413": {
-    "name": "천족 내부 포탑",
-    "isBoss": false
-  },
-  "2090414": {
-    "name": "마족 내부 포탑",
-    "isBoss": false
-  },
-  "2090428": {
-    "name": "초월한 바카르마",
-    "isBoss": true
-  },
   "2090433": {
     "name": "페디브의 망령",
     "isBoss": true
@@ -1089,6 +993,10 @@
   },
   "2090435": {
     "name": "페디브의 망령",
+    "isBoss": true
+  },
+  "2090437": {
+    "name": "None",
     "isBoss": true
   },
   "2090438": {
@@ -1155,6 +1063,10 @@
     "name": "샌드백",
     "isBoss": false
   },
+  "2090455": {
+    "name": "None",
+    "isBoss": false
+  },
   "2090456": {
     "name": "오드 거미",
     "isBoss": false
@@ -1165,7 +1077,7 @@
   },
   "2090458": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": true
   },
   "2090463": {
     "name": "드라칸 네임드",
@@ -1227,6 +1139,10 @@
     "name": "그로기 테스트_Temporary_GroggyAttack",
     "isBoss": true
   },
+  "2090610": {
+    "name": "None",
+    "isBoss": false
+  },
   "2090613": {
     "name": "개조 크랄 전사",
     "isBoss": false
@@ -1243,8 +1159,32 @@
     "name": "개조 크랄 전사",
     "isBoss": false
   },
+  "2090632": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2090633": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2090635": {
+    "name": "None",
+    "isBoss": false
+  },
   "2090636": {
     "name": "오드 샤드 폭풍",
+    "isBoss": false
+  },
+  "2090638": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2090639": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2090648": {
+    "name": "None",
     "isBoss": false
   },
   "2090649": {
@@ -1271,16 +1211,8 @@
     "name": "부모 40/None/None",
     "isBoss": false
   },
-  "2090656": {
-    "name": "샌드백",
-    "isBoss": false
-  },
-  "2090657": {
-    "name": "샌드백",
-    "isBoss": false
-  },
-  "2090658": {
-    "name": "샌드백",
+  "2090662": {
+    "name": "None",
     "isBoss": false
   },
   "2090663": {
@@ -1491,10 +1423,6 @@
     "name": "해안 오드 거미",
     "isBoss": false
   },
-  "2100035": {
-    "name": "새끼 오드 거미",
-    "isBoss": false
-  },
   "2100036": {
     "name": "언덕 스파키",
     "isBoss": false
@@ -1513,10 +1441,6 @@
   },
   "2100041": {
     "name": "붉은 갓 펑기",
-    "isBoss": false
-  },
-  "2100042": {
-    "name": "늪지대 거미 새끼",
     "isBoss": false
   },
   "2100044": {
@@ -2081,10 +2005,6 @@
   },
   "2100461": {
     "name": "늪지 펑기",
-    "isBoss": false
-  },
-  "2100464": {
-    "name": "활성화된 용족 대형 토템",
     "isBoss": false
   },
   "2100468": {
@@ -3501,6 +3421,10 @@
   },
   "2101126": {
     "name": "톨바스 마법 그라비",
+    "isBoss": false
+  },
+  "2101127": {
+    "name": "None",
     "isBoss": false
   },
   "2101128": {
@@ -6247,6 +6171,14 @@
     "name": "열수구",
     "isBoss": false
   },
+  "2300162": {
+    "name": "두르바티의 독액",
+    "isBoss": true
+  },
+  "2300170": {
+    "name": "None",
+    "isBoss": false
+  },
   "2300171": {
     "name": "완성체 베르크",
     "isBoss": true
@@ -6263,13 +6195,37 @@
     "name": "완성체 베르크",
     "isBoss": true
   },
+  "2300175": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2300176": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2300177": {
+    "name": "None",
+    "isBoss": true
+  },
   "2300178": {
     "name": "완성체 베르크",
+    "isBoss": true
+  },
+  "2300179": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2300180": {
+    "name": "None",
     "isBoss": true
   },
   "2300181": {
     "name": "크로마",
     "isBoss": false
+  },
+  "2300182": {
+    "name": "None",
+    "isBoss": true
   },
   "2300183": {
     "name": "뒤틀린 크로카",
@@ -6399,6 +6355,10 @@
     "name": "불의 신전 용암 덩어리",
     "isBoss": false
   },
+  "2300303": {
+    "name": "None",
+    "isBoss": false
+  },
   "2300304": {
     "name": "용암 거미",
     "isBoss": false
@@ -6437,6 +6397,10 @@
   },
   "2300313": {
     "name": "화염석 수호상",
+    "isBoss": false
+  },
+  "2300314": {
+    "name": "None",
     "isBoss": false
   },
   "2300315": {
@@ -6621,6 +6585,10 @@
   },
   "2300517": {
     "name": "부패한 두르바티 (표본)",
+    "isBoss": true
+  },
+  "2300519": {
+    "name": "두르바티의 독액",
     "isBoss": true
   },
   "2300601": {
@@ -6943,6 +6911,18 @@
     "name": "영겁의 루드라",
     "isBoss": true
   },
+  "2301015": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2301016": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2301017": {
+    "name": "None",
+    "isBoss": false
+  },
   "2301018": {
     "name": "심연의 드라칸 무장병",
     "isBoss": false
@@ -6961,6 +6941,78 @@
   },
   "2301022": {
     "name": "심연의 드라칸 정찰사관",
+    "isBoss": false
+  },
+  "2301201": {
+    "name": "오염된 수라 마도사",
+    "isBoss": false
+  },
+  "2301202": {
+    "name": "오염된 수라 병사",
+    "isBoss": false
+  },
+  "2301203": {
+    "name": "변질된 독혈",
+    "isBoss": false
+  },
+  "2301204": {
+    "name": "변질된 수라 대장",
+    "isBoss": false
+  },
+  "2301205": {
+    "name": "오염된 슬라임",
+    "isBoss": false
+  },
+  "2301206": {
+    "name": "오염된 쥐",
+    "isBoss": false
+  },
+  "2301207": {
+    "name": "검은 피 블라트",
+    "isBoss": true
+  },
+  "2301208": {
+    "name": "중합체 바고트",
+    "isBoss": true
+  },
+  "2301209": {
+    "name": "포식하는 뉴트라",
+    "isBoss": true
+  },
+  "2301210": {
+    "name": "독성 가스",
+    "isBoss": false
+  },
+  "2301211": {
+    "name": "독성 가스",
+    "isBoss": false
+  },
+  "2301212": {
+    "name": "오폐수",
+    "isBoss": false
+  },
+  "2301213": {
+    "name": "오폐수",
+    "isBoss": false
+  },
+  "2301214": {
+    "name": "오염된 독주머니",
+    "isBoss": false
+  },
+  "2301215": {
+    "name": "변질된 독주머니",
+    "isBoss": false
+  },
+  "2301216": {
+    "name": "감시 장치",
+    "isBoss": true
+  },
+  "2301217": {
+    "name": "변질된 수라 대장",
+    "isBoss": false
+  },
+  "2301218": {
+    "name": "역류하는 오염 정화기",
     "isBoss": false
   },
   "2301301": {
@@ -7042,6 +7094,66 @@
   "2301323": {
     "name": "아공간의 스웜",
     "isBoss": false
+  },
+  "2301401": {
+    "name": "글래스베인",
+    "isBoss": true
+  },
+  "2301402": {
+    "name": "나사라크",
+    "isBoss": true
+  },
+  "2301403": {
+    "name": "나트하라",
+    "isBoss": true
+  },
+  "2301404": {
+    "name": "환영의 수호성 영혼",
+    "isBoss": false
+  },
+  "2301405": {
+    "name": "환영의 궁성 영혼",
+    "isBoss": false
+  },
+  "2301406": {
+    "name": "회랑의 집행자",
+    "isBoss": false
+  },
+  "2301407": {
+    "name": "잊혀진 수라 기사",
+    "isBoss": false
+  },
+  "2301408": {
+    "name": "잊혀진 수라 사제",
+    "isBoss": false
+  },
+  "2301409": {
+    "name": "잊혀진 수라 전사",
+    "isBoss": false
+  },
+  "2301410": {
+    "name": "환영 유령",
+    "isBoss": false
+  },
+  "2301411": {
+    "name": "분열된 환영 유령",
+    "isBoss": false
+  },
+  "2301412": {
+    "name": "회랑의 감시자",
+    "isBoss": false
+  },
+  "2301413": {
+    "name": "환영 장막",
+    "isBoss": false
+  },
+  "2301415": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2301416": {
+    "name": "None",
+    "isBoss": true
   },
   "2301501": {
     "name": "가라앉은 에몬",
@@ -7143,6 +7255,10 @@
     "name": "저격하는 크로카",
     "isBoss": false
   },
+  "2310170": {
+    "name": "None",
+    "isBoss": false
+  },
   "2310171": {
     "name": "완성체 베르크",
     "isBoss": true
@@ -7159,13 +7275,37 @@
     "name": "완성체 베르크",
     "isBoss": true
   },
+  "2310175": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2310176": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2310177": {
+    "name": "None",
+    "isBoss": true
+  },
   "2310178": {
     "name": "완성체 베르크",
+    "isBoss": true
+  },
+  "2310179": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2310180": {
+    "name": "None",
     "isBoss": true
   },
   "2310181": {
     "name": "크로마",
     "isBoss": false
+  },
+  "2310182": {
+    "name": "None",
+    "isBoss": true
   },
   "2310183": {
     "name": "뒤틀린 크로카",
@@ -7299,6 +7439,10 @@
     "name": "불의 신전 용암 덩어리",
     "isBoss": false
   },
+  "2310303": {
+    "name": "None",
+    "isBoss": false
+  },
   "2310304": {
     "name": "용암 거미",
     "isBoss": false
@@ -7337,6 +7481,10 @@
   },
   "2310313": {
     "name": "화염석 수호상",
+    "isBoss": false
+  },
+  "2310314": {
+    "name": "None",
     "isBoss": false
   },
   "2310315": {
@@ -7509,6 +7657,10 @@
   },
   "2310517": {
     "name": "부패한 두르바티 (표본)",
+    "isBoss": true
+  },
+  "2310519": {
+    "name": "두르바티의 독액",
     "isBoss": true
   },
   "2310601": {
@@ -7815,6 +7967,74 @@
     "name": "아공간의 스웜",
     "isBoss": false
   },
+  "2311401": {
+    "name": "글래스베인",
+    "isBoss": true
+  },
+  "2311402": {
+    "name": "나사라크",
+    "isBoss": true
+  },
+  "2311403": {
+    "name": "나트하라",
+    "isBoss": true
+  },
+  "2311404": {
+    "name": "환영의 수호성 영혼",
+    "isBoss": false
+  },
+  "2311405": {
+    "name": "환영의 궁성 영혼",
+    "isBoss": false
+  },
+  "2311406": {
+    "name": "회랑의 집행자",
+    "isBoss": false
+  },
+  "2311407": {
+    "name": "잊혀진 수라 기사",
+    "isBoss": false
+  },
+  "2311408": {
+    "name": "잊혀진 수라 사제",
+    "isBoss": false
+  },
+  "2311409": {
+    "name": "잊혀진 수라 전사",
+    "isBoss": false
+  },
+  "2311410": {
+    "name": "환영 유령",
+    "isBoss": false
+  },
+  "2311411": {
+    "name": "분열된 환영 유령",
+    "isBoss": false
+  },
+  "2311412": {
+    "name": "회랑의 감시자",
+    "isBoss": false
+  },
+  "2311413": {
+    "name": "환영의 템페르 사제",
+    "isBoss": false
+  },
+  "2311414": {
+    "name": "환영 장막",
+    "isBoss": false
+  },
+  "2311416": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2311417": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2311418": {
+    "name": "혼령 폭탄",
+    "isBoss": false
+  },
   "2320101": {
     "name": "크라오 마법실험체",
     "isBoss": false
@@ -7859,6 +8079,10 @@
     "name": "크라오 자기장",
     "isBoss": false
   },
+  "2320170": {
+    "name": "None",
+    "isBoss": false
+  },
   "2320171": {
     "name": "완성체 베르크",
     "isBoss": true
@@ -7875,13 +8099,37 @@
     "name": "완성체 베르크",
     "isBoss": true
   },
+  "2320175": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2320176": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2320177": {
+    "name": "None",
+    "isBoss": true
+  },
   "2320178": {
     "name": "완성체 베르크",
+    "isBoss": true
+  },
+  "2320179": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2320180": {
+    "name": "None",
     "isBoss": true
   },
   "2320181": {
     "name": "크로마",
     "isBoss": false
+  },
+  "2320182": {
+    "name": "None",
+    "isBoss": true
   },
   "2320183": {
     "name": "뒤틀린 크로카",
@@ -8011,6 +8259,10 @@
     "name": "불의 신전 용암 덩어리",
     "isBoss": false
   },
+  "2320303": {
+    "name": "None",
+    "isBoss": false
+  },
   "2320304": {
     "name": "용암 거미",
     "isBoss": false
@@ -8049,6 +8301,10 @@
   },
   "2320313": {
     "name": "화염석 수호상",
+    "isBoss": false
+  },
+  "2320314": {
+    "name": "None",
     "isBoss": false
   },
   "2320315": {
@@ -8237,6 +8493,10 @@
   },
   "2320518": {
     "name": "어린 수생 드리톤",
+    "isBoss": false
+  },
+  "2320519": {
+    "name": "두르바티의 독액",
     "isBoss": false
   },
   "2320601": {
@@ -8467,6 +8727,10 @@
     "name": "심연의 루필리니",
     "isBoss": false
   },
+  "2321215": {
+    "name": "None",
+    "isBoss": false
+  },
   "2321301": {
     "name": "고뇌하는 바카르마",
     "isBoss": true
@@ -8551,6 +8815,74 @@
     "name": "아공간의 스웜",
     "isBoss": false
   },
+  "2321401": {
+    "name": "글래스베인",
+    "isBoss": true
+  },
+  "2321402": {
+    "name": "나사라크",
+    "isBoss": true
+  },
+  "2321403": {
+    "name": "나트하라",
+    "isBoss": true
+  },
+  "2321404": {
+    "name": "환영의 수호성 영혼",
+    "isBoss": false
+  },
+  "2321405": {
+    "name": "환영의 궁성 영혼",
+    "isBoss": false
+  },
+  "2321406": {
+    "name": "회랑의 집행자",
+    "isBoss": false
+  },
+  "2321407": {
+    "name": "잊혀진 수라 기사",
+    "isBoss": false
+  },
+  "2321408": {
+    "name": "잊혀진 수라 사제",
+    "isBoss": false
+  },
+  "2321409": {
+    "name": "잊혀진 수라 전사",
+    "isBoss": false
+  },
+  "2321410": {
+    "name": "환영 유령",
+    "isBoss": false
+  },
+  "2321411": {
+    "name": "분열된 환영 유령",
+    "isBoss": false
+  },
+  "2321412": {
+    "name": "회랑의 감시자",
+    "isBoss": false
+  },
+  "2321413": {
+    "name": "환영의 템페르 사제",
+    "isBoss": false
+  },
+  "2321414": {
+    "name": "환영 장막",
+    "isBoss": false
+  },
+  "2321416": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2321417": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2321418": {
+    "name": "혼령 폭탄",
+    "isBoss": false
+  },
   "2321500": {
     "name": "드라토나",
     "isBoss": false
@@ -8625,6 +8957,10 @@
   },
   "2321518": {
     "name": "어린 수생 드리톤",
+    "isBoss": false
+  },
+  "2321519": {
+    "name": "두르바티의 독액",
     "isBoss": false
   },
   "2322500": {
@@ -8703,6 +9039,10 @@
     "name": "어린 수생 드리톤",
     "isBoss": false
   },
+  "2322519": {
+    "name": "두르바티의 독액",
+    "isBoss": false
+  },
   "2323500": {
     "name": "드라토나",
     "isBoss": false
@@ -8777,6 +9117,14 @@
   },
   "2323518": {
     "name": "어린 수생 드리톤",
+    "isBoss": false
+  },
+  "2323519": {
+    "name": "두르바티의 독액",
+    "isBoss": false
+  },
+  "2323520": {
+    "name": "STR_M_PD_PollutedGrass_01_CV01_001",
     "isBoss": false
   },
   "2324500": {
@@ -8855,6 +9203,14 @@
     "name": "어린 수생 드리톤",
     "isBoss": false
   },
+  "2324519": {
+    "name": "두르바티의 독액",
+    "isBoss": false
+  },
+  "2324520": {
+    "name": "STR_M_PD_PollutedGrass_01_CV01_001",
+    "isBoss": false
+  },
   "2325500": {
     "name": "드라토나",
     "isBoss": false
@@ -8929,6 +9285,14 @@
   },
   "2325518": {
     "name": "어린 수생 드리톤",
+    "isBoss": false
+  },
+  "2325519": {
+    "name": "두르바티의 독액",
+    "isBoss": false
+  },
+  "2325520": {
+    "name": "STR_M_PD_PollutedGrass_01_CV01_001",
     "isBoss": false
   },
   "2326500": {
@@ -9007,6 +9371,18 @@
     "name": "어린 수생 드리톤",
     "isBoss": false
   },
+  "2326519": {
+    "name": "두르바티의 독액",
+    "isBoss": false
+  },
+  "2326520": {
+    "name": "STR_M_PD_PollutedGrass_01_CV01_001",
+    "isBoss": false
+  },
+  "2326521": {
+    "name": "STR_M_PD_BeritraA_02_V02_001",
+    "isBoss": false
+  },
   "2327500": {
     "name": "드라토나",
     "isBoss": false
@@ -9081,6 +9457,18 @@
   },
   "2327518": {
     "name": "어린 수생 드리톤",
+    "isBoss": false
+  },
+  "2327519": {
+    "name": "두르바티의 독액",
+    "isBoss": false
+  },
+  "2327520": {
+    "name": "STR_M_PD_PollutedGrass_01_CV01_001",
+    "isBoss": false
+  },
+  "2327521": {
+    "name": "STR_M_PD_BeritraA_02_V02_001",
     "isBoss": false
   },
   "2328500": {
@@ -9159,6 +9547,18 @@
     "name": "어린 수생 드리톤",
     "isBoss": false
   },
+  "2328519": {
+    "name": "두르바티의 독액",
+    "isBoss": false
+  },
+  "2328520": {
+    "name": "STR_M_PD_PollutedGrass_01_CV01_001",
+    "isBoss": false
+  },
+  "2328521": {
+    "name": "STR_M_PD_BeritraA_02_V02_001",
+    "isBoss": false
+  },
   "2329500": {
     "name": "드라토나",
     "isBoss": false
@@ -9233,6 +9633,18 @@
   },
   "2329518": {
     "name": "어린 수생 드리톤",
+    "isBoss": false
+  },
+  "2329519": {
+    "name": "두르바티의 독액",
+    "isBoss": false
+  },
+  "2329520": {
+    "name": "STR_M_PD_PollutedGrass_01_CV01_001",
+    "isBoss": false
+  },
+  "2329521": {
+    "name": "STR_M_PD_BeritraA_02_V02_001",
     "isBoss": false
   },
   "2330101": {
@@ -9395,6 +9807,10 @@
     "name": "불의 신전 용암 덩어리",
     "isBoss": false
   },
+  "2330303": {
+    "name": "None",
+    "isBoss": false
+  },
   "2330304": {
     "name": "용암 거미",
     "isBoss": false
@@ -9433,6 +9849,10 @@
   },
   "2330313": {
     "name": "화염석 수호상",
+    "isBoss": false
+  },
+  "2330314": {
+    "name": "None",
     "isBoss": false
   },
   "2330371": {
@@ -9767,6 +10187,14 @@
     "name": "슈고의 비밀 병기",
     "isBoss": false
   },
+  "2340111": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340112": {
+    "name": "None",
+    "isBoss": false
+  },
   "2340113": {
     "name": "도적단 대포",
     "isBoss": false
@@ -9859,6 +10287,14 @@
     "name": "오염된 늪지 수호자",
     "isBoss": false
   },
+  "2340165": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340166": {
+    "name": "None",
+    "isBoss": false
+  },
   "2340201": {
     "name": "도둑 슈라크",
     "isBoss": false
@@ -9943,6 +10379,14 @@
     "name": "데바 망령 무덤",
     "isBoss": false
   },
+  "2340301": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340302": {
+    "name": "None",
+    "isBoss": false
+  },
   "2340351": {
     "name": "점프 레이저",
     "isBoss": false
@@ -9955,12 +10399,52 @@
     "name": "점프 레이저",
     "isBoss": false
   },
+  "2340354": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340355": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340401": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340411": {
+    "name": "None",
+    "isBoss": false
+  },
   "2340412": {
     "name": "시간의 소용돌이 (표본)",
     "isBoss": false
   },
   "2340413": {
     "name": "시간의 소용돌이",
+    "isBoss": false
+  },
+  "2340501": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340502": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340503": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340504": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340505": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2340506": {
+    "name": "None",
     "isBoss": false
   },
   "2340507": {
@@ -9996,6 +10480,10 @@
     "isBoss": false
   },
   "2340515": {
+    "name": "팡",
+    "isBoss": false
+  },
+  "2340516": {
     "name": "팡",
     "isBoss": false
   },
@@ -10478,6 +10966,10 @@
   "2345107": {
     "name": "그란디오스",
     "isBoss": true
+  },
+  "2345203": {
+    "name": "None",
+    "isBoss": false
   },
   "2345601": {
     "name": "아티엘",
@@ -11595,8 +12087,28 @@
     "name": "드레드기온 파프니움 변환기",
     "isBoss": false
   },
+  "2370032": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370033": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370034": {
     "name": "브리트라 비행 정찰병",
+    "isBoss": false
+  },
+  "2370035": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370036": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370037": {
+    "name": "None",
     "isBoss": false
   },
   "2370038": {
@@ -11721,6 +12233,14 @@
   },
   "2370068": {
     "name": "드레드기온 파프니움 변환기",
+    "isBoss": false
+  },
+  "2370069": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370070": {
+    "name": "None",
     "isBoss": false
   },
   "2370071": {
@@ -11851,8 +12371,28 @@
     "name": "드레드기온 파프니움 변환기",
     "isBoss": false
   },
+  "2370103": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370104": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370105": {
     "name": "브리트라 비행 정찰병",
+    "isBoss": false
+  },
+  "2370106": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370107": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370108": {
+    "name": "None",
     "isBoss": false
   },
   "2370201": {
@@ -11879,12 +12419,36 @@
     "name": "드레드기온 파프니움 변환기",
     "isBoss": false
   },
+  "2370207": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370208": {
     "name": "마법 장치",
     "isBoss": false
   },
+  "2370209": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370210": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370211": {
     "name": "브리트라 비행 정찰병",
+    "isBoss": false
+  },
+  "2370212": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370213": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370214": {
+    "name": "None",
     "isBoss": false
   },
   "2370215": {
@@ -11935,12 +12499,36 @@
     "name": "드레드기온 파프니움 변환기",
     "isBoss": false
   },
+  "2370227": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370228": {
     "name": "마법 장치",
     "isBoss": false
   },
+  "2370229": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370230": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370231": {
     "name": "브리트라 비행 정찰병",
+    "isBoss": false
+  },
+  "2370232": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370233": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370234": {
+    "name": "None",
     "isBoss": false
   },
   "2370235": {
@@ -11991,12 +12579,36 @@
     "name": "드레드기온 파프니움 변환기",
     "isBoss": false
   },
+  "2370247": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370248": {
     "name": "마법 장치",
     "isBoss": false
   },
+  "2370249": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370250": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370251": {
     "name": "브리트라 비행 정찰병",
+    "isBoss": false
+  },
+  "2370252": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370253": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370254": {
+    "name": "None",
     "isBoss": false
   },
   "2370255": {
@@ -12111,6 +12723,14 @@
     "name": "자원기지 정찰부대장",
     "isBoss": true
   },
+  "2370405": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370406": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370407": {
     "name": "드레드기온 대형 토템",
     "isBoss": false
@@ -12199,6 +12819,10 @@
     "name": "드라토나 일꾼",
     "isBoss": false
   },
+  "2370429": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370430": {
     "name": "군수사령관 아드비르",
     "isBoss": true
@@ -12214,6 +12838,14 @@
   "2370433": {
     "name": "자원기지 정찰부대장",
     "isBoss": true
+  },
+  "2370434": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370435": {
+    "name": "None",
+    "isBoss": false
   },
   "2370436": {
     "name": "드레드기온 대형 토템",
@@ -12303,6 +12935,10 @@
     "name": "드라토나 일꾼",
     "isBoss": false
   },
+  "2370458": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370460": {
     "name": "군수사령관 아드비르",
     "isBoss": true
@@ -12318,6 +12954,14 @@
   "2370463": {
     "name": "자원기지 정찰부대장",
     "isBoss": true
+  },
+  "2370464": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370465": {
+    "name": "None",
+    "isBoss": false
   },
   "2370466": {
     "name": "드레드기온 대형 토템",
@@ -12407,6 +13051,10 @@
     "name": "드라토나 일꾼",
     "isBoss": false
   },
+  "2370488": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370502": {
     "name": "군수사령관 아드비르",
     "isBoss": true
@@ -12422,6 +13070,14 @@
   "2370505": {
     "name": "자원기지 정찰부대장",
     "isBoss": true
+  },
+  "2370506": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370507": {
+    "name": "None",
+    "isBoss": false
   },
   "2370508": {
     "name": "제련소 경보 장치",
@@ -12539,6 +13195,14 @@
     "name": "자원기지 정찰부대장",
     "isBoss": true
   },
+  "2370537": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370538": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370539": {
     "name": "제련소 경보 장치",
     "isBoss": false
@@ -12655,6 +13319,14 @@
     "name": "자원기지 정찰부대장",
     "isBoss": true
   },
+  "2370568": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370569": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370570": {
     "name": "제련소 경보 장치",
     "isBoss": false
@@ -12755,6 +13427,10 @@
     "name": "드라코뉴트 무장 경비병",
     "isBoss": false
   },
+  "2370595": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370700": {
     "name": "군수사령관 아드비르",
     "isBoss": true
@@ -12770,6 +13446,14 @@
   "2370703": {
     "name": "자원기지 정찰부대장",
     "isBoss": true
+  },
+  "2370704": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370705": {
+    "name": "None",
+    "isBoss": false
   },
   "2370706": {
     "name": "드레드기온 대형 토템",
@@ -12859,6 +13543,10 @@
     "name": "드라토나 일꾼",
     "isBoss": false
   },
+  "2370728": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370735": {
     "name": "군수사령관 아드비르",
     "isBoss": true
@@ -12874,6 +13562,14 @@
   "2370738": {
     "name": "자원기지 정찰부대장",
     "isBoss": true
+  },
+  "2370739": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370740": {
+    "name": "None",
+    "isBoss": false
   },
   "2370741": {
     "name": "드레드기온 대형 토템",
@@ -12963,6 +13659,10 @@
     "name": "드라토나 일꾼",
     "isBoss": false
   },
+  "2370763": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370770": {
     "name": "군수사령관 아드비르",
     "isBoss": true
@@ -12978,6 +13678,14 @@
   "2370773": {
     "name": "자원기지 정찰부대장",
     "isBoss": true
+  },
+  "2370774": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370775": {
+    "name": "None",
+    "isBoss": false
   },
   "2370776": {
     "name": "드레드기온 대형 토템",
@@ -13067,6 +13775,10 @@
     "name": "드라토나 일꾼",
     "isBoss": false
   },
+  "2370798": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370800": {
     "name": "군수사령관 아드비르",
     "isBoss": true
@@ -13082,6 +13794,14 @@
   "2370803": {
     "name": "자원기지 정찰부대장",
     "isBoss": true
+  },
+  "2370804": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370805": {
+    "name": "None",
+    "isBoss": false
   },
   "2370806": {
     "name": "제련소 경보 장치",
@@ -13199,6 +13919,14 @@
     "name": "자원기지 정찰부대장",
     "isBoss": true
   },
+  "2370835": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370836": {
+    "name": "None",
+    "isBoss": false
+  },
   "2370837": {
     "name": "제련소 경보 장치",
     "isBoss": false
@@ -13314,6 +14042,14 @@
   "2370865": {
     "name": "자원기지 정찰부대장",
     "isBoss": true
+  },
+  "2370866": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2370867": {
+    "name": "None",
+    "isBoss": false
   },
   "2370868": {
     "name": "제련소 경보 장치",
@@ -15683,6 +16419,10 @@
     "name": "지휘 장교 라트리마",
     "isBoss": true
   },
+  "2405195": {
+    "name": "None",
+    "isBoss": false
+  },
   "2405196": {
     "name": "라트리마의 시종",
     "isBoss": false
@@ -17484,11 +18224,11 @@
     "isBoss": true
   },
   "2600091": {
-    "name": "테미논 하늘길 수호자",
+    "name": "서부 진영 하늘길 수호자",
     "isBoss": false
   },
   "2600092": {
-    "name": "프리뭄 하늘길 수호자",
+    "name": "동부 진영 하늘길 수호자",
     "isBoss": false
   },
   "2600093": {
@@ -17498,6 +18238,10 @@
   "2600094": {
     "name": "수호신장 나흐마",
     "isBoss": true
+  },
+  "2600095": {
+    "name": "영혼 깃든 갑주",
+    "isBoss": false
   },
   "2600101": {
     "name": "황혼의 칼크겔름",
@@ -17702,6 +18446,10 @@
   "2600156": {
     "name": "분노한 수호신장 나흐마",
     "isBoss": true
+  },
+  "2600157": {
+    "name": "죽음을 거부한 기사",
+    "isBoss": false
   },
   "2600201": {
     "name": "봉인된 암영의 영혼",
@@ -18359,8 +19107,556 @@
     "name": "수호신장 프라사다",
     "isBoss": true
   },
+  "2600401": {
+    "name": "어비스 스웜",
+    "isBoss": false
+  },
+  "2600402": {
+    "name": "어비스 뉴트",
+    "isBoss": false
+  },
+  "2600403": {
+    "name": "어비스 낡은 칼날 로탄",
+    "isBoss": false
+  },
+  "2600404": {
+    "name": "어비스 크랄 수색 칼니프",
+    "isBoss": false
+  },
+  "2600405": {
+    "name": "어비스 드라칸 수색 정찰병",
+    "isBoss": false
+  },
+  "2600406": {
+    "name": "어비스 크랄 수색 궁수",
+    "isBoss": false
+  },
+  "2600407": {
+    "name": "어비스 드라칸 수색 공병",
+    "isBoss": false
+  },
+  "2600408": {
+    "name": "어비스 타락한 전사",
+    "isBoss": false
+  },
+  "2600409": {
+    "name": "어비스 불사의 경비병",
+    "isBoss": false
+  },
+  "2600411": {
+    "name": "어비스 스웜",
+    "isBoss": false
+  },
+  "2600412": {
+    "name": "어비스 뉴트",
+    "isBoss": false
+  },
+  "2600413": {
+    "name": "어비스 낡은 칼날 로탄",
+    "isBoss": false
+  },
+  "2600414": {
+    "name": "어비스 크랄 수색 칼니프",
+    "isBoss": false
+  },
+  "2600415": {
+    "name": "어비스 드라칸 수색 정찰병",
+    "isBoss": false
+  },
+  "2600416": {
+    "name": "어비스 크랄 수색 궁수",
+    "isBoss": false
+  },
+  "2600417": {
+    "name": "어비스 드라칸 수색 공병",
+    "isBoss": false
+  },
+  "2600418": {
+    "name": "어비스 타락한 전사",
+    "isBoss": false
+  },
+  "2600419": {
+    "name": "어비스 불사의 경비병",
+    "isBoss": false
+  },
+  "2600421": {
+    "name": "어비스 스웜",
+    "isBoss": false
+  },
+  "2600422": {
+    "name": "어비스 스웜 군체",
+    "isBoss": false
+  },
+  "2600423": {
+    "name": "어비스 유황 슬라임",
+    "isBoss": false
+  },
+  "2600424": {
+    "name": "어비스 유황 스카마",
+    "isBoss": false
+  },
+  "2600425": {
+    "name": "어비스 유황 식인충",
+    "isBoss": false
+  },
+  "2600426": {
+    "name": "어비스 늪지 괴물",
+    "isBoss": false
+  },
+  "2600427": {
+    "name": "어비스 유황 정찰수",
+    "isBoss": false
+  },
+  "2600428": {
+    "name": "어비스 유황 탐욕수",
+    "isBoss": false
+  },
+  "2600429": {
+    "name": "어비스 변이 뉴트",
+    "isBoss": false
+  },
+  "2600430": {
+    "name": "어비스 드라나 변이체",
+    "isBoss": false
+  },
+  "2600431": {
+    "name": "어비스 드라코뉴트 저격병",
+    "isBoss": false
+  },
+  "2600432": {
+    "name": "어비스 드라나 거대 변이체",
+    "isBoss": false
+  },
+  "2600433": {
+    "name": "어비스 드라코뉴트 분대장",
+    "isBoss": false
+  },
+  "2600436": {
+    "name": "어비스 나가란트 투사",
+    "isBoss": false
+  },
+  "2600437": {
+    "name": "어비스 나가 암흑 법사",
+    "isBoss": false
+  },
+  "2600438": {
+    "name": "변이된 고대 카라스 전사",
+    "isBoss": false
+  },
+  "2600439": {
+    "name": "변이된 카라스 정예 전사",
+    "isBoss": false
+  },
+  "2600440": {
+    "name": "완전히 변이된 고대 카라스",
+    "isBoss": false
+  },
+  "2600441": {
+    "name": "어비스 나가란트 투사",
+    "isBoss": false
+  },
+  "2600442": {
+    "name": "어비스 나가 암흑 법사",
+    "isBoss": false
+  },
+  "2600443": {
+    "name": "어비스 드라칸 척살부대원",
+    "isBoss": false
+  },
+  "2600444": {
+    "name": "어비스 드라칸 척살부대장",
+    "isBoss": false
+  },
+  "2600445": {
+    "name": "어비스 드라나 변이 벌레",
+    "isBoss": false
+  },
+  "2600446": {
+    "name": "어비스 오드 변이 벌레",
+    "isBoss": false
+  },
+  "2600447": {
+    "name": "어비스 어린 레피스마",
+    "isBoss": false
+  },
+  "2600448": {
+    "name": "어비스 레피스마",
+    "isBoss": false
+  },
+  "2600449": {
+    "name": "어비스 고약한 라플레시아",
+    "isBoss": false
+  },
+  "2600450": {
+    "name": "어비스 순수한 정령",
+    "isBoss": false
+  },
+  "2600451": {
+    "name": "어비스 오디움 영혼석",
+    "isBoss": false
+  },
+  "2600452": {
+    "name": "길들인 자이프",
+    "isBoss": false
+  },
+  "2600453": {
+    "name": "바르그 전사",
+    "isBoss": false
+  },
+  "2600454": {
+    "name": "숲의 수호자 궁수",
+    "isBoss": false
+  },
+  "2600455": {
+    "name": "바르그 광전사",
+    "isBoss": false
+  },
+  "2600456": {
+    "name": "어비스 진화한 영혼석",
+    "isBoss": false
+  },
+  "2600457": {
+    "name": "어비스 드라나 변이체",
+    "isBoss": false
+  },
+  "2600458": {
+    "name": "어비스 드라나 거대 변이체",
+    "isBoss": false
+  },
+  "2600459": {
+    "name": "어비스 드라칸 수색 정찰병",
+    "isBoss": false
+  },
+  "2600460": {
+    "name": "어비스 드라칸 수색 공병",
+    "isBoss": false
+  },
+  "2600461": {
+    "name": "어비스 코라돈",
+    "isBoss": false
+  },
+  "2600462": {
+    "name": "어비스 드라칸 수색 전투병",
+    "isBoss": false
+  },
+  "2600463": {
+    "name": "영혼 없는 파괴의 아칸 검성",
+    "isBoss": false
+  },
+  "2600464": {
+    "name": "영혼없는 노르니르",
+    "isBoss": false
+  },
+  "2600465": {
+    "name": "영혼 없는 파괴의 아칸 정예병",
+    "isBoss": false
+  },
+  "2600466": {
+    "name": "정령왕의 호위 전사",
+    "isBoss": false
+  },
+  "2600468": {
+    "name": "정령왕 아그로",
+    "isBoss": true
+  },
+  "2600469": {
+    "name": "어비스 타락한 정령",
+    "isBoss": false
+  },
+  "2600470": {
+    "name": "어비스 영혼석",
+    "isBoss": false
+  },
+  "2600471": {
+    "name": "어비스 뿌리 정찰수",
+    "isBoss": false
+  },
+  "2600472": {
+    "name": "어비스 영원의 전투병",
+    "isBoss": false
+  },
+  "2600473": {
+    "name": "영혼없는 노르니르",
+    "isBoss": false
+  },
+  "2600474": {
+    "name": "파편 수호자 방패병",
+    "isBoss": false
+  },
+  "2600475": {
+    "name": "파편 수호자 정예 검병",
+    "isBoss": false
+  },
+  "2600476": {
+    "name": "영혼없는 노르니르",
+    "isBoss": false
+  },
+  "2600477": {
+    "name": "파편 수호자 정예 방패병",
+    "isBoss": false
+  },
+  "2600478": {
+    "name": "분노한 수호신장 나흐마",
+    "isBoss": true
+  },
+  "2600479": {
+    "name": "분노한 수호신장 나흐마",
+    "isBoss": true
+  },
+  "2600480": {
+    "name": "분노한 수호신장 나흐마",
+    "isBoss": true
+  },
+  "2600481": {
+    "name": "어비스 낡은 칼날 로탄",
+    "isBoss": false
+  },
+  "2600482": {
+    "name": "어비스 크랄 수색 칼니프",
+    "isBoss": false
+  },
+  "2600483": {
+    "name": "어비스 크랄 수색 칼니프",
+    "isBoss": false
+  },
+  "2600484": {
+    "name": "어비스 드라칸 수색 정찰병",
+    "isBoss": false
+  },
+  "2600485": {
+    "name": "어비스 크랄 수색 궁수",
+    "isBoss": false
+  },
+  "2600486": {
+    "name": "어비스 타락한 전사",
+    "isBoss": false
+  },
+  "2600487": {
+    "name": "어비스 타락한 전사",
+    "isBoss": false
+  },
+  "2600488": {
+    "name": "어비스 불사의 경비병",
+    "isBoss": false
+  },
+  "2600489": {
+    "name": "어비스 불사의 경비병",
+    "isBoss": false
+  },
+  "2600491": {
+    "name": "어비스 낡은 칼날 로탄",
+    "isBoss": false
+  },
+  "2600492": {
+    "name": "어비스 크랄 수색 칼니프",
+    "isBoss": false
+  },
+  "2600493": {
+    "name": "어비스 크랄 수색 칼니프",
+    "isBoss": false
+  },
+  "2600494": {
+    "name": "어비스 드라칸 수색 정찰병",
+    "isBoss": false
+  },
+  "2600495": {
+    "name": "어비스 크랄 수색 궁수",
+    "isBoss": false
+  },
+  "2600496": {
+    "name": "어비스 타락한 전사",
+    "isBoss": false
+  },
+  "2600497": {
+    "name": "어비스 타락한 전사",
+    "isBoss": false
+  },
+  "2600498": {
+    "name": "어비스 불사의 경비병",
+    "isBoss": false
+  },
+  "2600499": {
+    "name": "어비스 불사의 경비병",
+    "isBoss": false
+  },
+  "2600501": {
+    "name": "어비스 스웜 군체",
+    "isBoss": false
+  },
+  "2600502": {
+    "name": "어비스 늪지 괴물",
+    "isBoss": false
+  },
+  "2600503": {
+    "name": "어비스 유황 탐욕수",
+    "isBoss": false
+  },
+  "2600504": {
+    "name": "어비스 변이 뉴트",
+    "isBoss": false
+  },
+  "2600505": {
+    "name": "어비스 드라나 변이체",
+    "isBoss": false
+  },
+  "2600506": {
+    "name": "어비스 드라코뉴트 저격병",
+    "isBoss": false
+  },
+  "2600507": {
+    "name": "변이된 카라스 정예 전사",
+    "isBoss": false
+  },
+  "2600508": {
+    "name": "변이된 카라스 정예 전사",
+    "isBoss": false
+  },
+  "2600511": {
+    "name": "어비스 고약한 라플레시아",
+    "isBoss": false
+  },
+  "2600512": {
+    "name": "어비스 순수한 정령",
+    "isBoss": false
+  },
+  "2600513": {
+    "name": "어비스 오디움 영혼석",
+    "isBoss": false
+  },
+  "2600514": {
+    "name": "바르그 전사",
+    "isBoss": false
+  },
+  "2600515": {
+    "name": "바르그 광전사",
+    "isBoss": false
+  },
+  "2600516": {
+    "name": "차원핵",
+    "isBoss": true
+  },
+  "2600517": {
+    "name": "차원핵",
+    "isBoss": true
+  },
+  "2600518": {
+    "name": "차원핵",
+    "isBoss": true
+  },
+  "2600519": {
+    "name": "고대 원혼 기사",
+    "isBoss": false
+  },
   "2680000": {
     "name": "오드 샤드 폭풍",
+    "isBoss": false
+  },
+  "2680001": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680002": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680003": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680004": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680005": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680006": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680007": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680008": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680009": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680010": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680011": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680012": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680013": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680014": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680016": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680017": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680018": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680019": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680020": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680021": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680022": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680023": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680024": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680025": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680026": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680027": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680028": {
+    "name": "None",
     "isBoss": false
   },
   "2700000": {
@@ -18411,86 +19707,6 @@
     "name": "중독된 수라 투사",
     "isBoss": false
   },
-  "2700070": {
-    "name": "저장고 아울라우 추격병",
-    "isBoss": false
-  },
-  "2700071": {
-    "name": "저장고 코누티 추적꾼",
-    "isBoss": false
-  },
-  "2700072": {
-    "name": "뿌리의 아울라우 사제",
-    "isBoss": false
-  },
-  "2700076": {
-    "name": "뿌리의 아울라우 경비병",
-    "isBoss": false
-  },
-  "2700077": {
-    "name": "뿌리의 아울라우 경계병",
-    "isBoss": false
-  },
-  "2700078": {
-    "name": "뿌리의 아울라우 주술사",
-    "isBoss": false
-  },
-  "2700079": {
-    "name": "저장고 아울라우 추격병",
-    "isBoss": false
-  },
-  "2700080": {
-    "name": "저장고 코누티 추적꾼",
-    "isBoss": false
-  },
-  "2700081": {
-    "name": "저장고 코누티 일꾼",
-    "isBoss": false
-  },
-  "2700082": {
-    "name": "저장고 피노 일꾼",
-    "isBoss": false
-  },
-  "2700083": {
-    "name": "뿌리 저장고 피노 싸움꾼",
-    "isBoss": false
-  },
-  "2700085": {
-    "name": "뿌리의 아울라우 폭발 토템",
-    "isBoss": false
-  },
-  "2700086": {
-    "name": "뿌리의 아울라우 향로",
-    "isBoss": false
-  },
-  "2700087": {
-    "name": "뿌리의 토템술사",
-    "isBoss": false
-  },
-  "2700088": {
-    "name": "뿌리의 토템술사",
-    "isBoss": false
-  },
-  "2700089": {
-    "name": "문지기 피노피",
-    "isBoss": true
-  },
-  "2700090": {
-    "name": "뿌리의 토템술사",
-    "isBoss": false
-  },
-  "2700091": {
-    "name": "아울트로스",
-    "isBoss": true
-  },
-  "2700092": {
-    "name": "아울트로스",
-    "isBoss": true
-  },
-  "2700093": {
-    "name": "문지기 피노피",
-    "isBoss": false
-  },
   "2700094": {
     "name": "부패한 카라스",
     "isBoss": false
@@ -18514,10 +19730,6 @@
   "2700100": {
     "name": "힐라드르",
     "isBoss": true
-  },
-  "2700209": {
-    "name": "뿌리의 아울라우 소환사",
-    "isBoss": false
   },
   "2700238": {
     "name": "꿈의 수호병",
@@ -18671,6 +19883,10 @@
     "name": "지배당한 아울라우 전사",
     "isBoss": false
   },
+  "2700621": {
+    "name": "None",
+    "isBoss": false
+  },
   "2700622": {
     "name": "환혼의 돌",
     "isBoss": false
@@ -18685,6 +19901,22 @@
   },
   "2700625": {
     "name": "지배의 돌",
+    "isBoss": false
+  },
+  "2700684": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2700685": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2700686": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2700687": {
+    "name": "None",
     "isBoss": false
   },
   "2700691": {
@@ -18835,6 +20067,10 @@
     "name": "요새 수호자 노툰",
     "isBoss": true
   },
+  "2700746": {
+    "name": "None",
+    "isBoss": true
+  },
   "2700747": {
     "name": "요새의 아칸 원혼",
     "isBoss": false
@@ -18874,6 +20110,10 @@
   "2700845": {
     "name": "이드리스",
     "isBoss": true
+  },
+  "2700846": {
+    "name": "None",
+    "isBoss": false
   },
   "2700847": {
     "name": "지켈의 사념체",
@@ -19951,6 +21191,10 @@
     "name": "광신도 울리무스",
     "isBoss": true
   },
+  "2701203": {
+    "name": "None",
+    "isBoss": false
+  },
   "2701204": {
     "name": "크랄 간수",
     "isBoss": false
@@ -20057,6 +21301,10 @@
   },
   "2701235": {
     "name": "무법자 레기온 전사",
+    "isBoss": false
+  },
+  "2701236": {
+    "name": "None",
     "isBoss": false
   },
   "2701238": {
@@ -21355,6 +22603,10 @@
     "name": "동굴 드라토나 유체",
     "isBoss": false
   },
+  "2701634": {
+    "name": "None",
+    "isBoss": false
+  },
   "2701635": {
     "name": "독주머니",
     "isBoss": false
@@ -21853,6 +23105,18 @@
   },
   "2701770": {
     "name": "이슈타르 부대 드라칸",
+    "isBoss": false
+  },
+  "2701771": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2701772": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2701773": {
+    "name": "None",
     "isBoss": false
   },
   "2701774": {
@@ -22543,10 +23807,6 @@
     "name": "광폭한 원혼",
     "isBoss": false
   },
-  "2702022": {
-    "name": "뿌리의 토템술사",
-    "isBoss": false
-  },
   "2702023": {
     "name": "라이칸 치유병",
     "isBoss": false
@@ -22903,6 +24163,26 @@
     "name": "대필자 카르돈",
     "isBoss": true
   },
+  "2702112": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2702113": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2702114": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2702115": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2702116": {
+    "name": "None",
+    "isBoss": false
+  },
   "2702174": {
     "name": "불안정한 오디움 원석",
     "isBoss": false
@@ -23075,20 +24355,204 @@
     "name": "파멸의 맹조 전사",
     "isBoss": false
   },
-  "2920015": {
-    "name": "결박의 덫",
+  "2702372": {
+    "name": "깃털포화 두두리",
+    "isBoss": true
+  },
+  "2702373": {
+    "name": "눈 뜬 맹조 도도리",
+    "isBoss": true
+  },
+  "2702374": {
+    "name": "절망의 경비대장",
     "isBoss": false
   },
-  "2920016": {
-    "name": "결박의 덫",
+  "2702375": {
+    "name": "절망의 상급 드라칸",
     "isBoss": false
   },
-  "2920017": {
-    "name": "결박의 덫",
+  "2702376": {
+    "name": "절망의 드라칸 지휘관",
     "isBoss": false
   },
-  "2920018": {
-    "name": "결박의 덫",
+  "2702377": {
+    "name": "절망의 용족 전사",
+    "isBoss": false
+  },
+  "2702378": {
+    "name": "절망의 용족 궁병",
+    "isBoss": false
+  },
+  "2702379": {
+    "name": "절망의 심연 스웜",
+    "isBoss": false
+  },
+  "2702380": {
+    "name": "절망의 드라칸 무장병",
+    "isBoss": false
+  },
+  "2702381": {
+    "name": "절망의 드라칸 마력사",
+    "isBoss": false
+  },
+  "2702382": {
+    "name": "절망의 정예 투사",
+    "isBoss": false
+  },
+  "2702383": {
+    "name": "절망의 정예 감시자",
+    "isBoss": false
+  },
+  "2702384": {
+    "name": "깃털포화 두두리",
+    "isBoss": true
+  },
+  "2702385": {
+    "name": "눈 뜬 맹조 도도리",
+    "isBoss": true
+  },
+  "2702386": {
+    "name": "파멸의 경비대장",
+    "isBoss": false
+  },
+  "2702387": {
+    "name": "파멸의 상급 드라칸",
+    "isBoss": false
+  },
+  "2702388": {
+    "name": "파멸의 드라칸 지휘관",
+    "isBoss": false
+  },
+  "2702389": {
+    "name": "파멸의 용족 전사",
+    "isBoss": false
+  },
+  "2702390": {
+    "name": "파멸의 용족 궁병",
+    "isBoss": false
+  },
+  "2702391": {
+    "name": "파멸의 심연 스웜",
+    "isBoss": false
+  },
+  "2702392": {
+    "name": "파멸의 드라칸 무장병",
+    "isBoss": false
+  },
+  "2702393": {
+    "name": "파멸의 드라칸 마력사",
+    "isBoss": false
+  },
+  "2702394": {
+    "name": "파멸의 정예 투사",
+    "isBoss": false
+  },
+  "2702395": {
+    "name": "파멸의 정예 감시자",
+    "isBoss": false
+  },
+  "2702396": {
+    "name": "분열체 아포노스",
+    "isBoss": true
+  },
+  "2702397": {
+    "name": "절망의 수호병",
+    "isBoss": false
+  },
+  "2702398": {
+    "name": "절망의 감시병",
+    "isBoss": false
+  },
+  "2702399": {
+    "name": "절망의 데바 순찰자",
+    "isBoss": false
+  },
+  "2702400": {
+    "name": "절망의 정예 방패병",
+    "isBoss": false
+  },
+  "2702401": {
+    "name": "절망의 정예 돌격병",
+    "isBoss": false
+  },
+  "2702402": {
+    "name": "절망의 흑마법사",
+    "isBoss": false
+  },
+  "2702403": {
+    "name": "고문서 수호 장치",
+    "isBoss": false
+  },
+  "2702404": {
+    "name": "고문서 수호 장치",
+    "isBoss": false
+  },
+  "2702405": {
+    "name": "절망의 감시병",
+    "isBoss": false
+  },
+  "2702406": {
+    "name": "절망의 데바 순찰자",
+    "isBoss": false
+  },
+  "2702407": {
+    "name": "절망의 정예 돌격병",
+    "isBoss": false
+  },
+  "2702408": {
+    "name": "절망의 흑마법사",
+    "isBoss": false
+  },
+  "2702409": {
+    "name": "분열체 아포노스",
+    "isBoss": true
+  },
+  "2702410": {
+    "name": "파멸의 수호병",
+    "isBoss": false
+  },
+  "2702411": {
+    "name": "파멸의 감시병",
+    "isBoss": false
+  },
+  "2702412": {
+    "name": "파멸의 데바 순찰자",
+    "isBoss": false
+  },
+  "2702413": {
+    "name": "파멸의 정예 방패병",
+    "isBoss": false
+  },
+  "2702414": {
+    "name": "파멸의 정예 돌격병",
+    "isBoss": false
+  },
+  "2702415": {
+    "name": "파멸의 흑마법사",
+    "isBoss": false
+  },
+  "2702416": {
+    "name": "고문서 수호 장치",
+    "isBoss": false
+  },
+  "2702417": {
+    "name": "고문서 수호 장치",
+    "isBoss": false
+  },
+  "2702418": {
+    "name": "파멸의 감시병",
+    "isBoss": false
+  },
+  "2702419": {
+    "name": "파멸의 데바 순찰자",
+    "isBoss": false
+  },
+  "2702420": {
+    "name": "파멸의 정예 돌격병",
+    "isBoss": false
+  },
+  "2702421": {
+    "name": "파멸의 흑마법사",
     "isBoss": false
   },
   "2920029": {
@@ -23105,6 +24569,10 @@
   },
   "2920033": {
     "name": "중형 괴물",
+    "isBoss": false
+  },
+  "2920037": {
+    "name": "None",
     "isBoss": false
   },
   "2920059": {
@@ -23133,6 +24601,10 @@
   },
   "2920201": {
     "name": "화염 지대",
+    "isBoss": false
+  },
+  "2920210": {
+    "name": "None",
     "isBoss": false
   },
   "2920213": {
@@ -23203,6 +24675,10 @@
     "name": "길들인 포사 시체 (표본)",
     "isBoss": false
   },
+  "2920365": {
+    "name": "None",
+    "isBoss": false
+  },
   "2920367": {
     "name": "바크론의 가시덩굴",
     "isBoss": true
@@ -23239,6 +24715,10 @@
     "name": "어둠의 기운",
     "isBoss": false
   },
+  "2920401": {
+    "name": "None",
+    "isBoss": false
+  },
   "2920445": {
     "name": "아티엘",
     "isBoss": true
@@ -23271,6 +24751,10 @@
     "name": "동굴 드라토나 유체",
     "isBoss": false
   },
+  "2920518": {
+    "name": "None",
+    "isBoss": false
+  },
   "2920586": {
     "name": "자식 20/Exceed/None",
     "isBoss": false
@@ -23291,6 +24775,14 @@
     "name": "자식 20/All/Exceed",
     "isBoss": false
   },
+  "2920636": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2920663": {
+    "name": "바크론의 가시속박",
+    "isBoss": false
+  },
   "2920710": {
     "name": "카이시넬의 심복",
     "isBoss": true
@@ -23299,9 +24791,17 @@
     "name": "심연 포식자",
     "isBoss": false
   },
+  "2920896": {
+    "name": "None",
+    "isBoss": false
+  },
   "2920906": {
     "name": "바위",
     "isBoss": false
+  },
+  "2920908": {
+    "name": "유압 프레스",
+    "isBoss": true
   },
   "2920924": {
     "name": "바위",
@@ -23314,6 +24814,14 @@
   "2920939": {
     "name": "드라토나 덩치",
     "isBoss": false
+  },
+  "2920972": {
+    "name": "시한 폭탄",
+    "isBoss": false
+  },
+  "2920973": {
+    "name": "뉴트",
+    "isBoss": true
   },
   "2921008": {
     "name": "드라토나 알",
@@ -23333,6 +24841,38 @@
   },
   "2921044": {
     "name": "배신",
+    "isBoss": false
+  },
+  "2921069": {
+    "name": "중합체 바고트",
+    "isBoss": false
+  },
+  "2921072": {
+    "name": "시한 폭탄",
+    "isBoss": false
+  },
+  "2921073": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2921096": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2921097": {
+    "name": "중합체 바고트",
+    "isBoss": false
+  },
+  "2921098": {
+    "name": "중합체 바고트",
+    "isBoss": false
+  },
+  "2921167": {
+    "name": "환영의 템페르 사제",
+    "isBoss": false
+  },
+  "2921168": {
+    "name": "환영의 템페르 사제",
     "isBoss": false
   },
   "2980000": {
@@ -23496,43 +25036,43 @@
     "isBoss": true
   },
   "2980050": {
-    "name": "아울트로스",
+    "name": "뿌리의 괴조 아울트로스",
     "isBoss": true
   },
   "2980051": {
-    "name": "아울트로스",
+    "name": "뿌리의 괴조 아울트로스",
     "isBoss": true
   },
   "2980052": {
-    "name": "아울트로스",
+    "name": "뿌리의 괴조 아울트로스",
     "isBoss": true
   },
   "2980053": {
-    "name": "아울트로스",
+    "name": "뿌리의 괴조 아울트로스",
     "isBoss": true
   },
   "2980054": {
-    "name": "아울트로스",
+    "name": "뿌리의 괴조 아울트로스",
     "isBoss": true
   },
   "2980055": {
-    "name": "아울트로스",
+    "name": "뿌리의 괴조 아울트로스",
     "isBoss": true
   },
   "2980056": {
-    "name": "아울트로스",
+    "name": "뿌리의 괴조 아울트로스",
     "isBoss": true
   },
   "2980057": {
-    "name": "아울트로스",
+    "name": "뿌리의 괴조 아울트로스",
     "isBoss": true
   },
   "2980058": {
-    "name": "아울트로스",
+    "name": "뿌리의 괴조 아울트로스",
     "isBoss": true
   },
   "2980059": {
-    "name": "아울트로스",
+    "name": "뿌리의 괴조 아울트로스",
     "isBoss": true
   },
   "2980060": {
@@ -24096,43 +25636,43 @@
     "isBoss": true
   },
   "2980200": {
-    "name": "폭주한 폭군 타신",
+    "name": "폭군 타신",
     "isBoss": true
   },
   "2980201": {
-    "name": "폭주한 폭군 타신",
+    "name": "폭군 타신",
     "isBoss": true
   },
   "2980202": {
-    "name": "폭주한 폭군 타신",
+    "name": "폭군 타신",
     "isBoss": true
   },
   "2980203": {
-    "name": "폭주한 폭군 타신",
+    "name": "폭군 타신",
     "isBoss": true
   },
   "2980204": {
-    "name": "폭주한 폭군 타신",
+    "name": "폭군 타신",
     "isBoss": true
   },
   "2980205": {
-    "name": "폭주한 폭군 타신",
+    "name": "폭군 타신",
     "isBoss": true
   },
   "2980206": {
-    "name": "폭주한 폭군 타신",
+    "name": "폭군 타신",
     "isBoss": true
   },
   "2980207": {
-    "name": "폭주한 폭군 타신",
+    "name": "폭군 타신",
     "isBoss": true
   },
   "2980208": {
-    "name": "폭주한 폭군 타신",
+    "name": "폭군 타신",
     "isBoss": true
   },
   "2980209": {
-    "name": "폭주한 폭군 타신",
+    "name": "폭군 타신",
     "isBoss": true
   },
   "2980210": {

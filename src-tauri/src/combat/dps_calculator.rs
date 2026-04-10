@@ -317,7 +317,7 @@ impl DpsCalculator {
                     .collect();
 
                 if let Some(&best) = boss_targets.iter()
-                    .max_by_key(|&&tid| combat_data.get(&tid).map(|td| td.total_damage).unwrap_or(0))
+                    .max_by_key(|&&tid| combat_data.get(&tid).map(|td| td.last_damage_time).unwrap_or(0))
                 {
                     let name = self.resolve_target_name(best);
                     (HashSet::from([best]), name, best)
