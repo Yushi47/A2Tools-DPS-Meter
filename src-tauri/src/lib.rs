@@ -46,6 +46,11 @@ pub struct AppState {
 // ===== TAURI COMMANDS =====
 
 #[tauri::command]
+fn get_app_version() -> &'static str {
+    env!("CARGO_PKG_VERSION")
+}
+
+#[tauri::command]
 fn get_dps_snapshot(state: tauri::State<'_, AppState>) -> DpsData {
     state.dps_calculator.lock().get_dps()
 }
@@ -128,7 +133,15 @@ fn set_target_mode(state: tauri::State<'_, AppState>, mode: String) {
 
 #[tauri::command]
 fn set_character_name(state: tauri::State<'_, AppState>, name: String) {
+    let trimmed = name.trim().to_string();
     state.data_storage.set_local_character_name(Some(name));
+    // If an actor ID was already bound, propagate the new character name
+    // into nickname_storage immediately so the main meter window updates.
+    if !trimmed.is_empty() {
+        if let Some(id) = state.data_storage.local_player_id() {
+            state.data_storage.set_permanent_nickname(id as i32, &trimmed);
+        }
+    }
 }
 
 #[tauri::command]
@@ -139,27 +152,37 @@ fn bind_local_actor_id(state: tauri::State<'_, AppState>, actor_id: i64) {
         state.data_storage.set_local_player_id(None);
         return;
     }
-    // Skip if already bound to this ID
-    if state.data_storage.local_player_id() == Some(actor_id) {
-        return;
+    let already_bound = state.data_storage.local_player_id() == Some(actor_id);
+    if !already_bound {
+        tracing::info!("bind_local_actor_id: {}", actor_id);
+        state.data_storage.set_local_player_id(Some(actor_id));
     }
-    tracing::info!("bind_local_actor_id: {}", actor_id);
-    state.data_storage.set_local_player_id(Some(actor_id));
+    // Always (re)apply the permanent nickname if we have a character name,
+    // even when the actor_id was already bound — this handles the case where
+    // the character name was set AFTER the actor_id binding.
     if let Some(name) = state.data_storage.local_character_name() {
-        if !name.trim().is_empty() {
-            state.data_storage.set_permanent_nickname(actor_id as i32, name.trim());
+        let trimmed = name.trim();
+        if !trimmed.is_empty() {
+            let current = state.data_storage.get_nickname(actor_id as i32);
+            if current.as_deref() != Some(trimmed) {
+                state.data_storage.set_permanent_nickname(actor_id as i32, trimmed);
+            }
         }
     }
 }
 
 #[tauri::command]
 fn bind_local_nickname(state: tauri::State<'_, AppState>, actor_id: i64, nickname: String) {
+    // Always update if the stored nickname differs from the requested one.
+    // Previously we skipped if the actor had ANY nickname, which left stale
+    // false-positive scan results stuck in place.
+    let current = state.data_storage.get_nickname(actor_id as i32);
     if state.data_storage.local_player_id() == Some(actor_id)
-        && state.data_storage.has_nickname(actor_id as i32)
+        && current.as_deref() == Some(nickname.as_str())
     {
         return;
     }
-    tracing::info!("bind_local_nickname: {} -> '{}'", actor_id, nickname);
+    tracing::info!("bind_local_nickname: {} -> '{}' (was {:?})", actor_id, nickname, current);
     state.data_storage.set_local_player_id(Some(actor_id));
     // Use set_permanent_nickname so it survives reset_nicknames() calls
     state.data_storage.set_permanent_nickname(actor_id as i32, &nickname);
@@ -950,6 +973,7 @@ pub fn run() {
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
+            get_app_version,
             get_dps_snapshot,
             get_skill_details,
             get_details_context,

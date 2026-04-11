@@ -437,7 +437,9 @@ impl DataStorage {
     pub fn set_permanent_nickname(&self, uid: i32, nickname: &str) {
         let mut inner = self.inner.write();
         inner.permanent_nicknames.insert(uid, nickname.to_string());
-        append_nickname_inner(&mut inner, uid, nickname);
+        // Force-apply: user explicitly set this in settings, bypass length/CJK heuristics
+        // that protect against bad packet scan results.
+        append_nickname_inner_with_force(&mut inner, uid, nickname, true);
     }
 
     pub fn cache_pending_nickname(&self, uid: i32, nickname: &str) {
@@ -475,6 +477,10 @@ impl DataStorage {
 
     pub fn get_summon_data(&self) -> HashMap<i32, i32> {
         self.inner.read().summon_storage.clone()
+    }
+
+    pub fn get_known_player_ids(&self) -> HashSet<i32> {
+        self.inner.read().known_player_ids.clone()
     }
 
     pub fn get_mob_hp_data(&self) -> HashMap<i32, i32> {
@@ -534,6 +540,10 @@ fn has_cjk(s: &str) -> bool {
 }
 
 fn append_nickname_inner(inner: &mut Inner, uid: i32, nickname: &str) {
+    append_nickname_inner_with_force(inner, uid, nickname, false);
+}
+
+fn append_nickname_inner_with_force(inner: &mut Inner, uid: i32, nickname: &str, force: bool) {
     let existing = inner.nickname_storage.get(&uid);
     if let Some(existing) = existing {
         if existing == nickname {
@@ -544,39 +554,48 @@ fn append_nickname_inner(inner: &mut Inner, uid: i32, nickname: &str) {
             }
             return;
         }
-        // Don't replace a CJK name with a shorter ASCII-only name (likely false positive)
-        let existing_cjk = has_cjk(existing);
-        let new_cjk = has_cjk(nickname);
-        if existing_cjk && !new_cjk && nickname.len() < existing.len() {
-            tracing::debug!("Nickname: keeping CJK '{}' for {}, rejecting ASCII '{}'", existing, uid, nickname);
-            return;
+        if !force {
+            // Don't replace a CJK name with a shorter ASCII-only name (likely false positive)
+            let existing_cjk = has_cjk(existing);
+            let new_cjk = has_cjk(nickname);
+            if existing_cjk && !new_cjk && nickname.len() < existing.len() {
+                tracing::debug!("Nickname: keeping CJK '{}' for {}, rejecting ASCII '{}'", existing, uid, nickname);
+                return;
+            }
+            // Don't replace a longer name with a short ASCII-only name (2-byte rule generalized)
+            if !new_cjk && nickname.as_bytes().len() <= 5 && existing.as_bytes().len() > nickname.as_bytes().len() {
+                tracing::debug!("Nickname: keeping '{}' for {}, rejecting shorter '{}'", existing, uid, nickname);
+                return;
+            }
         }
-        // Don't replace a longer name with a short ASCII-only name (2-byte rule generalized)
-        if !new_cjk && nickname.as_bytes().len() <= 5 && existing.as_bytes().len() > nickname.as_bytes().len() {
-            tracing::debug!("Nickname: keeping '{}' for {}, rejecting shorter '{}'", existing, uid, nickname);
-            return;
-        }
-        tracing::debug!("Nickname: replacing '{}' with '{}' for {}", existing, nickname, uid);
+        tracing::debug!("Nickname: replacing '{}' with '{}' for {}{}",
+            existing, nickname, uid, if force { " (forced)" } else { "" });
     } else {
-        tracing::debug!("Nickname: setting '{}' for {}", nickname, uid);
+        tracing::debug!("Nickname: setting '{}' for {}{}",
+            nickname, uid, if force { " (forced)" } else { "" });
     }
 
     // Name eviction: character names are unique per server, so if this name
     // already belongs to a different entity ID, that old ID is stale (zone change).
-    // Evict the old entity's name, player status, and summon mappings.
-    let mut evicted_id = None;
-    for (&old_id, old_name) in inner.nickname_storage.iter() {
-        if old_name == nickname && old_id != uid && inner.known_player_ids.contains(&old_id) {
-            evicted_id = Some(old_id);
-            break;
-        }
-    }
-    if let Some(old_id) = evicted_id {
+    // Evict the old entity's name, player status, and summon mappings regardless
+    // of whether the old entity was ever classified as a player.
+    let evicted_ids: Vec<i32> = inner.nickname_storage.iter()
+        .filter(|&(&old_id, old_name)| old_name == nickname && old_id != uid)
+        .map(|(&old_id, _)| old_id)
+        .collect();
+    for old_id in evicted_ids {
         tracing::debug!("Name eviction: '{}' moved from entity {} to {}", nickname, old_id, uid);
         inner.nickname_storage.remove(&old_id);
         inner.known_player_ids.remove(&old_id);
+        inner.pending_nicknames.remove(&old_id);
         // Remove summon mappings pointing to the stale owner
         inner.summon_storage.retain(|_, &mut owner| owner != old_id);
+        // Also scrub the stale entity's damage from all target aggregates
+        for target_data in inner.target_combat.values_mut() {
+            if let Some(actor_data) = target_data.actors.remove(&old_id) {
+                target_data.total_damage -= actor_data.total_damage;
+            }
+        }
     }
 
     inner.nickname_storage.insert(uid, nickname.to_string());

@@ -225,13 +225,28 @@ impl DpsCalculator {
             }
         }
 
-        // Orphan summon inference
+        // Orphan summon inference: merge unnamed actors into a same-class named actor
+        // ONLY if the orphan is not a known player (i.e. never used player-band skills).
+        // Also skip merging if multiple orphans share the same class — ambiguous.
+        let known_players = self.data_storage.get_known_player_ids();
         let mut orphan_merges: Vec<(i32, i32)> = Vec::new();
+        // First, count orphans per job to detect ambiguity
+        let mut orphan_count_by_job: HashMap<String, i32> = HashMap::new();
         for (&uid, data) in &dps_data.map {
             if summon_data.contains_key(&uid) { continue; }
             if nickname_data.contains_key(&uid) { continue; }
+            if known_players.contains(&uid) { continue; }
+            if data.job.is_empty() { continue; }
+            *orphan_count_by_job.entry(data.job.clone()).or_insert(0) += 1;
+        }
+        for (&uid, data) in &dps_data.map {
+            if summon_data.contains_key(&uid) { continue; }
+            if nickname_data.contains_key(&uid) { continue; }
+            if known_players.contains(&uid) { continue; }
             let job = &data.job;
             if job.is_empty() { continue; }
+            // Ambiguous: multiple unnamed actors of this class — don't merge
+            if orphan_count_by_job.get(job).copied().unwrap_or(0) > 1 { continue; }
             let same_job: Vec<_> = dps_data.map.iter()
                 .filter(|(oid, od)| **oid != uid && od.job == *job && nickname_data.contains_key(oid))
                 .map(|(&oid, _)| oid)
@@ -624,14 +639,27 @@ impl DpsCalculator {
                 }
             }
 
-            // Orphan summon inference
+            // Orphan summon inference: only merge true orphans (not known players)
+            // and only when there's exactly one orphan of that class (avoid ambiguity)
             let target_actor_ids: HashSet<i32> = actor_damage.keys().copied().collect();
+            let known_players = self.data_storage.get_known_player_ids();
+            let mut orphan_count_by_job: HashMap<String, i32> = HashMap::new();
+            for (&uid, (_, job)) in &actor_meta {
+                if !target_actor_ids.contains(&uid) { continue; }
+                if summon_data.contains_key(&uid) { continue; }
+                if nickname_data.contains_key(&uid) { continue; }
+                if known_players.contains(&uid) { continue; }
+                if job.is_empty() { continue; }
+                *orphan_count_by_job.entry(job.clone()).or_insert(0) += 1;
+            }
             let mut orphan_merges: Vec<(i32, i32)> = Vec::new();
             for (&uid, (_, job)) in &actor_meta {
                 if !target_actor_ids.contains(&uid) { continue; }
                 if summon_data.contains_key(&uid) { continue; }
                 if nickname_data.contains_key(&uid) { continue; }
+                if known_players.contains(&uid) { continue; }
                 if job.is_empty() { continue; }
+                if orphan_count_by_job.get(job).copied().unwrap_or(0) > 1 { continue; }
                 let same_job: Vec<i32> = actor_meta.iter()
                     .filter(|(oid, (_, oj))| **oid != uid && *oj == *job
                         && nickname_data.contains_key(oid)
@@ -744,6 +772,7 @@ impl DpsCalculator {
         // Build orphan summon map
         let mut orphan_to_owner: HashMap<i32, i32> = HashMap::new();
         {
+            let known_players = self.data_storage.get_known_player_ids();
             let mut actor_jobs: HashMap<i32, String> = HashMap::new();
             for (&actor_id, actor_data) in &target_data.actors {
                 let raw_uid = summon_resolver::resolve(actor_id, &summon_data);
@@ -754,11 +783,27 @@ impl DpsCalculator {
                     actor_jobs.insert(uid, job.class_name().to_string());
                 }
             }
+            // Count orphans per job first to detect ambiguous cases
+            let mut orphan_count_by_job: HashMap<String, i32> = HashMap::new();
+            for (&actor_id, actor_data) in &target_data.actors {
+                let raw_uid = summon_resolver::resolve(actor_id, &summon_data);
+                if raw_uid <= 0 { continue; }
+                if summon_data.contains_key(&raw_uid) || nickname_data.contains_key(&raw_uid) { continue; }
+                if known_players.contains(&raw_uid) { continue; }
+                let job = actor_data.skills.keys()
+                    .find_map(|&(sc, _)| JobClass::convert_from_skill_loose(sc))
+                    .map(|j| j.class_name().to_string());
+                if let Some(j) = job {
+                    *orphan_count_by_job.entry(j).or_insert(0) += 1;
+                }
+            }
             let mut seen = HashSet::new();
             for (&actor_id, actor_data) in &target_data.actors {
                 let raw_uid = summon_resolver::resolve(actor_id, &summon_data);
                 if raw_uid <= 0 { continue; }
                 if summon_data.contains_key(&raw_uid) || nickname_data.contains_key(&raw_uid) { continue; }
+                // Never merge known players — they have their own identity
+                if known_players.contains(&raw_uid) { continue; }
                 if !seen.insert(raw_uid) { continue; }
                 // Use loose detection from any skill this actor used
                 let job = actor_data.skills.keys()
@@ -768,6 +813,8 @@ impl DpsCalculator {
                     Some(j) => j,
                     None => continue,
                 };
+                // Ambiguous: multiple orphans of the same class — don't merge
+                if orphan_count_by_job.get(&job).copied().unwrap_or(0) > 1 { continue; }
                 let matching: Vec<i32> = actor_jobs.iter()
                     .filter(|(id, j)| **id != raw_uid && **j == job && nickname_data.contains_key(id))
                     .map(|(id, _)| *id)
