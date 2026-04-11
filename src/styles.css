@@ -3126,17 +3126,20 @@ body.mainPlayerNamesBold .settingsPanel .themeDropdownMenu .settingsDropdownItem
   overflow-x: hidden;
   overflow-y: hidden;
   --skill-grid-cols:
-    minmax(90px, 3fr)
-    minmax(54px, 0.9fr)  /* dmg */
-    minmax(30px, 0.8fr)
-    minmax(30px, 0.8fr)
-    minmax(54px, 0.9fr)  /* mdmg */
-    minmax(24px, 0.7fr)
-    minmax(30px, 0.8fr)
-    minmax(36px, 0.9fr)
-    minmax(34px, 0.9fr)
-    minmax(28px, 0.7fr)
-    minmax(24px, 0.7fr)
+    minmax(90px, 3fr)    /* name */
+    minmax(54px, 0.9fr)  /* hit */
+    minmax(30px, 0.8fr)  /* dmg */
+    minmax(30px, 0.8fr)  /* dmgpct */
+    minmax(54px, 0.9fr)  /* mhit */
+    minmax(24px, 0.7fr)  /* mdmg */
+    minmax(30px, 0.8fr)  /* crit */
+    minmax(36px, 0.9fr)  /* parry */
+    minmax(34px, 0.9fr)  /* perfect */
+    minmax(28px, 0.7fr)  /* double */
+    minmax(24px, 0.7fr)  /* back */
+    minmax(28px, 0.7fr)  /* smite */
+    minmax(28px, 0.7fr)  /* powershard */
+    minmax(50px, 0.8fr)  /* regen */
     minmax(50px, 0.8fr)  /* mindmg */
     minmax(50px, 0.8fr)  /* avgdmg */
     minmax(50px, 0.8fr); /* maxdmg */
@@ -3152,6 +3155,9 @@ body.mainPlayerNamesBold .settingsPanel .themeDropdownMenu .settingsDropdownItem
 .detailsPanel.hide-col-perfect .detailsSkills .cell.perfect,
 .detailsPanel.hide-col-double .detailsSkills .cell.double,
 .detailsPanel.hide-col-back .detailsSkills .cell.back,
+.detailsPanel.hide-col-smite .detailsSkills .cell.smite,
+.detailsPanel.hide-col-powershard .detailsSkills .cell.powershard,
+.detailsPanel.hide-col-regen .detailsSkills .cell.regen,
 .detailsPanel.hide-col-mindmg .detailsSkills .cell.mindmg,
 .detailsPanel.hide-col-avgdmg .detailsSkills .cell.avgdmg,
 .detailsPanel.hide-col-maxdmg .detailsSkills .cell.maxdmg {
