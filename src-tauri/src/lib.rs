@@ -357,18 +357,32 @@ async fn download_and_install_msi_inner(app: &tauri::AppHandle, url: &str) -> Re
     let current_exe = std::env::current_exe().map_err(|e| e.to_string())?;
     let install_dir = current_exe.parent()
         .ok_or("Could not determine install directory")?
-        .to_string_lossy();
+        .to_string_lossy()
+        .into_owned();
+    // Strip a trailing backslash so msiexec doesn't interpret \" as an escape
+    let install_dir = install_dir.trim_end_matches('\\').to_string();
 
-    // Launch the MSI installer into the same directory
-    std::process::Command::new("msiexec")
-        .args([
-            "/i", &msi_path.to_string_lossy(),
-            "/passive",
-            &format!("INSTALLDIR={}", install_dir),
-            "AUTOLAUNCHAPP=1",
-        ])
-        .spawn()
-        .map_err(|e| e.to_string())?;
+    // Launch the MSI installer. msiexec.exe uses its own non-standard command line
+    // parser, so PROPERTY="value" pairs with spaces require literal embedded quotes
+    // — not what std::process::Command's normal arg quoting produces. We use raw_arg
+    // (Windows-only) to control the exact command line.
+    #[cfg(windows)]
+    {
+        use std::os::windows::process::CommandExt;
+        let mut cmd = std::process::Command::new("msiexec");
+        cmd.raw_arg("/i")
+            .raw_arg(format!("\"{}\"", msi_path.display()))
+            .raw_arg("/passive")
+            .raw_arg(format!("INSTALLDIR=\"{}\"", install_dir))
+            .raw_arg("AUTOLAUNCHAPP=1");
+        tracing::info!("msiexec args: /i \"{}\" /passive INSTALLDIR=\"{}\" AUTOLAUNCHAPP=1",
+            msi_path.display(), install_dir);
+        cmd.spawn().map_err(|e| e.to_string())?;
+    }
+    #[cfg(not(windows))]
+    {
+        return Err("MSI install only supported on Windows".to_string());
+    }
 
     // Give installer time to start, then exit
     tokio::time::sleep(std::time::Duration::from_secs(2)).await;
