@@ -69,6 +69,7 @@ pub struct ActorCombatData {
     pub regen: i64,
     pub damage_received: i64,
     pub hits_received: i32,
+    pub last_damage_time: i64,
     pub job: Option<JobClass>,
     /// Skills keyed by (raw_skill_code, is_dot)
     pub skills: HashMap<(i32, bool), SkillCombatData>,
@@ -82,6 +83,7 @@ impl ActorCombatData {
             regen: 0,
             damage_received: 0,
             hits_received: 0,
+            last_damage_time: 0,
             job: None,
             skills: HashMap::new(),
         }
@@ -297,6 +299,9 @@ impl DataStorage {
         // Update actor data within target
         let actor_data = target_data.actors.entry(actor_id).or_insert_with(ActorCombatData::new);
         actor_data.total_damage += total_dmg as i64;
+        if timestamp > actor_data.last_damage_time {
+            actor_data.last_damage_time = timestamp;
+        }
         if actor_data.job.is_none() {
             actor_data.job = JobClass::convert_from_skill(skill_code);
         }

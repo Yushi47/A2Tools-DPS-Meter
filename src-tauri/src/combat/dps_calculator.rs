@@ -365,16 +365,16 @@ impl DpsCalculator {
             TargetSelectionMode::LastHitByMe => {
                 let local_ids = self.resolve_local_ids(summon_data);
                 if let Some(ref ids) = local_ids {
+                    // Find the target most recently damaged by the local player
                     let mut best_target: Option<(i32, i64)> = None;
                     for (&target_id, target_data) in combat_data {
-                        for (&actor_id, _) in &target_data.actors {
+                        for (&actor_id, actor_data) in &target_data.actors {
                             let resolved = summon_resolver::resolve(actor_id, summon_data);
                             if ids.contains(&resolved) {
-                                let ts = target_data.last_damage_time;
+                                let ts = actor_data.last_damage_time;
                                 if best_target.is_none() || ts > best_target.unwrap().1 {
                                     best_target = Some((target_id, ts));
                                 }
-                                break;
                             }
                         }
                     }
@@ -383,21 +383,12 @@ impl DpsCalculator {
                             let name = self.resolve_target_name(id);
                             (HashSet::from([id]), name, id)
                         }
-                        None => {
-                            let best = combat_data.iter()
-                                .max_by_key(|(_, td)| td.last_damage_time);
-                            match best {
-                                Some((&id, _)) => {
-                                    let name = self.resolve_target_name(id);
-                                    (HashSet::from([id]), name, id)
-                                }
-                                None => (HashSet::new(), String::new(), 0),
-                            }
-                        }
+                        None => (HashSet::new(), String::new(), 0),
                     }
                 } else {
+                    // Not identified — fall back to most recently damaged target
                     let best = combat_data.iter()
-                        .max_by_key(|(_, td)| td.total_damage);
+                        .max_by_key(|(_, td)| td.last_damage_time);
                     match best {
                         Some((&id, _)) => {
                             let name = self.resolve_target_name(id);
