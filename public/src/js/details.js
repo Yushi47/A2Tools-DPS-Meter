@@ -604,9 +604,6 @@ const createDetailsUI = ({
     const doubleEl = document.createElement("div");
     doubleEl.className = "cell center double";
 
-    const smiteEl = document.createElement("div");
-    smiteEl.className = "cell center smite";
-
     const powershardEl = document.createElement("div");
     powershardEl.className = "cell center powershard";
 
@@ -633,7 +630,6 @@ const createDetailsUI = ({
     rowEl.appendChild(perfectEl);
     rowEl.appendChild(doubleEl);
     rowEl.appendChild(backEl);
-    rowEl.appendChild(smiteEl);
     rowEl.appendChild(powershardEl);
     rowEl.appendChild(regenEl);
     rowEl.appendChild(minDmgEl);
@@ -658,7 +654,6 @@ const createDetailsUI = ({
       backEl,
       perfectEl,
       doubleEl,
-      smiteEl,
       powershardEl,
       regenEl,
       minDmgEl,
@@ -703,8 +698,6 @@ const createDetailsUI = ({
         return hits > 0 ? (Number(skill?.double) || 0) / hits : 0;
       case "back":
         return hits > 0 ? (Number(skill?.back) || 0) / hits : 0;
-      case "smite":
-        return hits > 0 ? (Number(skill?.smite) || 0) / hits : 0;
       case "powershard":
         return hits > 0 ? (Number(skill?.powershard) || 0) / hits : 0;
       case "regen":
@@ -1119,7 +1112,6 @@ const createDetailsUI = ({
       view.backEl.textContent = `${backRate}%`;
       view.perfectEl.textContent = `${perfectRate}%`;
       view.doubleEl.textContent = `${doubleRate}%`;
-      view.smiteEl.textContent = `${smiteRate}%`;
       view.powershardEl.textContent = `${powershardRate}%`;
       view.regenEl.textContent = `${formatDamageCompact(regen)}`;
       view.multiHitEl.textContent = `${multiHitRate}%`;
