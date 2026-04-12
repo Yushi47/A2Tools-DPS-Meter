@@ -347,7 +347,7 @@ impl DataStorage {
         // (damage with player-band skills arrived before the 0x3640 spawn packet),
         // undo the classification and scrub ghost player damage from aggregates.
         if inner.known_player_ids.remove(&mid) {
-            tracing::info!("NPC unclassification: entity {} reclassified as mob (code {})", mid, code);
+            tracing::trace!("NPC unclassification: entity {} reclassified as mob (code {})", mid, code);
             // Subtract ghost player damage from target totals
             for target_data in inner.target_combat.values_mut() {
                 if let Some(actor_data) = target_data.actors.remove(&mid) {
@@ -400,7 +400,7 @@ impl DataStorage {
     }
 
     pub fn register_confirmed_summon_by_id(&self, summon_id: i32, owner_id: i32) {
-        tracing::debug!("Summon confirmed (5F 00): {} owned by {}", summon_id, owner_id);
+        tracing::trace!("Summon confirmed (5F 00): {} owned by {}", summon_id, owner_id);
         let mut inner = self.inner.write();
         inner.confirmed_summon_ids.insert(summon_id);
         inner.known_player_ids.remove(&summon_id);
@@ -454,6 +454,17 @@ impl DataStorage {
 
     pub fn get_nickname(&self, uid: i32) -> Option<String> {
         self.inner.read().nickname_storage.get(&uid).cloned()
+    }
+
+    /// Reverse lookup: find entity ID by nickname (for summon owner resolution).
+    pub fn find_id_by_nickname(&self, name: &str) -> Option<i32> {
+        let inner = self.inner.read();
+        for (&id, nick) in &inner.nickname_storage {
+            if nick == name {
+                return Some(id);
+            }
+        }
+        None
     }
 
     pub fn actor_appears_in_combat(&self, actor_id: i32) -> bool {
@@ -568,10 +579,10 @@ fn append_nickname_inner_with_force(inner: &mut Inner, uid: i32, nickname: &str,
                 return;
             }
         }
-        tracing::debug!("Nickname: replacing '{}' with '{}' for {}{}",
+        tracing::trace!("Nickname: replacing '{}' with '{}' for {}{}",
             existing, nickname, uid, if force { " (forced)" } else { "" });
     } else {
-        tracing::debug!("Nickname: setting '{}' for {}{}",
+        tracing::trace!("Nickname: setting '{}' for {}{}",
             nickname, uid, if force { " (forced)" } else { "" });
     }
 

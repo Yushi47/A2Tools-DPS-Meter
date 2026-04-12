@@ -32,7 +32,10 @@ dist-ssr
 settings.properties
 
 # Copied static files (generated from src/ at build/dev time)
-/public/
+/public/*
+!/public/src/
+/public/src/*
+!/public/src/js/
 /assets/
 /data/
 /i18n/

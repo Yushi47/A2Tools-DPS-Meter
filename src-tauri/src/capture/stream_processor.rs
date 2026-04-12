@@ -297,7 +297,7 @@ impl StreamProcessor {
         }
 
         if flag_info.value == 3 {
-            tracing::debug!("Death event: entity {} killed in combat", entity_id);
+            tracing::trace!("Death event: entity {} killed in combat", entity_id);
             self.data_storage.mark_entity_dead(entity_id);
         }
     }
@@ -363,7 +363,7 @@ impl StreamProcessor {
         }
 
         if !self.dot_damage_skill_ids.contains(&skill_code) {
-            tracing::debug!("DOT: skill {} not in dot_ids (set size={})", skill_code, self.dot_damage_skill_ids.len());
+            tracing::trace!("DOT: skill {} not in dot_ids (set size={})", skill_code, self.dot_damage_skill_ids.len());
             return;
         }
 
@@ -705,6 +705,34 @@ impl StreamProcessor {
                 self.extract_and_register_mob_type(packet, offset, real_actor_id);
                 self.data_storage.register_confirmed_summon_by_id(real_actor_id, owner_id);
                 return true;
+            }
+        }
+
+        // Detect summon spawn with embedded owner name: [xx] 00 01 <name_len> <name>
+        // Used by summons like Divine Aura where the owner's name is in the spawn packet.
+        if offset + 3 < packet.len()
+            && packet[offset + 1] == 0x00
+            && packet[offset + 2] == 0x01
+        {
+            let name_len = packet[offset + 3] as usize;
+            if (2..=36).contains(&name_len) && offset + 4 + name_len <= packet.len() {
+                if let Ok(name) = std::str::from_utf8(&packet[offset + 4..offset + 4 + name_len]) {
+                    if let Some(sanitized) = sanitize_nickname(name) {
+                        if sanitized.len() >= 2 {
+                            if let Some(owner_id) = self.data_storage.find_id_by_nickname(&sanitized) {
+                                if owner_id != real_actor_id {
+                                    self.extract_and_register_mob_type(packet, offset, real_actor_id);
+                                    self.data_storage.register_confirmed_summon_by_id(real_actor_id, owner_id);
+                                    tracing::trace!(
+                                        "Summon confirmed (00 01 name): {} owned by {} ({})",
+                                        real_actor_id, owner_id, sanitized
+                                    );
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 

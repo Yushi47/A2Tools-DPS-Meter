@@ -481,7 +481,7 @@ impl DpsCalculator {
             .collect();
 
         if !boss_target_ids.is_empty() {
-            tracing::debug!("snapshot_boss_fights: {} candidate targets", boss_target_ids.len());
+            tracing::trace!("snapshot_boss_fights: {} candidate targets", boss_target_ids.len());
         }
 
         for target_id in boss_target_ids {

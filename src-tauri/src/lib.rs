@@ -904,7 +904,7 @@ pub fn run() {
                                 let is_visible = window.is_visible().unwrap_or(true);
                                 let is_minimized = window.is_minimized().unwrap_or(false);
                                 if tick_count % 4 == 0 {
-                                    tracing::debug!("auto-hide: aion_fg={} self_fg={} visible={} minimized={} hide_delay={}",
+                                    tracing::trace!("auto-hide: aion_fg={} self_fg={} visible={} minimized={} hide_delay={}",
                                         aion_fg, is_self_fg, is_visible, is_minimized, hide_delay);
                                 }
                                 #[cfg(windows)]
@@ -924,6 +924,9 @@ pub fn run() {
                                                         SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_SHOWWINDOW,
                                                     );
                                                 }
+                                                // Notify frontend to recalculate window size
+                                                // (content may have changed while minimized)
+                                                let _ = window.emit("force-resize", ());
                                             }
                                         } else if is_visible && !is_minimized {
                                             // Wait 3 ticks (1.5s) before hiding to avoid
