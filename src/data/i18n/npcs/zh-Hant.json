@@ -1,11 +1,13 @@
 {
   "2000000": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2000001": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2000004": {
     "name": "奧德蜘蛛",
@@ -13,15 +15,18 @@
   },
   "2000059": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2000073": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2000091": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2000412": {
     "name": "法夫尼爾毒血(樣本)",
@@ -32,6 +37,10 @@
     "isBoss": false
   },
   "2000791": {
+    "name": "水晶體",
+    "isBoss": false
+  },
+  "2000871": {
     "name": "水晶體",
     "isBoss": false
   },
@@ -141,11 +150,13 @@
   },
   "2090022": {
     "name": "沙包_天族Tribe",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090023": {
     "name": "沙包_魔族Tribe",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090024": {
     "name": "凱尼爾",
@@ -165,423 +176,528 @@
   },
   "2090030": {
     "name": "平衡測試1",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090031": {
     "name": "平衡測試2",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090032": {
     "name": "平衡測試3",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090033": {
     "name": "平衡測試4",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090034": {
     "name": "平衡測試5",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090035": {
     "name": "平衡測試6",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090036": {
     "name": "平衡測試7",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090037": {
     "name": "平衡測試8",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090038": {
     "name": "平衡測試9",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090039": {
     "name": "平衡測試10",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090040": {
     "name": "平衡測試11",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090041": {
     "name": "平衡測試12",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090042": {
     "name": "平衡測試13",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090043": {
     "name": "平衡測試14",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090044": {
     "name": "平衡測試15",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090045": {
     "name": "平衡測試16",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090046": {
     "name": "平衡測試17",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090047": {
     "name": "平衡測試18",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090048": {
     "name": "平衡測試19",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090049": {
     "name": "平衡測試20",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090050": {
     "name": "平衡測試21",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090051": {
     "name": "平衡測試22",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090052": {
     "name": "平衡測試23",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090053": {
     "name": "平衡測試24",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090054": {
     "name": "平衡測試25",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090055": {
     "name": "平衡測試26",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090056": {
     "name": "平衡測試27",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090057": {
     "name": "平衡測試28",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090058": {
     "name": "平衡測試29",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090059": {
     "name": "平衡測試30",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090060": {
     "name": "平衡測試31",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090061": {
     "name": "平衡測試32",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090062": {
     "name": "平衡測試33",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090063": {
     "name": "平衡測試34",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090064": {
     "name": "平衡測試35",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090065": {
     "name": "平衡測試36",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090066": {
     "name": "平衡測試37",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090067": {
     "name": "平衡測試38",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090068": {
     "name": "平衡測試39",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090069": {
     "name": "平衡測試40",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090070": {
     "name": "平衡測試41",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090071": {
     "name": "平衡測試42",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090072": {
     "name": "平衡測試43",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090073": {
     "name": "平衡測試44",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090074": {
     "name": "平衡測試45",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090075": {
     "name": "平衡測試46",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090076": {
     "name": "平衡測試47",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090077": {
     "name": "平衡測試48",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090078": {
     "name": "平衡測試49",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090079": {
     "name": "平衡測試50",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090080": {
     "name": "平衡測試51",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090081": {
     "name": "平衡測試52",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090082": {
     "name": "平衡測試53",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090083": {
     "name": "平衡測試54",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090084": {
     "name": "平衡測試55",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090085": {
     "name": "平衡測試56",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090086": {
     "name": "平衡測試57",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090087": {
     "name": "平衡測試58",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090088": {
     "name": "平衡測試59",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090089": {
     "name": "平衡測試60",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090090": {
     "name": "平衡測試61",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090091": {
     "name": "平衡測試62",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090092": {
     "name": "平衡測試63",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090093": {
     "name": "平衡測試64",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090094": {
     "name": "平衡測試65",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090095": {
     "name": "平衡測試66",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090096": {
     "name": "平衡測試67",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090097": {
     "name": "平衡測試68",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090098": {
     "name": "平衡測試69",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090099": {
     "name": "平衡測試70",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090100": {
     "name": "平衡測試71",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090101": {
     "name": "平衡測試72",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090102": {
     "name": "平衡測試73",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090103": {
     "name": "平衡測試74",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090104": {
     "name": "平衡測試75",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090105": {
     "name": "平衡測試76",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090106": {
     "name": "平衡測試77",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090107": {
     "name": "平衡測試78",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090108": {
     "name": "平衡測試79",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090109": {
     "name": "平衡測試80",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090110": {
     "name": "平衡測試81",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090111": {
     "name": "平衡測試82",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090112": {
     "name": "平衡測試83",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090113": {
     "name": "平衡測試84",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090114": {
     "name": "平衡測試85",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090115": {
     "name": "平衡測試86",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090116": {
     "name": "平衡測試87",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090117": {
     "name": "平衡測試88",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090118": {
     "name": "平衡測試89",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090119": {
     "name": "平衡測試90",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090120": {
     "name": "平衡測試91",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090121": {
     "name": "平衡測試92",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090122": {
     "name": "平衡測試93",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090123": {
     "name": "平衡測試94",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090124": {
     "name": "平衡測試95",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090125": {
     "name": "平衡測試96",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090126": {
     "name": "平衡測試97",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090127": {
     "name": "平衡測試98",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090128": {
     "name": "平衡測試99",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090129": {
     "name": "平衡測試100",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090130": {
     "name": "不攻擊(等級縮放測試)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090131": {
     "name": "基本攻擊(等級縮放測試)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090132": {
     "name": "廣域(等級縮放測試)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090133": {
     "name": "自我治癒(等級縮放測試)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090134": {
     "name": "自我增益(物攻、魔攻、物防、魔防增加)(等級縮放測試)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090151": {
     "name": "改造克拉爾戰士",
@@ -593,7 +709,8 @@
   },
   "2090153": {
     "name": "廣域(等級縮放測試_賦予所有skill effect)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090154": {
     "name": "布里特拉空襲部隊軍官",
@@ -605,7 +722,8 @@
   },
   "2090157": {
     "name": "測試怪_Hidden",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090158": {
     "name": "改造克拉爾戰士",
@@ -1001,51 +1119,63 @@
   },
   "2090438": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090439": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090440": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090441": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090442": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090443": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090444": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090445": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090446": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090447": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090448": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090449": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090451": {
     "name": "怪物(樣本)",
@@ -1061,7 +1191,8 @@
   },
   "2090454": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090455": {
     "name": "None",
@@ -1077,7 +1208,8 @@
   },
   "2090458": {
     "name": "沙包",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2090463": {
     "name": "德拉坎命名怪物",
@@ -1089,19 +1221,23 @@
   },
   "2090467": {
     "name": "90度Arc",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090468": {
     "name": "89度Arc",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090469": {
     "name": "90度ArcCircle",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090470": {
     "name": "89度ArcCircle",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090471": {
     "name": "改造克拉爾戰士",
@@ -1317,7 +1453,25 @@
   },
   "2090693": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
+  },
+  "2090718": {
+    "name": "納特哈拉",
+    "isBoss": true
+  },
+  "2090719": {
+    "name": "永劫盧德萊",
+    "isBoss": true
+  },
+  "2090720": {
+    "name": "聚合物巴考特",
+    "isBoss": true
+  },
+  "2090773": {
+    "name": "訓練用稻草人(樣本)",
+    "isBoss": true,
+    "isDummy": true
   },
   "2100000": {
     "name": "閃亮的卡克蓋崙",
@@ -6123,6 +6277,10 @@
     "name": "德拉多納大塊頭",
     "isBoss": false
   },
+  "2300148": {
+    "name": "羈絆祭司",
+    "isBoss": false
+  },
   "2300149": {
     "name": "德拉多納卵",
     "isBoss": false
@@ -6171,9 +6329,41 @@
     "name": "熱水口",
     "isBoss": false
   },
+  "2300161": {
+    "name": "羈絆精銳祭司",
+    "isBoss": false
+  },
   "2300162": {
     "name": "杜勒巴提毒液",
     "isBoss": true
+  },
+  "2300163": {
+    "name": "羈絆隨行祭司",
+    "isBoss": false
+  },
+  "2300164": {
+    "name": "羈絆騎士團劍星",
+    "isBoss": false
+  },
+  "2300165": {
+    "name": "羈絆騎士團守護星",
+    "isBoss": false
+  },
+  "2300166": {
+    "name": "羈絆騎士團精銳兵",
+    "isBoss": false
+  },
+  "2300167": {
+    "name": "忌妒的小妖精",
+    "isBoss": false
+  },
+  "2300168": {
+    "name": "魅惑的迪歐那耶",
+    "isBoss": false
+  },
+  "2300169": {
+    "name": "羈絆拉普蕾西亞",
+    "isBoss": false
   },
   "2300170": {
     "name": "None",
@@ -6234,6 +6424,70 @@
   "2300184": {
     "name": "扭曲的克羅卡",
     "isBoss": false
+  },
+  "2300185": {
+    "name": "玫瑰庭院蜜蜂",
+    "isBoss": false
+  },
+  "2300186": {
+    "name": "玫瑰庭院護衛戰士",
+    "isBoss": false
+  },
+  "2300187": {
+    "name": "玫瑰庭院管理員",
+    "isBoss": false
+  },
+  "2300188": {
+    "name": "甦醒的艾圖拉頓",
+    "isBoss": true
+  },
+  "2300189": {
+    "name": "賢明的巴溫努特",
+    "isBoss": true
+  },
+  "2300190": {
+    "name": "膨脹的札伊爾佩",
+    "isBoss": true
+  },
+  "2300191": {
+    "name": "青息烏爾蘇",
+    "isBoss": false
+  },
+  "2300192": {
+    "name": "青息烏爾蘇",
+    "isBoss": false
+  },
+  "2300193": {
+    "name": "魁鳥",
+    "isBoss": false
+  },
+  "2300194": {
+    "name": "野狼",
+    "isBoss": false
+  },
+  "2300195": {
+    "name": "藍色魁鳥",
+    "isBoss": false
+  },
+  "2300196": {
+    "name": "青息烏爾蘇",
+    "isBoss": false
+  },
+  "2300197": {
+    "name": "羈絆祭司",
+    "isBoss": false
+  },
+  "2300198": {
+    "name": "波克斯",
+    "isBoss": false
+  },
+  "2300199": {
+    "name": "羈絆精銳祭司",
+    "isBoss": false
+  },
+  "2300200": {
+    "name": "甦醒的艾圖拉頓",
+    "isBoss": true
   },
   "2300201": {
     "name": "烏努庫庫士兵",
@@ -6307,6 +6561,10 @@
     "name": "神聖的奧多勒",
     "isBoss": true
   },
+  "2300219": {
+    "name": "賢明的巴溫努特",
+    "isBoss": true
+  },
   "2300220": {
     "name": "監視型治癒圖騰",
     "isBoss": false
@@ -6345,6 +6603,203 @@
   },
   "2300229": {
     "name": "訓練用稻草人",
+    "isBoss": true,
+    "isDummy": true
+  },
+  "2300230": {
+    "name": "膨脹的札伊爾佩",
+    "isBoss": true
+  },
+  "2300231": {
+    "name": "羈絆隨行祭司",
+    "isBoss": false
+  },
+  "2300232": {
+    "name": "羈絆騎士團劍星",
+    "isBoss": false
+  },
+  "2300233": {
+    "name": "魁鳥",
+    "isBoss": false
+  },
+  "2300234": {
+    "name": "野狼",
+    "isBoss": false
+  },
+  "2300235": {
+    "name": "藍色魁鳥",
+    "isBoss": false
+  },
+  "2300236": {
+    "name": "羈絆騎士團守護星",
+    "isBoss": false
+  },
+  "2300237": {
+    "name": "波奇",
+    "isBoss": false
+  },
+  "2300238": {
+    "name": "波克斯",
+    "isBoss": false
+  },
+  "2300239": {
+    "name": "羈絆騎士團精銳兵",
+    "isBoss": false
+  },
+  "2300240": {
+    "name": "忌妒的小妖精",
+    "isBoss": false
+  },
+  "2300241": {
+    "name": "魅惑的迪歐那耶",
+    "isBoss": false
+  },
+  "2300242": {
+    "name": "羈絆拉普蕾西亞",
+    "isBoss": false
+  },
+  "2300243": {
+    "name": "甦醒的艾圖拉頓",
+    "isBoss": true
+  },
+  "2300244": {
+    "name": "賢明的巴溫努特",
+    "isBoss": true
+  },
+  "2300245": {
+    "name": "膨脹的札伊爾佩",
+    "isBoss": true
+  },
+  "2300246": {
+    "name": "玫瑰庭院蜜蜂",
+    "isBoss": false
+  },
+  "2300247": {
+    "name": "玫瑰庭院護衛戰士",
+    "isBoss": false
+  },
+  "2300248": {
+    "name": "魁鳥",
+    "isBoss": false
+  },
+  "2300249": {
+    "name": "野狼",
+    "isBoss": false
+  },
+  "2300250": {
+    "name": "藍色魁鳥",
+    "isBoss": false
+  },
+  "2300251": {
+    "name": "玫瑰庭院管理員",
+    "isBoss": false
+  },
+  "2300252": {
+    "name": "波奇",
+    "isBoss": false
+  },
+  "2300253": {
+    "name": "波克斯",
+    "isBoss": false
+  },
+  "2300254": {
+    "name": "漂浮電氣石",
+    "isBoss": false
+  },
+  "2300255": {
+    "name": "漂浮電氣石",
+    "isBoss": false
+  },
+  "2300256": {
+    "name": "漂浮電氣石",
+    "isBoss": false
+  },
+  "2300257": {
+    "name": "魅惑箭矢",
+    "isBoss": false
+  },
+  "2300258": {
+    "name": "愛的試煉",
+    "isBoss": false
+  },
+  "2300259": {
+    "name": "羅塔爾",
+    "isBoss": true
+  },
+  "2300260": {
+    "name": "羅普斯提諾",
+    "isBoss": true
+  },
+  "2300261": {
+    "name": "克羅梅德深淵",
+    "isBoss": true
+  },
+  "2300262": {
+    "name": "睡眠草",
+    "isBoss": false
+  },
+  "2300263": {
+    "name": "睡眠草",
+    "isBoss": false
+  },
+  "2300264": {
+    "name": "睡眠草",
+    "isBoss": false
+  },
+  "2300265": {
+    "name": "凱尼爾",
+    "isBoss": false
+  },
+  "2300266": {
+    "name": "光蟲",
+    "isBoss": false
+  },
+  "2300267": {
+    "name": "暗黑精靈",
+    "isBoss": false
+  },
+  "2300268": {
+    "name": "漂浮電氣石",
+    "isBoss": false
+  },
+  "2300269": {
+    "name": "凱尼爾",
+    "isBoss": false
+  },
+  "2300270": {
+    "name": "光蟲",
+    "isBoss": false
+  },
+  "2300271": {
+    "name": "暗黑精靈",
+    "isBoss": false
+  },
+  "2300272": {
+    "name": "魅惑箭矢",
+    "isBoss": false
+  },
+  "2300273": {
+    "name": "凱尼爾",
+    "isBoss": false
+  },
+  "2300274": {
+    "name": "光蟲",
+    "isBoss": false
+  },
+  "2300275": {
+    "name": "暗黑精靈",
+    "isBoss": false
+  },
+  "2300276": {
+    "name": "愛的試煉",
+    "isBoss": false
+  },
+  "2300299": {
+    "name": "羅塔爾",
+    "isBoss": true
+  },
+  "2300300": {
+    "name": "羅普斯提諾",
     "isBoss": true
   },
   "2300301": {
@@ -6411,9 +6866,229 @@
     "name": "爆炸的火焰精靈",
     "isBoss": false
   },
+  "2300317": {
+    "name": "克羅梅德深淵",
+    "isBoss": true
+  },
+  "2300318": {
+    "name": "羈絆祭司",
+    "isBoss": false
+  },
+  "2300319": {
+    "name": "羈絆精銳祭司",
+    "isBoss": false
+  },
+  "2300320": {
+    "name": "羈絆隨行祭司",
+    "isBoss": false
+  },
+  "2300321": {
+    "name": "羈絆騎士團劍星",
+    "isBoss": false
+  },
+  "2300322": {
+    "name": "羈絆騎士團守護星",
+    "isBoss": false
+  },
+  "2300323": {
+    "name": "羈絆騎士團精銳兵",
+    "isBoss": false
+  },
+  "2300324": {
+    "name": "忌妒的小妖精",
+    "isBoss": false
+  },
+  "2300325": {
+    "name": "魅惑的迪歐那耶",
+    "isBoss": false
+  },
+  "2300326": {
+    "name": "羈絆拉普蕾西亞",
+    "isBoss": false
+  },
+  "2300327": {
+    "name": "玫瑰庭院蜜蜂",
+    "isBoss": false
+  },
+  "2300328": {
+    "name": "玫瑰庭院護衛戰士",
+    "isBoss": false
+  },
+  "2300329": {
+    "name": "玫瑰庭院管理員",
+    "isBoss": false
+  },
+  "2300330": {
+    "name": "漂浮電氣石",
+    "isBoss": false
+  },
+  "2300331": {
+    "name": "漂浮電氣石",
+    "isBoss": false
+  },
+  "2300332": {
+    "name": "魅惑箭矢",
+    "isBoss": false
+  },
+  "2300333": {
+    "name": "愛的試煉",
+    "isBoss": false
+  },
+  "2300334": {
+    "name": "羅塔爾",
+    "isBoss": true
+  },
+  "2300335": {
+    "name": "羅普斯提諾",
+    "isBoss": true
+  },
+  "2300336": {
+    "name": "克羅梅德深淵",
+    "isBoss": true
+  },
+  "2300337": {
+    "name": "羈絆祭司",
+    "isBoss": false
+  },
+  "2300338": {
+    "name": "羈絆精銳祭司",
+    "isBoss": false
+  },
+  "2300339": {
+    "name": "羈絆隨行祭司",
+    "isBoss": false
+  },
+  "2300340": {
+    "name": "羈絆騎士團劍星",
+    "isBoss": false
+  },
+  "2300341": {
+    "name": "羈絆騎士團守護星",
+    "isBoss": false
+  },
+  "2300342": {
+    "name": "羈絆騎士團精銳兵",
+    "isBoss": false
+  },
+  "2300343": {
+    "name": "忌妒的小妖精",
+    "isBoss": false
+  },
+  "2300344": {
+    "name": "魅惑的迪歐那耶",
+    "isBoss": false
+  },
+  "2300345": {
+    "name": "羈絆拉普蕾西亞",
+    "isBoss": false
+  },
+  "2300346": {
+    "name": "玫瑰庭院蜜蜂",
+    "isBoss": false
+  },
+  "2300347": {
+    "name": "玫瑰庭院護衛戰士",
+    "isBoss": false
+  },
+  "2300348": {
+    "name": "玫瑰庭院管理員",
+    "isBoss": false
+  },
+  "2300349": {
+    "name": "漂浮電氣石",
+    "isBoss": false
+  },
+  "2300350": {
+    "name": "漂浮電氣石",
+    "isBoss": false
+  },
+  "2300351": {
+    "name": "魅惑箭矢",
+    "isBoss": false
+  },
+  "2300352": {
+    "name": "愛的試煉",
+    "isBoss": false
+  },
+  "2300353": {
+    "name": "羅塔爾",
+    "isBoss": true
+  },
+  "2300354": {
+    "name": "羅普斯提諾",
+    "isBoss": true
+  },
+  "2300355": {
+    "name": "克羅梅德深淵",
+    "isBoss": true
+  },
+  "2300356": {
+    "name": "頭目野狼",
+    "isBoss": false
+  },
+  "2300357": {
+    "name": "頭目野狼",
+    "isBoss": false
+  },
+  "2300358": {
+    "name": "頭目野狼",
+    "isBoss": false
+  },
+  "2300359": {
+    "name": "星龜",
+    "isBoss": false
+  },
+  "2300360": {
+    "name": "星龜",
+    "isBoss": false
+  },
+  "2300361": {
+    "name": "星龜",
+    "isBoss": false
+  },
+  "2300362": {
+    "name": "波奇",
+    "isBoss": false
+  },
+  "2300363": {
+    "name": "波奇",
+    "isBoss": false
+  },
+  "2300364": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2300365": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2300367": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2300368": {
+    "name": "None",
+    "isBoss": true
+  },
   "2300371": {
     "name": "克羅梅德欲望",
     "isBoss": true
+  },
+  "2300397": {
+    "name": "愛的試煉",
+    "isBoss": false
+  },
+  "2300398": {
+    "name": "愛的試煉",
+    "isBoss": false
+  },
+  "2300399": {
+    "name": "愛的試煉",
+    "isBoss": false
+  },
+  "2300400": {
+    "name": "愛的試煉",
+    "isBoss": false
   },
   "2300401": {
     "name": "夢幻拉克修米",
@@ -6505,6 +7180,22 @@
   },
   "2300426": {
     "name": "腐敗的深淵蟲",
+    "isBoss": false
+  },
+  "2300428": {
+    "name": "羈絆花園管理員",
+    "isBoss": false
+  },
+  "2300429": {
+    "name": "羈絆花園管理員",
+    "isBoss": false
+  },
+  "2300430": {
+    "name": "羈絆花園管理員",
+    "isBoss": false
+  },
+  "2300431": {
+    "name": "羈絆花園管理員",
     "isBoss": false
   },
   "2300470": {
@@ -6845,7 +7536,8 @@
   },
   "2300919": {
     "name": "訓練用稻草人",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2300920": {
     "name": "深淵苔蟹",
@@ -7429,7 +8121,8 @@
   },
   "2310229": {
     "name": "訓練用稻草人",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2310301": {
     "name": "熔岩迸發",
@@ -7873,7 +8566,8 @@
   },
   "2310919": {
     "name": "訓練用稻草人",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2310920": {
     "name": "深淵苔蟹",
@@ -8249,7 +8943,8 @@
   },
   "2320229": {
     "name": "訓練用稻草人",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2320301": {
     "name": "熔岩迸發",
@@ -8717,7 +9412,8 @@
   },
   "2320919": {
     "name": "訓練用稻草人",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2320920": {
     "name": "深淵苔蟹",
@@ -14209,7 +14905,8 @@
   },
   "2400032": {
     "name": "訓練用稻草人",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2400033": {
     "name": "博德瑞克",
@@ -14925,7 +15622,8 @@
   },
   "2400392": {
     "name": "訓練用稻草人",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2400401": {
     "name": "刀刃團搜索兵",
@@ -16581,7 +17279,8 @@
   },
   "2406000": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406001": {
     "name": "守護者騎士靈魂",
@@ -16633,7 +17332,8 @@
   },
   "2406050": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406051": {
     "name": "冰爪萊卡恩鬥士",
@@ -16701,7 +17401,8 @@
   },
   "2406100": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406101": {
     "name": "伊拉斯克納迦守護兵",
@@ -16725,7 +17426,8 @@
   },
   "2406150": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406151": {
     "name": "命運守護者劍鬥士",
@@ -16749,7 +17451,8 @@
   },
   "2406200": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406201": {
     "name": "命運守護者新兵",
@@ -16789,7 +17492,8 @@
   },
   "2406250": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406251": {
     "name": "霧鬃萊卡恩鬥士",
@@ -16805,11 +17509,13 @@
   },
   "2406300": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406350": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2500000": {
     "name": "盜賊團監視者",
@@ -17085,11 +17791,13 @@
   },
   "2500075": {
     "name": "訓練用稻草人",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2500076": {
     "name": "訓練用稻草人",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2500077": {
     "name": "寺院雷射",
@@ -18242,6 +18950,18 @@
   "2600095": {
     "name": "蘊含靈魂的甲冑",
     "isBoss": false
+  },
+  "2600096": {
+    "name": "執行者塔瑪沙",
+    "isBoss": true
+  },
+  "2600097": {
+    "name": "執行者阿格羅",
+    "isBoss": true
+  },
+  "2600098": {
+    "name": "執行者卡伊拉",
+    "isBoss": true
   },
   "2600101": {
     "name": "黃昏卡克蓋崙",
@@ -19546,6 +20266,18 @@
   "2600519": {
     "name": "古代冤魂騎士",
     "isBoss": false
+  },
+  "2600520": {
+    "name": "處刑官德拉莫斯",
+    "isBoss": true
+  },
+  "2600521": {
+    "name": "反逆者杜卡爾",
+    "isBoss": true
+  },
+  "2600522": {
+    "name": "破滅者瑪拉卡",
+    "isBoss": true
   },
   "2680000": {
     "name": "奧德碎晶暴風",
@@ -21717,7 +22449,8 @@
   },
   "2701376": {
     "name": "訓練用稻草人(樣本)",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2701377": {
     "name": "雷射",
@@ -24555,6 +25288,10 @@
     "name": "破滅黑魔法師",
     "isBoss": false
   },
+  "2702637": {
+    "name": "炸彈",
+    "isBoss": false
+  },
   "2920029": {
     "name": "變異阿爾拉烏守護者",
     "isBoss": false
@@ -24653,15 +25390,18 @@
   },
   "2920290": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2920291": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2920292": {
     "name": "沙包",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2920304": {
     "name": "凱西內爾心腹",
@@ -24807,6 +25547,10 @@
     "name": "岩石",
     "isBoss": false
   },
+  "2920935": {
+    "name": "納特哈拉幻影",
+    "isBoss": true
+  },
   "2920938": {
     "name": "德拉多納卵",
     "isBoss": false
@@ -24839,6 +25583,22 @@
     "name": "德拉多納大塊頭",
     "isBoss": false
   },
+  "2921014": {
+    "name": "波奇",
+    "isBoss": false
+  },
+  "2921015": {
+    "name": "長小蘑菇的波奇",
+    "isBoss": false
+  },
+  "2921016": {
+    "name": "放著蝸牛的波奇",
+    "isBoss": false
+  },
+  "2921031": {
+    "name": "甦醒的艾圖拉頓",
+    "isBoss": true
+  },
   "2921044": {
     "name": "背叛",
     "isBoss": false
@@ -24867,12 +25627,24 @@
     "name": "聚合物巴考特",
     "isBoss": false
   },
+  "2921153": {
+    "name": "殘香",
+    "isBoss": false
+  },
   "2921167": {
     "name": "幻影天培爾祭司",
     "isBoss": false
   },
   "2921168": {
     "name": "幻影天培爾祭司",
+    "isBoss": false
+  },
+  "2921222": {
+    "name": "怪物(樣本)",
+    "isBoss": false
+  },
+  "2921228": {
+    "name": "魅惑箭矢",
     "isBoss": false
   },
   "2980000": {

@@ -1,11 +1,13 @@
 {
   "2000000": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2000001": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2000004": {
     "name": "오드 거미",
@@ -13,15 +15,18 @@
   },
   "2000059": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2000073": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2000091": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2000412": {
     "name": "파프니르의 독혈 (표본)",
@@ -32,6 +37,10 @@
     "isBoss": false
   },
   "2000791": {
+    "name": "수정체",
+    "isBoss": false
+  },
+  "2000871": {
     "name": "수정체",
     "isBoss": false
   },
@@ -141,11 +150,13 @@
   },
   "2090022": {
     "name": "샌드백_천족Tribe",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090023": {
     "name": "샌드백_마족Tribe",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090024": {
     "name": "케네이르",
@@ -165,423 +176,528 @@
   },
   "2090030": {
     "name": "밸런스테스트1",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090031": {
     "name": "밸런스테스트2",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090032": {
     "name": "밸런스테스트3",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090033": {
     "name": "밸런스테스트4",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090034": {
     "name": "밸런스테스트5",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090035": {
     "name": "밸런스테스트6",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090036": {
     "name": "밸런스테스트7",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090037": {
     "name": "밸런스테스트8",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090038": {
     "name": "밸런스테스트9",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090039": {
     "name": "밸런스테스트10",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090040": {
     "name": "밸런스테스트11",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090041": {
     "name": "밸런스테스트12",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090042": {
     "name": "밸런스테스트13",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090043": {
     "name": "밸런스테스트14",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090044": {
     "name": "밸런스테스트15",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090045": {
     "name": "밸런스테스트16",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090046": {
     "name": "밸런스테스트17",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090047": {
     "name": "밸런스테스트18",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090048": {
     "name": "밸런스테스트19",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090049": {
     "name": "밸런스테스트20",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090050": {
     "name": "밸런스테스트21",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090051": {
     "name": "밸런스테스트22",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090052": {
     "name": "밸런스테스트23",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090053": {
     "name": "밸런스테스트24",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090054": {
     "name": "밸런스테스트25",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090055": {
     "name": "밸런스테스트26",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090056": {
     "name": "밸런스테스트27",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090057": {
     "name": "밸런스테스트28",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090058": {
     "name": "밸런스테스트29",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090059": {
     "name": "밸런스테스트30",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090060": {
     "name": "밸런스테스트31",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090061": {
     "name": "밸런스테스트32",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090062": {
     "name": "밸런스테스트33",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090063": {
     "name": "밸런스테스트34",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090064": {
     "name": "밸런스테스트35",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090065": {
     "name": "밸런스테스트36",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090066": {
     "name": "밸런스테스트37",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090067": {
     "name": "밸런스테스트38",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090068": {
     "name": "밸런스테스트39",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090069": {
     "name": "밸런스테스트40",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090070": {
     "name": "밸런스테스트41",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090071": {
     "name": "밸런스테스트42",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090072": {
     "name": "밸런스테스트43",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090073": {
     "name": "밸런스테스트44",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090074": {
     "name": "밸런스테스트45",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090075": {
     "name": "밸런스테스트46",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090076": {
     "name": "밸런스테스트47",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090077": {
     "name": "밸런스테스트48",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090078": {
     "name": "밸런스테스트49",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090079": {
     "name": "밸런스테스트50",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090080": {
     "name": "밸런스테스트51",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090081": {
     "name": "밸런스테스트52",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090082": {
     "name": "밸런스테스트53",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090083": {
     "name": "밸런스테스트54",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090084": {
     "name": "밸런스테스트55",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090085": {
     "name": "밸런스테스트56",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090086": {
     "name": "밸런스테스트57",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090087": {
     "name": "밸런스테스트58",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090088": {
     "name": "밸런스테스트59",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090089": {
     "name": "밸런스테스트60",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090090": {
     "name": "밸런스테스트61",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090091": {
     "name": "밸런스테스트62",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090092": {
     "name": "밸런스테스트63",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090093": {
     "name": "밸런스테스트64",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090094": {
     "name": "밸런스테스트65",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090095": {
     "name": "밸런스테스트66",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090096": {
     "name": "밸런스테스트67",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090097": {
     "name": "밸런스테스트68",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090098": {
     "name": "밸런스테스트69",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090099": {
     "name": "밸런스테스트70",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090100": {
     "name": "밸런스테스트71",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090101": {
     "name": "밸런스테스트72",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090102": {
     "name": "밸런스테스트73",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090103": {
     "name": "밸런스테스트74",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090104": {
     "name": "밸런스테스트75",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090105": {
     "name": "밸런스테스트76",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090106": {
     "name": "밸런스테스트77",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090107": {
     "name": "밸런스테스트78",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090108": {
     "name": "밸런스테스트79",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090109": {
     "name": "밸런스테스트80",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090110": {
     "name": "밸런스테스트81",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090111": {
     "name": "밸런스테스트82",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090112": {
     "name": "밸런스테스트83",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090113": {
     "name": "밸런스테스트84",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090114": {
     "name": "밸런스테스트85",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090115": {
     "name": "밸런스테스트86",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090116": {
     "name": "밸런스테스트87",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090117": {
     "name": "밸런스테스트88",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090118": {
     "name": "밸런스테스트89",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090119": {
     "name": "밸런스테스트90",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090120": {
     "name": "밸런스테스트91",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090121": {
     "name": "밸런스테스트92",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090122": {
     "name": "밸런스테스트93",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090123": {
     "name": "밸런스테스트94",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090124": {
     "name": "밸런스테스트95",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090125": {
     "name": "밸런스테스트96",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090126": {
     "name": "밸런스테스트97",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090127": {
     "name": "밸런스테스트98",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090128": {
     "name": "밸런스테스트99",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090129": {
     "name": "밸런스테스트100",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090130": {
     "name": "공격 안 함 (레벨 스케일링 테스트)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090131": {
     "name": "기본공격 (레벨 스케일링 테스트)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090132": {
     "name": "광역 (레벨 스케일링 테스트)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090133": {
     "name": "자힐 (레벨 스케일링 테스트)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090134": {
     "name": "자기 버프(물공, 마공, 물방, 마방 증가) (레벨 스케일링 테스트)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090151": {
     "name": "개조 크랄 전사",
@@ -593,7 +709,8 @@
   },
   "2090153": {
     "name": "광역 (레벨 스케일링 테스트_모든 skill effect 부여)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090154": {
     "name": "브리트라 공습부대 장교",
@@ -605,7 +722,8 @@
   },
   "2090157": {
     "name": "테스트몹_Hidden",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090158": {
     "name": "개조 크랄 전사",
@@ -1001,51 +1119,63 @@
   },
   "2090438": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090439": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090440": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090441": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090442": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090443": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090444": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090445": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090446": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090447": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090448": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090449": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090451": {
     "name": "몬스터 (표본)",
@@ -1061,7 +1191,8 @@
   },
   "2090454": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090455": {
     "name": "None",
@@ -1077,7 +1208,8 @@
   },
   "2090458": {
     "name": "샌드백",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2090463": {
     "name": "드라칸 네임드",
@@ -1089,19 +1221,23 @@
   },
   "2090467": {
     "name": "90도 Arc",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090468": {
     "name": "89도 Arc",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090469": {
     "name": "90도 ArcCircle",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090470": {
     "name": "89도 ArcCircle",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090471": {
     "name": "개조 크랄 전사",
@@ -1317,7 +1453,25 @@
   },
   "2090693": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
+  },
+  "2090718": {
+    "name": "나트하라",
+    "isBoss": true
+  },
+  "2090719": {
+    "name": "영겁의 루드라",
+    "isBoss": true
+  },
+  "2090720": {
+    "name": "중합체 바고트",
+    "isBoss": true
+  },
+  "2090773": {
+    "name": "훈련용 허수아비 (표본)",
+    "isBoss": true,
+    "isDummy": true
   },
   "2100000": {
     "name": "반짝이는 칼크겔름",
@@ -6123,6 +6277,10 @@
     "name": "드라토나 덩치",
     "isBoss": false
   },
+  "2300148": {
+    "name": "연심의 사제",
+    "isBoss": false
+  },
   "2300149": {
     "name": "드라토나 알",
     "isBoss": false
@@ -6171,9 +6329,41 @@
     "name": "열수구",
     "isBoss": false
   },
+  "2300161": {
+    "name": "연심의 정예 사제",
+    "isBoss": false
+  },
   "2300162": {
     "name": "두르바티의 독액",
     "isBoss": true
+  },
+  "2300163": {
+    "name": "연심의 수행 사제",
+    "isBoss": false
+  },
+  "2300164": {
+    "name": "연심의 기사단 검성",
+    "isBoss": false
+  },
+  "2300165": {
+    "name": "연심의 기사단 수호성",
+    "isBoss": false
+  },
+  "2300166": {
+    "name": "연심의 기사단 정예병",
+    "isBoss": false
+  },
+  "2300167": {
+    "name": "질투하는 페어리",
+    "isBoss": false
+  },
+  "2300168": {
+    "name": "매혹하는 디오나에",
+    "isBoss": false
+  },
+  "2300169": {
+    "name": "연심의 라플레시아",
+    "isBoss": false
   },
   "2300170": {
     "name": "None",
@@ -6234,6 +6424,70 @@
   "2300184": {
     "name": "뒤틀린 크로카",
     "isBoss": false
+  },
+  "2300185": {
+    "name": "장미 정원 벌",
+    "isBoss": false
+  },
+  "2300186": {
+    "name": "장미 정원 호위 전사",
+    "isBoss": false
+  },
+  "2300187": {
+    "name": "장미 정원 화원 지기",
+    "isBoss": false
+  },
+  "2300188": {
+    "name": "깨어난 알투라돈",
+    "isBoss": true
+  },
+  "2300189": {
+    "name": "현명한 바움누트",
+    "isBoss": true
+  },
+  "2300190": {
+    "name": "팽창하는 자이르페",
+    "isBoss": true
+  },
+  "2300191": {
+    "name": "푸른 숨의 우르서스",
+    "isBoss": false
+  },
+  "2300192": {
+    "name": "푸른 숨의 우르서스",
+    "isBoss": false
+  },
+  "2300193": {
+    "name": "크레스틀리치",
+    "isBoss": false
+  },
+  "2300194": {
+    "name": "자이프",
+    "isBoss": false
+  },
+  "2300195": {
+    "name": "푸른 크레스틀리치",
+    "isBoss": false
+  },
+  "2300196": {
+    "name": "푸른 숨의 우르서스",
+    "isBoss": false
+  },
+  "2300197": {
+    "name": "연심의 사제",
+    "isBoss": false
+  },
+  "2300198": {
+    "name": "펑거스",
+    "isBoss": false
+  },
+  "2300199": {
+    "name": "연심의 정예 사제",
+    "isBoss": false
+  },
+  "2300200": {
+    "name": "깨어난 알투라돈",
+    "isBoss": true
   },
   "2300201": {
     "name": "우루구구 병사",
@@ -6307,6 +6561,10 @@
     "name": "신성한 아울도르",
     "isBoss": true
   },
+  "2300219": {
+    "name": "현명한 바움누트",
+    "isBoss": true
+  },
   "2300220": {
     "name": "감시형 치유의 토템",
     "isBoss": false
@@ -6345,6 +6603,203 @@
   },
   "2300229": {
     "name": "훈련용 허수아비",
+    "isBoss": true,
+    "isDummy": true
+  },
+  "2300230": {
+    "name": "팽창하는 자이르페",
+    "isBoss": true
+  },
+  "2300231": {
+    "name": "연심의 수행 사제",
+    "isBoss": false
+  },
+  "2300232": {
+    "name": "연심의 기사단 검성",
+    "isBoss": false
+  },
+  "2300233": {
+    "name": "크레스틀리치",
+    "isBoss": false
+  },
+  "2300234": {
+    "name": "자이프",
+    "isBoss": false
+  },
+  "2300235": {
+    "name": "푸른 크레스틀리치",
+    "isBoss": false
+  },
+  "2300236": {
+    "name": "연심의 기사단 수호성",
+    "isBoss": false
+  },
+  "2300237": {
+    "name": "펑기",
+    "isBoss": false
+  },
+  "2300238": {
+    "name": "펑거스",
+    "isBoss": false
+  },
+  "2300239": {
+    "name": "연심의 기사단 정예병",
+    "isBoss": false
+  },
+  "2300240": {
+    "name": "질투하는 페어리",
+    "isBoss": false
+  },
+  "2300241": {
+    "name": "매혹하는 디오나에",
+    "isBoss": false
+  },
+  "2300242": {
+    "name": "연심의 라플레시아",
+    "isBoss": false
+  },
+  "2300243": {
+    "name": "깨어난 알투라돈",
+    "isBoss": true
+  },
+  "2300244": {
+    "name": "현명한 바움누트",
+    "isBoss": true
+  },
+  "2300245": {
+    "name": "팽창하는 자이르페",
+    "isBoss": true
+  },
+  "2300246": {
+    "name": "장미 정원 벌",
+    "isBoss": false
+  },
+  "2300247": {
+    "name": "장미 정원 호위 전사",
+    "isBoss": false
+  },
+  "2300248": {
+    "name": "크레스틀리치",
+    "isBoss": false
+  },
+  "2300249": {
+    "name": "자이프",
+    "isBoss": false
+  },
+  "2300250": {
+    "name": "푸른 크레스틀리치",
+    "isBoss": false
+  },
+  "2300251": {
+    "name": "장미 정원 화원 지기",
+    "isBoss": false
+  },
+  "2300252": {
+    "name": "펑기",
+    "isBoss": false
+  },
+  "2300253": {
+    "name": "펑거스",
+    "isBoss": false
+  },
+  "2300254": {
+    "name": "부유 전기석",
+    "isBoss": false
+  },
+  "2300255": {
+    "name": "부유 전기석",
+    "isBoss": false
+  },
+  "2300256": {
+    "name": "부유 전기석",
+    "isBoss": false
+  },
+  "2300257": {
+    "name": "매혹의 화살",
+    "isBoss": false
+  },
+  "2300258": {
+    "name": "사랑의 시련",
+    "isBoss": false
+  },
+  "2300259": {
+    "name": "로타르",
+    "isBoss": true
+  },
+  "2300260": {
+    "name": "롭스티노",
+    "isBoss": true
+  },
+  "2300261": {
+    "name": "크로메데의 심연",
+    "isBoss": true
+  },
+  "2300262": {
+    "name": "수면풀",
+    "isBoss": false
+  },
+  "2300263": {
+    "name": "수면풀",
+    "isBoss": false
+  },
+  "2300264": {
+    "name": "수면풀",
+    "isBoss": false
+  },
+  "2300265": {
+    "name": "케네이르",
+    "isBoss": false
+  },
+  "2300266": {
+    "name": "스파키",
+    "isBoss": false
+  },
+  "2300267": {
+    "name": "암흑 정령",
+    "isBoss": false
+  },
+  "2300268": {
+    "name": "부유 전기석",
+    "isBoss": false
+  },
+  "2300269": {
+    "name": "케네이르",
+    "isBoss": false
+  },
+  "2300270": {
+    "name": "스파키",
+    "isBoss": false
+  },
+  "2300271": {
+    "name": "암흑 정령",
+    "isBoss": false
+  },
+  "2300272": {
+    "name": "매혹의 화살",
+    "isBoss": false
+  },
+  "2300273": {
+    "name": "케네이르",
+    "isBoss": false
+  },
+  "2300274": {
+    "name": "스파키",
+    "isBoss": false
+  },
+  "2300275": {
+    "name": "암흑 정령",
+    "isBoss": false
+  },
+  "2300276": {
+    "name": "사랑의 시련",
+    "isBoss": false
+  },
+  "2300299": {
+    "name": "로타르",
+    "isBoss": true
+  },
+  "2300300": {
+    "name": "롭스티노",
     "isBoss": true
   },
   "2300301": {
@@ -6411,9 +6866,229 @@
     "name": "폭발하는 화염의 정령",
     "isBoss": false
   },
+  "2300317": {
+    "name": "크로메데의 심연",
+    "isBoss": true
+  },
+  "2300318": {
+    "name": "연심의 사제",
+    "isBoss": false
+  },
+  "2300319": {
+    "name": "연심의 정예 사제",
+    "isBoss": false
+  },
+  "2300320": {
+    "name": "연심의 수행 사제",
+    "isBoss": false
+  },
+  "2300321": {
+    "name": "연심의 기사단 검성",
+    "isBoss": false
+  },
+  "2300322": {
+    "name": "연심의 기사단 수호성",
+    "isBoss": false
+  },
+  "2300323": {
+    "name": "연심의 기사단 정예병",
+    "isBoss": false
+  },
+  "2300324": {
+    "name": "질투하는 페어리",
+    "isBoss": false
+  },
+  "2300325": {
+    "name": "매혹하는 디오나에",
+    "isBoss": false
+  },
+  "2300326": {
+    "name": "연심의 라플레시아",
+    "isBoss": false
+  },
+  "2300327": {
+    "name": "장미 정원 벌",
+    "isBoss": false
+  },
+  "2300328": {
+    "name": "장미 정원 호위 전사",
+    "isBoss": false
+  },
+  "2300329": {
+    "name": "장미 정원 화원 지기",
+    "isBoss": false
+  },
+  "2300330": {
+    "name": "부유 전기석",
+    "isBoss": false
+  },
+  "2300331": {
+    "name": "부유 전기석",
+    "isBoss": false
+  },
+  "2300332": {
+    "name": "매혹의 화살",
+    "isBoss": false
+  },
+  "2300333": {
+    "name": "사랑의 시련",
+    "isBoss": false
+  },
+  "2300334": {
+    "name": "로타르",
+    "isBoss": true
+  },
+  "2300335": {
+    "name": "롭스티노",
+    "isBoss": true
+  },
+  "2300336": {
+    "name": "크로메데의 심연",
+    "isBoss": true
+  },
+  "2300337": {
+    "name": "연심의 사제",
+    "isBoss": false
+  },
+  "2300338": {
+    "name": "연심의 정예 사제",
+    "isBoss": false
+  },
+  "2300339": {
+    "name": "연심의 수행 사제",
+    "isBoss": false
+  },
+  "2300340": {
+    "name": "연심의 기사단 검성",
+    "isBoss": false
+  },
+  "2300341": {
+    "name": "연심의 기사단 수호성",
+    "isBoss": false
+  },
+  "2300342": {
+    "name": "연심의 기사단 정예병",
+    "isBoss": false
+  },
+  "2300343": {
+    "name": "질투하는 페어리",
+    "isBoss": false
+  },
+  "2300344": {
+    "name": "매혹하는 디오나에",
+    "isBoss": false
+  },
+  "2300345": {
+    "name": "연심의 라플레시아",
+    "isBoss": false
+  },
+  "2300346": {
+    "name": "장미 정원 벌",
+    "isBoss": false
+  },
+  "2300347": {
+    "name": "장미 정원 호위 전사",
+    "isBoss": false
+  },
+  "2300348": {
+    "name": "장미 정원 화원 지기",
+    "isBoss": false
+  },
+  "2300349": {
+    "name": "부유 전기석",
+    "isBoss": false
+  },
+  "2300350": {
+    "name": "부유 전기석",
+    "isBoss": false
+  },
+  "2300351": {
+    "name": "매혹의 화살",
+    "isBoss": false
+  },
+  "2300352": {
+    "name": "사랑의 시련",
+    "isBoss": false
+  },
+  "2300353": {
+    "name": "로타르",
+    "isBoss": true
+  },
+  "2300354": {
+    "name": "롭스티노",
+    "isBoss": true
+  },
+  "2300355": {
+    "name": "크로메데의 심연",
+    "isBoss": true
+  },
+  "2300356": {
+    "name": "우두머리 자이프",
+    "isBoss": false
+  },
+  "2300357": {
+    "name": "우두머리 자이프",
+    "isBoss": false
+  },
+  "2300358": {
+    "name": "우두머리 자이프",
+    "isBoss": false
+  },
+  "2300359": {
+    "name": "스타터틀",
+    "isBoss": false
+  },
+  "2300360": {
+    "name": "스타터틀",
+    "isBoss": false
+  },
+  "2300361": {
+    "name": "스타터틀",
+    "isBoss": false
+  },
+  "2300362": {
+    "name": "펑기",
+    "isBoss": false
+  },
+  "2300363": {
+    "name": "펑기",
+    "isBoss": false
+  },
+  "2300364": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2300365": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2300367": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2300368": {
+    "name": "None",
+    "isBoss": true
+  },
   "2300371": {
     "name": "크로메데의 욕망",
     "isBoss": true
+  },
+  "2300397": {
+    "name": "사랑의 시련",
+    "isBoss": false
+  },
+  "2300398": {
+    "name": "사랑의 시련",
+    "isBoss": false
+  },
+  "2300399": {
+    "name": "사랑의 시련",
+    "isBoss": false
+  },
+  "2300400": {
+    "name": "사랑의 시련",
+    "isBoss": false
   },
   "2300401": {
     "name": "몽환의 라크슈미",
@@ -6505,6 +7180,22 @@
   },
   "2300426": {
     "name": "부패한 심연벌레",
+    "isBoss": false
+  },
+  "2300428": {
+    "name": "연심의 화원지기",
+    "isBoss": false
+  },
+  "2300429": {
+    "name": "연심의 화원지기",
+    "isBoss": false
+  },
+  "2300430": {
+    "name": "연심의 화원지기",
+    "isBoss": false
+  },
+  "2300431": {
+    "name": "연심의 화원지기",
     "isBoss": false
   },
   "2300470": {
@@ -6845,7 +7536,8 @@
   },
   "2300919": {
     "name": "훈련용 허수아비",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2300920": {
     "name": "심연의 이끼 게",
@@ -7429,7 +8121,8 @@
   },
   "2310229": {
     "name": "훈련용 허수아비",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2310301": {
     "name": "용암 분출",
@@ -7873,7 +8566,8 @@
   },
   "2310919": {
     "name": "훈련용 허수아비",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2310920": {
     "name": "심연의 이끼 게",
@@ -8249,7 +8943,8 @@
   },
   "2320229": {
     "name": "훈련용 허수아비",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2320301": {
     "name": "용암 분출",
@@ -8717,7 +9412,8 @@
   },
   "2320919": {
     "name": "훈련용 허수아비",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2320920": {
     "name": "심연의 이끼 게",
@@ -14209,7 +14905,8 @@
   },
   "2400032": {
     "name": "훈련용 허수아비",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2400033": {
     "name": "볼드릭",
@@ -14925,7 +15622,8 @@
   },
   "2400392": {
     "name": "훈련용 허수아비",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2400401": {
     "name": "칼날단 수색병",
@@ -16581,7 +17279,8 @@
   },
   "2406000": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406001": {
     "name": "데바 기사 영혼",
@@ -16633,7 +17332,8 @@
   },
   "2406050": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406051": {
     "name": "얼음발톱 라이칸 투사",
@@ -16701,7 +17401,8 @@
   },
   "2406100": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406101": {
     "name": "이랄시그 나가 수호병",
@@ -16725,7 +17426,8 @@
   },
   "2406150": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406151": {
     "name": "운명의 데바 검투사",
@@ -16749,7 +17451,8 @@
   },
   "2406200": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406201": {
     "name": "운명의 데바 신병",
@@ -16789,7 +17492,8 @@
   },
   "2406250": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406251": {
     "name": "안개갈기 라이칸 투사",
@@ -16805,11 +17509,13 @@
   },
   "2406300": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406350": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2500000": {
     "name": "도적단 감시자",
@@ -17085,11 +17791,13 @@
   },
   "2500075": {
     "name": "훈련용 허수아비",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2500076": {
     "name": "훈련용 허수아비",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2500077": {
     "name": "사원 레이저",
@@ -18242,6 +18950,18 @@
   "2600095": {
     "name": "영혼 깃든 갑주",
     "isBoss": false
+  },
+  "2600096": {
+    "name": "집행자 타마사",
+    "isBoss": true
+  },
+  "2600097": {
+    "name": "집행자 아그로",
+    "isBoss": true
+  },
+  "2600098": {
+    "name": "집행자 카이라",
+    "isBoss": true
   },
   "2600101": {
     "name": "황혼의 칼크겔름",
@@ -19546,6 +20266,18 @@
   "2600519": {
     "name": "고대 원혼 기사",
     "isBoss": false
+  },
+  "2600520": {
+    "name": "처형관 드라모스",
+    "isBoss": true
+  },
+  "2600521": {
+    "name": "반역자 듀칼",
+    "isBoss": true
+  },
+  "2600522": {
+    "name": "파멸자 마라카",
+    "isBoss": true
   },
   "2680000": {
     "name": "오드 샤드 폭풍",
@@ -21717,7 +22449,8 @@
   },
   "2701376": {
     "name": "훈련용 허수아비 (표본)",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2701377": {
     "name": "레이저",
@@ -24555,6 +25288,10 @@
     "name": "파멸의 흑마법사",
     "isBoss": false
   },
+  "2702637": {
+    "name": "폭탄",
+    "isBoss": false
+  },
   "2920029": {
     "name": "변이 아울라우 수호자",
     "isBoss": false
@@ -24653,15 +25390,18 @@
   },
   "2920290": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2920291": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2920292": {
     "name": "샌드백",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2920304": {
     "name": "카이시넬의 심복",
@@ -24807,6 +25547,10 @@
     "name": "바위",
     "isBoss": false
   },
+  "2920935": {
+    "name": "나트하라의 환영",
+    "isBoss": true
+  },
   "2920938": {
     "name": "드라토나 알",
     "isBoss": false
@@ -24839,6 +25583,22 @@
     "name": "드라토나 덩치",
     "isBoss": false
   },
+  "2921014": {
+    "name": "펑기",
+    "isBoss": false
+  },
+  "2921015": {
+    "name": "작은 버섯 자란 펑기",
+    "isBoss": false
+  },
+  "2921016": {
+    "name": "달팽이 얹은 펑기",
+    "isBoss": false
+  },
+  "2921031": {
+    "name": "깨어난 알투라돈",
+    "isBoss": true
+  },
   "2921044": {
     "name": "배신",
     "isBoss": false
@@ -24867,12 +25627,24 @@
     "name": "중합체 바고트",
     "isBoss": false
   },
+  "2921153": {
+    "name": "잔향",
+    "isBoss": false
+  },
   "2921167": {
     "name": "환영의 템페르 사제",
     "isBoss": false
   },
   "2921168": {
     "name": "환영의 템페르 사제",
+    "isBoss": false
+  },
+  "2921222": {
+    "name": "몬스터 (표본)",
+    "isBoss": false
+  },
+  "2921228": {
+    "name": "매혹의 화살",
     "isBoss": false
   },
   "2980000": {

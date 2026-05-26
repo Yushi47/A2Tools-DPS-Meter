@@ -1,11 +1,13 @@
 {
   "2000000": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2000001": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2000004": {
     "name": "Odyle Spider",
@@ -13,15 +15,18 @@
   },
   "2000059": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2000073": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2000091": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2000412": {
     "name": "Fafnir's Poison Blood (Specimen)",
@@ -32,6 +37,10 @@
     "isBoss": false
   },
   "2000791": {
+    "name": "Crystal",
+    "isBoss": false
+  },
+  "2000871": {
     "name": "Crystal",
     "isBoss": false
   },
@@ -141,11 +150,13 @@
   },
   "2090022": {
     "name": "Punching Bag_Elyos Tribe",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090023": {
     "name": "Punching Bag_Asmodians Tribe",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090024": {
     "name": "Keneire",
@@ -165,423 +176,528 @@
   },
   "2090030": {
     "name": "Balance Test 1",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090031": {
     "name": "Balance Test 2",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090032": {
     "name": "Balance Test 3",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090033": {
     "name": "Balance Test 4",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090034": {
     "name": "Balance Test 5",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090035": {
     "name": "Balance Test 6",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090036": {
     "name": "Balance Test 7",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090037": {
     "name": "Balance Test 8",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090038": {
     "name": "Balance Test 9",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090039": {
     "name": "Balance Test 10",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090040": {
     "name": "Balance Test 11",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090041": {
     "name": "Balance Test 12",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090042": {
     "name": "Balance Test 13",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090043": {
     "name": "Balance Test 14",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090044": {
     "name": "Balance Test 15",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090045": {
     "name": "Balance Test 16",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090046": {
     "name": "Balance Test 17",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090047": {
     "name": "Balance Test 18",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090048": {
     "name": "Balance Test 19",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090049": {
     "name": "Balance Test 20",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090050": {
     "name": "Balance Test 21",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090051": {
     "name": "Balance Test 22",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090052": {
     "name": "Balance Test 23",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090053": {
     "name": "Balance Test 24",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090054": {
     "name": "Balance Test 25",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090055": {
     "name": "Balance Test 26",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090056": {
     "name": "Balance Test 27",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090057": {
     "name": "Balance Test 28",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090058": {
     "name": "Balance Test 29",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090059": {
     "name": "Balance Test 30",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090060": {
     "name": "Balance Test 31",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090061": {
     "name": "Balance Test 32",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090062": {
     "name": "Balance Test 33",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090063": {
     "name": "Balance Test 34",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090064": {
     "name": "Balance Test 35",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090065": {
     "name": "Balance Test 36",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090066": {
     "name": "Balance Test 37",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090067": {
     "name": "Balance Test 38",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090068": {
     "name": "Balance Test 39",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090069": {
     "name": "Balance Test 40",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090070": {
     "name": "Balance Test 41",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090071": {
     "name": "Balance Test 42",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090072": {
     "name": "Balance Test 43",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090073": {
     "name": "Balance Test 44",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090074": {
     "name": "Balance Test 45",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090075": {
     "name": "Balance Test 46",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090076": {
     "name": "Balance Test 47",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090077": {
     "name": "Balance Test 48",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090078": {
     "name": "Balance Test 49",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090079": {
     "name": "Balance Test 50",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090080": {
     "name": "Balance Test 51",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090081": {
     "name": "Balance Test 52",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090082": {
     "name": "Balance Test 53",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090083": {
     "name": "Balance Test 54",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090084": {
     "name": "Balance Test 55",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090085": {
     "name": "Balance Test 56",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090086": {
     "name": "Balance Test 57",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090087": {
     "name": "Balance Test 58",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090088": {
     "name": "Balance Test 59",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090089": {
     "name": "Balance Test 60",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090090": {
     "name": "Balance Test 61",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090091": {
     "name": "Balance Test 62",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090092": {
     "name": "Balance Test 63",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090093": {
     "name": "Balance Test 64",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090094": {
     "name": "Balance Test 65",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090095": {
     "name": "Balance Test 66",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090096": {
     "name": "Balance Test 67",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090097": {
     "name": "Balance Test 68",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090098": {
     "name": "Balance Test 69",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090099": {
     "name": "Balance Test 70",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090100": {
     "name": "Balance Test 71",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090101": {
     "name": "Balance Test 72",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090102": {
     "name": "Balance Test 73",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090103": {
     "name": "Balance Test 74",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090104": {
     "name": "Balance Test 75",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090105": {
     "name": "Balance Test 76",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090106": {
     "name": "Balance Test 77",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090107": {
     "name": "Balance Test 78",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090108": {
     "name": "Balance Test 79",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090109": {
     "name": "Balance Test 80",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090110": {
     "name": "Balance Test 81",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090111": {
     "name": "Balance Test 82",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090112": {
     "name": "Balance Test 83",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090113": {
     "name": "Balance Test 84",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090114": {
     "name": "Balance Test 85",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090115": {
     "name": "Balance Test 86",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090116": {
     "name": "Balance Test 87",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090117": {
     "name": "Balance Test 88",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090118": {
     "name": "Balance Test 89",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090119": {
     "name": "Balance Test 90",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090120": {
     "name": "Balance Test 91",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090121": {
     "name": "Balance Test 92",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090122": {
     "name": "Balance Test 93",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090123": {
     "name": "Balance Test 94",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090124": {
     "name": "Balance Test 95",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090125": {
     "name": "Balance Test 96",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090126": {
     "name": "Balance Test 97",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090127": {
     "name": "Balance Test 98",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090128": {
     "name": "Balance Test 99",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090129": {
     "name": "Balance Test 100",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090130": {
     "name": "Non-Aggressive (Level Scaling Test)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090131": {
     "name": "Basic Attack (Level Scaling Test)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090132": {
     "name": "Area-of-Effect (Level Scaling Test)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090133": {
     "name": "Self Heal (Level Scaling Test)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090134": {
     "name": "Self Buff (Physical Attack, Magic Attack, Physical Defense, and Magic Defense Up) (Level Scaling Test)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090151": {
     "name": "Modified Krall Warrior",
@@ -593,7 +709,8 @@
   },
   "2090153": {
     "name": "Area-of-Effect (Level Scaling Test_with All Skill Effects)",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090154": {
     "name": "Beritra Air Raiders Battalion Officer",
@@ -605,7 +722,8 @@
   },
   "2090157": {
     "name": "Test Monster_Hidden",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090158": {
     "name": "Modified Krall Warrior",
@@ -1001,51 +1119,63 @@
   },
   "2090438": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090439": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090440": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090441": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090442": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090443": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090444": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090445": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090446": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090447": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090448": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090449": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090451": {
     "name": "Monster (Specimen)",
@@ -1061,7 +1191,8 @@
   },
   "2090454": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090455": {
     "name": "None",
@@ -1077,7 +1208,8 @@
   },
   "2090458": {
     "name": "Punching Bag",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2090463": {
     "name": "Drakan Unique",
@@ -1089,19 +1221,23 @@
   },
   "2090467": {
     "name": "90-Degree Arc",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090468": {
     "name": "89-Degree Arc",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090469": {
     "name": "90-Degree ArcCircle",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090470": {
     "name": "89-Degree ArcCircle",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2090471": {
     "name": "Modified Krall Warrior",
@@ -1317,7 +1453,25 @@
   },
   "2090693": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
+  },
+  "2090718": {
+    "name": "Nathara",
+    "isBoss": true
+  },
+  "2090719": {
+    "name": "Eternal Ludra",
+    "isBoss": true
+  },
+  "2090720": {
+    "name": "Terminator Bargott",
+    "isBoss": true
+  },
+  "2090773": {
+    "name": "Training Scarecrow (Specimen)",
+    "isBoss": true,
+    "isDummy": true
   },
   "2100000": {
     "name": "Twinkling Kalgolem",
@@ -6123,6 +6277,10 @@
     "name": "Dratona Brute",
     "isBoss": false
   },
+  "2300148": {
+    "name": "Heartbound Priest",
+    "isBoss": false
+  },
   "2300149": {
     "name": "Dratona Egg",
     "isBoss": false
@@ -6171,9 +6329,41 @@
     "name": "Thermal Vent",
     "isBoss": false
   },
+  "2300161": {
+    "name": "Heartbound Elite Priest",
+    "isBoss": false
+  },
   "2300162": {
     "name": "Durvati's Poison Fluid",
     "isBoss": true
+  },
+  "2300163": {
+    "name": "Heartbound Acolyte Priest",
+    "isBoss": false
+  },
+  "2300164": {
+    "name": "Heartbound Knights Gladiator",
+    "isBoss": false
+  },
+  "2300165": {
+    "name": "Heartbound Knights Templar",
+    "isBoss": false
+  },
+  "2300166": {
+    "name": "Heartbound Knights Elite Soldier",
+    "isBoss": false
+  },
+  "2300167": {
+    "name": "Jealous Fairy",
+    "isBoss": false
+  },
+  "2300168": {
+    "name": "Alluring Dionae",
+    "isBoss": false
+  },
+  "2300169": {
+    "name": "Heartbound Rafflesia",
+    "isBoss": false
   },
   "2300170": {
     "name": "None",
@@ -6234,6 +6424,70 @@
   "2300184": {
     "name": "Twisted Croka",
     "isBoss": false
+  },
+  "2300185": {
+    "name": "Rose Garden Bee",
+    "isBoss": false
+  },
+  "2300186": {
+    "name": "Rose Garden Bodyguard Warrior",
+    "isBoss": false
+  },
+  "2300187": {
+    "name": "Rose Garden Keeper",
+    "isBoss": false
+  },
+  "2300188": {
+    "name": "Awakened Alturadon",
+    "isBoss": true
+  },
+  "2300189": {
+    "name": "Wise Baumnute",
+    "isBoss": true
+  },
+  "2300190": {
+    "name": "Expanding Xyrepe",
+    "isBoss": true
+  },
+  "2300191": {
+    "name": "Azure Breath Ursus",
+    "isBoss": false
+  },
+  "2300192": {
+    "name": "Azure Breath Ursus",
+    "isBoss": false
+  },
+  "2300193": {
+    "name": "Crestlich",
+    "isBoss": false
+  },
+  "2300194": {
+    "name": "Zaif",
+    "isBoss": false
+  },
+  "2300195": {
+    "name": "Blue Crestlich",
+    "isBoss": false
+  },
+  "2300196": {
+    "name": "Azure Breath Ursus",
+    "isBoss": false
+  },
+  "2300197": {
+    "name": "Heartbound Priest",
+    "isBoss": false
+  },
+  "2300198": {
+    "name": "Fungen",
+    "isBoss": false
+  },
+  "2300199": {
+    "name": "Heartbound Elite Priest",
+    "isBoss": false
+  },
+  "2300200": {
+    "name": "Awakened Alturadon",
+    "isBoss": true
   },
   "2300201": {
     "name": "Urugugu Soldier",
@@ -6307,6 +6561,10 @@
     "name": "Divine Auldor",
     "isBoss": true
   },
+  "2300219": {
+    "name": "Wise Baumnute",
+    "isBoss": true
+  },
   "2300220": {
     "name": "Surveillance Healing Totem",
     "isBoss": false
@@ -6345,6 +6603,203 @@
   },
   "2300229": {
     "name": "Training Scarecrow",
+    "isBoss": true,
+    "isDummy": true
+  },
+  "2300230": {
+    "name": "Expanding Xyrepe",
+    "isBoss": true
+  },
+  "2300231": {
+    "name": "Heartbound Acolyte Priest",
+    "isBoss": false
+  },
+  "2300232": {
+    "name": "Heartbound Knights Gladiator",
+    "isBoss": false
+  },
+  "2300233": {
+    "name": "Crestlich",
+    "isBoss": false
+  },
+  "2300234": {
+    "name": "Zaif",
+    "isBoss": false
+  },
+  "2300235": {
+    "name": "Blue Crestlich",
+    "isBoss": false
+  },
+  "2300236": {
+    "name": "Heartbound Knights Templar",
+    "isBoss": false
+  },
+  "2300237": {
+    "name": "Fungie",
+    "isBoss": false
+  },
+  "2300238": {
+    "name": "Fungen",
+    "isBoss": false
+  },
+  "2300239": {
+    "name": "Heartbound Knights Elite Soldier",
+    "isBoss": false
+  },
+  "2300240": {
+    "name": "Jealous Fairy",
+    "isBoss": false
+  },
+  "2300241": {
+    "name": "Alluring Dionae",
+    "isBoss": false
+  },
+  "2300242": {
+    "name": "Heartbound Rafflesia",
+    "isBoss": false
+  },
+  "2300243": {
+    "name": "Awakened Alturadon",
+    "isBoss": true
+  },
+  "2300244": {
+    "name": "Wise Baumnute",
+    "isBoss": true
+  },
+  "2300245": {
+    "name": "Expanding Xyrepe",
+    "isBoss": true
+  },
+  "2300246": {
+    "name": "Rose Garden Bee",
+    "isBoss": false
+  },
+  "2300247": {
+    "name": "Rose Garden Bodyguard Warrior",
+    "isBoss": false
+  },
+  "2300248": {
+    "name": "Crestlich",
+    "isBoss": false
+  },
+  "2300249": {
+    "name": "Zaif",
+    "isBoss": false
+  },
+  "2300250": {
+    "name": "Blue Crestlich",
+    "isBoss": false
+  },
+  "2300251": {
+    "name": "Rose Garden Keeper",
+    "isBoss": false
+  },
+  "2300252": {
+    "name": "Fungie",
+    "isBoss": false
+  },
+  "2300253": {
+    "name": "Fungen",
+    "isBoss": false
+  },
+  "2300254": {
+    "name": "Floating Tourmaline",
+    "isBoss": false
+  },
+  "2300255": {
+    "name": "Floating Tourmaline",
+    "isBoss": false
+  },
+  "2300256": {
+    "name": "Floating Tourmaline",
+    "isBoss": false
+  },
+  "2300257": {
+    "name": "Alluring Arrow",
+    "isBoss": false
+  },
+  "2300258": {
+    "name": "Ordeal of Love",
+    "isBoss": false
+  },
+  "2300259": {
+    "name": "Rotar",
+    "isBoss": true
+  },
+  "2300260": {
+    "name": "Robstino",
+    "isBoss": true
+  },
+  "2300261": {
+    "name": "Kromede's Desolation",
+    "isBoss": true
+  },
+  "2300262": {
+    "name": "Sleep Grass",
+    "isBoss": false
+  },
+  "2300263": {
+    "name": "Sleep Grass",
+    "isBoss": false
+  },
+  "2300264": {
+    "name": "Sleep Grass",
+    "isBoss": false
+  },
+  "2300265": {
+    "name": "Keneire",
+    "isBoss": false
+  },
+  "2300266": {
+    "name": "Sparkie",
+    "isBoss": false
+  },
+  "2300267": {
+    "name": "Black Spirit",
+    "isBoss": false
+  },
+  "2300268": {
+    "name": "Floating Tourmaline",
+    "isBoss": false
+  },
+  "2300269": {
+    "name": "Keneire",
+    "isBoss": false
+  },
+  "2300270": {
+    "name": "Sparkie",
+    "isBoss": false
+  },
+  "2300271": {
+    "name": "Black Spirit",
+    "isBoss": false
+  },
+  "2300272": {
+    "name": "Alluring Arrow",
+    "isBoss": false
+  },
+  "2300273": {
+    "name": "Keneire",
+    "isBoss": false
+  },
+  "2300274": {
+    "name": "Sparkie",
+    "isBoss": false
+  },
+  "2300275": {
+    "name": "Black Spirit",
+    "isBoss": false
+  },
+  "2300276": {
+    "name": "Ordeal of Love",
+    "isBoss": false
+  },
+  "2300299": {
+    "name": "Rotar",
+    "isBoss": true
+  },
+  "2300300": {
+    "name": "Robstino",
     "isBoss": true
   },
   "2300301": {
@@ -6411,9 +6866,229 @@
     "name": "Exploding Flame Spirit",
     "isBoss": false
   },
+  "2300317": {
+    "name": "Kromede's Desolation",
+    "isBoss": true
+  },
+  "2300318": {
+    "name": "Heartbound Priest",
+    "isBoss": false
+  },
+  "2300319": {
+    "name": "Heartbound Elite Priest",
+    "isBoss": false
+  },
+  "2300320": {
+    "name": "Heartbound Acolyte Priest",
+    "isBoss": false
+  },
+  "2300321": {
+    "name": "Heartbound Knights Gladiator",
+    "isBoss": false
+  },
+  "2300322": {
+    "name": "Heartbound Knights Templar",
+    "isBoss": false
+  },
+  "2300323": {
+    "name": "Heartbound Knights Elite Soldier",
+    "isBoss": false
+  },
+  "2300324": {
+    "name": "Jealous Fairy",
+    "isBoss": false
+  },
+  "2300325": {
+    "name": "Alluring Dionae",
+    "isBoss": false
+  },
+  "2300326": {
+    "name": "Heartbound Rafflesia",
+    "isBoss": false
+  },
+  "2300327": {
+    "name": "Rose Garden Bee",
+    "isBoss": false
+  },
+  "2300328": {
+    "name": "Rose Garden Bodyguard Warrior",
+    "isBoss": false
+  },
+  "2300329": {
+    "name": "Rose Garden Keeper",
+    "isBoss": false
+  },
+  "2300330": {
+    "name": "Floating Tourmaline",
+    "isBoss": false
+  },
+  "2300331": {
+    "name": "Floating Tourmaline",
+    "isBoss": false
+  },
+  "2300332": {
+    "name": "Alluring Arrow",
+    "isBoss": false
+  },
+  "2300333": {
+    "name": "Ordeal of Love",
+    "isBoss": false
+  },
+  "2300334": {
+    "name": "Rotar",
+    "isBoss": true
+  },
+  "2300335": {
+    "name": "Robstino",
+    "isBoss": true
+  },
+  "2300336": {
+    "name": "Kromede's Desolation",
+    "isBoss": true
+  },
+  "2300337": {
+    "name": "Heartbound Priest",
+    "isBoss": false
+  },
+  "2300338": {
+    "name": "Heartbound Elite Priest",
+    "isBoss": false
+  },
+  "2300339": {
+    "name": "Heartbound Acolyte Priest",
+    "isBoss": false
+  },
+  "2300340": {
+    "name": "Heartbound Knights Gladiator",
+    "isBoss": false
+  },
+  "2300341": {
+    "name": "Heartbound Knights Templar",
+    "isBoss": false
+  },
+  "2300342": {
+    "name": "Heartbound Knights Elite Soldier",
+    "isBoss": false
+  },
+  "2300343": {
+    "name": "Jealous Fairy",
+    "isBoss": false
+  },
+  "2300344": {
+    "name": "Alluring Dionae",
+    "isBoss": false
+  },
+  "2300345": {
+    "name": "Heartbound Rafflesia",
+    "isBoss": false
+  },
+  "2300346": {
+    "name": "Rose Garden Bee",
+    "isBoss": false
+  },
+  "2300347": {
+    "name": "Rose Garden Bodyguard Warrior",
+    "isBoss": false
+  },
+  "2300348": {
+    "name": "Rose Garden Keeper",
+    "isBoss": false
+  },
+  "2300349": {
+    "name": "Floating Tourmaline",
+    "isBoss": false
+  },
+  "2300350": {
+    "name": "Floating Tourmaline",
+    "isBoss": false
+  },
+  "2300351": {
+    "name": "Alluring Arrow",
+    "isBoss": false
+  },
+  "2300352": {
+    "name": "Ordeal of Love",
+    "isBoss": false
+  },
+  "2300353": {
+    "name": "Rotar",
+    "isBoss": true
+  },
+  "2300354": {
+    "name": "Robstino",
+    "isBoss": true
+  },
+  "2300355": {
+    "name": "Kromede's Desolation",
+    "isBoss": true
+  },
+  "2300356": {
+    "name": "Leader Zaif",
+    "isBoss": false
+  },
+  "2300357": {
+    "name": "Leader Zaif",
+    "isBoss": false
+  },
+  "2300358": {
+    "name": "Leader Zaif",
+    "isBoss": false
+  },
+  "2300359": {
+    "name": "Starturtle",
+    "isBoss": false
+  },
+  "2300360": {
+    "name": "Starturtle",
+    "isBoss": false
+  },
+  "2300361": {
+    "name": "Starturtle",
+    "isBoss": false
+  },
+  "2300362": {
+    "name": "Fungie",
+    "isBoss": false
+  },
+  "2300363": {
+    "name": "Fungie",
+    "isBoss": false
+  },
+  "2300364": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2300365": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2300367": {
+    "name": "None",
+    "isBoss": true
+  },
+  "2300368": {
+    "name": "None",
+    "isBoss": true
+  },
   "2300371": {
     "name": "Kromede's Desire",
     "isBoss": true
+  },
+  "2300397": {
+    "name": "Ordeal of Love",
+    "isBoss": false
+  },
+  "2300398": {
+    "name": "Ordeal of Love",
+    "isBoss": false
+  },
+  "2300399": {
+    "name": "Ordeal of Love",
+    "isBoss": false
+  },
+  "2300400": {
+    "name": "Ordeal of Love",
+    "isBoss": false
   },
   "2300401": {
     "name": "Phantasmal Lakshmi",
@@ -6505,6 +7180,22 @@
   },
   "2300426": {
     "name": "Decaying Abyss Insectoid",
+    "isBoss": false
+  },
+  "2300428": {
+    "name": "Heartbound Tender",
+    "isBoss": false
+  },
+  "2300429": {
+    "name": "Heartbound Tender",
+    "isBoss": false
+  },
+  "2300430": {
+    "name": "Heartbound Tender",
+    "isBoss": false
+  },
+  "2300431": {
+    "name": "Heartbound Tender",
     "isBoss": false
   },
   "2300470": {
@@ -6845,7 +7536,8 @@
   },
   "2300919": {
     "name": "Training Scarecrow",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2300920": {
     "name": "Abyssal Moss Crab",
@@ -7429,7 +8121,8 @@
   },
   "2310229": {
     "name": "Training Scarecrow",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2310301": {
     "name": "Lava Eruption",
@@ -7873,7 +8566,8 @@
   },
   "2310919": {
     "name": "Training Scarecrow",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2310920": {
     "name": "Abyssal Moss Crab",
@@ -8249,7 +8943,8 @@
   },
   "2320229": {
     "name": "Training Scarecrow",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2320301": {
     "name": "Lava Eruption",
@@ -8717,7 +9412,8 @@
   },
   "2320919": {
     "name": "Training Scarecrow",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2320920": {
     "name": "Abyssal Moss Crab",
@@ -14209,7 +14905,8 @@
   },
   "2400032": {
     "name": "Training Scarecrow",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2400033": {
     "name": "Voldrik",
@@ -14925,7 +15622,8 @@
   },
   "2400392": {
     "name": "Training Scarecrow",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2400401": {
     "name": "Blades Searcher",
@@ -16581,7 +17279,8 @@
   },
   "2406000": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406001": {
     "name": "Daeva Knight Soul",
@@ -16633,7 +17332,8 @@
   },
   "2406050": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406051": {
     "name": "Ice Claw Mau Brawler",
@@ -16701,7 +17401,8 @@
   },
   "2406100": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406101": {
     "name": "Iralcig Naga Guardian",
@@ -16725,7 +17426,8 @@
   },
   "2406150": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406151": {
     "name": "Fate Daeva Gladiator",
@@ -16749,7 +17451,8 @@
   },
   "2406200": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406201": {
     "name": "Fate Daeva Recruit",
@@ -16789,7 +17492,8 @@
   },
   "2406250": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406251": {
     "name": "Mistmane Mau Brawler",
@@ -16805,11 +17509,13 @@
   },
   "2406300": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2406350": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2500000": {
     "name": "Thieves Watcher",
@@ -17085,11 +17791,13 @@
   },
   "2500075": {
     "name": "Training Scarecrow",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2500076": {
     "name": "Training Scarecrow",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2500077": {
     "name": "Temple Laser",
@@ -18242,6 +18950,18 @@
   "2600095": {
     "name": "Soul-Laden Armor",
     "isBoss": false
+  },
+  "2600096": {
+    "name": "Executor Tamasa",
+    "isBoss": true
+  },
+  "2600097": {
+    "name": "Executor Argo",
+    "isBoss": true
+  },
+  "2600098": {
+    "name": "Executor Kaira",
+    "isBoss": true
   },
   "2600101": {
     "name": "Twilight Kalgolem",
@@ -19546,6 +20266,18 @@
   "2600519": {
     "name": "Ancient Revenant Knight",
     "isBoss": false
+  },
+  "2600520": {
+    "name": "Executioner Dramos",
+    "isBoss": true
+  },
+  "2600521": {
+    "name": "Turncoat Ducal",
+    "isBoss": true
+  },
+  "2600522": {
+    "name": "Ravager Marakha",
+    "isBoss": true
   },
   "2680000": {
     "name": "Odyle Shard Storm",
@@ -21717,7 +22449,8 @@
   },
   "2701376": {
     "name": "Training Scarecrow (Specimen)",
-    "isBoss": true
+    "isBoss": true,
+    "isDummy": true
   },
   "2701377": {
     "name": "Laser",
@@ -24555,6 +25288,10 @@
     "name": "Doom Dark Mage",
     "isBoss": false
   },
+  "2702637": {
+    "name": "Bomb",
+    "isBoss": false
+  },
   "2920029": {
     "name": "Mutated Aullaeu Guardian",
     "isBoss": false
@@ -24653,15 +25390,18 @@
   },
   "2920290": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2920291": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2920292": {
     "name": "Punching Bag",
-    "isBoss": false
+    "isBoss": false,
+    "isDummy": true
   },
   "2920304": {
     "name": "Kaisinel's Minion",
@@ -24807,6 +25547,10 @@
     "name": "Rock",
     "isBoss": false
   },
+  "2920935": {
+    "name": "Nathara's Illusion",
+    "isBoss": true
+  },
   "2920938": {
     "name": "Dratona Egg",
     "isBoss": false
@@ -24839,6 +25583,22 @@
     "name": "Dratona Brute",
     "isBoss": false
   },
+  "2921014": {
+    "name": "Fungie",
+    "isBoss": false
+  },
+  "2921015": {
+    "name": "Small Mushroom-Grown Fungie",
+    "isBoss": false
+  },
+  "2921016": {
+    "name": "Snail-Bearing Fungie",
+    "isBoss": false
+  },
+  "2921031": {
+    "name": "Awakened Alturadon",
+    "isBoss": true
+  },
   "2921044": {
     "name": "Betrayal",
     "isBoss": false
@@ -24867,12 +25627,24 @@
     "name": "Terminator Bargott",
     "isBoss": false
   },
+  "2921153": {
+    "name": "Lingering Scent",
+    "isBoss": false
+  },
   "2921167": {
     "name": "Illusion Cavaliers Priest",
     "isBoss": false
   },
   "2921168": {
     "name": "Illusion Cavaliers Priest",
+    "isBoss": false
+  },
+  "2921222": {
+    "name": "Monster (Specimen)",
+    "isBoss": false
+  },
+  "2921228": {
+    "name": "Alluring Arrow",
     "isBoss": false
   },
   "2980000": {
