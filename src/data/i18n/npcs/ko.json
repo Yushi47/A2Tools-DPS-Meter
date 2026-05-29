@@ -1473,6 +1473,16 @@
     "isBoss": true,
     "isDummy": true
   },
+  "2090816": {
+    "name": "밸런스테스트1",
+    "isBoss": false,
+    "isDummy": true
+  },
+  "2090817": {
+    "name": "밸런스테스트1",
+    "isBoss": false,
+    "isDummy": true
+  },
   "2100000": {
     "name": "반짝이는 칼크겔름",
     "isBoss": false
@@ -5687,15 +5697,24 @@
   },
   "2300000": {
     "name": "가라앉은 에몬",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "2단계",
+    "dungeonId": 610011
   },
   "2300001": {
     "name": "심해의 파이디온",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "2단계",
+    "dungeonId": 610011
   },
   "2300002": {
     "name": "노래하는 엘라이드",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "2단계",
+    "dungeonId": 610011
   },
   "2300003": {
     "name": "심해의 슬라임",
@@ -5747,15 +5766,24 @@
   },
   "2300015": {
     "name": "가라앉은 에몬",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "3단계",
+    "dungeonId": 610012
   },
   "2300016": {
     "name": "심해의 파이디온",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "3단계",
+    "dungeonId": 610012
   },
   "2300017": {
     "name": "노래하는 엘라이드",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "3단계",
+    "dungeonId": 610012
   },
   "2300018": {
     "name": "심해의 슬라임",
@@ -5807,15 +5835,24 @@
   },
   "2300030": {
     "name": "가라앉은 에몬",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "4단계",
+    "dungeonId": 610013
   },
   "2300031": {
     "name": "심해의 파이디온",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "4단계",
+    "dungeonId": 610013
   },
   "2300032": {
     "name": "노래하는 엘라이드",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "4단계",
+    "dungeonId": 610013
   },
   "2300033": {
     "name": "심해의 슬라임",
@@ -6103,7 +6140,10 @@
   },
   "2300104": {
     "name": "강화된 하르콘",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600001
   },
   "2300105": {
     "name": "수몰된 감옥지기",
@@ -6119,7 +6159,10 @@
   },
   "2300108": {
     "name": "방치된 가디오톤",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600001
   },
   "2300109": {
     "name": "레이저",
@@ -6299,15 +6342,24 @@
   },
   "2300153": {
     "name": "관리자 나지움",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 610044
   },
   "2300154": {
     "name": "부화의 나야트만",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 610044
   },
   "2300155": {
     "name": "부패한 두르바티",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 610044
   },
   "2300156": {
     "name": "동굴 파피스",
@@ -6371,19 +6423,31 @@
   },
   "2300171": {
     "name": "완성체 베르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600001
   },
   "2300172": {
     "name": "완성체 베르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600001
   },
   "2300173": {
     "name": "완성체 베르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600001
   },
   "2300174": {
     "name": "완성체 베르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600001
   },
   "2300175": {
     "name": "None",
@@ -6439,15 +6503,24 @@
   },
   "2300188": {
     "name": "깨어난 알투라돈",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600141
   },
   "2300189": {
     "name": "현명한 바움누트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600141
   },
   "2300190": {
     "name": "팽창하는 자이르페",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600141
   },
   "2300191": {
     "name": "푸른 숨의 우르서스",
@@ -6487,7 +6560,10 @@
   },
   "2300200": {
     "name": "깨어난 알투라돈",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600142
   },
   "2300201": {
     "name": "우루구구 병사",
@@ -6511,11 +6587,17 @@
   },
   "2300206": {
     "name": "수호대장 라우르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600012
   },
   "2300207": {
     "name": "심판자 우라훔",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600012
   },
   "2300208": {
     "name": "우루구구 바람술사",
@@ -6559,11 +6641,17 @@
   },
   "2300218": {
     "name": "신성한 아울도르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600012
   },
   "2300219": {
     "name": "현명한 바움누트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600142
   },
   "2300220": {
     "name": "감시형 치유의 토템",
@@ -6608,7 +6696,10 @@
   },
   "2300230": {
     "name": "팽창하는 자이르페",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600142
   },
   "2300231": {
     "name": "연심의 수행 사제",
@@ -6660,15 +6751,24 @@
   },
   "2300243": {
     "name": "깨어난 알투라돈",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600143
   },
   "2300244": {
     "name": "현명한 바움누트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600143
   },
   "2300245": {
     "name": "팽창하는 자이르페",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600143
   },
   "2300246": {
     "name": "장미 정원 벌",
@@ -6724,15 +6824,24 @@
   },
   "2300259": {
     "name": "로타르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "1단계",
+    "dungeonId": 610020
   },
   "2300260": {
     "name": "롭스티노",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "1단계",
+    "dungeonId": 610020
   },
   "2300261": {
     "name": "크로메데의 심연",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "1단계",
+    "dungeonId": 610020
   },
   "2300262": {
     "name": "수면풀",
@@ -6796,11 +6905,17 @@
   },
   "2300299": {
     "name": "로타르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "2단계",
+    "dungeonId": 610021
   },
   "2300300": {
     "name": "롭스티노",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "2단계",
+    "dungeonId": 610021
   },
   "2300301": {
     "name": "용암 분출",
@@ -6840,15 +6955,24 @@
   },
   "2300310": {
     "name": "은빛칼날 로탄",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600022
   },
   "2300311": {
     "name": "붉은불꽃 이그누스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600022
   },
   "2300312": {
     "name": "검은연기 무르트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600022
   },
   "2300313": {
     "name": "화염석 수호상",
@@ -6868,7 +6992,10 @@
   },
   "2300317": {
     "name": "크로메데의 심연",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "2단계",
+    "dungeonId": 610021
   },
   "2300318": {
     "name": "연심의 사제",
@@ -6936,15 +7063,24 @@
   },
   "2300334": {
     "name": "로타르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "3단계",
+    "dungeonId": 610022
   },
   "2300335": {
     "name": "롭스티노",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "3단계",
+    "dungeonId": 610022
   },
   "2300336": {
     "name": "크로메데의 심연",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "3단계",
+    "dungeonId": 610022
   },
   "2300337": {
     "name": "연심의 사제",
@@ -7012,15 +7148,24 @@
   },
   "2300353": {
     "name": "로타르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "4단계",
+    "dungeonId": 610023
   },
   "2300354": {
     "name": "롭스티노",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "4단계",
+    "dungeonId": 610023
   },
   "2300355": {
     "name": "크로메데의 심연",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "4단계",
+    "dungeonId": 610023
   },
   "2300356": {
     "name": "우두머리 자이프",
@@ -7056,23 +7201,38 @@
   },
   "2300364": {
     "name": "None",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "1단계",
+    "dungeonId": 610020
   },
   "2300365": {
     "name": "None",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "2단계",
+    "dungeonId": 610021
   },
   "2300367": {
     "name": "None",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "3단계",
+    "dungeonId": 610022
   },
   "2300368": {
     "name": "None",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "4단계",
+    "dungeonId": 610023
   },
   "2300371": {
     "name": "크로메데의 욕망",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600022
   },
   "2300397": {
     "name": "사랑의 시련",
@@ -7092,7 +7252,10 @@
   },
   "2300401": {
     "name": "몽환의 라크슈미",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600032
   },
   "2300402": {
     "name": "라크슈미의 시녀",
@@ -7100,7 +7263,10 @@
   },
   "2300403": {
     "name": "포식자 사라스와티",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600032
   },
   "2300404": {
     "name": "나가 사제",
@@ -7204,7 +7370,10 @@
   },
   "2300471": {
     "name": "초월한 바카르마",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600032
   },
   "2300500": {
     "name": "드라토나",
@@ -7216,7 +7385,10 @@
   },
   "2300502": {
     "name": "부패한 두르바티 (표본)",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600041
   },
   "2300503": {
     "name": "드라토나 알",
@@ -7236,15 +7408,24 @@
   },
   "2300507": {
     "name": "관리자 나지움",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600041
   },
   "2300508": {
     "name": "부화의 나야트만",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600041
   },
   "2300509": {
     "name": "부패한 두르바티",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600041
   },
   "2300510": {
     "name": "동굴 파피스",
@@ -7268,7 +7449,10 @@
   },
   "2300515": {
     "name": "부패한 두르바티 (표본)",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600041
   },
   "2300516": {
     "name": "부패한 두르바티 (표본)",
@@ -7276,7 +7460,10 @@
   },
   "2300517": {
     "name": "부패한 두르바티 (표본)",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600041
   },
   "2300519": {
     "name": "두르바티의 독액",
@@ -7424,11 +7611,17 @@
   },
   "2300810": {
     "name": "티에",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600072
   },
   "2300811": {
     "name": "타몬",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600072
   },
   "2300812": {
     "name": "바크론",
@@ -7488,19 +7681,31 @@
   },
   "2300907": {
     "name": "빛나는 라이칸 토템",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600092
   },
   "2300908": {
     "name": "번견 쿠하푸",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600092
   },
   "2300909": {
     "name": "강령술사 두안카",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600092
   },
   "2300910": {
     "name": "사나운 뿔 누아쿰",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600092
   },
   "2300911": {
     "name": "변이 슈라크 노역꾼",
@@ -7569,15 +7774,21 @@
   },
   "2301006": {
     "name": "이격의 라후",
-    "isBoss": true
+    "isBoss": true,
+    "category": "성역",
+    "dungeonId": 600082
   },
   "2301007": {
     "name": "심연의 날개 케투",
-    "isBoss": true
+    "isBoss": true,
+    "category": "성역",
+    "dungeonId": 600082
   },
   "2301008": {
     "name": "중앙 심연 융합로",
-    "isBoss": true
+    "isBoss": true,
+    "category": "성역",
+    "dungeonId": 600082
   },
   "2301009": {
     "name": "심연 보조 융합로",
@@ -7601,7 +7812,9 @@
   },
   "2301014": {
     "name": "영겁의 루드라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "성역",
+    "dungeonId": 600082
   },
   "2301015": {
     "name": "None",
@@ -7635,6 +7848,92 @@
     "name": "심연의 드라칸 정찰사관",
     "isBoss": false
   },
+  "2301050": {
+    "name": "변이된 정예 지휘관",
+    "isBoss": false
+  },
+  "2301051": {
+    "name": "변이된 정찰병",
+    "isBoss": false
+  },
+  "2301052": {
+    "name": "성소 발게스트",
+    "isBoss": false
+  },
+  "2301053": {
+    "name": "화염 지대",
+    "isBoss": false
+  },
+  "2301054": {
+    "name": "변이된 치유병",
+    "isBoss": false
+  },
+  "2301055": {
+    "name": "염화의 수호검",
+    "isBoss": true,
+    "category": "성역",
+    "dungeonId": 620021
+  },
+  "2301056": {
+    "name": "무스펠 심연 람푸",
+    "isBoss": false
+  },
+  "2301057": {
+    "name": "무스펠 용암",
+    "isBoss": false
+  },
+  "2301058": {
+    "name": "무스펠 거대한 용암",
+    "isBoss": false
+  },
+  "2301059": {
+    "name": "이스카리엘",
+    "isBoss": true,
+    "category": "성역",
+    "dungeonId": 620021
+  },
+  "2301060": {
+    "name": "칼드릭스",
+    "isBoss": true,
+    "category": "성역",
+    "dungeonId": 620021
+  },
+  "2301061": {
+    "name": "칼드릭스",
+    "isBoss": true,
+    "category": "성역",
+    "dungeonId": 620021
+  },
+  "2301062": {
+    "name": "무스펠 수호상",
+    "isBoss": false
+  },
+  "2301063": {
+    "name": "홍염의 알",
+    "isBoss": false
+  },
+  "2301064": {
+    "name": "무스펠 심연 괴수",
+    "isBoss": false
+  },
+  "2301065": {
+    "name": "메테오",
+    "isBoss": false
+  },
+  "2301066": {
+    "name": "화염",
+    "isBoss": false
+  },
+  "2301067": {
+    "name": "염화의 수호검",
+    "isBoss": true,
+    "category": "성역",
+    "dungeonId": 620021
+  },
+  "2301068": {
+    "name": "무스펠 수호상",
+    "isBoss": false
+  },
   "2301201": {
     "name": "오염된 수라 마도사",
     "isBoss": false
@@ -7661,15 +7960,21 @@
   },
   "2301207": {
     "name": "검은 피 블라트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "성역",
+    "dungeonId": 620011
   },
   "2301208": {
     "name": "중합체 바고트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "성역",
+    "dungeonId": 620011
   },
   "2301209": {
     "name": "포식하는 뉴트라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "성역",
+    "dungeonId": 620011
   },
   "2301210": {
     "name": "독성 가스",
@@ -7697,7 +8002,9 @@
   },
   "2301216": {
     "name": "감시 장치",
-    "isBoss": true
+    "isBoss": true,
+    "category": "성역",
+    "dungeonId": 620011
   },
   "2301217": {
     "name": "변질된 수라 대장",
@@ -7709,15 +8016,24 @@
   },
   "2301301": {
     "name": "고뇌하는 바카르마",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600121
   },
   "2301302": {
     "name": "다차원의 벨티라스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600121
   },
   "2301303": {
     "name": "엄숙한 발칸",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600121
   },
   "2301304": {
     "name": "아공간의 기생 스웜",
@@ -7789,15 +8105,24 @@
   },
   "2301401": {
     "name": "글래스베인",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600131
   },
   "2301402": {
     "name": "나사라크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600131
   },
   "2301403": {
     "name": "나트하라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600131
   },
   "2301404": {
     "name": "환영의 수호성 영혼",
@@ -7849,15 +8174,24 @@
   },
   "2301501": {
     "name": "가라앉은 에몬",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "1단계",
+    "dungeonId": 610010
   },
   "2301502": {
     "name": "심해의 파이디온",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "1단계",
+    "dungeonId": 610010
   },
   "2301503": {
     "name": "노래하는 엘라이드",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "1단계",
+    "dungeonId": 610010
   },
   "2301504": {
     "name": "심해의 슬라임",
@@ -7921,7 +8255,10 @@
   },
   "2310104": {
     "name": "강화된 하르콘",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600002
   },
   "2310106": {
     "name": "크라오 봉인 수호자",
@@ -7933,7 +8270,10 @@
   },
   "2310108": {
     "name": "방치된 가디오톤",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600002
   },
   "2310109": {
     "name": "응축된 크라오",
@@ -7953,19 +8293,31 @@
   },
   "2310171": {
     "name": "완성체 베르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600002
   },
   "2310172": {
     "name": "완성체 베르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600002
   },
   "2310173": {
     "name": "완성체 베르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600002
   },
   "2310174": {
     "name": "완성체 베르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600002
   },
   "2310175": {
     "name": "None",
@@ -8029,11 +8381,17 @@
   },
   "2310206": {
     "name": "수호대장 라우르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600011
   },
   "2310207": {
     "name": "심판자 우라훔",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600011
   },
   "2310208": {
     "name": "우루구구 바람술사",
@@ -8077,7 +8435,10 @@
   },
   "2310218": {
     "name": "신성한 아울도르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600011
   },
   "2310219": {
     "name": "아울도르 성소 문지기",
@@ -8162,15 +8523,24 @@
   },
   "2310310": {
     "name": "은빛칼날 로탄",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600021
   },
   "2310311": {
     "name": "붉은불꽃 이그누스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600021
   },
   "2310312": {
     "name": "검은연기 무르트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600021
   },
   "2310313": {
     "name": "화염석 수호상",
@@ -8190,11 +8560,17 @@
   },
   "2310371": {
     "name": "크로메데의 욕망",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600021
   },
   "2310401": {
     "name": "몽환의 라크슈미",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600031
   },
   "2310402": {
     "name": "라크슈미의 시녀",
@@ -8202,7 +8578,10 @@
   },
   "2310403": {
     "name": "포식자 사라스와티",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600031
   },
   "2310404": {
     "name": "나가 사제",
@@ -8278,7 +8657,10 @@
   },
   "2310471": {
     "name": "초월한 바카르마",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600031
   },
   "2310500": {
     "name": "드라토나",
@@ -8290,7 +8672,10 @@
   },
   "2310502": {
     "name": "부패한 두르바티 (표본)",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600042
   },
   "2310503": {
     "name": "드라토나 알",
@@ -8310,15 +8695,24 @@
   },
   "2310507": {
     "name": "관리자 나지움",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600042
   },
   "2310508": {
     "name": "부화의 나야트만",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600042
   },
   "2310509": {
     "name": "부패한 두르바티",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600042
   },
   "2310510": {
     "name": "동굴 파피스",
@@ -8342,7 +8736,10 @@
   },
   "2310515": {
     "name": "부패한 두르바티 (표본)",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600042
   },
   "2310516": {
     "name": "부패한 두르바티 (표본)",
@@ -8350,7 +8747,10 @@
   },
   "2310517": {
     "name": "부패한 두르바티 (표본)",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600042
   },
   "2310519": {
     "name": "두르바티의 독액",
@@ -8462,11 +8862,17 @@
   },
   "2310810": {
     "name": "티에",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600071
   },
   "2310811": {
     "name": "타몬",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600071
   },
   "2310812": {
     "name": "바크론",
@@ -8518,19 +8924,31 @@
   },
   "2310907": {
     "name": "빛나는 라이칸 토템",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600091
   },
   "2310908": {
     "name": "번견 쿠하푸",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600091
   },
   "2310909": {
     "name": "강령술사 두안카",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600091
   },
   "2310910": {
     "name": "사나운 뿔 누아쿰",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "탐험",
+    "dungeonId": 600091
   },
   "2310911": {
     "name": "변이 슈라크 노역꾼",
@@ -8579,15 +8997,24 @@
   },
   "2311301": {
     "name": "고뇌하는 바카르마",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600122
   },
   "2311302": {
     "name": "다차원의 벨티라스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600122
   },
   "2311303": {
     "name": "엄숙한 발칸",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600122
   },
   "2311304": {
     "name": "아공간의 기생 스웜",
@@ -8663,15 +9090,24 @@
   },
   "2311401": {
     "name": "글래스베인",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600132
   },
   "2311402": {
     "name": "나사라크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600132
   },
   "2311403": {
     "name": "나트하라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복",
+    "dungeonId": 600132
   },
   "2311404": {
     "name": "환영의 수호성 영혼",
@@ -8743,7 +9179,10 @@
   },
   "2320104": {
     "name": "강화된 하르콘",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600004
   },
   "2320106": {
     "name": "크라오 봉인 수호자",
@@ -8755,7 +9194,10 @@
   },
   "2320108": {
     "name": "방치된 가디오톤",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600004
   },
   "2320111": {
     "name": "응축된 크라오",
@@ -8779,19 +9221,31 @@
   },
   "2320171": {
     "name": "완성체 베르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600004
   },
   "2320172": {
     "name": "완성체 베르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600004
   },
   "2320173": {
     "name": "완성체 베르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600004
   },
   "2320174": {
     "name": "완성체 베르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600004
   },
   "2320175": {
     "name": "None",
@@ -8855,11 +9309,17 @@
   },
   "2320206": {
     "name": "수호대장 라우르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600013
   },
   "2320207": {
     "name": "심판자 우라훔",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600013
   },
   "2320208": {
     "name": "우루구구 바람술사",
@@ -8903,7 +9363,10 @@
   },
   "2320218": {
     "name": "신성한 아울도르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600013
   },
   "2320220": {
     "name": "감시형 치유의 토템",
@@ -8984,15 +9447,24 @@
   },
   "2320310": {
     "name": "은빛칼날 로탄",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600023
   },
   "2320311": {
     "name": "붉은불꽃 이그누스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600023
   },
   "2320312": {
     "name": "검은연기 무르트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600023
   },
   "2320313": {
     "name": "화염석 수호상",
@@ -9012,11 +9484,17 @@
   },
   "2320371": {
     "name": "크로메데의 욕망",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600023
   },
   "2320401": {
     "name": "몽환의 라크슈미",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600033
   },
   "2320402": {
     "name": "라크슈미의 시녀",
@@ -9024,7 +9502,10 @@
   },
   "2320403": {
     "name": "포식자 사라스와티",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600033
   },
   "2320404": {
     "name": "나가 사제",
@@ -9112,7 +9593,10 @@
   },
   "2320471": {
     "name": "초월한 바카르마",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600033
   },
   "2320500": {
     "name": "드라토나",
@@ -9196,7 +9680,10 @@
   },
   "2320601": {
     "name": "아티엘",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "1단계",
+    "dungeonId": 600053
   },
   "2320602": {
     "name": "데우스 연구기지 경비병",
@@ -9252,11 +9739,17 @@
   },
   "2320615": {
     "name": "나즈문",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "1단계",
+    "dungeonId": 600053
   },
   "2320616": {
     "name": "겔코스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "1단계",
+    "dungeonId": 600053
   },
   "2320617": {
     "name": "데우스 연구기지 균열",
@@ -9300,11 +9793,17 @@
   },
   "2320810": {
     "name": "티에",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600073
   },
   "2320811": {
     "name": "타몬",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600073
   },
   "2320812": {
     "name": "바크론",
@@ -9364,19 +9863,31 @@
   },
   "2320907": {
     "name": "빛나는 라이칸 토템",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600093
   },
   "2320908": {
     "name": "번견 쿠하푸",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600093
   },
   "2320909": {
     "name": "강령술사 두안카",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600093
   },
   "2320910": {
     "name": "사나운 뿔 누아쿰",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600093
   },
   "2320911": {
     "name": "변이 슈라크 노역꾼",
@@ -9429,15 +9940,24 @@
   },
   "2321301": {
     "name": "고뇌하는 바카르마",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600123
   },
   "2321302": {
     "name": "다차원의 벨티라스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600123
   },
   "2321303": {
     "name": "엄숙한 발칸",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600123
   },
   "2321304": {
     "name": "아공간의 기생 스웜",
@@ -9513,15 +10033,24 @@
   },
   "2321401": {
     "name": "글래스베인",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600133
   },
   "2321402": {
     "name": "나사라크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600133
   },
   "2321403": {
     "name": "나트하라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "정복[어려움]",
+    "dungeonId": 600133
   },
   "2321404": {
     "name": "환영의 수호성 영혼",
@@ -10745,15 +11274,24 @@
   },
   "2330707": {
     "name": "거짓의 실리아토르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "1단계",
+    "dungeonId": 600063
   },
   "2330708": {
     "name": "고통의 루탈리스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "1단계",
+    "dungeonId": 600063
   },
   "2330709": {
     "name": "공허의 탈리스라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "1단계",
+    "dungeonId": 600063
   },
   "2330710": {
     "name": "회전 자기장",
@@ -11185,7 +11723,10 @@
   },
   "2340601": {
     "name": "아티엘",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "2단계",
+    "dungeonId": 600055
   },
   "2340602": {
     "name": "데우스 연구기지 경비병",
@@ -11241,11 +11782,17 @@
   },
   "2340615": {
     "name": "나즈문",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "2단계",
+    "dungeonId": 600055
   },
   "2340616": {
     "name": "겔코스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "2단계",
+    "dungeonId": 600055
   },
   "2340617": {
     "name": "데우스 연구기지 균열",
@@ -11437,7 +11984,10 @@
   },
   "2343601": {
     "name": "아티엘",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "3단계",
+    "dungeonId": 600058
   },
   "2343602": {
     "name": "데우스 연구기지 경비병",
@@ -11493,11 +12043,17 @@
   },
   "2343615": {
     "name": "나즈문",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "3단계",
+    "dungeonId": 600058
   },
   "2343616": {
     "name": "겔코스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "3단계",
+    "dungeonId": 600058
   },
   "2343617": {
     "name": "데우스 연구기지 균열",
@@ -11741,7 +12297,10 @@
   },
   "2346601": {
     "name": "아티엘",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "4단계",
+    "dungeonId": 610052
   },
   "2346602": {
     "name": "데우스 연구기지 경비병",
@@ -11797,11 +12356,17 @@
   },
   "2346615": {
     "name": "나즈문",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "4단계",
+    "dungeonId": 610052
   },
   "2346616": {
     "name": "겔코스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "4단계",
+    "dungeonId": 610052
   },
   "2346617": {
     "name": "데우스 연구기지 균열",
@@ -11909,15 +12474,24 @@
   },
   "2350707": {
     "name": "거짓의 실리아토르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "3단계",
+    "dungeonId": 600065
   },
   "2350708": {
     "name": "고통의 루탈리스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "3단계",
+    "dungeonId": 600065
   },
   "2350709": {
     "name": "공허의 탈리스라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "3단계",
+    "dungeonId": 600065
   },
   "2350710": {
     "name": "회전 자기장",
@@ -12037,15 +12611,24 @@
   },
   "2353707": {
     "name": "거짓의 실리아토르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "5단계",
+    "dungeonId": 600068
   },
   "2353708": {
     "name": "고통의 루탈리스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "5단계",
+    "dungeonId": 600068
   },
   "2353709": {
     "name": "공허의 탈리스라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "5단계",
+    "dungeonId": 600068
   },
   "2353710": {
     "name": "회전 자기장",
@@ -12169,15 +12752,24 @@
   },
   "2356707": {
     "name": "거짓의 실리아토르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "2단계",
+    "dungeonId": 13
   },
   "2356708": {
     "name": "고통의 루탈리스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "2단계",
+    "dungeonId": 13
   },
   "2356709": {
     "name": "공허의 탈리스라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "초월",
+    "tier": "2단계",
+    "dungeonId": 13
   },
   "2356710": {
     "name": "회전 자기장",
@@ -18444,7 +19036,7 @@
     "isBoss": true
   },
   "2590119": {
-    "name": "드라칸 척후병",
+    "name": "드라칸 클레릭 사념체",
     "isBoss": false
   },
   "2590120": {
@@ -18620,7 +19212,7 @@
     "isBoss": false
   },
   "2600008": {
-    "name": "어비스 수라 전사",
+    "name": "어비스 타락한 전사",
     "isBoss": false
   },
   "2600009": {
@@ -18692,7 +19284,7 @@
     "isBoss": false
   },
   "2600028": {
-    "name": "우거진 유황 어그린트",
+    "name": "앙상한 유황 어그린트",
     "isBoss": false
   },
   "2600029": {
@@ -18776,7 +19368,7 @@
     "isBoss": false
   },
   "2600050": {
-    "name": "어비스 순수한 정령",
+    "name": "어비스 제르피",
     "isBoss": false
   },
   "2600051": {
@@ -19836,23 +20428,23 @@
     "isBoss": false
   },
   "2600403": {
-    "name": "어비스 낡은 칼날 로탄",
+    "name": "어비스 은빛칼날 로탄",
     "isBoss": false
   },
   "2600404": {
-    "name": "어비스 크랄 수색 칼니프",
+    "name": "어비스 수색대 칼니프",
     "isBoss": false
   },
   "2600405": {
-    "name": "어비스 드라칸 수색 정찰병",
+    "name": "어비스 드라칸 정찰병",
     "isBoss": false
   },
   "2600406": {
-    "name": "어비스 크랄 수색 궁수",
+    "name": "어비스 크랄 궁수",
     "isBoss": false
   },
   "2600407": {
-    "name": "어비스 드라칸 수색 공병",
+    "name": "어비스 드라칸 수색병",
     "isBoss": false
   },
   "2600408": {
@@ -19872,23 +20464,23 @@
     "isBoss": false
   },
   "2600413": {
-    "name": "어비스 낡은 칼날 로탄",
+    "name": "어비스 은빛칼날 로탄",
     "isBoss": false
   },
   "2600414": {
-    "name": "어비스 크랄 수색 칼니프",
+    "name": "어비스 수색대 칼니프",
     "isBoss": false
   },
   "2600415": {
-    "name": "어비스 드라칸 수색 정찰병",
+    "name": "어비스 드라칸 정찰병",
     "isBoss": false
   },
   "2600416": {
-    "name": "어비스 크랄 수색 궁수",
+    "name": "어비스 크랄 궁수",
     "isBoss": false
   },
   "2600417": {
-    "name": "어비스 드라칸 수색 공병",
+    "name": "어비스 드라칸 수색병",
     "isBoss": false
   },
   "2600418": {
@@ -19920,15 +20512,15 @@
     "isBoss": false
   },
   "2600426": {
-    "name": "어비스 늪지 괴물",
+    "name": "어비스 늪지 타르곤",
     "isBoss": false
   },
   "2600427": {
-    "name": "어비스 유황 정찰수",
+    "name": "유황 어그린트",
     "isBoss": false
   },
   "2600428": {
-    "name": "어비스 유황 탐욕수",
+    "name": "앙상한 유황 어그린트",
     "isBoss": false
   },
   "2600429": {
@@ -19944,7 +20536,7 @@
     "isBoss": false
   },
   "2600432": {
-    "name": "어비스 드라나 거대 변이체",
+    "name": "어비스 거대 변이체",
     "isBoss": false
   },
   "2600433": {
@@ -19960,15 +20552,15 @@
     "isBoss": false
   },
   "2600438": {
-    "name": "변이된 고대 카라스 전사",
+    "name": "심연의 고대 전사",
     "isBoss": false
   },
   "2600439": {
-    "name": "변이된 카라스 정예 전사",
+    "name": "심연의 고대 파괴자",
     "isBoss": false
   },
   "2600440": {
-    "name": "완전히 변이된 고대 카라스",
+    "name": "심연의 변이된 고대 파괴자",
     "isBoss": false
   },
   "2600441": {
@@ -20004,15 +20596,15 @@
     "isBoss": false
   },
   "2600449": {
-    "name": "어비스 고약한 라플레시아",
+    "name": "어비스 고약한 네펜데스",
     "isBoss": false
   },
   "2600450": {
-    "name": "어비스 순수한 정령",
+    "name": "어비스 제르피",
     "isBoss": false
   },
   "2600451": {
-    "name": "어비스 오디움 영혼석",
+    "name": "어비스 푸른 칼크겔름",
     "isBoss": false
   },
   "2600452": {
@@ -20024,7 +20616,7 @@
     "isBoss": false
   },
   "2600454": {
-    "name": "숲의 수호자 궁수",
+    "name": "분노한 숲의 수호자",
     "isBoss": false
   },
   "2600455": {
@@ -20040,35 +20632,35 @@
     "isBoss": false
   },
   "2600458": {
-    "name": "어비스 드라나 거대 변이체",
+    "name": "어비스 드라나 변이체",
     "isBoss": false
   },
   "2600459": {
-    "name": "어비스 드라칸 수색 정찰병",
+    "name": "어비스 드라칸 정찰병",
     "isBoss": false
   },
   "2600460": {
-    "name": "어비스 드라칸 수색 공병",
+    "name": "어비스 드라칸 수색병",
     "isBoss": false
   },
   "2600461": {
-    "name": "어비스 코라돈",
+    "name": "어비스 영원의 코라돈",
     "isBoss": false
   },
   "2600462": {
-    "name": "어비스 드라칸 수색 전투병",
+    "name": "어비스 드라칸 투사",
     "isBoss": false
   },
   "2600463": {
-    "name": "영혼 없는 파괴의 아칸 검성",
+    "name": "영혼 없는 데바 검성",
     "isBoss": false
   },
   "2600464": {
-    "name": "영혼없는 노르니르",
+    "name": "심연의 고대 원혼",
     "isBoss": false
   },
   "2600465": {
-    "name": "영혼 없는 파괴의 아칸 정예병",
+    "name": "영혼 없는 데바 정예병",
     "isBoss": false
   },
   "2600466": {
@@ -20084,11 +20676,11 @@
     "isBoss": false
   },
   "2600470": {
-    "name": "어비스 영혼석",
+    "name": "어비스 칼크겔름",
     "isBoss": false
   },
   "2600471": {
-    "name": "어비스 뿌리 정찰수",
+    "name": "어비스 어그린트",
     "isBoss": false
   },
   "2600472": {
@@ -20096,7 +20688,7 @@
     "isBoss": false
   },
   "2600473": {
-    "name": "영혼없는 노르니르",
+    "name": "심연의 고대 원혼",
     "isBoss": false
   },
   "2600474": {
@@ -20108,7 +20700,7 @@
     "isBoss": false
   },
   "2600476": {
-    "name": "영혼없는 노르니르",
+    "name": "심연의 고대 원혼",
     "isBoss": false
   },
   "2600477": {
@@ -20128,23 +20720,23 @@
     "isBoss": true
   },
   "2600481": {
-    "name": "어비스 낡은 칼날 로탄",
+    "name": "어비스 은빛칼날 로탄",
     "isBoss": false
   },
   "2600482": {
-    "name": "어비스 크랄 수색 칼니프",
+    "name": "어비스 수색대 칼니프",
     "isBoss": false
   },
   "2600483": {
-    "name": "어비스 크랄 수색 칼니프",
+    "name": "어비스 수색대 칼니프",
     "isBoss": false
   },
   "2600484": {
-    "name": "어비스 드라칸 수색 정찰병",
+    "name": "어비스 드라칸 정찰병",
     "isBoss": false
   },
   "2600485": {
-    "name": "어비스 크랄 수색 궁수",
+    "name": "어비스 크랄 궁수",
     "isBoss": false
   },
   "2600486": {
@@ -20164,23 +20756,23 @@
     "isBoss": false
   },
   "2600491": {
-    "name": "어비스 낡은 칼날 로탄",
+    "name": "어비스 은빛칼날 로탄",
     "isBoss": false
   },
   "2600492": {
-    "name": "어비스 크랄 수색 칼니프",
+    "name": "어비스 수색대 칼니프",
     "isBoss": false
   },
   "2600493": {
-    "name": "어비스 크랄 수색 칼니프",
+    "name": "어비스 수색대 칼니프",
     "isBoss": false
   },
   "2600494": {
-    "name": "어비스 드라칸 수색 정찰병",
+    "name": "어비스 드라칸 정찰병",
     "isBoss": false
   },
   "2600495": {
-    "name": "어비스 크랄 수색 궁수",
+    "name": "어비스 크랄 궁수",
     "isBoss": false
   },
   "2600496": {
@@ -20204,11 +20796,11 @@
     "isBoss": false
   },
   "2600502": {
-    "name": "어비스 늪지 괴물",
+    "name": "어비스 늪지 타르곤",
     "isBoss": false
   },
   "2600503": {
-    "name": "어비스 유황 탐욕수",
+    "name": "앙상한 유황 어그린트",
     "isBoss": false
   },
   "2600504": {
@@ -20224,23 +20816,23 @@
     "isBoss": false
   },
   "2600507": {
-    "name": "변이된 카라스 정예 전사",
+    "name": "심연의 고대 파괴자",
     "isBoss": false
   },
   "2600508": {
-    "name": "변이된 카라스 정예 전사",
+    "name": "심연의 고대 파괴자",
     "isBoss": false
   },
   "2600511": {
-    "name": "어비스 고약한 라플레시아",
+    "name": "어비스 고약한 네펜데스",
     "isBoss": false
   },
   "2600512": {
-    "name": "어비스 순수한 정령",
+    "name": "어비스 제르피",
     "isBoss": false
   },
   "2600513": {
-    "name": "어비스 오디움 영혼석",
+    "name": "어비스 푸른 칼크겔름",
     "isBoss": false
   },
   "2600514": {
@@ -20278,6 +20870,174 @@
   "2600522": {
     "name": "파멸자 마라카",
     "isBoss": true
+  },
+  "2600531": {
+    "name": "앙상한 유황 어그린트",
+    "isBoss": false
+  },
+  "2600532": {
+    "name": "어비스 늪지 타르곤",
+    "isBoss": false
+  },
+  "2600533": {
+    "name": "어비스 드라코뉴트 저격병",
+    "isBoss": false
+  },
+  "2600534": {
+    "name": "어비스 드라나 변이체",
+    "isBoss": false
+  },
+  "2600535": {
+    "name": "어비스 유황 스카마",
+    "isBoss": false
+  },
+  "2600536": {
+    "name": "어비스 나가 암흑 법사",
+    "isBoss": false
+  },
+  "2600537": {
+    "name": "어비스 나가란트 투사",
+    "isBoss": false
+  },
+  "2600538": {
+    "name": "어비스 변이 뉴트",
+    "isBoss": false
+  },
+  "2600539": {
+    "name": "어비스 유황 슬라임",
+    "isBoss": false
+  },
+  "2600540": {
+    "name": "어비스 드라나 변이체",
+    "isBoss": false
+  },
+  "2600541": {
+    "name": "어비스 거대 변이체",
+    "isBoss": false
+  },
+  "2600551": {
+    "name": "앙상한 유황 어그린트",
+    "isBoss": false
+  },
+  "2600552": {
+    "name": "어비스 늪지 타르곤",
+    "isBoss": false
+  },
+  "2600553": {
+    "name": "어비스 드라코뉴트 저격병",
+    "isBoss": false
+  },
+  "2600554": {
+    "name": "어비스 드라나 변이체",
+    "isBoss": false
+  },
+  "2600555": {
+    "name": "어비스 유황 스카마",
+    "isBoss": false
+  },
+  "2600556": {
+    "name": "어비스 나가 암흑 법사",
+    "isBoss": false
+  },
+  "2600557": {
+    "name": "어비스 나가란트 투사",
+    "isBoss": false
+  },
+  "2600558": {
+    "name": "어비스 변이 뉴트",
+    "isBoss": false
+  },
+  "2600559": {
+    "name": "어비스 유황 슬라임",
+    "isBoss": false
+  },
+  "2600560": {
+    "name": "어비스 드라나 변이체",
+    "isBoss": false
+  },
+  "2600561": {
+    "name": "어비스 거대 변이체",
+    "isBoss": false
+  },
+  "2600571": {
+    "name": "어비스 어그린트",
+    "isBoss": false
+  },
+  "2600572": {
+    "name": "영혼 없는 데바 검성",
+    "isBoss": false
+  },
+  "2600573": {
+    "name": "영혼 없는 데바 정예병",
+    "isBoss": false
+  },
+  "2600574": {
+    "name": "어비스 제르피",
+    "isBoss": false
+  },
+  "2600575": {
+    "name": "어비스 푸른 칼크겔름",
+    "isBoss": false
+  },
+  "2600576": {
+    "name": "어비스 레피스마",
+    "isBoss": false
+  },
+  "2600577": {
+    "name": "심연의 고대 원혼",
+    "isBoss": false
+  },
+  "2600578": {
+    "name": "어비스 오드 변이 벌레",
+    "isBoss": false
+  },
+  "2600579": {
+    "name": "길들인 자이프",
+    "isBoss": false
+  },
+  "2600580": {
+    "name": "바르그 광전사",
+    "isBoss": false
+  },
+  "2600581": {
+    "name": "어비스 어그린트",
+    "isBoss": false
+  },
+  "2600582": {
+    "name": "영혼 없는 데바 검성",
+    "isBoss": false
+  },
+  "2600583": {
+    "name": "영혼 없는 데바 정예병",
+    "isBoss": false
+  },
+  "2600584": {
+    "name": "어비스 제르피",
+    "isBoss": false
+  },
+  "2600585": {
+    "name": "어비스 푸른 칼크겔름",
+    "isBoss": false
+  },
+  "2600586": {
+    "name": "어비스 레피스마",
+    "isBoss": false
+  },
+  "2600587": {
+    "name": "심연의 고대 원혼",
+    "isBoss": false
+  },
+  "2600588": {
+    "name": "어비스 오드 변이 벌레",
+    "isBoss": false
+  },
+  "2600589": {
+    "name": "길들인 자이프",
+    "isBoss": false
+  },
+  "2600590": {
+    "name": "바르그 광전사",
+    "isBoss": false
   },
   "2680000": {
     "name": "오드 샤드 폭풍",
@@ -22461,15 +23221,15 @@
     "isBoss": true
   },
   "2701379": {
-    "name": "생명의 샘 레파르단 전사",
+    "name": "수상한 샘 정찰꾼",
     "isBoss": false
   },
   "2701380": {
-    "name": "생명의 샘 레파르단 격투가",
+    "name": "수상한 샘 징벌자",
     "isBoss": false
   },
   "2701381": {
-    "name": "생명의 샘 레파르단 마법사",
+    "name": "수상한 샘 추격자",
     "isBoss": false
   },
   "2701383": {
@@ -22925,11 +23685,11 @@
     "isBoss": true
   },
   "2701526": {
-    "name": "생명의 샘 레파르단 전사",
+    "name": "수상한 샘 정찰꾼",
     "isBoss": false
   },
   "2701527": {
-    "name": "생명의 샘 레파르단 격투가",
+    "name": "수상한 샘 징벌자",
     "isBoss": false
   },
   "2701528": {
@@ -23798,7 +24558,10 @@
   },
   "2701753": {
     "name": "분열체 아포노스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "쉬움",
+    "dungeonId": 910011
   },
   "2701756": {
     "name": "제단 수호병",
@@ -23854,7 +24617,10 @@
   },
   "2701774": {
     "name": "깃털포화 두두리",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "극한",
+    "dungeonId": 910034
   },
   "2701775": {
     "name": "광폭한 경비대장",
@@ -23902,11 +24668,17 @@
   },
   "2701788": {
     "name": "눈 뜬 맹조 도도리",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "극한",
+    "dungeonId": 910034
   },
   "2701789": {
     "name": "분열체 아포노스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "보통",
+    "dungeonId": 910012
   },
   "2701796": {
     "name": "왜곡된 수호병",
@@ -23942,7 +24714,10 @@
   },
   "2701807": {
     "name": "분열체 아포노스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "어려움",
+    "dungeonId": 910013
   },
   "2701814": {
     "name": "악몽의 수호병",
@@ -23994,11 +24769,17 @@
   },
   "2701829": {
     "name": "깃털포화 두두리",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "어려움",
+    "dungeonId": 910033
   },
   "2701830": {
     "name": "눈 뜬 맹조 도도리",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "어려움",
+    "dungeonId": 910033
   },
   "2701831": {
     "name": "증오의 경비대장",
@@ -24042,11 +24823,17 @@
   },
   "2701841": {
     "name": "깃털포화 두두리",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "보통",
+    "dungeonId": 910032
   },
   "2701842": {
     "name": "눈 뜬 맹조 도도리",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "보통",
+    "dungeonId": 910032
   },
   "2701843": {
     "name": "강화된 경비대장",
@@ -24090,11 +24877,17 @@
   },
   "2701853": {
     "name": "깃털포화 두두리",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "쉬움",
+    "dungeonId": 910031
   },
   "2701854": {
     "name": "눈 뜬 맹조 도도리",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "쉬움",
+    "dungeonId": 910031
   },
   "2701855": {
     "name": "성소 경비대장",
@@ -24142,7 +24935,10 @@
   },
   "2701866": {
     "name": "분열체 아포노스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "극한",
+    "dungeonId": 910014
   },
   "2701873": {
     "name": "광폭한 수호병",
@@ -24210,7 +25006,10 @@
   },
   "2701892": {
     "name": "클라우디아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "쉬움",
+    "dungeonId": 910041
   },
   "2701899": {
     "name": "보관소 피노 일꾼",
@@ -24250,7 +25049,10 @@
   },
   "2701913": {
     "name": "클라우디아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "보통",
+    "dungeonId": 910042
   },
   "2701920": {
     "name": "돌연한 피노",
@@ -24278,7 +25080,10 @@
   },
   "2701930": {
     "name": "클라우디아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "어려움",
+    "dungeonId": 910043
   },
   "2701937": {
     "name": "궤적의 피노",
@@ -24306,7 +25111,10 @@
   },
   "2701947": {
     "name": "클라우디아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "극한",
+    "dungeonId": 910044
   },
   "2701954": {
     "name": "광폭한 피노 일꾼",
@@ -24334,7 +25142,10 @@
   },
   "2701964": {
     "name": "메녹스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "쉬움",
+    "dungeonId": 910021
   },
   "2701965": {
     "name": "은신처 망령 투사",
@@ -24414,7 +25225,10 @@
   },
   "2701990": {
     "name": "메녹스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "보통",
+    "dungeonId": 910022
   },
   "2701991": {
     "name": "각성한 망령 투사",
@@ -24458,7 +25272,10 @@
   },
   "2702001": {
     "name": "메녹스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "어려움",
+    "dungeonId": 910023
   },
   "2702002": {
     "name": "폭군의 망령 투사",
@@ -24502,7 +25319,10 @@
   },
   "2702012": {
     "name": "메녹스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "극한",
+    "dungeonId": 910024
   },
   "2702013": {
     "name": "광폭한 언데드 교관",
@@ -24922,7 +25742,10 @@
   },
   "2702274": {
     "name": "메녹스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "절망",
+    "dungeonId": 910025
   },
   "2702275": {
     "name": "절망의 망령 투사",
@@ -24970,7 +25793,10 @@
   },
   "2702286": {
     "name": "메녹스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "지옥",
+    "dungeonId": 910026
   },
   "2702287": {
     "name": "파멸의 망령 투사",
@@ -25018,7 +25844,10 @@
   },
   "2702298": {
     "name": "클라우디아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "절망",
+    "dungeonId": 910045
   },
   "2702299": {
     "name": "절망의 피노 일꾼",
@@ -25054,7 +25883,10 @@
   },
   "2702309": {
     "name": "클라우디아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "지옥",
+    "dungeonId": 910046
   },
   "2702310": {
     "name": "파멸의 피노 일꾼",
@@ -25090,11 +25922,17 @@
   },
   "2702372": {
     "name": "깃털포화 두두리",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "절망",
+    "dungeonId": 910035
   },
   "2702373": {
     "name": "눈 뜬 맹조 도도리",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "절망",
+    "dungeonId": 910035
   },
   "2702374": {
     "name": "절망의 경비대장",
@@ -25138,11 +25976,17 @@
   },
   "2702384": {
     "name": "깃털포화 두두리",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "지옥",
+    "dungeonId": 910036
   },
   "2702385": {
     "name": "눈 뜬 맹조 도도리",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "지옥",
+    "dungeonId": 910036
   },
   "2702386": {
     "name": "파멸의 경비대장",
@@ -25186,7 +26030,10 @@
   },
   "2702396": {
     "name": "분열체 아포노스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "절망",
+    "dungeonId": 910015
   },
   "2702397": {
     "name": "절망의 수호병",
@@ -25238,7 +26085,10 @@
   },
   "2702409": {
     "name": "분열체 아포노스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "각성전",
+    "tier": "지옥",
+    "dungeonId": 910016
   },
   "2702410": {
     "name": "파멸의 수호병",
@@ -25647,1004 +26497,1758 @@
     "name": "매혹의 화살",
     "isBoss": false
   },
+  "2921274": {
+    "name": "무스펠 수호상",
+    "isBoss": false
+  },
   "2980000": {
     "name": "대신관의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980001": {
     "name": "대신관의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980002": {
     "name": "대신관의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980003": {
     "name": "대신관의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980004": {
     "name": "대신관의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980005": {
     "name": "대신관의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980006": {
     "name": "대신관의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980007": {
     "name": "대신관의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980008": {
     "name": "대신관의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980009": {
     "name": "대신관의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980010": {
     "name": "봉인된 수라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980011": {
     "name": "봉인된 수라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980012": {
     "name": "봉인된 수라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980013": {
     "name": "봉인된 수라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980014": {
     "name": "봉인된 수라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980015": {
     "name": "봉인된 수라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980016": {
     "name": "봉인된 수라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980017": {
     "name": "봉인된 수라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980018": {
     "name": "봉인된 수라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980019": {
     "name": "봉인된 수라",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980020": {
     "name": "계약파괴자 가르투아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980021": {
     "name": "계약파괴자 가르투아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980022": {
     "name": "계약파괴자 가르투아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980023": {
     "name": "계약파괴자 가르투아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980024": {
     "name": "계약파괴자 가르투아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980025": {
     "name": "계약파괴자 가르투아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980026": {
     "name": "계약파괴자 가르투아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980027": {
     "name": "계약파괴자 가르투아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980028": {
     "name": "계약파괴자 가르투아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980029": {
     "name": "계약파괴자 가르투아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980040": {
     "name": "문지기 피노피",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980041": {
     "name": "문지기 피노피",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980042": {
     "name": "문지기 피노피",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980043": {
     "name": "문지기 피노피",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980044": {
     "name": "문지기 피노피",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980045": {
     "name": "문지기 피노피",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980046": {
     "name": "문지기 피노피",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980047": {
     "name": "문지기 피노피",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980048": {
     "name": "문지기 피노피",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980049": {
     "name": "문지기 피노피",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980050": {
     "name": "뿌리의 괴조 아울트로스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980051": {
     "name": "뿌리의 괴조 아울트로스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980052": {
     "name": "뿌리의 괴조 아울트로스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980053": {
     "name": "뿌리의 괴조 아울트로스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980054": {
     "name": "뿌리의 괴조 아울트로스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980055": {
     "name": "뿌리의 괴조 아울트로스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980056": {
     "name": "뿌리의 괴조 아울트로스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980057": {
     "name": "뿌리의 괴조 아울트로스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980058": {
     "name": "뿌리의 괴조 아울트로스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980059": {
     "name": "뿌리의 괴조 아울트로스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980060": {
     "name": "아울라무스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980061": {
     "name": "아울라무스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980062": {
     "name": "아울라무스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980063": {
     "name": "아울라무스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980064": {
     "name": "아울라무스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980065": {
     "name": "아울라무스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980066": {
     "name": "아울라무스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980067": {
     "name": "아울라무스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980068": {
     "name": "아울라무스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980069": {
     "name": "아울라무스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980070": {
     "name": "날카로운 울라크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980071": {
     "name": "날카로운 울라크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980072": {
     "name": "날카로운 울라크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980073": {
     "name": "날카로운 울라크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980074": {
     "name": "날카로운 울라크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980075": {
     "name": "날카로운 울라크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980076": {
     "name": "날카로운 울라크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980077": {
     "name": "날카로운 울라크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980078": {
     "name": "날카로운 울라크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980079": {
     "name": "날카로운 울라크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980080": {
     "name": "제사장 아울리사",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980081": {
     "name": "제사장 아울리사",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980082": {
     "name": "제사장 아울리사",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980083": {
     "name": "제사장 아울리사",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980084": {
     "name": "제사장 아울리사",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980085": {
     "name": "제사장 아울리사",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980086": {
     "name": "제사장 아울리사",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980087": {
     "name": "제사장 아울리사",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980088": {
     "name": "제사장 아울리사",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980089": {
     "name": "제사장 아울리사",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980090": {
     "name": "힐라드르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980091": {
     "name": "힐라드르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980092": {
     "name": "힐라드르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980093": {
     "name": "힐라드르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980094": {
     "name": "힐라드르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980095": {
     "name": "힐라드르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980096": {
     "name": "힐라드르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980097": {
     "name": "힐라드르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980098": {
     "name": "힐라드르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980099": {
     "name": "힐라드르",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980100": {
     "name": "처형자 누아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980101": {
     "name": "처형자 누아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980102": {
     "name": "처형자 누아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980103": {
     "name": "처형자 누아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980104": {
     "name": "처형자 누아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980105": {
     "name": "처형자 누아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980106": {
     "name": "처형자 누아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980107": {
     "name": "처형자 누아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980108": {
     "name": "처형자 누아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980109": {
     "name": "처형자 누아",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980110": {
     "name": "개조된 바고트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980111": {
     "name": "개조된 바고트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980112": {
     "name": "개조된 바고트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980113": {
     "name": "개조된 바고트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980114": {
     "name": "개조된 바고트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980115": {
     "name": "개조된 바고트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980116": {
     "name": "개조된 바고트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980117": {
     "name": "개조된 바고트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980118": {
     "name": "개조된 바고트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980119": {
     "name": "개조된 바고트",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980120": {
     "name": "변이된 울고른",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980121": {
     "name": "변이된 울고른",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980122": {
     "name": "변이된 울고른",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980123": {
     "name": "변이된 울고른",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980124": {
     "name": "변이된 울고른",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980125": {
     "name": "변이된 울고른",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980126": {
     "name": "변이된 울고른",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980127": {
     "name": "변이된 울고른",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980128": {
     "name": "변이된 울고른",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980129": {
     "name": "변이된 울고른",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980130": {
     "name": "카이시넬의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980131": {
     "name": "카이시넬의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980132": {
     "name": "카이시넬의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980133": {
     "name": "카이시넬의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980134": {
     "name": "카이시넬의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980135": {
     "name": "카이시넬의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980136": {
     "name": "카이시넬의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980137": {
     "name": "카이시넬의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980138": {
     "name": "카이시넬의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980139": {
     "name": "카이시넬의 환영",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980140": {
     "name": "분노한 레다",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980141": {
     "name": "분노한 레다",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980142": {
     "name": "분노한 레다",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980143": {
     "name": "분노한 레다",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980144": {
     "name": "분노한 레다",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980145": {
     "name": "분노한 레다",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980146": {
     "name": "분노한 레다",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980147": {
     "name": "분노한 레다",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980148": {
     "name": "분노한 레다",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980149": {
     "name": "분노한 레다",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980150": {
     "name": "광폭한 페르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980151": {
     "name": "광폭한 페르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980152": {
     "name": "광폭한 페르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980153": {
     "name": "광폭한 페르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980154": {
     "name": "광폭한 페르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980155": {
     "name": "광폭한 페르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980156": {
     "name": "광폭한 페르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980157": {
     "name": "광폭한 페르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980158": {
     "name": "광폭한 페르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980159": {
     "name": "광폭한 페르크",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980160": {
     "name": "영혼수확자 라트만",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980161": {
     "name": "영혼수확자 라트만",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980162": {
     "name": "영혼수확자 라트만",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980163": {
     "name": "영혼수확자 라트만",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980164": {
     "name": "영혼수확자 라트만",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980165": {
     "name": "영혼수확자 라트만",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980166": {
     "name": "영혼수확자 라트만",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980167": {
     "name": "영혼수확자 라트만",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980168": {
     "name": "영혼수확자 라트만",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980169": {
     "name": "영혼수확자 라트만",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980170": {
     "name": "요새 수호자 노툰",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980171": {
     "name": "요새 수호자 노툰",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980172": {
     "name": "요새 수호자 노툰",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980173": {
     "name": "요새 수호자 노툰",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980174": {
     "name": "요새 수호자 노툰",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980175": {
     "name": "요새 수호자 노툰",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980176": {
     "name": "요새 수호자 노툰",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980177": {
     "name": "요새 수호자 노툰",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980178": {
     "name": "요새 수호자 노툰",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980179": {
     "name": "요새 수호자 노툰",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980180": {
     "name": "교도관 산트라스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980181": {
     "name": "교도관 산트라스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980182": {
     "name": "교도관 산트라스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980183": {
     "name": "교도관 산트라스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980184": {
     "name": "교도관 산트라스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980185": {
     "name": "교도관 산트라스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980186": {
     "name": "교도관 산트라스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980187": {
     "name": "교도관 산트라스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980188": {
     "name": "교도관 산트라스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980189": {
     "name": "교도관 산트라스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980190": {
     "name": "현신한 비호의 깃",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980191": {
     "name": "현신한 비호의 깃",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980192": {
     "name": "현신한 비호의 깃",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980193": {
     "name": "현신한 비호의 깃",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980194": {
     "name": "현신한 비호의 깃",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980195": {
     "name": "현신한 비호의 깃",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980196": {
     "name": "현신한 비호의 깃",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980197": {
     "name": "현신한 비호의 깃",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980198": {
     "name": "현신한 비호의 깃",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980199": {
     "name": "현신한 비호의 깃",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980200": {
     "name": "폭군 타신",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980201": {
     "name": "폭군 타신",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980202": {
     "name": "폭군 타신",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980203": {
     "name": "폭군 타신",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980204": {
     "name": "폭군 타신",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980205": {
     "name": "폭군 타신",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980206": {
     "name": "폭군 타신",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980207": {
     "name": "폭군 타신",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980208": {
     "name": "폭군 타신",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980209": {
     "name": "폭군 타신",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980210": {
     "name": "변이된 게로드",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980211": {
     "name": "변이된 게로드",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980212": {
     "name": "변이된 게로드",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980213": {
     "name": "변이된 게로드",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980214": {
     "name": "변이된 게로드",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980215": {
     "name": "변이된 게로드",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980216": {
     "name": "변이된 게로드",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980217": {
     "name": "변이된 게로드",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980218": {
     "name": "변이된 게로드",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980219": {
     "name": "변이된 게로드",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980220": {
     "name": "지켈의 사념체",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980221": {
     "name": "지켈의 사념체",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980222": {
     "name": "지켈의 사념체",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980223": {
     "name": "지켈의 사념체",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980224": {
     "name": "지켈의 사념체",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980225": {
     "name": "지켈의 사념체",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980226": {
     "name": "지켈의 사념체",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980227": {
     "name": "지켈의 사념체",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980228": {
     "name": "지켈의 사념체",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980229": {
     "name": "지켈의 사념체",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980230": {
     "name": "성소의 수호자 가우스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980231": {
     "name": "성소의 수호자 가우스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980232": {
     "name": "성소의 수호자 가우스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980233": {
     "name": "성소의 수호자 가우스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980234": {
     "name": "성소의 수호자 가우스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980235": {
     "name": "성소의 수호자 가우스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980236": {
     "name": "성소의 수호자 가우스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980237": {
     "name": "성소의 수호자 가우스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980238": {
     "name": "성소의 수호자 가우스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980239": {
     "name": "성소의 수호자 가우스",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980240": {
     "name": "파프니르의 독혈",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980241": {
     "name": "파프니르의 독혈",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980242": {
     "name": "파프니르의 독혈",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980243": {
     "name": "파프니르의 독혈",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980244": {
     "name": "파프니르의 독혈",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980245": {
     "name": "파프니르의 독혈",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980246": {
     "name": "파프니르의 독혈",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980247": {
     "name": "파프니르의 독혈",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980248": {
     "name": "파프니르의 독혈",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980249": {
     "name": "파프니르의 독혈",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   },
   "2980250": {
     "name": "망령 지젤",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "1단계",
+    "dungeonId": 200003
   },
   "2980251": {
     "name": "망령 지젤",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "2단계",
+    "dungeonId": 200003
   },
   "2980252": {
     "name": "망령 지젤",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "3단계",
+    "dungeonId": 200003
   },
   "2980253": {
     "name": "망령 지젤",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "4단계",
+    "dungeonId": 200003
   },
   "2980254": {
     "name": "망령 지젤",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "5단계",
+    "dungeonId": 200003
   },
   "2980255": {
     "name": "망령 지젤",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "6단계",
+    "dungeonId": 200003
   },
   "2980256": {
     "name": "망령 지젤",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "7단계",
+    "dungeonId": 200003
   },
   "2980257": {
     "name": "망령 지젤",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "8단계",
+    "dungeonId": 200003
   },
   "2980258": {
     "name": "망령 지젤",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "9단계",
+    "dungeonId": 200003
   },
   "2980259": {
     "name": "망령 지젤",
-    "isBoss": true
+    "isBoss": true,
+    "category": "악몽",
+    "tier": "10단계",
+    "dungeonId": 200003
   }
 }

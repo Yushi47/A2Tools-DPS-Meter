@@ -1473,6 +1473,16 @@
     "isBoss": true,
     "isDummy": true
   },
+  "2090816": {
+    "name": "Balance Test 1",
+    "isBoss": false,
+    "isDummy": true
+  },
+  "2090817": {
+    "name": "Balance Test 1",
+    "isBoss": false,
+    "isDummy": true
+  },
   "2100000": {
     "name": "Twinkling Kalgolem",
     "isBoss": false
@@ -5406,7 +5416,7 @@
     "isBoss": false
   },
   "2290085": {
-    "name": "Krall Warshaman",
+    "name": "Krall Shaman",
     "isBoss": false
   },
   "2290087": {
@@ -5687,15 +5697,24 @@
   },
   "2300000": {
     "name": "Submerged Emon",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 2",
+    "dungeonId": 610011
   },
   "2300001": {
     "name": "Deep Sea Pydeon",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 2",
+    "dungeonId": 610011
   },
   "2300002": {
     "name": "Singing Ellyde",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 2",
+    "dungeonId": 610011
   },
   "2300003": {
     "name": "Deep Sea Slime",
@@ -5747,15 +5766,24 @@
   },
   "2300015": {
     "name": "Submerged Emon",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 3",
+    "dungeonId": 610012
   },
   "2300016": {
     "name": "Deep Sea Pydeon",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 3",
+    "dungeonId": 610012
   },
   "2300017": {
     "name": "Singing Ellyde",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 3",
+    "dungeonId": 610012
   },
   "2300018": {
     "name": "Deep Sea Slime",
@@ -5807,15 +5835,24 @@
   },
   "2300030": {
     "name": "Submerged Emon",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 4",
+    "dungeonId": 610013
   },
   "2300031": {
     "name": "Deep Sea Pydeon",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 4",
+    "dungeonId": 610013
   },
   "2300032": {
     "name": "Singing Ellyde",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 4",
+    "dungeonId": 610013
   },
   "2300033": {
     "name": "Deep Sea Slime",
@@ -6103,7 +6140,10 @@
   },
   "2300104": {
     "name": "Enhanced Harcon",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600001
   },
   "2300105": {
     "name": "Flooded Jailor",
@@ -6119,7 +6159,10 @@
   },
   "2300108": {
     "name": "Neglected Gadioton",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600001
   },
   "2300109": {
     "name": "Laser",
@@ -6299,15 +6342,24 @@
   },
   "2300153": {
     "name": "Manager Nasium",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 610044
   },
   "2300154": {
     "name": "Broodkeeper Nayatman",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 610044
   },
   "2300155": {
     "name": "Decaying Durvati",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 610044
   },
   "2300156": {
     "name": "Cave Papis",
@@ -6371,19 +6423,31 @@
   },
   "2300171": {
     "name": "Ultimate Berk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600001
   },
   "2300172": {
     "name": "Ultimate Berk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600001
   },
   "2300173": {
     "name": "Ultimate Berk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600001
   },
   "2300174": {
     "name": "Ultimate Berk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600001
   },
   "2300175": {
     "name": "None",
@@ -6439,15 +6503,24 @@
   },
   "2300188": {
     "name": "Awakened Alturadon",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600141
   },
   "2300189": {
     "name": "Wise Baumnute",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600141
   },
   "2300190": {
     "name": "Expanding Xyrepe",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600141
   },
   "2300191": {
     "name": "Azure Breath Ursus",
@@ -6487,7 +6560,10 @@
   },
   "2300200": {
     "name": "Awakened Alturadon",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600142
   },
   "2300201": {
     "name": "Urugugu Soldier",
@@ -6511,11 +6587,17 @@
   },
   "2300206": {
     "name": "Guardian Captain Raur",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600012
   },
   "2300207": {
     "name": "Judge Urahum",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600012
   },
   "2300208": {
     "name": "Urugugu Wind Mage",
@@ -6559,11 +6641,17 @@
   },
   "2300218": {
     "name": "Divine Auldor",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600012
   },
   "2300219": {
     "name": "Wise Baumnute",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600142
   },
   "2300220": {
     "name": "Surveillance Healing Totem",
@@ -6608,7 +6696,10 @@
   },
   "2300230": {
     "name": "Expanding Xyrepe",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600142
   },
   "2300231": {
     "name": "Heartbound Acolyte Priest",
@@ -6660,15 +6751,24 @@
   },
   "2300243": {
     "name": "Awakened Alturadon",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600143
   },
   "2300244": {
     "name": "Wise Baumnute",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600143
   },
   "2300245": {
     "name": "Expanding Xyrepe",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600143
   },
   "2300246": {
     "name": "Rose Garden Bee",
@@ -6724,15 +6824,24 @@
   },
   "2300259": {
     "name": "Rotar",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 1",
+    "dungeonId": 610020
   },
   "2300260": {
     "name": "Robstino",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 1",
+    "dungeonId": 610020
   },
   "2300261": {
     "name": "Kromede's Desolation",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 1",
+    "dungeonId": 610020
   },
   "2300262": {
     "name": "Sleep Grass",
@@ -6796,11 +6905,17 @@
   },
   "2300299": {
     "name": "Rotar",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 2",
+    "dungeonId": 610021
   },
   "2300300": {
     "name": "Robstino",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 2",
+    "dungeonId": 610021
   },
   "2300301": {
     "name": "Lava Eruption",
@@ -6840,15 +6955,24 @@
   },
   "2300310": {
     "name": "Silver Blade Rotan",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600022
   },
   "2300311": {
     "name": "Red Spark Ignus",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600022
   },
   "2300312": {
     "name": "Black Smoke Murute",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600022
   },
   "2300313": {
     "name": "Flame Stone Guardian Statue",
@@ -6868,7 +6992,10 @@
   },
   "2300317": {
     "name": "Kromede's Desolation",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 2",
+    "dungeonId": 610021
   },
   "2300318": {
     "name": "Heartbound Priest",
@@ -6936,15 +7063,24 @@
   },
   "2300334": {
     "name": "Rotar",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 3",
+    "dungeonId": 610022
   },
   "2300335": {
     "name": "Robstino",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 3",
+    "dungeonId": 610022
   },
   "2300336": {
     "name": "Kromede's Desolation",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 3",
+    "dungeonId": 610022
   },
   "2300337": {
     "name": "Heartbound Priest",
@@ -7012,15 +7148,24 @@
   },
   "2300353": {
     "name": "Rotar",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 4",
+    "dungeonId": 610023
   },
   "2300354": {
     "name": "Robstino",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 4",
+    "dungeonId": 610023
   },
   "2300355": {
     "name": "Kromede's Desolation",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 4",
+    "dungeonId": 610023
   },
   "2300356": {
     "name": "Leader Zaif",
@@ -7056,23 +7201,38 @@
   },
   "2300364": {
     "name": "None",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 1",
+    "dungeonId": 610020
   },
   "2300365": {
     "name": "None",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 2",
+    "dungeonId": 610021
   },
   "2300367": {
     "name": "None",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 3",
+    "dungeonId": 610022
   },
   "2300368": {
     "name": "None",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 4",
+    "dungeonId": 610023
   },
   "2300371": {
     "name": "Kromede's Desire",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600022
   },
   "2300397": {
     "name": "Ordeal of Love",
@@ -7092,7 +7252,10 @@
   },
   "2300401": {
     "name": "Phantasmal Lakshmi",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600032
   },
   "2300402": {
     "name": "Lakshmi's Handmaiden",
@@ -7100,7 +7263,10 @@
   },
   "2300403": {
     "name": "Predator Saraswati",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600032
   },
   "2300404": {
     "name": "Naga Priest",
@@ -7204,7 +7370,10 @@
   },
   "2300471": {
     "name": "Transcendent Bakarma",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600032
   },
   "2300500": {
     "name": "Dratona",
@@ -7216,7 +7385,10 @@
   },
   "2300502": {
     "name": "Decaying Durvati (Specimen)",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600041
   },
   "2300503": {
     "name": "Dratona Egg",
@@ -7236,15 +7408,24 @@
   },
   "2300507": {
     "name": "Manager Nasium",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600041
   },
   "2300508": {
     "name": "Broodkeeper Nayatman",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600041
   },
   "2300509": {
     "name": "Decaying Durvati",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600041
   },
   "2300510": {
     "name": "Cave Papis",
@@ -7268,7 +7449,10 @@
   },
   "2300515": {
     "name": "Decaying Durvati (Specimen)",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600041
   },
   "2300516": {
     "name": "Decaying Durvati (Specimen)",
@@ -7276,7 +7460,10 @@
   },
   "2300517": {
     "name": "Decaying Durvati (Specimen)",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600041
   },
   "2300519": {
     "name": "Durvati's Poison Fluid",
@@ -7424,11 +7611,17 @@
   },
   "2300810": {
     "name": "Tiere",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600072
   },
   "2300811": {
     "name": "Thamon",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600072
   },
   "2300812": {
     "name": "Vakron",
@@ -7488,19 +7681,31 @@
   },
   "2300907": {
     "name": "Shining Mau Totem",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600092
   },
   "2300908": {
     "name": "Watchdog Kwapo",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600092
   },
   "2300909": {
     "name": "Necromancer Duanka",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600092
   },
   "2300910": {
     "name": "Ferocious Horn Nuakum",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600092
   },
   "2300911": {
     "name": "Mutated Shulak Laborer",
@@ -7569,15 +7774,21 @@
   },
   "2301006": {
     "name": "Isolation Specialist Rahu",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Raid",
+    "dungeonId": 600082
   },
   "2301007": {
     "name": "Abyssal Wings Ketu",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Raid",
+    "dungeonId": 600082
   },
   "2301008": {
     "name": "Central Abyss Fusion Reactor",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Raid",
+    "dungeonId": 600082
   },
   "2301009": {
     "name": "Auxiliary Abyss Fusion Reactor",
@@ -7601,7 +7812,9 @@
   },
   "2301014": {
     "name": "Eternal Ludra",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Raid",
+    "dungeonId": 600082
   },
   "2301015": {
     "name": "None",
@@ -7635,6 +7848,92 @@
     "name": "Abyssal Drakan Scout Officer",
     "isBoss": false
   },
+  "2301050": {
+    "name": "Mutated Elite Commander",
+    "isBoss": false
+  },
+  "2301051": {
+    "name": "Mutated Scout",
+    "isBoss": false
+  },
+  "2301052": {
+    "name": "Sanctum Barghest",
+    "isBoss": false
+  },
+  "2301053": {
+    "name": "Flame Zone",
+    "isBoss": false
+  },
+  "2301054": {
+    "name": "Mutated Mender",
+    "isBoss": false
+  },
+  "2301055": {
+    "name": "Blazing Guardian Sword",
+    "isBoss": true,
+    "category": "Raid",
+    "dungeonId": 620021
+  },
+  "2301056": {
+    "name": "Muspel Abyss Lamphu",
+    "isBoss": false
+  },
+  "2301057": {
+    "name": "Muspel Lava",
+    "isBoss": false
+  },
+  "2301058": {
+    "name": "Muspel Giant Lava",
+    "isBoss": false
+  },
+  "2301059": {
+    "name": "Iscariel",
+    "isBoss": true,
+    "category": "Raid",
+    "dungeonId": 620021
+  },
+  "2301060": {
+    "name": "Kaldrix",
+    "isBoss": true,
+    "category": "Raid",
+    "dungeonId": 620021
+  },
+  "2301061": {
+    "name": "Kaldrix",
+    "isBoss": true,
+    "category": "Raid",
+    "dungeonId": 620021
+  },
+  "2301062": {
+    "name": "Muspel Guardian Statue",
+    "isBoss": false
+  },
+  "2301063": {
+    "name": "Fiery Eggs",
+    "isBoss": false
+  },
+  "2301064": {
+    "name": "Muspel Abyss Monster",
+    "isBoss": false
+  },
+  "2301065": {
+    "name": "Meteor",
+    "isBoss": false
+  },
+  "2301066": {
+    "name": "Flame",
+    "isBoss": false
+  },
+  "2301067": {
+    "name": "Blazing Guardian Sword",
+    "isBoss": true,
+    "category": "Raid",
+    "dungeonId": 620021
+  },
+  "2301068": {
+    "name": "Muspel Guardian Statue",
+    "isBoss": false
+  },
   "2301201": {
     "name": "Contaminated Sura Battle Mage",
     "isBoss": false
@@ -7661,15 +7960,21 @@
   },
   "2301207": {
     "name": "Black Blood Blatt",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Raid",
+    "dungeonId": 620011
   },
   "2301208": {
     "name": "Terminator Bargott",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Raid",
+    "dungeonId": 620011
   },
   "2301209": {
     "name": "Devouring Klawfly",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Raid",
+    "dungeonId": 620011
   },
   "2301210": {
     "name": "Noxious Gas",
@@ -7697,7 +8002,9 @@
   },
   "2301216": {
     "name": "Surveillance Device",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Raid",
+    "dungeonId": 620011
   },
   "2301217": {
     "name": "Defiled Sura Captain",
@@ -7709,15 +8016,24 @@
   },
   "2301301": {
     "name": "Afflicted Bakarma",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600121
   },
   "2301302": {
     "name": "Multiverse Veltiras",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600121
   },
   "2301303": {
     "name": "Solemn Valkan",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600121
   },
   "2301304": {
     "name": "Subspace Parasite Swarm",
@@ -7789,15 +8105,24 @@
   },
   "2301401": {
     "name": "Glassvein",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600131
   },
   "2301402": {
     "name": "Nazarak",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600131
   },
   "2301403": {
     "name": "Nathara",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600131
   },
   "2301404": {
     "name": "Illusion Templar Soul",
@@ -7849,15 +8174,24 @@
   },
   "2301501": {
     "name": "Submerged Emon",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 1",
+    "dungeonId": 610010
   },
   "2301502": {
     "name": "Deep Sea Pydeon",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 1",
+    "dungeonId": 610010
   },
   "2301503": {
     "name": "Singing Ellyde",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 1",
+    "dungeonId": 610010
   },
   "2301504": {
     "name": "Deep Sea Slime",
@@ -7921,7 +8255,10 @@
   },
   "2310104": {
     "name": "Enhanced Harcon",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600002
   },
   "2310106": {
     "name": "Krao Seal Guardian",
@@ -7933,7 +8270,10 @@
   },
   "2310108": {
     "name": "Neglected Gadioton",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600002
   },
   "2310109": {
     "name": "Condensed Krao",
@@ -7953,19 +8293,31 @@
   },
   "2310171": {
     "name": "Ultimate Berk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600002
   },
   "2310172": {
     "name": "Ultimate Berk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600002
   },
   "2310173": {
     "name": "Ultimate Berk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600002
   },
   "2310174": {
     "name": "Ultimate Berk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600002
   },
   "2310175": {
     "name": "None",
@@ -8029,11 +8381,17 @@
   },
   "2310206": {
     "name": "Guardian Captain Raur",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600011
   },
   "2310207": {
     "name": "Judge Urahum",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600011
   },
   "2310208": {
     "name": "Urugugu Wind Mage",
@@ -8077,7 +8435,10 @@
   },
   "2310218": {
     "name": "Divine Auldor",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600011
   },
   "2310219": {
     "name": "Auldor Sanctum Gatekeeper",
@@ -8162,15 +8523,24 @@
   },
   "2310310": {
     "name": "Silver Blade Rotan",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600021
   },
   "2310311": {
     "name": "Red Spark Ignus",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600021
   },
   "2310312": {
     "name": "Black Smoke Murute",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600021
   },
   "2310313": {
     "name": "Flame Stone Guardian Statue",
@@ -8190,11 +8560,17 @@
   },
   "2310371": {
     "name": "Kromede's Desire",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600021
   },
   "2310401": {
     "name": "Phantasmal Lakshmi",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600031
   },
   "2310402": {
     "name": "Lakshmi's Handmaiden",
@@ -8202,7 +8578,10 @@
   },
   "2310403": {
     "name": "Predator Saraswati",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600031
   },
   "2310404": {
     "name": "Naga Priest",
@@ -8278,7 +8657,10 @@
   },
   "2310471": {
     "name": "Transcendent Bakarma",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600031
   },
   "2310500": {
     "name": "Dratona",
@@ -8290,7 +8672,10 @@
   },
   "2310502": {
     "name": "Decaying Durvati (Specimen)",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600042
   },
   "2310503": {
     "name": "Dratona Egg",
@@ -8310,15 +8695,24 @@
   },
   "2310507": {
     "name": "Manager Nasium",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600042
   },
   "2310508": {
     "name": "Broodkeeper Nayatman",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600042
   },
   "2310509": {
     "name": "Decaying Durvati",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600042
   },
   "2310510": {
     "name": "Cave Papis",
@@ -8342,7 +8736,10 @@
   },
   "2310515": {
     "name": "Decaying Durvati (Specimen)",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600042
   },
   "2310516": {
     "name": "Decaying Durvati (Specimen)",
@@ -8350,7 +8747,10 @@
   },
   "2310517": {
     "name": "Decaying Durvati (Specimen)",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600042
   },
   "2310519": {
     "name": "Durvati's Poison Fluid",
@@ -8462,11 +8862,17 @@
   },
   "2310810": {
     "name": "Tiere",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600071
   },
   "2310811": {
     "name": "Thamon",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600071
   },
   "2310812": {
     "name": "Vakron",
@@ -8518,19 +8924,31 @@
   },
   "2310907": {
     "name": "Shining Mau Totem",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600091
   },
   "2310908": {
     "name": "Watchdog Kwapo",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600091
   },
   "2310909": {
     "name": "Necromancer Duanka",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600091
   },
   "2310910": {
     "name": "Ferocious Horn Nuakum",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Exploration",
+    "dungeonId": 600091
   },
   "2310911": {
     "name": "Mutated Shulak Laborer",
@@ -8579,15 +8997,24 @@
   },
   "2311301": {
     "name": "Afflicted Bakarma",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600122
   },
   "2311302": {
     "name": "Multiverse Veltiras",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600122
   },
   "2311303": {
     "name": "Solemn Valkan",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600122
   },
   "2311304": {
     "name": "Subspace Parasite Swarm",
@@ -8663,15 +9090,24 @@
   },
   "2311401": {
     "name": "Glassvein",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600132
   },
   "2311402": {
     "name": "Nazarak",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600132
   },
   "2311403": {
     "name": "Nathara",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Normal]",
+    "dungeonId": 600132
   },
   "2311404": {
     "name": "Illusion Templar Soul",
@@ -8743,7 +9179,10 @@
   },
   "2320104": {
     "name": "Enhanced Harcon",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600004
   },
   "2320106": {
     "name": "Krao Seal Guardian",
@@ -8755,7 +9194,10 @@
   },
   "2320108": {
     "name": "Neglected Gadioton",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600004
   },
   "2320111": {
     "name": "Condensed Krao",
@@ -8779,19 +9221,31 @@
   },
   "2320171": {
     "name": "Ultimate Berk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600004
   },
   "2320172": {
     "name": "Ultimate Berk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600004
   },
   "2320173": {
     "name": "Ultimate Berk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600004
   },
   "2320174": {
     "name": "Ultimate Berk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600004
   },
   "2320175": {
     "name": "None",
@@ -8855,11 +9309,17 @@
   },
   "2320206": {
     "name": "Guardian Captain Raur",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600013
   },
   "2320207": {
     "name": "Judge Urahum",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600013
   },
   "2320208": {
     "name": "Urugugu Wind Mage",
@@ -8903,7 +9363,10 @@
   },
   "2320218": {
     "name": "Divine Auldor",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600013
   },
   "2320220": {
     "name": "Surveillance Healing Totem",
@@ -8984,15 +9447,24 @@
   },
   "2320310": {
     "name": "Silver Blade Rotan",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600023
   },
   "2320311": {
     "name": "Red Spark Ignus",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600023
   },
   "2320312": {
     "name": "Black Smoke Murute",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600023
   },
   "2320313": {
     "name": "Flame Stone Guardian Statue",
@@ -9012,11 +9484,17 @@
   },
   "2320371": {
     "name": "Kromede's Desire",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600023
   },
   "2320401": {
     "name": "Phantasmal Lakshmi",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600033
   },
   "2320402": {
     "name": "Lakshmi's Handmaiden",
@@ -9024,7 +9502,10 @@
   },
   "2320403": {
     "name": "Predator Saraswati",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600033
   },
   "2320404": {
     "name": "Naga Priest",
@@ -9112,7 +9593,10 @@
   },
   "2320471": {
     "name": "Transcendent Bakarma",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600033
   },
   "2320500": {
     "name": "Dratona",
@@ -9196,7 +9680,10 @@
   },
   "2320601": {
     "name": "Atiel",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 1",
+    "dungeonId": 600053
   },
   "2320602": {
     "name": "Deus Research Base Guard",
@@ -9252,11 +9739,17 @@
   },
   "2320615": {
     "name": "Nazmun",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 1",
+    "dungeonId": 600053
   },
   "2320616": {
     "name": "Gelcos",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 1",
+    "dungeonId": 600053
   },
   "2320617": {
     "name": "Deus Research Base Rift",
@@ -9300,11 +9793,17 @@
   },
   "2320810": {
     "name": "Tiere",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600073
   },
   "2320811": {
     "name": "Thamon",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600073
   },
   "2320812": {
     "name": "Vakron",
@@ -9364,19 +9863,31 @@
   },
   "2320907": {
     "name": "Shining Mau Totem",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600093
   },
   "2320908": {
     "name": "Watchdog Kwapo",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600093
   },
   "2320909": {
     "name": "Necromancer Duanka",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600093
   },
   "2320910": {
     "name": "Ferocious Horn Nuakum",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600093
   },
   "2320911": {
     "name": "Mutated Shulak Laborer",
@@ -9429,15 +9940,24 @@
   },
   "2321301": {
     "name": "Afflicted Bakarma",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600123
   },
   "2321302": {
     "name": "Multiverse Veltiras",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600123
   },
   "2321303": {
     "name": "Solemn Valkan",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600123
   },
   "2321304": {
     "name": "Subspace Parasite Swarm",
@@ -9513,15 +10033,24 @@
   },
   "2321401": {
     "name": "Glassvein",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600133
   },
   "2321402": {
     "name": "Nazarak",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600133
   },
   "2321403": {
     "name": "Nathara",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Dungeon",
+    "tier": "Conquest [Hard]",
+    "dungeonId": 600133
   },
   "2321404": {
     "name": "Illusion Templar Soul",
@@ -10745,15 +11274,24 @@
   },
   "2330707": {
     "name": "Siliator of Deceit",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 1",
+    "dungeonId": 600063
   },
   "2330708": {
     "name": "Ruthilis of Pain",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 1",
+    "dungeonId": 600063
   },
   "2330709": {
     "name": "Talisra of the Void",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 1",
+    "dungeonId": 600063
   },
   "2330710": {
     "name": "Spinning Magnetic Field",
@@ -11185,7 +11723,10 @@
   },
   "2340601": {
     "name": "Atiel",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 2",
+    "dungeonId": 600055
   },
   "2340602": {
     "name": "Deus Research Base Guard",
@@ -11241,11 +11782,17 @@
   },
   "2340615": {
     "name": "Nazmun",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 2",
+    "dungeonId": 600055
   },
   "2340616": {
     "name": "Gelcos",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 2",
+    "dungeonId": 600055
   },
   "2340617": {
     "name": "Deus Research Base Rift",
@@ -11437,7 +11984,10 @@
   },
   "2343601": {
     "name": "Atiel",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 3",
+    "dungeonId": 600058
   },
   "2343602": {
     "name": "Deus Research Base Guard",
@@ -11493,11 +12043,17 @@
   },
   "2343615": {
     "name": "Nazmun",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 3",
+    "dungeonId": 600058
   },
   "2343616": {
     "name": "Gelcos",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 3",
+    "dungeonId": 600058
   },
   "2343617": {
     "name": "Deus Research Base Rift",
@@ -11741,7 +12297,10 @@
   },
   "2346601": {
     "name": "Atiel",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 4",
+    "dungeonId": 610052
   },
   "2346602": {
     "name": "Deus Research Base Guard",
@@ -11797,11 +12356,17 @@
   },
   "2346615": {
     "name": "Nazmun",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 4",
+    "dungeonId": 610052
   },
   "2346616": {
     "name": "Gelcos",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 4",
+    "dungeonId": 610052
   },
   "2346617": {
     "name": "Deus Research Base Rift",
@@ -11909,15 +12474,24 @@
   },
   "2350707": {
     "name": "Siliator of Deceit",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 3",
+    "dungeonId": 600065
   },
   "2350708": {
     "name": "Ruthilis of Pain",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 3",
+    "dungeonId": 600065
   },
   "2350709": {
     "name": "Talisra of the Void",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 3",
+    "dungeonId": 600065
   },
   "2350710": {
     "name": "Spinning Magnetic Field",
@@ -12037,15 +12611,24 @@
   },
   "2353707": {
     "name": "Siliator of Deceit",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 5",
+    "dungeonId": 600068
   },
   "2353708": {
     "name": "Ruthilis of Pain",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 5",
+    "dungeonId": 600068
   },
   "2353709": {
     "name": "Talisra of the Void",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 5",
+    "dungeonId": 600068
   },
   "2353710": {
     "name": "Spinning Magnetic Field",
@@ -12169,15 +12752,24 @@
   },
   "2356707": {
     "name": "Siliator of Deceit",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 2",
+    "dungeonId": 13
   },
   "2356708": {
     "name": "Ruthilis of Pain",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 2",
+    "dungeonId": 13
   },
   "2356709": {
     "name": "Talisra of the Void",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Transcendence",
+    "tier": "Stage 2",
+    "dungeonId": 13
   },
   "2356710": {
     "name": "Spinning Magnetic Field",
@@ -18444,7 +19036,7 @@
     "isBoss": true
   },
   "2590119": {
-    "name": "Drakan Skirmisher",
+    "name": "Drakan Cleric Apparition",
     "isBoss": false
   },
   "2590120": {
@@ -18620,7 +19212,7 @@
     "isBoss": false
   },
   "2600008": {
-    "name": "Abyss Sura Warrior",
+    "name": "Abyss Corrupted Warrior",
     "isBoss": false
   },
   "2600009": {
@@ -18692,7 +19284,7 @@
     "isBoss": false
   },
   "2600028": {
-    "name": "Thick Sulfur Agrint",
+    "name": "Thin Sulfur Agrint",
     "isBoss": false
   },
   "2600029": {
@@ -18776,7 +19368,7 @@
     "isBoss": false
   },
   "2600050": {
-    "name": "Abyss Pure Spirit",
+    "name": "Abyss Zelophi",
     "isBoss": false
   },
   "2600051": {
@@ -19624,7 +20216,7 @@
     "isBoss": false
   },
   "2600332": {
-    "name": "Takshaka Squad Commander",
+    "name": "Takshaka Draconute Squad Commander",
     "isBoss": false
   },
   "2600333": {
@@ -19836,23 +20428,23 @@
     "isBoss": false
   },
   "2600403": {
-    "name": "Abyss Old Blade Rotan",
+    "name": "Abyss Silver Blade Rotan",
     "isBoss": false
   },
   "2600404": {
-    "name": "Abyss Krall Search Party Karnif",
+    "name": "Abyss Search Party Karnif",
     "isBoss": false
   },
   "2600405": {
-    "name": "Abyss Drakan Search Party Scout",
+    "name": "Abyss Drakan Scout",
     "isBoss": false
   },
   "2600406": {
-    "name": "Abyss Krall Search Party Archer",
+    "name": "Abyss Krall Archer",
     "isBoss": false
   },
   "2600407": {
-    "name": "Abyss Drakan Search Party Engineer",
+    "name": "Abyss Drakan Searcher",
     "isBoss": false
   },
   "2600408": {
@@ -19872,23 +20464,23 @@
     "isBoss": false
   },
   "2600413": {
-    "name": "Abyss Old Blade Rotan",
+    "name": "Abyss Silver Blade Rotan",
     "isBoss": false
   },
   "2600414": {
-    "name": "Abyss Krall Search Party Karnif",
+    "name": "Abyss Search Party Karnif",
     "isBoss": false
   },
   "2600415": {
-    "name": "Abyss Drakan Search Party Scout",
+    "name": "Abyss Drakan Scout",
     "isBoss": false
   },
   "2600416": {
-    "name": "Abyss Krall Search Party Archer",
+    "name": "Abyss Krall Archer",
     "isBoss": false
   },
   "2600417": {
-    "name": "Abyss Drakan Search Party Engineer",
+    "name": "Abyss Drakan Searcher",
     "isBoss": false
   },
   "2600418": {
@@ -19920,15 +20512,15 @@
     "isBoss": false
   },
   "2600426": {
-    "name": "Abyss Marsh Monster",
+    "name": "Abyss Marsh Targon",
     "isBoss": false
   },
   "2600427": {
-    "name": "Abyss Sulfur Watchwood",
+    "name": "Sulfur Agrint",
     "isBoss": false
   },
   "2600428": {
-    "name": "Abyss Sulfur Greedwillow",
+    "name": "Thin Sulfur Agrint",
     "isBoss": false
   },
   "2600429": {
@@ -19944,7 +20536,7 @@
     "isBoss": false
   },
   "2600432": {
-    "name": "Abyss Drana Giant Mutant",
+    "name": "Abyss Giant Mutant",
     "isBoss": false
   },
   "2600433": {
@@ -19960,15 +20552,15 @@
     "isBoss": false
   },
   "2600438": {
-    "name": "Mutated Ancient Karas Warrior",
+    "name": "Abyssal Ancient Warrior",
     "isBoss": false
   },
   "2600439": {
-    "name": "Mutated Karas Elite Warrior",
+    "name": "Abyssal Ancient Destroyer",
     "isBoss": false
   },
   "2600440": {
-    "name": "Completely Mutated Ancient Karas",
+    "name": "Abyssal Mutated Ancient Destroyer",
     "isBoss": false
   },
   "2600441": {
@@ -20008,11 +20600,11 @@
     "isBoss": false
   },
   "2600450": {
-    "name": "Abyss Pure Spirit",
+    "name": "Abyss Zelophi",
     "isBoss": false
   },
   "2600451": {
-    "name": "Abyss Odylium Soul Stone",
+    "name": "Abyss Blue Kalgolem",
     "isBoss": false
   },
   "2600452": {
@@ -20024,7 +20616,7 @@
     "isBoss": false
   },
   "2600454": {
-    "name": "Forest Guardian Archer",
+    "name": "Enraged Forest Guardian",
     "isBoss": false
   },
   "2600455": {
@@ -20040,35 +20632,35 @@
     "isBoss": false
   },
   "2600458": {
-    "name": "Abyss Drana Giant Mutant",
+    "name": "Abyss Drana Mutant",
     "isBoss": false
   },
   "2600459": {
-    "name": "Abyss Drakan Search Party Scout",
+    "name": "Abyss Drakan Scout",
     "isBoss": false
   },
   "2600460": {
-    "name": "Abyss Drakan Search Party Engineer",
+    "name": "Abyss Drakan Searcher",
     "isBoss": false
   },
   "2600461": {
-    "name": "Abyss Coradon",
+    "name": "Abyss Eternal Coradon",
     "isBoss": false
   },
   "2600462": {
-    "name": "Abyss Drakan Search Party Combatant",
+    "name": "Abyss Drakan Brawler",
     "isBoss": false
   },
   "2600463": {
-    "name": "Soulless Destruction Archons Gladiator",
+    "name": "Soulless Daeva Gladiator",
     "isBoss": false
   },
   "2600464": {
-    "name": "Soulless Nornir",
+    "name": "Abyssal Ancient Revenant",
     "isBoss": false
   },
   "2600465": {
-    "name": "Soulless Destruction Archons Elite Soldier",
+    "name": "Soulless Daeva Elite Soldier",
     "isBoss": false
   },
   "2600466": {
@@ -20084,11 +20676,11 @@
     "isBoss": false
   },
   "2600470": {
-    "name": "Abyss Soul Stone",
+    "name": "Abyss Kalgolem",
     "isBoss": false
   },
   "2600471": {
-    "name": "Abyss Root Watchwood",
+    "name": "Abyss Agrint",
     "isBoss": false
   },
   "2600472": {
@@ -20096,7 +20688,7 @@
     "isBoss": false
   },
   "2600473": {
-    "name": "Soulless Nornir",
+    "name": "Abyssal Ancient Revenant",
     "isBoss": false
   },
   "2600474": {
@@ -20108,7 +20700,7 @@
     "isBoss": false
   },
   "2600476": {
-    "name": "Soulless Nornir",
+    "name": "Abyssal Ancient Revenant",
     "isBoss": false
   },
   "2600477": {
@@ -20128,23 +20720,23 @@
     "isBoss": true
   },
   "2600481": {
-    "name": "Abyss Old Blade Rotan",
+    "name": "Abyss Silver Blade Rotan",
     "isBoss": false
   },
   "2600482": {
-    "name": "Abyss Krall Search Party Karnif",
+    "name": "Abyss Search Party Karnif",
     "isBoss": false
   },
   "2600483": {
-    "name": "Abyss Krall Search Party Karnif",
+    "name": "Abyss Search Party Karnif",
     "isBoss": false
   },
   "2600484": {
-    "name": "Abyss Drakan Search Party Scout",
+    "name": "Abyss Drakan Scout",
     "isBoss": false
   },
   "2600485": {
-    "name": "Abyss Krall Search Party Archer",
+    "name": "Abyss Krall Archer",
     "isBoss": false
   },
   "2600486": {
@@ -20164,23 +20756,23 @@
     "isBoss": false
   },
   "2600491": {
-    "name": "Abyss Old Blade Rotan",
+    "name": "Abyss Silver Blade Rotan",
     "isBoss": false
   },
   "2600492": {
-    "name": "Abyss Krall Search Party Karnif",
+    "name": "Abyss Search Party Karnif",
     "isBoss": false
   },
   "2600493": {
-    "name": "Abyss Krall Search Party Karnif",
+    "name": "Abyss Search Party Karnif",
     "isBoss": false
   },
   "2600494": {
-    "name": "Abyss Drakan Search Party Scout",
+    "name": "Abyss Drakan Scout",
     "isBoss": false
   },
   "2600495": {
-    "name": "Abyss Krall Search Party Archer",
+    "name": "Abyss Krall Archer",
     "isBoss": false
   },
   "2600496": {
@@ -20204,11 +20796,11 @@
     "isBoss": false
   },
   "2600502": {
-    "name": "Abyss Marsh Monster",
+    "name": "Abyss Marsh Targon",
     "isBoss": false
   },
   "2600503": {
-    "name": "Abyss Sulfur Greedwillow",
+    "name": "Thin Sulfur Agrint",
     "isBoss": false
   },
   "2600504": {
@@ -20224,11 +20816,11 @@
     "isBoss": false
   },
   "2600507": {
-    "name": "Mutated Karas Elite Warrior",
+    "name": "Abyssal Ancient Destroyer",
     "isBoss": false
   },
   "2600508": {
-    "name": "Mutated Karas Elite Warrior",
+    "name": "Abyssal Ancient Destroyer",
     "isBoss": false
   },
   "2600511": {
@@ -20236,11 +20828,11 @@
     "isBoss": false
   },
   "2600512": {
-    "name": "Abyss Pure Spirit",
+    "name": "Abyss Zelophi",
     "isBoss": false
   },
   "2600513": {
-    "name": "Abyss Odylium Soul Stone",
+    "name": "Abyss Blue Kalgolem",
     "isBoss": false
   },
   "2600514": {
@@ -20278,6 +20870,174 @@
   "2600522": {
     "name": "Ravager Marakha",
     "isBoss": true
+  },
+  "2600531": {
+    "name": "Thin Sulfur Agrint",
+    "isBoss": false
+  },
+  "2600532": {
+    "name": "Abyss Marsh Targon",
+    "isBoss": false
+  },
+  "2600533": {
+    "name": "Abyss Draconute Sniper",
+    "isBoss": false
+  },
+  "2600534": {
+    "name": "Abyss Drana Mutant",
+    "isBoss": false
+  },
+  "2600535": {
+    "name": "Abyss Sulfur Skama",
+    "isBoss": false
+  },
+  "2600536": {
+    "name": "Abyss Naga Dark Mage",
+    "isBoss": false
+  },
+  "2600537": {
+    "name": "Abyss Nagarant Brawler",
+    "isBoss": false
+  },
+  "2600538": {
+    "name": "Abyss Mutated Klaw",
+    "isBoss": false
+  },
+  "2600539": {
+    "name": "Abyss Sulfur Slime",
+    "isBoss": false
+  },
+  "2600540": {
+    "name": "Abyss Drana Mutant",
+    "isBoss": false
+  },
+  "2600541": {
+    "name": "Abyss Giant Mutant",
+    "isBoss": false
+  },
+  "2600551": {
+    "name": "Thin Sulfur Agrint",
+    "isBoss": false
+  },
+  "2600552": {
+    "name": "Abyss Marsh Targon",
+    "isBoss": false
+  },
+  "2600553": {
+    "name": "Abyss Draconute Sniper",
+    "isBoss": false
+  },
+  "2600554": {
+    "name": "Abyss Drana Mutant",
+    "isBoss": false
+  },
+  "2600555": {
+    "name": "Abyss Sulfur Skama",
+    "isBoss": false
+  },
+  "2600556": {
+    "name": "Abyss Naga Dark Mage",
+    "isBoss": false
+  },
+  "2600557": {
+    "name": "Abyss Nagarant Brawler",
+    "isBoss": false
+  },
+  "2600558": {
+    "name": "Abyss Mutated Klaw",
+    "isBoss": false
+  },
+  "2600559": {
+    "name": "Abyss Sulfur Slime",
+    "isBoss": false
+  },
+  "2600560": {
+    "name": "Abyss Drana Mutant",
+    "isBoss": false
+  },
+  "2600561": {
+    "name": "Abyss Giant Mutant",
+    "isBoss": false
+  },
+  "2600571": {
+    "name": "Abyss Agrint",
+    "isBoss": false
+  },
+  "2600572": {
+    "name": "Soulless Daeva Gladiator",
+    "isBoss": false
+  },
+  "2600573": {
+    "name": "Soulless Daeva Elite Soldier",
+    "isBoss": false
+  },
+  "2600574": {
+    "name": "Abyss Zelophi",
+    "isBoss": false
+  },
+  "2600575": {
+    "name": "Abyss Blue Kalgolem",
+    "isBoss": false
+  },
+  "2600576": {
+    "name": "Abyss Slink",
+    "isBoss": false
+  },
+  "2600577": {
+    "name": "Abyssal Ancient Revenant",
+    "isBoss": false
+  },
+  "2600578": {
+    "name": "Abyss Odyle Mutated Insectoid",
+    "isBoss": false
+  },
+  "2600579": {
+    "name": "Tamed Zaif",
+    "isBoss": false
+  },
+  "2600580": {
+    "name": "Varg Berserker",
+    "isBoss": false
+  },
+  "2600581": {
+    "name": "Abyss Agrint",
+    "isBoss": false
+  },
+  "2600582": {
+    "name": "Soulless Daeva Gladiator",
+    "isBoss": false
+  },
+  "2600583": {
+    "name": "Soulless Daeva Elite Soldier",
+    "isBoss": false
+  },
+  "2600584": {
+    "name": "Abyss Zelophi",
+    "isBoss": false
+  },
+  "2600585": {
+    "name": "Abyss Blue Kalgolem",
+    "isBoss": false
+  },
+  "2600586": {
+    "name": "Abyss Slink",
+    "isBoss": false
+  },
+  "2600587": {
+    "name": "Abyssal Ancient Revenant",
+    "isBoss": false
+  },
+  "2600588": {
+    "name": "Abyss Odyle Mutated Insectoid",
+    "isBoss": false
+  },
+  "2600589": {
+    "name": "Tamed Zaif",
+    "isBoss": false
+  },
+  "2600590": {
+    "name": "Varg Berserker",
+    "isBoss": false
   },
   "2680000": {
     "name": "Odyle Shard Storm",
@@ -22461,15 +23221,15 @@
     "isBoss": true
   },
   "2701379": {
-    "name": "Fountain of Life Lepharist Warrior",
+    "name": "Suspicious Spring Scout",
     "isBoss": false
   },
   "2701380": {
-    "name": "Fountain of Life Lepharist Pugilist",
+    "name": "Suspicious Spring Punisher",
     "isBoss": false
   },
   "2701381": {
-    "name": "Fountain of Life Lepharist Mage",
+    "name": "Suspicious Spring Chaser",
     "isBoss": false
   },
   "2701383": {
@@ -22925,11 +23685,11 @@
     "isBoss": true
   },
   "2701526": {
-    "name": "Fountain of Life Lepharist Warrior",
+    "name": "Suspicious Spring Scout",
     "isBoss": false
   },
   "2701527": {
-    "name": "Fountain of Life Lepharist Pugilist",
+    "name": "Suspicious Spring Punisher",
     "isBoss": false
   },
   "2701528": {
@@ -23798,7 +24558,10 @@
   },
   "2701753": {
     "name": "Divided Aponos",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Easy",
+    "dungeonId": 910011
   },
   "2701756": {
     "name": "Altar Defender",
@@ -23854,7 +24617,10 @@
   },
   "2701774": {
     "name": "Featherstorm Duduri",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Extreme",
+    "dungeonId": 910034
   },
   "2701775": {
     "name": "Furious Guard Troopers Captain",
@@ -23902,11 +24668,17 @@
   },
   "2701788": {
     "name": "Watchful Raptor Dodori",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Extreme",
+    "dungeonId": 910034
   },
   "2701789": {
     "name": "Divided Aponos",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Normal",
+    "dungeonId": 910012
   },
   "2701796": {
     "name": "Distorted Defender",
@@ -23942,7 +24714,10 @@
   },
   "2701807": {
     "name": "Divided Aponos",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Hard",
+    "dungeonId": 910013
   },
   "2701814": {
     "name": "Nightmare Defender",
@@ -23994,11 +24769,17 @@
   },
   "2701829": {
     "name": "Featherstorm Duduri",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Hard",
+    "dungeonId": 910033
   },
   "2701830": {
     "name": "Watchful Raptor Dodori",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Hard",
+    "dungeonId": 910033
   },
   "2701831": {
     "name": "Loathing Guard Troopers Captain",
@@ -24042,11 +24823,17 @@
   },
   "2701841": {
     "name": "Featherstorm Duduri",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Normal",
+    "dungeonId": 910032
   },
   "2701842": {
     "name": "Watchful Raptor Dodori",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Normal",
+    "dungeonId": 910032
   },
   "2701843": {
     "name": "Enhanced Guard Troopers Captain",
@@ -24090,11 +24877,17 @@
   },
   "2701853": {
     "name": "Featherstorm Duduri",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Easy",
+    "dungeonId": 910031
   },
   "2701854": {
     "name": "Watchful Raptor Dodori",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Easy",
+    "dungeonId": 910031
   },
   "2701855": {
     "name": "Sanctum Guard Troopers Captain",
@@ -24142,7 +24935,10 @@
   },
   "2701866": {
     "name": "Divided Aponos",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Extreme",
+    "dungeonId": 910014
   },
   "2701873": {
     "name": "Furious Defender",
@@ -24210,7 +25006,10 @@
   },
   "2701892": {
     "name": "Claudia",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Easy",
+    "dungeonId": 910041
   },
   "2701899": {
     "name": "Depository Pino Worker",
@@ -24250,7 +25049,10 @@
   },
   "2701913": {
     "name": "Claudia",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Normal",
+    "dungeonId": 910042
   },
   "2701920": {
     "name": "Impetuous Pino",
@@ -24278,7 +25080,10 @@
   },
   "2701930": {
     "name": "Claudia",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Hard",
+    "dungeonId": 910043
   },
   "2701937": {
     "name": "Fates Pino",
@@ -24306,7 +25111,10 @@
   },
   "2701947": {
     "name": "Claudia",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Extreme",
+    "dungeonId": 910044
   },
   "2701954": {
     "name": "Furious Pino Worker",
@@ -24334,7 +25142,10 @@
   },
   "2701964": {
     "name": "Menoch",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Easy",
+    "dungeonId": 910021
   },
   "2701965": {
     "name": "Hideout Wraith Brawler",
@@ -24414,7 +25225,10 @@
   },
   "2701990": {
     "name": "Menoch",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Normal",
+    "dungeonId": 910022
   },
   "2701991": {
     "name": "Ascended Wraith Brawler",
@@ -24458,7 +25272,10 @@
   },
   "2702001": {
     "name": "Menoch",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Hard",
+    "dungeonId": 910023
   },
   "2702002": {
     "name": "Tyrant Wraith Brawler",
@@ -24502,7 +25319,10 @@
   },
   "2702012": {
     "name": "Menoch",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Extreme",
+    "dungeonId": 910024
   },
   "2702013": {
     "name": "Furious Undead Instructor",
@@ -24922,7 +25742,10 @@
   },
   "2702274": {
     "name": "Menoch",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Insane",
+    "dungeonId": 910025
   },
   "2702275": {
     "name": "Despairing Wraith Brawler",
@@ -24970,7 +25793,10 @@
   },
   "2702286": {
     "name": "Menoch",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Hell",
+    "dungeonId": 910026
   },
   "2702287": {
     "name": "Doom Wraith Brawler",
@@ -25018,7 +25844,10 @@
   },
   "2702298": {
     "name": "Claudia",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Insane",
+    "dungeonId": 910045
   },
   "2702299": {
     "name": "Despairing Pino Worker",
@@ -25054,7 +25883,10 @@
   },
   "2702309": {
     "name": "Claudia",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Hell",
+    "dungeonId": 910046
   },
   "2702310": {
     "name": "Doom Pino Worker",
@@ -25090,11 +25922,17 @@
   },
   "2702372": {
     "name": "Featherstorm Duduri",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Insane",
+    "dungeonId": 910035
   },
   "2702373": {
     "name": "Watchful Raptor Dodori",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Insane",
+    "dungeonId": 910035
   },
   "2702374": {
     "name": "Despairing Guard Troopers Captain",
@@ -25138,11 +25976,17 @@
   },
   "2702384": {
     "name": "Featherstorm Duduri",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Hell",
+    "dungeonId": 910036
   },
   "2702385": {
     "name": "Watchful Raptor Dodori",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Hell",
+    "dungeonId": 910036
   },
   "2702386": {
     "name": "Doom Guard Troopers Captain",
@@ -25186,7 +26030,10 @@
   },
   "2702396": {
     "name": "Divided Aponos",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Insane",
+    "dungeonId": 910015
   },
   "2702397": {
     "name": "Despairing Defender",
@@ -25238,7 +26085,10 @@
   },
   "2702409": {
     "name": "Divided Aponos",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Ascension Trial",
+    "tier": "Hell",
+    "dungeonId": 910016
   },
   "2702410": {
     "name": "Doom Defender",
@@ -25647,1004 +26497,1758 @@
     "name": "Alluring Arrow",
     "isBoss": false
   },
+  "2921274": {
+    "name": "Muspel Guardian Statue",
+    "isBoss": false
+  },
   "2980000": {
     "name": "High Priestess's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980001": {
     "name": "High Priestess's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980002": {
     "name": "High Priestess's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980003": {
     "name": "High Priestess's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980004": {
     "name": "High Priestess's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980005": {
     "name": "High Priestess's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980006": {
     "name": "High Priestess's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980007": {
     "name": "High Priestess's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980008": {
     "name": "High Priestess's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980009": {
     "name": "High Priestess's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980010": {
     "name": "Sealed Sura",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980011": {
     "name": "Sealed Sura",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980012": {
     "name": "Sealed Sura",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980013": {
     "name": "Sealed Sura",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980014": {
     "name": "Sealed Sura",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980015": {
     "name": "Sealed Sura",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980016": {
     "name": "Sealed Sura",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980017": {
     "name": "Sealed Sura",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980018": {
     "name": "Sealed Sura",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980019": {
     "name": "Sealed Sura",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980020": {
     "name": "Oathbreaker Gartua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980021": {
     "name": "Oathbreaker Gartua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980022": {
     "name": "Oathbreaker Gartua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980023": {
     "name": "Oathbreaker Gartua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980024": {
     "name": "Oathbreaker Gartua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980025": {
     "name": "Oathbreaker Gartua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980026": {
     "name": "Oathbreaker Gartua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980027": {
     "name": "Oathbreaker Gartua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980028": {
     "name": "Oathbreaker Gartua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980029": {
     "name": "Oathbreaker Gartua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980040": {
     "name": "Gatekeeper Pinopi",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980041": {
     "name": "Gatekeeper Pinopi",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980042": {
     "name": "Gatekeeper Pinopi",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980043": {
     "name": "Gatekeeper Pinopi",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980044": {
     "name": "Gatekeeper Pinopi",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980045": {
     "name": "Gatekeeper Pinopi",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980046": {
     "name": "Gatekeeper Pinopi",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980047": {
     "name": "Gatekeeper Pinopi",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980048": {
     "name": "Gatekeeper Pinopi",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980049": {
     "name": "Gatekeeper Pinopi",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980050": {
     "name": "Root Mythical Bird Aultross",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980051": {
     "name": "Root Mythical Bird Aultross",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980052": {
     "name": "Root Mythical Bird Aultross",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980053": {
     "name": "Root Mythical Bird Aultross",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980054": {
     "name": "Root Mythical Bird Aultross",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980055": {
     "name": "Root Mythical Bird Aultross",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980056": {
     "name": "Root Mythical Bird Aultross",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980057": {
     "name": "Root Mythical Bird Aultross",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980058": {
     "name": "Root Mythical Bird Aultross",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980059": {
     "name": "Root Mythical Bird Aultross",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980060": {
     "name": "Aulamus",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980061": {
     "name": "Aulamus",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980062": {
     "name": "Aulamus",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980063": {
     "name": "Aulamus",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980064": {
     "name": "Aulamus",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980065": {
     "name": "Aulamus",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980066": {
     "name": "Aulamus",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980067": {
     "name": "Aulamus",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980068": {
     "name": "Aulamus",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980069": {
     "name": "Aulamus",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980070": {
     "name": "Sharp Aulak",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980071": {
     "name": "Sharp Aulak",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980072": {
     "name": "Sharp Aulak",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980073": {
     "name": "Sharp Aulak",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980074": {
     "name": "Sharp Aulak",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980075": {
     "name": "Sharp Aulak",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980076": {
     "name": "Sharp Aulak",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980077": {
     "name": "Sharp Aulak",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980078": {
     "name": "Sharp Aulak",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980079": {
     "name": "Sharp Aulak",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980080": {
     "name": "Ritualist Aulisa",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980081": {
     "name": "Ritualist Aulisa",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980082": {
     "name": "Ritualist Aulisa",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980083": {
     "name": "Ritualist Aulisa",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980084": {
     "name": "Ritualist Aulisa",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980085": {
     "name": "Ritualist Aulisa",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980086": {
     "name": "Ritualist Aulisa",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980087": {
     "name": "Ritualist Aulisa",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980088": {
     "name": "Ritualist Aulisa",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980089": {
     "name": "Ritualist Aulisa",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980090": {
     "name": "Heladrir",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980091": {
     "name": "Heladrir",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980092": {
     "name": "Heladrir",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980093": {
     "name": "Heladrir",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980094": {
     "name": "Heladrir",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980095": {
     "name": "Heladrir",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980096": {
     "name": "Heladrir",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980097": {
     "name": "Heladrir",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980098": {
     "name": "Heladrir",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980099": {
     "name": "Heladrir",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980100": {
     "name": "Executioner Nua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980101": {
     "name": "Executioner Nua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980102": {
     "name": "Executioner Nua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980103": {
     "name": "Executioner Nua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980104": {
     "name": "Executioner Nua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980105": {
     "name": "Executioner Nua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980106": {
     "name": "Executioner Nua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980107": {
     "name": "Executioner Nua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980108": {
     "name": "Executioner Nua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980109": {
     "name": "Executioner Nua",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980110": {
     "name": "Modified Bargott",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980111": {
     "name": "Modified Bargott",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980112": {
     "name": "Modified Bargott",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980113": {
     "name": "Modified Bargott",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980114": {
     "name": "Modified Bargott",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980115": {
     "name": "Modified Bargott",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980116": {
     "name": "Modified Bargott",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980117": {
     "name": "Modified Bargott",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980118": {
     "name": "Modified Bargott",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980119": {
     "name": "Modified Bargott",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980120": {
     "name": "Mutated Ulgorn",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980121": {
     "name": "Mutated Ulgorn",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980122": {
     "name": "Mutated Ulgorn",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980123": {
     "name": "Mutated Ulgorn",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980124": {
     "name": "Mutated Ulgorn",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980125": {
     "name": "Mutated Ulgorn",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980126": {
     "name": "Mutated Ulgorn",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980127": {
     "name": "Mutated Ulgorn",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980128": {
     "name": "Mutated Ulgorn",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980129": {
     "name": "Mutated Ulgorn",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980130": {
     "name": "Kaisinel's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980131": {
     "name": "Kaisinel's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980132": {
     "name": "Kaisinel's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980133": {
     "name": "Kaisinel's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980134": {
     "name": "Kaisinel's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980135": {
     "name": "Kaisinel's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980136": {
     "name": "Kaisinel's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980137": {
     "name": "Kaisinel's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980138": {
     "name": "Kaisinel's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980139": {
     "name": "Kaisinel's Illusion",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980140": {
     "name": "Enraged Reda",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980141": {
     "name": "Enraged Reda",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980142": {
     "name": "Enraged Reda",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980143": {
     "name": "Enraged Reda",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980144": {
     "name": "Enraged Reda",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980145": {
     "name": "Enraged Reda",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980146": {
     "name": "Enraged Reda",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980147": {
     "name": "Enraged Reda",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980148": {
     "name": "Enraged Reda",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980149": {
     "name": "Enraged Reda",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980150": {
     "name": "Furious Feruk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980151": {
     "name": "Furious Feruk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980152": {
     "name": "Furious Feruk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980153": {
     "name": "Furious Feruk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980154": {
     "name": "Furious Feruk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980155": {
     "name": "Furious Feruk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980156": {
     "name": "Furious Feruk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980157": {
     "name": "Furious Feruk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980158": {
     "name": "Furious Feruk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980159": {
     "name": "Furious Feruk",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980160": {
     "name": "Soulreaper Rathman",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980161": {
     "name": "Soulreaper Rathman",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980162": {
     "name": "Soulreaper Rathman",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980163": {
     "name": "Soulreaper Rathman",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980164": {
     "name": "Soulreaper Rathman",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980165": {
     "name": "Soulreaper Rathman",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980166": {
     "name": "Soulreaper Rathman",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980167": {
     "name": "Soulreaper Rathman",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980168": {
     "name": "Soulreaper Rathman",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980169": {
     "name": "Soulreaper Rathman",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980170": {
     "name": "Fortress Guardian Notun",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980171": {
     "name": "Fortress Guardian Notun",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980172": {
     "name": "Fortress Guardian Notun",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980173": {
     "name": "Fortress Guardian Notun",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980174": {
     "name": "Fortress Guardian Notun",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980175": {
     "name": "Fortress Guardian Notun",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980176": {
     "name": "Fortress Guardian Notun",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980177": {
     "name": "Fortress Guardian Notun",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980178": {
     "name": "Fortress Guardian Notun",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980179": {
     "name": "Fortress Guardian Notun",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980180": {
     "name": "Warden Santras",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980181": {
     "name": "Warden Santras",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980182": {
     "name": "Warden Santras",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980183": {
     "name": "Warden Santras",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980184": {
     "name": "Warden Santras",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980185": {
     "name": "Warden Santras",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980186": {
     "name": "Warden Santras",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980187": {
     "name": "Warden Santras",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980188": {
     "name": "Warden Santras",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980189": {
     "name": "Warden Santras",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980190": {
     "name": "Incarnated Warding Feather",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980191": {
     "name": "Incarnated Warding Feather",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980192": {
     "name": "Incarnated Warding Feather",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980193": {
     "name": "Incarnated Warding Feather",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980194": {
     "name": "Incarnated Warding Feather",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980195": {
     "name": "Incarnated Warding Feather",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980196": {
     "name": "Incarnated Warding Feather",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980197": {
     "name": "Incarnated Warding Feather",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980198": {
     "name": "Incarnated Warding Feather",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980199": {
     "name": "Incarnated Warding Feather",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980200": {
     "name": "Tyrant Tassin",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980201": {
     "name": "Tyrant Tassin",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980202": {
     "name": "Tyrant Tassin",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980203": {
     "name": "Tyrant Tassin",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980204": {
     "name": "Tyrant Tassin",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980205": {
     "name": "Tyrant Tassin",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980206": {
     "name": "Tyrant Tassin",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980207": {
     "name": "Tyrant Tassin",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980208": {
     "name": "Tyrant Tassin",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980209": {
     "name": "Tyrant Tassin",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980210": {
     "name": "Mutated Gerod",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980211": {
     "name": "Mutated Gerod",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980212": {
     "name": "Mutated Gerod",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980213": {
     "name": "Mutated Gerod",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980214": {
     "name": "Mutated Gerod",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980215": {
     "name": "Mutated Gerod",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980216": {
     "name": "Mutated Gerod",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980217": {
     "name": "Mutated Gerod",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980218": {
     "name": "Mutated Gerod",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980219": {
     "name": "Mutated Gerod",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980220": {
     "name": "Zikel's Apparition",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980221": {
     "name": "Zikel's Apparition",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980222": {
     "name": "Zikel's Apparition",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980223": {
     "name": "Zikel's Apparition",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980224": {
     "name": "Zikel's Apparition",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980225": {
     "name": "Zikel's Apparition",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980226": {
     "name": "Zikel's Apparition",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980227": {
     "name": "Zikel's Apparition",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980228": {
     "name": "Zikel's Apparition",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980229": {
     "name": "Zikel's Apparition",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980230": {
     "name": "Sanctum Guardian Gauss",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980231": {
     "name": "Sanctum Guardian Gauss",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980232": {
     "name": "Sanctum Guardian Gauss",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980233": {
     "name": "Sanctum Guardian Gauss",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980234": {
     "name": "Sanctum Guardian Gauss",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980235": {
     "name": "Sanctum Guardian Gauss",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980236": {
     "name": "Sanctum Guardian Gauss",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980237": {
     "name": "Sanctum Guardian Gauss",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980238": {
     "name": "Sanctum Guardian Gauss",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980239": {
     "name": "Sanctum Guardian Gauss",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980240": {
     "name": "Fafnir's Poison Blood",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980241": {
     "name": "Fafnir's Poison Blood",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980242": {
     "name": "Fafnir's Poison Blood",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980243": {
     "name": "Fafnir's Poison Blood",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980244": {
     "name": "Fafnir's Poison Blood",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980245": {
     "name": "Fafnir's Poison Blood",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980246": {
     "name": "Fafnir's Poison Blood",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980247": {
     "name": "Fafnir's Poison Blood",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980248": {
     "name": "Fafnir's Poison Blood",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980249": {
     "name": "Fafnir's Poison Blood",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   },
   "2980250": {
     "name": "Wraith Giselle",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 1",
+    "dungeonId": 200003
   },
   "2980251": {
     "name": "Wraith Giselle",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 2",
+    "dungeonId": 200003
   },
   "2980252": {
     "name": "Wraith Giselle",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 3",
+    "dungeonId": 200003
   },
   "2980253": {
     "name": "Wraith Giselle",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 4",
+    "dungeonId": 200003
   },
   "2980254": {
     "name": "Wraith Giselle",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 5",
+    "dungeonId": 200003
   },
   "2980255": {
     "name": "Wraith Giselle",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 6",
+    "dungeonId": 200003
   },
   "2980256": {
     "name": "Wraith Giselle",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 7",
+    "dungeonId": 200003
   },
   "2980257": {
     "name": "Wraith Giselle",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 8",
+    "dungeonId": 200003
   },
   "2980258": {
     "name": "Wraith Giselle",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 9",
+    "dungeonId": 200003
   },
   "2980259": {
     "name": "Wraith Giselle",
-    "isBoss": true
+    "isBoss": true,
+    "category": "Nightmare",
+    "tier": "Level 10",
+    "dungeonId": 200003
   }
 }
