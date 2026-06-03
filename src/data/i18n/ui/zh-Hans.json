@@ -106,7 +106,11 @@
     "liveBadge": "进行中",
     "filterBoss": "Boss名称...",
     "filterPlayer": "玩家职业...",
-    "filterDate": "日期 (YYYY-MM-DD)..."
+    "filterDate": "日期 (YYYY-MM-DD)...",
+    "viewList": "列表视图",
+    "viewGrouped": "按首领分组",
+    "fightCount": "{n} 场",
+    "fightCountOne": "1 场"
   },
   "settings": {
     "title": "设置",

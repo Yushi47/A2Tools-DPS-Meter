@@ -1407,6 +1407,94 @@ body.mainPlayerDpsBold .meter .item .content .dps {
   }
 }
 
+/* Segmented list / grouped view toggle */
+.historyViewToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+}
+.historyViewBtn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  padding: 3px 7px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.12s, color 0.12s;
+}
+.historyViewBtn svg {
+  width: 15px;
+  height: 15px;
+}
+.historyViewBtn:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+.historyViewBtn.active {
+  color: var(--accent, #7ecfff);
+  background: rgba(126, 207, 255, 0.14);
+}
+
+/* Grouped-by-boss sections */
+.historyGroup {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.historyGroupHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.12s;
+}
+.historyGroupHeader:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.historyGroupChevron {
+  display: inline-flex;
+  color: rgba(255, 255, 255, 0.55);
+  transform: rotate(-90deg);
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+.historyGroupHeader.expanded .historyGroupChevron {
+  transform: rotate(0deg);
+}
+.historyGroupName {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.historyGroupCount {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  padding: 2px 9px;
+}
+.historyGroupChildren {
+  background: rgba(0, 0, 0, 0.18);
+}
+.historyGroupChildren .historyRowChild {
+  padding-left: 32px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+.historyGroupChildren .historyRowChild:last-child {
+  border-bottom: none;
+}
+
 .historyTrainBadge {
   display: inline-block;
   font-size: 10px;

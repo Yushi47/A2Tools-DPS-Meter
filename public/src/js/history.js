@@ -7,6 +7,8 @@ const createHistoryUI = ({ onOpenFight } = {}) => {
   const emptyEl = panel.querySelector(".historyEmpty");
   const trainToggleBtn = panel.querySelector(".historyTrainToggle");
   const deleteToggleBtn = panel.querySelector(".historyDeleteToggle");
+  const viewToggleEl = panel.querySelector(".historyViewToggle");
+  const viewBtns = viewToggleEl ? [...viewToggleEl.querySelectorAll(".historyViewBtn")] : [];
   const filterBossEl = panel.querySelector(".historyFilterBoss");
   const filterPlayerEl = panel.querySelector(".historyFilterPlayer");
   const filterPlayerTrigger = filterPlayerEl?.querySelector(".historyClassDropdownTrigger");
@@ -32,10 +34,27 @@ const createHistoryUI = ({ onOpenFight } = {}) => {
   let filterDate = "";
   let classDropdownOpen = false;
 
+  // View mode: "grouped" (each boss its own collapsible section) or "list" (flat chronological).
+  const VIEW_KEY = "historyViewMode";
+  let viewMode = (() => {
+    try { return localStorage.getItem(VIEW_KEY) === "list" ? "list" : "grouped"; } catch { return "grouped"; }
+  })();
+  const expandedGroups = new Set();
+
   const syncDeleteToggle = () => {
     if (!deleteToggleBtn) return;
     deleteToggleBtn.classList.toggle("active", showDeleteMode);
     panel.classList.toggle("deleteMode", showDeleteMode);
+  };
+
+  const syncViewToggle = () => {
+    viewBtns.forEach((b) => {
+      b.classList.toggle("active", b.dataset.view === viewMode);
+      b.title = b.dataset.view === "list"
+        ? t("history.viewList", "List view")
+        : t("history.viewGrouped", "Group by boss");
+    });
+    panel.classList.toggle("groupedView", viewMode === "grouped");
   };
 
   const i18n = window.i18n;
@@ -185,9 +204,9 @@ const createHistoryUI = ({ onOpenFight } = {}) => {
     });
   };
 
-  const buildRow = (fight) => {
+  const buildRow = (fight, { grouped = false } = {}) => {
     const row = document.createElement("div");
-    row.className = "historyRow";
+    row.className = grouped ? "historyRow historyRowChild" : "historyRow";
     row.dataset.fightId = fight.id;
 
     const infoEl = document.createElement("div");
@@ -195,7 +214,10 @@ const createHistoryUI = ({ onOpenFight } = {}) => {
 
     const nameEl = document.createElement("div");
     nameEl.className = "historyRowName";
-    nameEl.textContent = fight.bossName || `Boss #${fight.targetId}`;
+    // In grouped view the boss name is the section header, so the row leads with its date instead.
+    nameEl.textContent = grouped
+      ? formatDate(fight.startTimeMs)
+      : (fight.bossName || `Boss #${fight.targetId}`);
     if (fight.isLive) {
       const lastActivityMs = Number(fight.startTimeMs) + Number(fight.durationMs);
       if (Date.now() - lastActivityMs < 60_000) {
@@ -227,7 +249,7 @@ const createHistoryUI = ({ onOpenFight } = {}) => {
     dmgEl.className = "historyRowDamage";
     dmgEl.textContent = formatDamage(fight.totalDamage);
 
-    metaEl.appendChild(timeEl);
+    if (!grouped) metaEl.appendChild(timeEl);
     metaEl.appendChild(durEl);
     metaEl.appendChild(dmgEl);
 
@@ -263,9 +285,15 @@ const createHistoryUI = ({ onOpenFight } = {}) => {
       deleteBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         if (window.javaBridge?.deleteFight?.(fight.id)) {
-          row.remove();
-          if (!listEl.querySelector(".historyRow")) {
-            if (emptyEl) emptyEl.style.display = "";
+          allFights = allFights.filter((x) => x.id !== fight.id);
+          if (viewMode === "grouped") {
+            // Re-render so the section's fight count updates and empty sections drop out.
+            renderList(allFights);
+          } else {
+            row.remove();
+            if (!listEl.querySelector(".historyRow")) {
+              if (emptyEl) emptyEl.style.display = "";
+            }
           }
         }
       });
@@ -302,6 +330,88 @@ const createHistoryUI = ({ onOpenFight } = {}) => {
     renderedCount = end;
   };
 
+  const fightCountLabel = (n) =>
+    n === 1
+      ? t("history.fightCountOne", "1 fight")
+      : t("history.fightCount", "{n} fights").replace("{n}", n);
+
+  const startMs = (f) => Number(f.startTimeMs) || 0;
+
+  const buildGroup = (group) => {
+    // Most recent run first within a section.
+    group.fights.sort((a, b) => startMs(b) - startMs(a));
+
+    const wrap = document.createElement("div");
+    wrap.className = "historyGroup";
+
+    const header = document.createElement("div");
+    header.className = "historyGroupHeader";
+
+    const chevron = document.createElement("span");
+    chevron.className = "historyGroupChevron";
+    chevron.innerHTML = `<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0l5 6 5-6z" fill="currentColor"/></svg>`;
+
+    const nameEl = document.createElement("div");
+    nameEl.className = "historyGroupName";
+    nameEl.textContent = group.name;
+
+    const countEl = document.createElement("span");
+    countEl.className = "historyGroupCount";
+    countEl.textContent = fightCountLabel(group.fights.length);
+
+    header.appendChild(chevron);
+    header.appendChild(nameEl);
+    header.appendChild(countEl);
+
+    const childWrap = document.createElement("div");
+    childWrap.className = "historyGroupChildren";
+
+    const renderChildren = () => {
+      if (childWrap.childElementCount) return;
+      const frag = document.createDocumentFragment();
+      group.fights.forEach((f) => frag.appendChild(buildRow(f, { grouped: true })));
+      childWrap.appendChild(frag);
+    };
+
+    const expanded = expandedGroups.has(group.name);
+    header.classList.toggle("expanded", expanded);
+    childWrap.style.display = expanded ? "" : "none";
+    if (expanded) renderChildren();
+
+    header.addEventListener("click", () => {
+      const nowExpanded = !expandedGroups.has(group.name);
+      if (nowExpanded) {
+        expandedGroups.add(group.name);
+        renderChildren();
+      } else {
+        expandedGroups.delete(group.name);
+      }
+      header.classList.toggle("expanded", nowExpanded);
+      childWrap.style.display = nowExpanded ? "" : "none";
+    });
+
+    wrap.appendChild(header);
+    wrap.appendChild(childWrap);
+    return wrap;
+  };
+
+  const renderGrouped = (visible) => {
+    const groups = new Map();
+    visible.forEach((f) => {
+      const key = f.bossName || `Boss #${f.targetId}`;
+      let g = groups.get(key);
+      if (!g) { g = { name: key, fights: [] }; groups.set(key, g); }
+      g.fights.push(f);
+    });
+    // Sections ordered by their most recent run.
+    const ordered = [...groups.values()].sort(
+      (a, b) => Math.max(...b.fights.map(startMs)) - Math.max(...a.fights.map(startMs))
+    );
+    const frag = document.createDocumentFragment();
+    ordered.forEach((g) => frag.appendChild(buildGroup(g)));
+    listEl.appendChild(frag);
+  };
+
   const renderList = (fights) => {
     if (!listEl) return;
     listEl.innerHTML = "";
@@ -315,12 +425,17 @@ const createHistoryUI = ({ onOpenFight } = {}) => {
     }
     if (emptyEl) emptyEl.style.display = "none";
 
-    appendPage();
+    if (viewMode === "grouped") {
+      renderGrouped(lastVisible);
+    } else {
+      appendPage();
+    }
   };
 
   const open = () => {
     panel.classList.add("open");
     syncTrainToggle();
+    syncViewToggle();
     const raw = window.javaBridge?.getFightHistory?.();
     try {
       allFights = typeof raw === "string" ? JSON.parse(raw) : (Array.isArray(raw) ? raw : []);
@@ -331,8 +446,9 @@ const createHistoryUI = ({ onOpenFight } = {}) => {
     renderList(allFights);
   };
 
-  // Load more rows when scrolled near the bottom
+  // Load more rows when scrolled near the bottom (flat list only; grouped renders sections eagerly)
   listEl?.addEventListener("scroll", () => {
+    if (viewMode !== "list") return;
     if (loadingMore || renderedCount >= lastVisible.length) return;
     const threshold = 80;
     if (listEl.scrollTop + listEl.clientHeight >= listEl.scrollHeight - threshold) {
@@ -371,6 +487,18 @@ const createHistoryUI = ({ onOpenFight } = {}) => {
     syncDeleteToggle();
   });
 
+  viewBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const mode = btn.dataset.view === "list" ? "list" : "grouped";
+      if (mode === viewMode) return;
+      viewMode = mode;
+      try { localStorage.setItem(VIEW_KEY, viewMode); } catch {}
+      syncViewToggle();
+      expandedGroups.clear();
+      renderList(allFights);
+    });
+  });
+
   const close = () => {
     panel.classList.remove("open");
     showDeleteMode = false;
@@ -378,6 +506,7 @@ const createHistoryUI = ({ onOpenFight } = {}) => {
     filterBoss = "";
     filterPlayer = "";
     filterDate = "";
+    expandedGroups.clear();
     if (filterBossEl) filterBossEl.selectedIndex = 0;
     if (filterPlayerLabel) filterPlayerLabel.textContent = t("history.filterPlayer", "All classes");
     setClassDropdownOpen(false);

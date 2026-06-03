@@ -108,7 +108,11 @@
     "liveBadge": "Live",
     "filterBoss": "Boss name...",
     "filterPlayer": "Player class...",
-    "filterDate": "Date (YYYY-MM-DD)..."
+    "filterDate": "Date (YYYY-MM-DD)...",
+    "viewList": "List view",
+    "viewGrouped": "Group by boss",
+    "fightCount": "{n} fights",
+    "fightCountOne": "1 fight"
   },
   "settings": {
     "title": "Settings",
