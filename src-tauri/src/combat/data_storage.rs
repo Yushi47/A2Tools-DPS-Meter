@@ -37,6 +37,37 @@ pub struct SkillCombatData {
 }
 
 impl SkillCombatData {
+    /// Clone every aggregate field but leave `hit_timestamps` empty.
+    /// The timestamp Vec grows by one entry per hit (unbounded over a long
+    /// fight) and is only ever consumed by `get_target_details` (the details
+    /// panel chart). Every other consumer clones it for nothing, so the hot
+    /// 500ms paths use this to keep per-tick clone cost flat over fight time.
+    /// Spelled out manually rather than `Vec::new(), ..self.clone()` because
+    /// the latter would copy `hit_timestamps` only to throw it away.
+    fn clone_light(&self) -> Self {
+        Self {
+            skill_code: self.skill_code,
+            is_dot: self.is_dot,
+            hit_count: self.hit_count,
+            total_damage: self.total_damage,
+            min_damage: self.min_damage,
+            max_damage: self.max_damage,
+            crit_count: self.crit_count,
+            back_count: self.back_count,
+            parry_count: self.parry_count,
+            perfect_count: self.perfect_count,
+            double_count: self.double_count,
+            smite_count: self.smite_count,
+            powershard_count: self.powershard_count,
+            multi_hit_count: self.multi_hit_count,
+            multi_hit_damage: self.multi_hit_damage,
+            multi_hit_hits: self.multi_hit_hits,
+            heal_amount: self.heal_amount,
+            hit_timestamps: Vec::new(),
+            spec_flags: self.spec_flags,
+        }
+    }
+
     fn new(skill_code: i32, is_dot: bool) -> Self {
         Self {
             skill_code,
@@ -519,6 +550,57 @@ impl DataStorage {
     /// This is cheap: clones a small map of aggregates, not raw packets.
     pub fn get_combat_snapshot(&self) -> HashMap<i32, TargetCombatData> {
         self.inner.read().target_combat.clone()
+    }
+
+    /// Like `get_combat_snapshot` but without per-skill `hit_timestamps`.
+    /// `hit_timestamps` grows unbounded over a fight and is only needed by
+    /// `get_target_details`. The 500ms hot paths (`get_dps`,
+    /// `get_details_context`, boss auto-save) never read it, so this keeps
+    /// their per-tick clone cost flat over fight duration instead of growing
+    /// linearly — the root cause of the long-fight FPS drops.
+    pub fn get_combat_snapshot_light(&self) -> HashMap<i32, TargetCombatData> {
+        let inner = self.inner.read();
+        inner
+            .target_combat
+            .iter()
+            .map(|(&tid, td)| {
+                let actors = td
+                    .actors
+                    .iter()
+                    .map(|(&aid, ad)| {
+                        let skills = ad
+                            .skills
+                            .iter()
+                            .map(|(&k, sd)| (k, sd.clone_light()))
+                            .collect();
+                        (
+                            aid,
+                            ActorCombatData {
+                                total_damage: ad.total_damage,
+                                party_heal: ad.party_heal,
+                                regen: ad.regen,
+                                damage_received: ad.damage_received,
+                                hits_received: ad.hits_received,
+                                last_damage_time: ad.last_damage_time,
+                                job: ad.job,
+                                skills,
+                            },
+                        )
+                    })
+                    .collect();
+                (
+                    tid,
+                    TargetCombatData {
+                        target_id: td.target_id,
+                        total_damage: td.total_damage,
+                        first_damage_time: td.first_damage_time,
+                        last_damage_time: td.last_damage_time,
+                        last_packet_id: td.last_packet_id,
+                        actors,
+                    },
+                )
+            })
+            .collect()
     }
 
     pub fn flush(&self) {

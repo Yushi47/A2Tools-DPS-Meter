@@ -43,10 +43,11 @@
   // We cache the latest snapshot so getDpsData() can return it synchronously.
   listen("dps-update", (event) => {
     cachedDpsJson = JSON.stringify(event.payload);
-    // Pre-fetch details context so it's ready when user clicks a player
-    invoke("get_details_context").then((ctx) => {
-      cachedDetailsContext = ctx;
-    }).catch(() => {});
+    // NOTE: do NOT pre-fetch get_details_context here. It clones the full combat
+    // aggregate and runs O(targets×actors×skills) work; firing it every 500ms
+    // (even with the details panel closed) was a major source of CPU lag that
+    // grew with fight length. The details panel self-refreshes every 2s while
+    // open (details.js), and getDetailsContext() below refreshes on demand.
   });
 
   listen("ping-update", (event) => {

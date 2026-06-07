@@ -99,7 +99,7 @@ impl DpsCalculator {
     }
 
     pub fn mark_all_targets_saved(&mut self) {
-        let combat = self.data_storage.get_combat_snapshot();
+        let combat = self.data_storage.get_combat_snapshot_light();
         for &tid in combat.keys() {
             self.saved_boss_targets.insert(tid);
         }
@@ -131,8 +131,9 @@ impl DpsCalculator {
         }
         self.last_damage_gen = current_gen;
 
-        // Get pre-computed aggregates (cheap — small map, not 17K packets)
-        let combat_data = self.data_storage.get_combat_snapshot();
+        // Get pre-computed aggregates (cheap — small map, not 17K packets).
+        // Light snapshot: skips per-hit timestamps (unused here, grows unbounded).
+        let combat_data = self.data_storage.get_combat_snapshot_light();
         let nickname_data = self.data_storage.get_nicknames();
         let summon_data = self.data_storage.get_summon_data();
 
@@ -449,7 +450,9 @@ impl DpsCalculator {
 
     fn snapshot_boss_fights_inner(&mut self, force: bool) -> Vec<FightRecord> {
         let mob_data = self.data_storage.get_mob_data();
-        let combat_data = self.data_storage.get_combat_snapshot();
+        // Light snapshot: only used for target filtering + per-actor aggregate
+        // stats here; the saved record's timestamps come from get_target_details.
+        let combat_data = self.data_storage.get_combat_snapshot_light();
         let now_ms = std::time::SystemTime::now()
             .duration_since(std::time::UNIX_EPOCH)
             .map(|d| d.as_millis() as i64)
@@ -595,7 +598,9 @@ impl DpsCalculator {
     }
 
     pub fn get_details_context(&self) -> DetailsContext {
-        let combat_data = self.data_storage.get_combat_snapshot();
+        // Light snapshot: this builds per-target/per-actor summaries only — the
+        // per-hit timeline is fetched separately via get_target_details.
+        let combat_data = self.data_storage.get_combat_snapshot_light();
         let nickname_data = self.data_storage.get_nicknames();
         let summon_data = self.data_storage.get_summon_data();
         let mob_hp_data = self.data_storage.get_mob_hp_data();
