@@ -343,7 +343,10 @@ impl DataStorage {
             SkillCombatData::new(skill_code, pdp.is_dot())
         });
         skill_data.hit_count += 1;
-        skill_data.total_damage += total_dmg;
+        // saturating_add: per-skill totals are i32 and a long boss fight can
+        // exceed i32::MAX — overflow panics in debug and wraps to negative in
+        // release. Cap instead of crashing/wrapping.
+        skill_data.total_damage = skill_data.total_damage.saturating_add(total_dmg);
         let hit_dmg = pdp.damage();
         if hit_dmg < skill_data.min_damage { skill_data.min_damage = hit_dmg; }
         if hit_dmg > skill_data.max_damage { skill_data.max_damage = hit_dmg; }
@@ -356,10 +359,10 @@ impl DataStorage {
         if pdp.specials().contains(&SpecialDamage::PowerShard) { skill_data.powershard_count += 1; }
         if pdp.multi_hit_count() > 0 {
             skill_data.multi_hit_count += 1;
-            skill_data.multi_hit_damage += pdp.multi_hit_damage();
+            skill_data.multi_hit_damage = skill_data.multi_hit_damage.saturating_add(pdp.multi_hit_damage());
             skill_data.multi_hit_hits += pdp.multi_hit_count();
         }
-        skill_data.heal_amount += pdp.heal_amount();
+        skill_data.heal_amount = skill_data.heal_amount.saturating_add(pdp.heal_amount());
         // Track regen (life-steal) on the actor aggregate
         if pdp.heal_amount() > 0 {
             actor_data.regen += pdp.heal_amount() as i64;

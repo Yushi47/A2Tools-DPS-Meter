@@ -270,8 +270,11 @@ impl StreamProcessor {
         if offset + 1 >= packet.len() {
             return;
         }
-        // Opcode 0x3641 appears as [0x41, 0x36] in the stream (little-endian)
-        if packet[offset] != 0x41 || packet[offset + 1] != 0x36 {
+        // Death opcode. Pre-2026-06 it was 0x3641 ([0x41,0x36]); the June 2026
+        // update shifted the 0x36 spawn/death family by +1, so it is now 0x3642
+        // ([0x42,0x36]). Accept both — the flag==3 check below rejects anything
+        // that isn't actually a combat death.
+        if packet[offset + 1] != 0x36 || (packet[offset] != 0x41 && packet[offset] != 0x42) {
             return;
         }
         let mut pos = offset + 2;
@@ -597,18 +600,20 @@ impl StreamProcessor {
     fn scan_for_embedded_40_36(&mut self, data: &[u8]) {
         let mut i = 0;
         while i + 5 < data.len() {
-            if data[i + 1] == 0x36 && (data[i] == 0x40 || data[i] == 0x44) {
+            // Spawn family shifted +1 in June 2026: mob/summon 0x40->0x41,
+            // player 0x44->0x45. Accept both old and new leading bytes.
+            if data[i + 1] == 0x36 && matches!(data[i], 0x40 | 0x41 | 0x44 | 0x45) {
                 if i > 0 && data[i - 1] == 0x00 {
                     i += 2;
                     continue;
                 }
                 let target_info = read_varint(data, i + 2);
                 if target_info.length > 0 && (100..=9_999_999).contains(&target_info.value) {
-                    if data[i] == 0x44 {
-                        // 44 36 = player spawn — extract name
+                    if data[i] == 0x44 || data[i] == 0x45 {
+                        // 44/45 36 = player spawn — extract name
                         self.parse_player_spawn_name(data, i + 2);
                     } else {
-                        // 40 36 = summon/mob spawn
+                        // 40/41 36 = summon/mob spawn
                         let mut real_id = target_info.value;
                         if real_id > 1_000_000 {
                             real_id = (real_id & 0x3FFF) | 0x4000;
@@ -671,12 +676,13 @@ impl StreamProcessor {
         if packet[offset + 1] != 0x36 {
             return false;
         }
-        if packet[offset] == 0x44 {
-            // Player spawn — extract name
+        // Player spawn: 0x3644 pre-2026-06, 0x3645 after the June 2026 +1 shift.
+        if packet[offset] == 0x44 || packet[offset] == 0x45 {
             self.parse_player_spawn_name(packet, offset + 2);
             return false;
         }
-        if packet[offset] != 0x40 {
+        // Mob/summon spawn: 0x3640 pre-2026-06, 0x3641 after the shift.
+        if packet[offset] != 0x40 && packet[offset] != 0x41 {
             return false;
         }
         self.parse_summon_spawn_at(packet, offset + 2)
@@ -807,8 +813,9 @@ impl StreamProcessor {
 
         while i < packet.len() {
             if packet[i] == 0x36 {
-                // Skip 40 36 / 44 36 spawn opcodes
-                if i > 0 && (packet[i - 1] == 0x40 || packet[i - 1] == 0x44) {
+                // Skip spawn opcodes (40/41 36 mob, 44/45 36 player) — the
+                // 0x36 family shifted +1 in June 2026.
+                if i > 0 && matches!(packet[i - 1], 0x40 | 0x41 | 0x44 | 0x45) {
                     i += 1;
                     continue;
                 }
@@ -1058,8 +1065,9 @@ impl StreamProcessor {
                         let block_end = std::cmp::min(packet.len(), block_scan + 500);
 
                         while block_scan + 3 < block_end {
-                            // Stop at terminator
-                            if packet[block_scan] == 0x06 && packet[block_scan + 1] == 0x00 && packet[block_scan + 2] == 0x36 {
+                            // Stop at terminator. The leading byte changed
+                            // 0x06 -> 0x0E in the June 2026 update; accept both.
+                            if (packet[block_scan] == 0x06 || packet[block_scan] == 0x0E) && packet[block_scan + 1] == 0x00 && packet[block_scan + 2] == 0x36 {
                                 break;
                             }
                             // Name must be preceded by 00 00
@@ -1103,7 +1111,9 @@ impl StreamProcessor {
                             let mut scan_idx = id_idx + player_info.length as usize;
 
                             while scan_idx < stop_at {
-                                if packet[scan_idx] == 0x06
+                                // Terminator: leading byte changed 0x06 -> 0x0E
+                                // in the June 2026 update; accept both.
+                                if (packet[scan_idx] == 0x06 || packet[scan_idx] == 0x0E)
                                     && packet[scan_idx + 1] == 0x00
                                     && packet[scan_idx + 2] == 0x36
                                 {

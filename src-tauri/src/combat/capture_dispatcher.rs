@@ -15,7 +15,20 @@ use crate::combat::ping_tracker::PingTracker;
 use crate::i18n::lookup::{NpcLookup, SkillLookup};
 use crate::platform::window_detector;
 
-const MAGIC: [u8; 3] = [0x06, 0x00, 0x36];
+/// Pre-lock combat signatures: a cheap gate deciding which packets are worth
+/// running through the parser before a port is locked. The port only actually
+/// locks when the parser extracts *real damage* (see `run`), so this gate just
+/// limits parse attempts — it does not by itself decide the lock.
+///
+/// The game's per-record terminator `?? 00 36` had leading byte `0x06`
+/// pre-2026-06; the June 2026 update changed it to `0x0E` (`06 00 36` ->
+/// `0E 00 36`), which silently broke the old single-magic port detection while
+/// leaving the parser itself unaffected. We accept both leading bytes so the
+/// gate survives that transition.
+const COMBAT_SIGNATURES: [&[u8]; 2] = [
+    &[0x0E, 0x00, 0x36], // current (post June 2026) record terminator
+    &[0x06, 0x00, 0x36], // legacy terminator (pre June 2026)
+];
 const TLS_CONTENT_TYPES: [u8; 4] = [0x14, 0x15, 0x16, 0x17];
 const TLS_VERSIONS: [u8; 5] = [0x00, 0x01, 0x02, 0x03, 0x04];
 const WINDOW_CHECK_STOPPED_MS: i64 = 10_000;
@@ -151,17 +164,17 @@ impl CaptureDispatcher {
                 }
             }
 
-            // Pre-lock filters
+            // Pre-lock filters. Once a port is locked these checks are skipped
+            // entirely (the port/direction filters above already gate traffic),
+            // keeping the hot path cheap during heavy combat.
             let unlocked = current_port.is_none();
-            let tls_payload = looks_like_tls(&cap.data);
-
-            if unlocked && tls_payload {
-                continue;
-            }
-
-            let has_magic = if tls_payload { false } else { contains_bytes(&cap.data, &MAGIC) };
-            if unlocked && !has_magic {
-                continue;
+            if unlocked {
+                if looks_like_tls(&cap.data) {
+                    continue;
+                }
+                if !contains_any(&cap.data, &COMBAT_SIGNATURES) {
+                    continue;
+                }
             }
 
             // Log raw packet if packet logging is enabled
@@ -182,12 +195,23 @@ impl CaptureDispatcher {
                 self.port_detector.register_candidate(cap.src_port, key, cap.device_name.as_deref());
             }
 
+            // A flow only qualifies to lock the port if it parses *real damage*
+            // (not merely consumes bytes — the resync logic consumes garbage too).
+            // This keeps coincidental / non-combat flows from ever locking, while
+            // still parsing spawns/names into the store pre-lock so mobs that
+            // appeared before the first fight are still identified.
+            let dmg_before = self.data_storage.damage_generation();
             let parsed = assembler.process_chunk(&cap.data, processor);
 
-            if parsed && self.port_detector.current_port().is_none() {
+            if self.data_storage.damage_generation() != dmg_before
+                && self.port_detector.current_port().is_none()
+            {
                 self.port_detector.confirm_candidate(cap.src_port, cap.dst_port, cap.device_name.as_deref());
-                // GC orphaned assemblers
-                assemblers.retain(|k, _| *k == key);
+                // On lock, GC the orphaned candidate assemblers (the relay's
+                // duplicate external flows) so only the locked flow is processed.
+                if self.port_detector.current_port().is_some() {
+                    assemblers.retain(|k, _| *k == key);
+                }
             }
 
             if parsed {
@@ -208,7 +232,11 @@ fn looks_like_tls(data: &[u8]) -> bool {
 }
 
 fn contains_bytes(data: &[u8], needle: &[u8]) -> bool {
-    data.windows(needle.len()).any(|w| w == needle)
+    needle.len() <= data.len() && data.windows(needle.len()).any(|w| w == needle)
+}
+
+fn contains_any(data: &[u8], needles: &[&[u8]]) -> bool {
+    needles.iter().any(|n| contains_bytes(data, n))
 }
 
 fn device_matches(locked: &str, packet_device: Option<&str>) -> bool {

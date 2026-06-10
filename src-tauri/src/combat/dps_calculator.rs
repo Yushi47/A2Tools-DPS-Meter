@@ -913,9 +913,12 @@ impl DpsCalculator {
                 });
 
                 entry.time += skill_data.hit_count;
-                entry.dmg += skill_data.total_damage;
+                // saturating: damage sums are i32 and can exceed i32::MAX across
+                // a long fight / many actors — avoid overflow panic (debug) and
+                // wrap-to-negative (release).
+                entry.dmg = entry.dmg.saturating_add(skill_data.total_damage);
                 entry.multi_hit_count += skill_data.multi_hit_count;
-                entry.multi_hit_damage += skill_data.multi_hit_damage;
+                entry.multi_hit_damage = entry.multi_hit_damage.saturating_add(skill_data.multi_hit_damage);
                 entry.multi_hit_hits += skill_data.multi_hit_hits;
                 if skill_data.min_damage < entry.min_dmg { entry.min_dmg = skill_data.min_damage; }
                 if skill_data.max_damage > entry.max_dmg { entry.max_dmg = skill_data.max_damage; }
@@ -926,7 +929,7 @@ impl DpsCalculator {
                 entry.double += skill_data.double_count;
                 entry.smite += skill_data.smite_count;
                 entry.powershard += skill_data.powershard_count;
-                entry.regen += skill_data.heal_amount;
+                entry.regen = entry.regen.saturating_add(skill_data.heal_amount);
                 // Add timestamps relative to fight start
                 for &ts in &skill_data.hit_timestamps {
                     entry.hit_timestamps.push(ts - fight_start);

@@ -12,6 +12,12 @@ fn now_ms() -> i64 {
         .as_millis() as i64
 }
 
+/// How long to hold off locking a physical/external port after the first combat
+/// candidate, giving a loopback relay tunnel (ping-reducer) time to surface and
+/// take precedence. A loopback flow locks immediately and ignores this window;
+/// direct-connection users simply wait this long once before the first lock.
+const LOOPBACK_GRACE_MS: i64 = 2500;
+
 /// Global combat port detector — identifies which network device and port
 /// carry AION 2 game traffic by looking for the combat signature bytes.
 pub struct CombatPortDetector {
@@ -25,6 +31,9 @@ struct Inner {
     candidates: HashMap<u16, Option<String>>,
     device_flows: HashMap<String, HashSet<(u16, u16)>>,
     preferred_device: Option<String>,
+    /// Wall-clock of the first combat candidate seen since the last reset; used
+    /// to time the loopback-preference grace window.
+    first_candidate_ms: i64,
 }
 
 impl CombatPortDetector {
@@ -36,6 +45,7 @@ impl CombatPortDetector {
                 candidates: HashMap::new(),
                 device_flows: HashMap::new(),
                 preferred_device: None,
+                first_candidate_ms: 0,
             }),
             last_parsed_at_ms: AtomicI64::new(0),
         }
@@ -76,14 +86,17 @@ impl CombatPortDetector {
             return;
         }
 
-        if let Some(ref dev) = trimmed {
-            inner.device_flows.entry(dev.clone()).or_default().insert(flow_key);
-            if is_loopback(dev) {
-                Self::lock_inner(&mut inner, port, trimmed.clone());
-                return;
-            }
+        if inner.first_candidate_ms == 0 {
+            inner.first_candidate_ms = now_ms();
         }
 
+        if let Some(ref dev) = trimmed {
+            inner.device_flows.entry(dev.clone()).or_default().insert(flow_key);
+        }
+
+        // Note: loopback flows are no longer locked here on sight. Locking is
+        // gated on the flow actually producing combat (see confirm_candidate),
+        // so a coincidental loopback service can't hijack the lock.
         inner.candidates.entry(port).or_insert(trimmed);
     }
 
@@ -110,13 +123,22 @@ impl CombatPortDetector {
         let candidate_device = inner.candidates.get(&port).cloned().flatten();
         let device_for_lock = trimmed.or(candidate_device);
 
-        // Check if loopback is available - prefer it
-        let loopback = inner.device_flows.keys().find(|k| is_loopback(k)).cloned();
-        if let Some(ref lb) = loopback {
-            if !is_loopback_opt(&device_for_lock) {
-                info!("Deferring combat port lock because loopback ({}) is available", lb);
-                return;
-            }
+        // A loopback flow is the relay/ping-reducer's local tunnel — the exact
+        // stream the game client consumes — so lock it the instant it produces
+        // combat, ahead of any external session.
+        if is_loopback_opt(&device_for_lock) {
+            Self::lock_inner(&mut inner, port, device_for_lock);
+            return;
+        }
+
+        // Physical/external flow: hold off briefly. With a ping-reducer the same
+        // combat arrives on several external sessions and is relayed to a
+        // loopback tunnel a moment later; this grace lets that loopback flow
+        // appear and win. If none shows up, commit to the physical port (direct
+        // connection / no relay).
+        let waited = now_ms() - inner.first_candidate_ms;
+        if inner.first_candidate_ms != 0 && waited < LOOPBACK_GRACE_MS {
+            return;
         }
 
         Self::lock_inner(&mut inner, port, device_for_lock);
@@ -143,6 +165,7 @@ impl CombatPortDetector {
         inner.locked_device = None;
         inner.candidates.clear();
         inner.device_flows.clear();
+        inner.first_candidate_ms = 0;
         self.last_parsed_at_ms.store(0, Ordering::Relaxed);
         if was_locked {
             info!("Combat port lock cleared");

@@ -40,15 +40,17 @@ impl AnalyzedSkill {
     }
 
     pub fn process_pdp(&mut self, pdp: &ParsedDamagePacket) {
+        // saturating_add throughout: damage/heal sums are i32 and can exceed
+        // i32::MAX on long fights (overflow panics in debug, wraps in release).
         if pdp.heal_amount() > 0 {
-            self.heal_amount += pdp.heal_amount();
+            self.heal_amount = self.heal_amount.saturating_add(pdp.heal_amount());
         }
         if pdp.is_dot() {
             self.dot_times += 1;
-            self.dot_damage_amount += pdp.total_damage();
+            self.dot_damage_amount = self.dot_damage_amount.saturating_add(pdp.total_damage());
         } else {
             self.times += 1;
-            self.damage_amount += pdp.total_damage();
+            self.damage_amount = self.damage_amount.saturating_add(pdp.total_damage());
             if pdp.is_crit() { self.crit_times += 1; }
             if pdp.specials().contains(&SpecialDamage::Back) { self.back_times += 1; }
             if pdp.specials().contains(&SpecialDamage::Parry) { self.parry_times += 1; }
@@ -59,14 +61,14 @@ impl AnalyzedSkill {
 
     pub fn merge_from(&mut self, other: &AnalyzedSkill) {
         self.times += other.times;
-        self.damage_amount += other.damage_amount;
+        self.damage_amount = self.damage_amount.saturating_add(other.damage_amount);
         self.crit_times += other.crit_times;
         self.back_times += other.back_times;
         self.parry_times += other.parry_times;
         self.double_times += other.double_times;
         self.perfect_times += other.perfect_times;
         self.dot_times += other.dot_times;
-        self.dot_damage_amount += other.dot_damage_amount;
-        self.heal_amount += other.heal_amount;
+        self.dot_damage_amount = self.dot_damage_amount.saturating_add(other.dot_damage_amount);
+        self.heal_amount = self.heal_amount.saturating_add(other.heal_amount);
     }
 }
