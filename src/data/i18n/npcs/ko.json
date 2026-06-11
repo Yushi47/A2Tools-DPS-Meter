@@ -7872,6 +7872,7 @@
     "name": "염화의 수호검",
     "isBoss": true,
     "category": "성역",
+    "tier": "어려움",
     "dungeonId": 620021
   },
   "2301056": {
@@ -7890,18 +7891,21 @@
     "name": "이스카리엘",
     "isBoss": true,
     "category": "성역",
+    "tier": "어려움",
     "dungeonId": 620021
   },
   "2301060": {
     "name": "칼드릭스",
     "isBoss": true,
     "category": "성역",
+    "tier": "어려움",
     "dungeonId": 620021
   },
   "2301061": {
     "name": "칼드릭스",
     "isBoss": true,
     "category": "성역",
+    "tier": "어려움",
     "dungeonId": 620021
   },
   "2301062": {
@@ -7928,9 +7932,101 @@
     "name": "염화의 수호검",
     "isBoss": true,
     "category": "성역",
+    "tier": "어려움",
     "dungeonId": 620021
   },
   "2301068": {
+    "name": "무스펠 수호상",
+    "isBoss": false
+  },
+  "2301080": {
+    "name": "변이된 정예 지휘관",
+    "isBoss": false
+  },
+  "2301081": {
+    "name": "변이된 정찰병",
+    "isBoss": false
+  },
+  "2301082": {
+    "name": "성소 발게스트",
+    "isBoss": false
+  },
+  "2301083": {
+    "name": "화염 지대",
+    "isBoss": false
+  },
+  "2301084": {
+    "name": "변이된 치유병",
+    "isBoss": false
+  },
+  "2301085": {
+    "name": "염화의 수호검",
+    "isBoss": true,
+    "category": "성역",
+    "tier": "보통",
+    "dungeonId": 620022
+  },
+  "2301086": {
+    "name": "무스펠 심연 람푸",
+    "isBoss": false
+  },
+  "2301087": {
+    "name": "무스펠 용암",
+    "isBoss": false
+  },
+  "2301088": {
+    "name": "무스펠 거대한 용암",
+    "isBoss": false
+  },
+  "2301089": {
+    "name": "이스카리엘",
+    "isBoss": true,
+    "category": "성역",
+    "tier": "보통",
+    "dungeonId": 620022
+  },
+  "2301090": {
+    "name": "칼드릭스",
+    "isBoss": true,
+    "category": "성역",
+    "tier": "보통",
+    "dungeonId": 620022
+  },
+  "2301091": {
+    "name": "칼드릭스",
+    "isBoss": true,
+    "category": "성역",
+    "tier": "보통",
+    "dungeonId": 620022
+  },
+  "2301092": {
+    "name": "무스펠 수호상",
+    "isBoss": false
+  },
+  "2301093": {
+    "name": "홍염의 알",
+    "isBoss": false
+  },
+  "2301094": {
+    "name": "무스펠 심연 괴수",
+    "isBoss": false
+  },
+  "2301095": {
+    "name": "메테오",
+    "isBoss": false
+  },
+  "2301096": {
+    "name": "화염",
+    "isBoss": false
+  },
+  "2301097": {
+    "name": "염화의 수호검",
+    "isBoss": true,
+    "category": "성역",
+    "tier": "보통",
+    "dungeonId": 620022
+  },
+  "2301098": {
     "name": "무스펠 수호상",
     "isBoss": false
   },
@@ -26498,6 +26594,10 @@
     "isBoss": false
   },
   "2921274": {
+    "name": "무스펠 수호상",
+    "isBoss": false
+  },
+  "2921315": {
     "name": "무스펠 수호상",
     "isBoss": false
   },

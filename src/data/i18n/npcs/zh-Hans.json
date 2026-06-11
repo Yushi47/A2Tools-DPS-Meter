@@ -7872,6 +7872,7 @@
     "name": "炎火守护剑",
     "isBoss": true,
     "category": "聖域",
+    "tier": "困難",
     "dungeonId": 620021
   },
   "2301056": {
@@ -7890,18 +7891,21 @@
     "name": "伊斯卡利尔",
     "isBoss": true,
     "category": "聖域",
+    "tier": "困難",
     "dungeonId": 620021
   },
   "2301060": {
     "name": "凯德利斯",
     "isBoss": true,
     "category": "聖域",
+    "tier": "困難",
     "dungeonId": 620021
   },
   "2301061": {
     "name": "凯德利斯",
     "isBoss": true,
     "category": "聖域",
+    "tier": "困難",
     "dungeonId": 620021
   },
   "2301062": {
@@ -7928,9 +7932,101 @@
     "name": "炎火守护剑",
     "isBoss": true,
     "category": "聖域",
+    "tier": "困難",
     "dungeonId": 620021
   },
   "2301068": {
+    "name": "穆斯费尔守护像",
+    "isBoss": false
+  },
+  "2301080": {
+    "name": "变异的精锐指挥官",
+    "isBoss": false
+  },
+  "2301081": {
+    "name": "变异的侦察兵",
+    "isBoss": false
+  },
+  "2301082": {
+    "name": "圣所地狱犬",
+    "isBoss": false
+  },
+  "2301083": {
+    "name": "火焰地带",
+    "isBoss": false
+  },
+  "2301084": {
+    "name": "变异的治愈兵",
+    "isBoss": false
+  },
+  "2301085": {
+    "name": "炎火守护剑",
+    "isBoss": true,
+    "category": "聖域",
+    "tier": "普通",
+    "dungeonId": 620022
+  },
+  "2301086": {
+    "name": "穆斯费尔深渊拉姆普",
+    "isBoss": false
+  },
+  "2301087": {
+    "name": "穆斯费尔熔岩",
+    "isBoss": false
+  },
+  "2301088": {
+    "name": "穆斯费尔巨大熔岩",
+    "isBoss": false
+  },
+  "2301089": {
+    "name": "伊斯卡利尔",
+    "isBoss": true,
+    "category": "聖域",
+    "tier": "普通",
+    "dungeonId": 620022
+  },
+  "2301090": {
+    "name": "凯德利斯",
+    "isBoss": true,
+    "category": "聖域",
+    "tier": "普通",
+    "dungeonId": 620022
+  },
+  "2301091": {
+    "name": "凯德利斯",
+    "isBoss": true,
+    "category": "聖域",
+    "tier": "普通",
+    "dungeonId": 620022
+  },
+  "2301092": {
+    "name": "穆斯费尔守护像",
+    "isBoss": false
+  },
+  "2301093": {
+    "name": "红焰之卵",
+    "isBoss": false
+  },
+  "2301094": {
+    "name": "穆斯费尔深渊怪兽",
+    "isBoss": false
+  },
+  "2301095": {
+    "name": "陨石",
+    "isBoss": false
+  },
+  "2301096": {
+    "name": "火焰",
+    "isBoss": false
+  },
+  "2301097": {
+    "name": "炎火守护剑",
+    "isBoss": true,
+    "category": "聖域",
+    "tier": "普通",
+    "dungeonId": 620022
+  },
+  "2301098": {
     "name": "穆斯费尔守护像",
     "isBoss": false
   },
@@ -26498,6 +26594,10 @@
     "isBoss": false
   },
   "2921274": {
+    "name": "穆斯费尔守护像",
+    "isBoss": false
+  },
+  "2921315": {
     "name": "穆斯费尔守护像",
     "isBoss": false
   },
