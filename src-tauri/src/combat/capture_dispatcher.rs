@@ -29,6 +29,18 @@ const COMBAT_SIGNATURES: [&[u8]; 2] = [
     &[0x0E, 0x00, 0x36], // current (post June 2026) record terminator
     &[0x06, 0x00, 0x36], // legacy terminator (pre June 2026)
 ];
+/// How many signature-bearing server->client packets a single flow must produce
+/// *within SIGNATURE_WINDOW_MS* before it may lock the port. The live game stream
+/// emits the record terminator ~19x/sec even while idle (movement/heartbeat), so it
+/// clears this in well under a second. A coincidental loopback service (e.g. a local
+/// helper on port 16005 during a game cold-start) produces the 3-byte pattern only a
+/// handful of times over minutes and never reaches the threshold inside the window —
+/// so it can no longer hijack the lock. The window (vs. a plain running total) means
+/// only a *high-rate* flow qualifies, not one that slowly drips coincidental matches.
+const SIGNATURE_LOCK_THRESHOLD: u32 = 12;
+/// Sliding window for the signature-rate lock; the THRESHOLD packets must land within
+/// this span. Reset the per-flow count whenever the gap since the last hit exceeds it.
+const SIGNATURE_WINDOW_MS: i64 = 3_000;
 const TLS_CONTENT_TYPES: [u8; 4] = [0x14, 0x15, 0x16, 0x17];
 const TLS_VERSIONS: [u8; 5] = [0x00, 0x01, 0x02, 0x03, 0x04];
 const WINDOW_CHECK_STOPPED_MS: i64 = 10_000;
@@ -83,6 +95,10 @@ impl CaptureDispatcher {
     /// Run the dispatch loop, consuming packets from the channel.
     pub async fn run(&self, mut receiver: mpsc::Receiver<CapturedPayload>) {
         let mut assemblers: HashMap<(u16, u16), (StreamAssembler, StreamProcessor)> = HashMap::new();
+        // Per-flow count of signature-bearing packets seen while still unlocked, used
+        // for the no-combat-needed signature lock (see SIGNATURE_LOCK_THRESHOLD).
+        // Per-flow signature-rate tracker: (count_in_window, last_hit_ms).
+        let mut sig_hits: HashMap<(u16, u16), (u32, i64)> = HashMap::new();
         let mut last_window_check_ms: i64 = 0;
         let mut is_aion_running = false;
 
@@ -101,6 +117,7 @@ impl CaptureDispatcher {
                     self.port_detector.reset();
                     self.ping_tracker.reset();
                     assemblers.clear();
+                    sig_hits.clear();
                 }
                 is_aion_running = running;
             }
@@ -117,6 +134,7 @@ impl CaptureDispatcher {
                     self.port_detector.reset();
                     self.ping_tracker.reset();
                     assemblers.clear();
+                    sig_hits.clear();
                 }
             }
 
@@ -193,24 +211,40 @@ impl CaptureDispatcher {
 
             if unlocked {
                 self.port_detector.register_candidate(cap.src_port, key, cap.device_name.as_deref());
+                // Count this signature-bearing packet against its source port (the
+                // signature only ever travels server->client). The lock decision is
+                // made below, after process_chunk, so we don't touch `assemblers`
+                // while the assembler for this flow is still borrowed.
+                // Windowed signature rate: reset the count if too long since the last
+                // hit, so only a sustained high-rate flow (the live game) accumulates.
+                let now = now_ms();
+                let slot = sig_hits.entry(key).or_insert((0, now));
+                if now - slot.1 > SIGNATURE_WINDOW_MS {
+                    slot.0 = 0;
+                }
+                slot.0 += 1;
+                slot.1 = now;
             }
 
-            // A flow only qualifies to lock the port if it parses *real damage*
-            // (not merely consumes bytes — the resync logic consumes garbage too).
-            // This keeps coincidental / non-combat flows from ever locking, while
-            // still parsing spawns/names into the store pre-lock so mobs that
-            // appeared before the first fight are still identified.
-            let dmg_before = self.data_storage.damage_generation();
+            // A flow locks the port only by sustaining the game's signature RATE
+            // (SIGNATURE_LOCK_THRESHOLD hits within SIGNATURE_WINDOW_MS). We deliberately
+            // do NOT lock on a single parsed-damage event any more: a coincidental
+            // loopback service can momentarily misparse as "damage" and steal the lock
+            // during a cold start (observed locking onto port 16005 instead of the game).
+            // Real combat produces a flood of signatures too, so the rate gate covers
+            // both idle and combat while staying robust. Spawns/names are still parsed
+            // into the store pre-lock, so mobs seen before the first fight stay identified.
             let parsed = assembler.process_chunk(&cap.data, processor);
 
-            if self.data_storage.damage_generation() != dmg_before
-                && self.port_detector.current_port().is_none()
-            {
+            let signature_locked =
+                unlocked && sig_hits.get(&key).map(|(c, _)| *c).unwrap_or(0) >= SIGNATURE_LOCK_THRESHOLD;
+            if signature_locked && self.port_detector.current_port().is_none() {
                 self.port_detector.confirm_candidate(cap.src_port, cap.dst_port, cap.device_name.as_deref());
                 // On lock, GC the orphaned candidate assemblers (the relay's
                 // duplicate external flows) so only the locked flow is processed.
                 if self.port_detector.current_port().is_some() {
                     assemblers.retain(|k, _| *k == key);
+                    sig_hits.clear();
                 }
             }
 

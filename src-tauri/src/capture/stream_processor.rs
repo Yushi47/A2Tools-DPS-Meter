@@ -158,6 +158,18 @@ impl StreamProcessor {
         // Scan for embedded 04 8D ownership sub-packets
         if buffer.len() >= 4 {
             self.scan_for_embedded_04_8d(buffer);
+            self.scan_for_entity_hp(buffer);
+        }
+
+        // Scan for embedded spawn opcodes (40/41/44/45 36) in the raw buffer.
+        // The bundle path does this on the decompressed stream (see unwrap_bundle),
+        // but standalone (non-bundle) packets never got this scan — so player-spawn
+        // names (45 36) that sit mid-packet, rather than at the packet front where
+        // parse_summon_packet looks, were never extracted. This is why party members
+        // announced only via a mid-packet 45 36 stayed unnamed (#id) while the local
+        // player resolved through other anchors.
+        if buffer.len() >= 6 {
+            self.scan_for_embedded_40_36(buffer);
         }
 
         offset
@@ -233,6 +245,7 @@ impl StreamProcessor {
 
         // Scan for embedded 04 8D and 40 36 in decompressed data
         self.scan_for_embedded_04_8d(&decompressed);
+        self.scan_for_entity_hp(&decompressed);
         self.scan_for_embedded_40_36(&decompressed);
 
         self.pending_compact_skill_context = None;
@@ -251,12 +264,41 @@ impl StreamProcessor {
             || self.parsing_nickname(packet);
         let parsed_hp = self.parse_hp_mp_update_packet(packet);
         self.parse_death_packet(packet);
+        self.parse_zone_change_packet(packet);
 
         if !parsed_damage && !parsed_name && !parsed_summon && !parsed_ownership && !parsed_hp {
             self.parse_dot_packet(packet);
         }
 
         parsed_damage || parsed_name
+    }
+
+    // ===== ZONE CHANGE (23 36) =====
+
+    /// Self/world teleport packet: `<len varint> 23 36 <entity_id varint = 0> <x><y><z> ...`.
+    /// This fires once on entering a zone/instance (the local player is teleported in)
+    /// and not during combat, so it drives a combat reset — the actual reset is gated
+    /// by a lull + debounce in `note_zone_change`, so an in-combat teleport (a boss
+    /// knockback/pull) never wipes an active fight. The June 2026 +1 opcode shift moved
+    /// the spawn/death family but this position opcode (0x23) is unaffected.
+    fn parse_zone_change_packet(&self, packet: &[u8]) {
+        let length_info = read_varint(packet, 0);
+        if length_info.length < 0 {
+            return;
+        }
+        let offset = length_info.length as usize;
+        if offset + 2 >= packet.len() {
+            return;
+        }
+        if packet[offset] != 0x23 || packet[offset + 1] != 0x36 {
+            return;
+        }
+        // entity id 0 == the local player being teleported (a zone load), as opposed
+        // to another entity's routine position update.
+        if packet[offset + 2] != 0x00 {
+            return;
+        }
+        self.data_storage.note_zone_change();
     }
 
     // ===== DEATH PACKET (41 36) =====
@@ -332,15 +374,18 @@ impl StreamProcessor {
         }
         let effect_type = packet[offset] as u32;
         offset += 1;
-        // Effect type: 0x02 = damage (pre-patch), 0x0A = damage (post-patch 2026-04-01).
-        // Non-damage values: 0x00 = status, 0x01 = heal, 0x08 = buff, 0x09 = heal, 0x0B = HoT.
-        // Must use exact match, NOT bitmask — 0x0B (HoT) has bit 1 set and would leak through.
-        if effect_type != 0x02 && effect_type != 0x0A {
+        // Effect type: 0x02/0x0A = damage; 0x01/0x09 = heal; 0x0B = HoT.
+        // 0x00 = status, 0x08 = buff. Exact match, NOT bitmask — 0x0B (HoT) has bit
+        // 1 set and would leak through a mask.
+        let is_damage = effect_type == 0x02 || effect_type == 0x0A;
+        let is_heal = effect_type == 0x01 || effect_type == 0x09 || effect_type == 0x0B;
+        if !is_damage && !is_heal {
             return;
         }
 
         let actor_info = read_varint(packet, offset);
-        if actor_info.length < 0 || actor_info.value == target_info.value {
+        // Damage-on-self is rejected as noise; a self-HEAL is legitimate healing.
+        if actor_info.length < 0 || (is_damage && actor_info.value == target_info.value) {
             tracing::debug!("DOT: bad actor or self-damage");
             return;
         }
@@ -348,31 +393,42 @@ impl StreamProcessor {
 
         let unknown_info = read_varint(packet, offset);
         if unknown_info.length < 0 {
-            tracing::debug!("DOT: bad unknown varint");
             return;
         }
         offset += unknown_info.length as usize;
 
         if offset + 4 > packet.len() {
-            tracing::debug!("DOT: packet too short for skill code");
             return;
         }
         let skill_code = parse_u32_le(packet, offset) as i32 / 100;
         offset += 4;
 
         if !is_valid_skill_code(skill_code) {
-            tracing::debug!("DOT: invalid skill code {}", skill_code);
             return;
         }
 
+        let amount_info = read_varint(packet, offset);
+        if amount_info.length < 0 || amount_info.value <= 0 || amount_info.value > 99_999_999 {
+            return;
+        }
+
+        if is_heal {
+            // Healing done — recorded per healer. No allowlist (the heal effect_type
+            // is the gate). HoT = 0x0B. This runs on framed perfect packets only, so
+            // there is no embedded over-read into adjacent records (the artifact that
+            // produced bogus multi-million single-tick "heals" in offline scans).
+            self.data_storage.append_heal(
+                actor_info.value,
+                skill_code,
+                amount_info.value as i64,
+                effect_type == 0x0B,
+            );
+            return;
+        }
+
+        // Damage DoT: gated by the curated dot-skill allowlist.
         if !self.dot_damage_skill_ids.contains(&skill_code) {
             tracing::trace!("DOT: skill {} not in dot_ids (set size={})", skill_code, self.dot_damage_skill_ids.len());
-            return;
-        }
-
-        let damage_info = read_varint(packet, offset);
-        if damage_info.length < 0 || damage_info.value <= 0 {
-            tracing::debug!("DOT: bad damage varint");
             return;
         }
 
@@ -384,7 +440,7 @@ impl StreamProcessor {
         pdp.set_target_id(target_info.value);
         pdp.set_actor_id(actor_info.value);
         pdp.set_skill_code(skill_code);
-        pdp.set_damage(damage_info.value);
+        pdp.set_damage(amount_info.value);
 
         if pdp.actor_id() != pdp.target_id() {
             self.data_storage.append_damage(pdp);
@@ -493,6 +549,60 @@ impl StreamProcessor {
     }
 
     // ===== EMBEDDED 04 8D SCAN =====
+
+    // ===== LIVE ENTITY HP (8D <id> 02 01 00 <u32 LE current HP>) =====
+
+    /// Live current-HP feed. Combat packets embed, per affected entity, a record
+    /// `8D <entityId varint> <disc 3 bytes> <u32 LE current HP> 00 00 00 00`, where
+    /// `disc` is `02 01 00` for NPCs/mobs and `01 01 01` for the local player. We
+    /// capture the NPC readings so the boss bar can show REAL current HP — it
+    /// declines as the boss is hit and jumps back up on a heal/phase reset (a
+    /// Training Scarecrow floors at 1 then resets to full). Max HP is not in this
+    /// record; it comes from the spawn packet or the observed peak (see
+    /// `set_mob_current_hp`). The `02` discriminator keeps the player's own
+    /// `01 01 01` record out of the mob HP store.
+    fn scan_for_entity_hp(&self, data: &[u8]) {
+        let mut i = 0;
+        while i + 1 < data.len() {
+            if data[i] != 0x8D {
+                i += 1;
+                continue;
+            }
+            let id_info = read_varint(data, i + 1);
+            if id_info.length <= 0 || !(100..=9_999_999).contains(&id_info.value) {
+                i += 1;
+                continue;
+            }
+            let disc = i + 1 + id_info.length as usize;
+            // Full record: `02 01 00 <u32 LE current HP> 00 00 00 00`. The 4 trailing
+            // bytes (a second u32, always zero in this feed) are REQUIRED — without
+            // them a look-alike sub-record `8D <id> 02 01 00 <other u32> <terminator>`
+            // gets misread as a huge HP value and inflates the max (denominator),
+            // which makes the boss-bar percentage read far too low.
+            if disc + 11 > data.len() {
+                i += 1;
+                continue;
+            }
+            if data[disc] == 0x02
+                && data[disc + 1] == 0x01
+                && data[disc + 2] == 0x00
+                && data[disc + 7] == 0x00
+                && data[disc + 8] == 0x00
+                && data[disc + 9] == 0x00
+                && data[disc + 10] == 0x00
+            {
+                let h = disc + 3;
+                let cur = u32::from_le_bytes([data[h], data[h + 1], data[h + 2], data[h + 3]]);
+                // Sanity bound: real HP is well under this; rejects misparses.
+                if cur <= 100_000_000 {
+                    self.data_storage.set_mob_current_hp(id_info.value, cur as i32);
+                }
+                i = disc + 11;
+                continue;
+            }
+            i += 1;
+        }
+    }
 
     fn scan_for_embedded_04_8d(&self, data: &[u8]) -> bool {
         let mut found_any = false;
@@ -634,7 +744,9 @@ impl StreamProcessor {
     /// Structure: <actor_varint> <data...> 07 <name_length> <name_bytes>
     fn parse_player_spawn_name(&self, data: &[u8], offset_after_opcode: usize) {
         let actor_info = read_varint(data, offset_after_opcode);
-        if actor_info.length <= 0 || !(100..=99_999).contains(&actor_info.value) {
+        // Raid/invasion player ids run well past 99,999, so accept the full entity-id
+        // range (matching the embedded-scan gate) or those spawns are silently dropped.
+        if actor_info.length <= 0 || !(100..=9_999_999).contains(&actor_info.value) {
             return;
         }
         let actor_id = actor_info.value;
@@ -1572,6 +1684,16 @@ impl StreamProcessor {
                 pdp.set_hex_payload(to_hex(packet));
 
                 self.data_storage.append_damage(pdp);
+            } else if final_damage > 1 && self.data_storage.is_known_player(actor_value) {
+                // Self-cast `04 38` record from a known player: an instant SELF-HEAL
+                // (Radiant Recovery / Absolution / Healing Light etc.). The general
+                // parser drops actor==target as self-damage, but for these records the
+                // `E6 6F` field is read as first_value and the real heal lands in
+                // second_value, so `final_damage` is the correct heal amount. Recording
+                // it as healing makes the HEAL view capture instant self-heals, not just
+                // HoTs. (The cast-marker variant breaks out earlier on its and_result.)
+                self.data_storage
+                    .append_heal(actor_value, resolved_skill_code, final_damage as i64, false);
             }
 
             parsed_any = true;

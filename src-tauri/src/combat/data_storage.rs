@@ -1,5 +1,6 @@
 use std::collections::{HashMap, HashSet};
-use std::sync::atomic::{AtomicI64, Ordering};
+use std::sync::atomic::{AtomicBool, AtomicI64, Ordering};
+use std::time::{SystemTime, UNIX_EPOCH};
 
 use parking_lot::RwLock;
 
@@ -11,7 +12,29 @@ use crate::entity::summon_resolver;
 /// Maximum idle gap before a fight is considered ended and a new one begins.
 const IDLE_RESET_MS: i64 = 30_000;
 
+/// A zone-change auto-reset is ignored if any damage was recorded within this
+/// window, so an in-combat self-teleport (boss knockback/pull) can't wipe an
+/// active fight. Real zone transitions always follow a travel/load lull.
+const ZONE_RESET_LULL_MS: i64 = 1_500;
+/// Minimum spacing between two zone-change resets (debounce).
+const ZONE_RESET_DEBOUNCE_MS: i64 = 4_000;
+
+fn now_ms() -> i64 {
+    SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .map(|d| d.as_millis() as i64)
+        .unwrap_or(0)
+}
+
 // ───── Aggregate data structures ─────
+
+/// Healing done, aggregated per (healer actor, skill, is_hot). Healing is keyed by
+/// the HEALER (not the boss target), since the meter shows "healing done" per player.
+#[derive(Debug, Clone, Default)]
+pub struct HealSkillData {
+    pub total_heal: i64,
+    pub tick_count: i32,
+}
 
 #[derive(Debug, Clone)]
 pub struct SkillCombatData {
@@ -150,6 +173,13 @@ impl TargetCombatData {
 pub struct DataStorage {
     inner: RwLock<Inner>,
     damage_generation: AtomicI64,
+    /// Wall-clock ms of the last damage record — gates the zone-change lull check.
+    last_damage_ms: AtomicI64,
+    /// Wall-clock ms of the last honored zone-change reset — debounce.
+    last_zone_reset_ms: AtomicI64,
+    /// Set when a zone change clears combat; the dps calculator consumes it to
+    /// drop its cached snapshot / saved-target state on the next cycle.
+    combat_reset_requested: AtomicBool,
 }
 
 struct Inner {
@@ -163,7 +193,12 @@ struct Inner {
     permanent_nicknames: HashMap<i32, String>,
     summon_storage: HashMap<i32, i32>,
     mob_storage: HashMap<i32, i32>,
+    /// Healing done per (healer actor) -> (skill_code, is_hot) -> aggregate.
+    heal_storage: HashMap<i32, HashMap<(i32, bool), HealSkillData>>,
+    /// Spawn-time / observed-peak MAX HP per entity (denominator for the HP bar).
     mob_hp_data: HashMap<i32, i32>,
+    /// Live CURRENT HP per entity, from the in-place `8D <id> 02 01 00 <u32>` feed.
+    mob_current_hp: HashMap<i32, i32>,
     known_player_ids: HashSet<i32>,
     confirmed_summon_ids: HashSet<i32>,
     hostile_target_ids: HashSet<i32>,
@@ -190,7 +225,9 @@ impl DataStorage {
                 permanent_nicknames: HashMap::new(),
                 summon_storage: HashMap::new(),
                 mob_storage: HashMap::new(),
+                heal_storage: HashMap::new(),
                 mob_hp_data: HashMap::new(),
+                mob_current_hp: HashMap::new(),
                 known_player_ids: HashSet::new(),
                 confirmed_summon_ids: HashSet::new(),
                 hostile_target_ids: HashSet::new(),
@@ -202,7 +239,41 @@ impl DataStorage {
                 local_character_name: None,
             }),
             damage_generation: AtomicI64::new(0),
+            last_damage_ms: AtomicI64::new(0),
+            last_zone_reset_ms: AtomicI64::new(0),
+            combat_reset_requested: AtomicBool::new(false),
         }
+    }
+
+    /// Called when a self/world teleport (zone-change opcode) is seen. Resets
+    /// combat data only if not in active combat (lull) and not recently reset
+    /// (debounce), so the meter starts clean on entering a dungeon/instance
+    /// without ever wiping an in-progress fight. Returns true if it reset.
+    pub fn note_zone_change(&self) -> bool {
+        let now = now_ms();
+        if now - self.last_damage_ms.load(Ordering::Relaxed) < ZONE_RESET_LULL_MS {
+            return false; // mid-combat teleport — ignore
+        }
+        if now - self.last_zone_reset_ms.load(Ordering::Relaxed) < ZONE_RESET_DEBOUNCE_MS {
+            return false; // already reset moments ago
+        }
+        {
+            let inner = self.inner.read();
+            if inner.target_combat.is_empty() {
+                return false; // nothing to clear
+            }
+        }
+        self.last_zone_reset_ms.store(now, Ordering::Relaxed);
+        self.flush();
+        self.combat_reset_requested.store(true, Ordering::Relaxed);
+        tracing::info!("Zone change detected — combat data reset");
+        true
+    }
+
+    /// Consumed by the dps calculator to drop its cached snapshot/saved-target
+    /// state after a zone-change combat reset.
+    pub fn take_combat_reset_requested(&self) -> bool {
+        self.combat_reset_requested.swap(false, Ordering::Relaxed)
     }
 
     pub fn damage_generation(&self) -> i64 {
@@ -272,6 +343,16 @@ impl DataStorage {
                         break;
                     }
                 }
+                // Also record per-skill so ally heals show in the HEAL view (the
+                // self-heal path does this via append_heal; mirror it for ally heals).
+                let e = inner
+                    .heal_storage
+                    .entry(actor_id)
+                    .or_default()
+                    .entry((pdp.skill_code(), false))
+                    .or_default();
+                e.total_heal += heal_amount as i64;
+                e.tick_count += 1;
             }
             return;
         }
@@ -373,6 +454,7 @@ impl DataStorage {
         }
 
         self.damage_generation.fetch_add(1, Ordering::Relaxed);
+        self.last_damage_ms.store(now_ms(), Ordering::Relaxed);
 
         // Apply pending nickname
         apply_pending_nickname(&mut inner, actor_id);
@@ -533,8 +615,57 @@ impl DataStorage {
         self.inner.read().known_player_ids.clone()
     }
 
+    pub fn is_known_player(&self, id: i32) -> bool {
+        self.inner.read().known_player_ids.contains(&id)
+    }
+
     pub fn get_mob_hp_data(&self) -> HashMap<i32, i32> {
         self.inner.read().mob_hp_data.clone()
+    }
+
+    pub fn get_mob_hp(&self, id: i32) -> Option<i32> {
+        self.inner.read().mob_hp_data.get(&id).copied()
+    }
+
+    /// Record a live current-HP reading for an entity (from the `8D ... 02 01 00`
+    /// feed). Also seeds/raises the entity's MAX HP from the observed peak, so a
+    /// boss whose spawn packet was missed still gets a usable denominator (current
+    /// HP never exceeds max in-game, so taking the max never overstates it).
+    pub fn set_mob_current_hp(&self, id: i32, hp: i32) {
+        if hp < 0 {
+            return;
+        }
+        let mut inner = self.inner.write();
+        inner.mob_current_hp.insert(id, hp);
+        let max = inner.mob_hp_data.entry(id).or_insert(0);
+        if hp > *max {
+            *max = hp;
+        }
+    }
+
+    pub fn get_mob_current_hp(&self, id: i32) -> Option<i32> {
+        self.inner.read().mob_current_hp.get(&id).copied()
+    }
+
+    /// Record a heal tick done by `actor_id` with `skill_code` (is_hot marks a HoT).
+    /// Keyed by the healer so "healing done" can be shown per player. Self-heals count.
+    pub fn append_heal(&self, actor_id: i32, skill_code: i32, amount: i64, is_hot: bool) {
+        if amount <= 0 || actor_id < 100 {
+            return;
+        }
+        let mut inner = self.inner.write();
+        let e = inner
+            .heal_storage
+            .entry(actor_id)
+            .or_default()
+            .entry((skill_code, is_hot))
+            .or_default();
+        e.total_heal += amount;
+        e.tick_count += 1;
+    }
+
+    pub fn get_heal_snapshot(&self) -> HashMap<i32, HashMap<(i32, bool), HealSkillData>> {
+        self.inner.read().heal_storage.clone()
     }
 
     pub fn get_mob_data(&self) -> HashMap<i32, i32> {
@@ -617,6 +748,8 @@ impl DataStorage {
         inner.dead_entity_ids.clear();
         inner.has_boss_in_segment = false;
         inner.mob_hp_data.clear();
+        inner.mob_current_hp.clear();
+        inner.heal_storage.clear();
         inner.current_target = 0;
     }
 

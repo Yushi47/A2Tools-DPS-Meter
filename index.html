@@ -37,6 +37,10 @@
           </div>
           <div class="bossNames">
             <span class="bossName"></span>
+            <div class="bossHpBar" style="display:none">
+              <div class="bossHpFill"></div>
+              <span class="bossHpText"></span>
+            </div>
           </div>
 
           <div class="headerBtns">
@@ -75,6 +79,10 @@
             </button>
             <div class="detailsFightTitle"></div>
             <div class="detailsHeaderControls">
+              <div class="detailsModeToggle" role="group" aria-label="Damage or healing">
+                <button class="detailsModeBtn isActive" type="button" data-mode="dmg" data-i18n="details.mode.dmg">DMG</button>
+                <button class="detailsModeBtn" type="button" data-mode="heal" data-i18n="details.mode.heal">HEAL</button>
+              </div>
               <div class="detailsScreenshotWrapper">
                 <button class="detailsScreenshotBtn" type="button" aria-label="Save screenshot to clipboard">
                   <i data-lucide="camera"></i>
@@ -891,13 +899,13 @@
     <script src="/src/js/battleTime.js"></script>
     <script src="/src/js/meter.js"></script>
     <script src="/src/js/skillIcons.js"></script>
-    <script src="/src/js/details.js"></script>
+    <script src="/src/js/details.js?v=2014j"></script>
     <script src="/src/js/history.js"></script>
 
     <!-- 추가 -->
     <script src="/src/js/checkRelease.js?v=202b6"></script>
 
     <script src="/src/js/i18n.js"></script>
-    <script src="/src/js/core.js"></script>
+    <script src="/src/js/core.js?v=2014j"></script>
   </body>
 </html>

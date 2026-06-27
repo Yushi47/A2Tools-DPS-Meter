@@ -115,7 +115,7 @@ class DpsApp {
     this._windowTitleTimer = null;
 
     this.i18n = window.i18n;
-    this.targetSelection = "lastHitByMe";
+    this.targetSelection = "bossTargets";
     this.listSortDirection = "desc";
     this.lastTargetMode = "";
     this.lastTargetName = "";
@@ -197,6 +197,9 @@ class DpsApp {
     this.elBossName = document.querySelector(".bossName");
     this.elBossName.textContent = this.getDefaultTargetLabel();
     this._lastRenderedTargetLabel = this.elBossName.textContent;
+    this.elBossHpBar = document.querySelector(".bossHpBar");
+    this.elBossHpFill = document.querySelector(".bossHpFill");
+    this.elBossHpText = document.querySelector(".bossHpText");
     this.battleTimeRoot = document.querySelector(".battleTime");
     this.analysisStatusEl = document.querySelector(".analysisStatus");
     this.aionRunning = false;
@@ -817,8 +820,17 @@ class DpsApp {
     const previousTargetName = this.lastTargetName;
     const previousTargetMode = this.lastTargetMode;
     const previousTargetId = this.lastTargetId;
-    const { rows, targetName, targetMode, battleTimeMs, targetId, localPlayerId } =
-      this.buildRowsFromPayload(raw);
+    const {
+      rows,
+      targetName,
+      targetMode,
+      battleTimeMs,
+      targetId,
+      localPlayerId,
+      targetMaxHp,
+      targetTotalDamage,
+      targetCurrentHp,
+    } = this.buildRowsFromPayload(raw);
     if (this.refreshPending) {
       const pendingAgeMs = Math.max(0, now - (Number(this.refreshPendingStartedAt) || 0));
       const allowFallbackResume = rows.length > 0 && pendingAgeMs >= 1000;
@@ -943,6 +955,7 @@ class DpsApp {
       }
       this.elBossName.classList.toggle("isAllTargets", targetMode === "allTargets");
     }
+    this.updateBossHpBar(targetMaxHp, targetTotalDamage, targetCurrentHp);
     if (
       nextTargetLabel !== this._lastRenderedTargetLabel ||
       previousTargetName !== targetName ||
@@ -997,7 +1010,25 @@ class DpsApp {
     const battleTimeMsRaw = payload?.battleTime;
     const battleTimeMs = Number.isFinite(Number(battleTimeMsRaw)) ? Number(battleTimeMsRaw) : null;
 
-    return { rows, targetName, targetMode, battleTimeMs, targetId, localPlayerId };
+    const targetMaxHp = Number.isFinite(Number(payload?.targetMaxHp)) ? Number(payload.targetMaxHp) : 0;
+    const targetTotalDamage = Number.isFinite(Number(payload?.targetTotalDamage))
+      ? Number(payload.targetTotalDamage)
+      : 0;
+    const targetCurrentHp = Number.isFinite(Number(payload?.targetCurrentHp))
+      ? Number(payload.targetCurrentHp)
+      : -1;
+
+    return {
+      rows,
+      targetName,
+      targetMode,
+      battleTimeMs,
+      targetId,
+      localPlayerId,
+      targetMaxHp,
+      targetTotalDamage,
+      targetCurrentHp,
+    };
   }
 
   buildRowsFromMapObject(mapObj) {
@@ -1568,8 +1599,53 @@ class DpsApp {
       }))
       .sort((a, b) => b.totalDmg - a.totalDmg);
 
+    // Process healing (DMG/HEAL toggle): filter by selected member, resolve skill
+    // names, and compute heal-mode stat totals. Mirrors the damage skill pipeline.
+    const healSkillsRaw = Array.isArray(detailObj?.healSkills) ? detailObj.healSkills : [];
+    const healSkillsOut = [];
+    let totalHeal = 0;
+    let healTicks = 0;
+    let healHotTicks = 0;
+    const healActors = new Set();
+    for (const v of healSkillsRaw) {
+      if (!v || typeof v !== "object") continue;
+      const aId = Number(v.actorId);
+      if (attackerIdSet && (!Number.isFinite(aId) || !attackerIdSet.has(aId))) continue;
+      const code = String(v.code ?? "");
+      const nameRaw = typeof v.name === "string" ? v.name.trim() : "";
+      const name = (this.i18n?.getSkillName?.(code, nameRaw) ?? nameRaw) || `Skill ${code}`;
+      const amt = Number(v.dmg) || 0;
+      const ticks = Number(v.time) || 0;
+      const isHot = !!v.isDot;
+      if (amt <= 0) continue;
+      totalHeal += amt;
+      healTicks += ticks;
+      if (isHot) healHotTicks += ticks;
+      if (Number.isFinite(aId)) healActors.add(aId);
+      healSkillsOut.push({
+        actorId: Number.isFinite(aId) ? aId : null,
+        code: Number.isFinite(Number(code)) ? Number(code) : v.code,
+        name,
+        dmg: amt,
+        time: ticks,
+        isDot: isHot,
+        crit: 0, parry: 0, back: 0, perfect: 0, double: 0, smite: 0, powershard: 0,
+        regen: 0, multiHitCount: 0, multiHitDamage: 0, multiHitHits: 0,
+        minDmg: 0, maxDmg: 0, job: v.job ?? "", specs: null, hitTimestamps: [],
+      });
+    }
+    const healBattleMs = Number.isFinite(battleTimeMsRaw) ? battleTimeMsRaw : 0;
+    const healPerSecText = healBattleMs > 0
+      ? `${this.formatAbbreviatedNumber(totalHeal / healBattleMs * 1000)}`
+      : "-";
+
     return {
       totalDmg,
+      totalHeal,
+      healTicks,
+      healHotTicks,
+      healSkillCount: healSkillsOut.length,
+      healPerSecText,
       contributionPct,
       totalCritPct: pct(totalCrit, totalTimes),
       totalParryPct: pct(totalParry, totalTimes),
@@ -1588,6 +1664,9 @@ class DpsApp {
       maxHp: Number(detailObj?.maxHp) || 0,
 
       skills,
+      // Per-actor/skill healing (DMG/HEAL toggle), filtered to the selected member
+      // and name-resolved (see processing above).
+      healSkills: healSkillsOut,
       showSkillIcons,
       perActorStats,
       showCombinedTotals: !attackerIds || attackerIds.length === 0,
@@ -1723,7 +1802,7 @@ class DpsApp {
     this.settingsSelections = {
       language: "en",
       theme: this.theme,
-      defaultMeterMode: "lastHitByMe",
+      defaultMeterMode: "bossTargets",
       allTargetsWindowMs: "120000",
       trainSelectionMode: "all",
       targetSelectionWindowMs: "5000",
@@ -1752,7 +1831,7 @@ class DpsApp {
     const storedMainPlayerNamesBold = mainPlayerNamesBoldSetting !== "false";
     const mainPlayerDpsBoldSetting = this.safeGetSetting(this.storageKeys.mainPlayerDpsBold);
     const storedMainPlayerDpsBold = mainPlayerDpsBoldSetting !== "false";
-    const storedDefaultMeterMode = this.safeGetSetting(this.storageKeys.defaultMeterMode) || "lastHitByMe";
+    const storedDefaultMeterMode = this.safeGetSetting(this.storageKeys.defaultMeterMode) || "bossTargets";
     const storedTargetSelection = this.safeGetStorage(this.storageKeys.targetSelection);
     const storedLanguage = this.safeGetStorage(this.storageKeys.language);
     const storedTheme = this.safeGetSetting(this.storageKeys.theme);
@@ -1773,7 +1852,7 @@ class DpsApp {
     }
     const validModes = ["bossTargets", "lastHitByMe", "allTargets", "trainTargets"];
     const normalizedDefaultMode = validModes.includes(storedDefaultMeterMode)
-      ? storedDefaultMeterMode : "lastHitByMe";
+      ? storedDefaultMeterMode : "bossTargets";
     this.settingsSelections.defaultMeterMode = normalizedDefaultMode;
     this.setTargetSelection(normalizedDefaultMode, {
       persist: false,
@@ -3149,6 +3228,40 @@ class DpsApp {
     this.metricToggleBtn.setAttribute("aria-label", ariaLabel);
   }
 
+  // Boss remaining-HP bar. There is no live boss current-HP packet, so remaining
+  // is derived from spawn-time max HP minus the damage the meter has tracked
+  // against this target. Hidden unless a single boss target with known max HP.
+  updateBossHpBar(maxHp, totalDamage, currentHp) {
+    if (!this.elBossHpBar) return;
+    const max = Number(maxHp) || 0;
+    if (max <= 0) {
+      if (this.elBossHpBar.style.display !== "none") {
+        this.elBossHpBar.style.display = "none";
+      }
+      return;
+    }
+    // Prefer the real current-HP feed when we have one (>= 0); otherwise fall back
+    // to deriving remaining = max - tracked damage.
+    const live = Number(currentHp);
+    const remaining =
+      Number.isFinite(live) && live >= 0
+        ? Math.min(max, Math.max(0, live))
+        : Math.max(0, max - Math.max(0, Number(totalDamage) || 0));
+    const pct = Math.max(0, Math.min(100, (remaining / max) * 100));
+    if (this.elBossHpBar.style.display === "none") {
+      this.elBossHpBar.style.display = "";
+    }
+    if (this.elBossHpFill) {
+      this.elBossHpFill.style.width = `${pct.toFixed(1)}%`;
+    }
+    // Color shifts as the boss is whittled down.
+    this.elBossHpBar.classList.toggle("isMid", pct > 25 && pct <= 50);
+    this.elBossHpBar.classList.toggle("isLow", pct <= 25);
+    if (this.elBossHpText) {
+      this.elBossHpText.textContent = `${this.formatAbbreviatedNumber(remaining)} · ${Math.round(pct)}%`;
+    }
+  }
+
   formatAbbreviatedNumber(value) {
     const n = Number(value);
     if (!Number.isFinite(n)) return "-";
@@ -3624,7 +3737,13 @@ class DpsApp {
       return this.getDefaultTargetLabel(targetMode);
     }
     if (targetMode === "lastHitByMe" && (!Number(targetId) || Number(targetId) <= 0) && !targetName) {
-      return this.i18n?.t("target.identifying", "Identifying you...") ?? "Identifying you...";
+      // Only prompt to identify when we genuinely don't know who the player is.
+      // Once identified, an empty target (idle / just after a reset or zone change)
+      // should fall back to the neutral mode label, not keep showing "Identifying...".
+      if (!this.isLocalUserIdentified()) {
+        return this.i18n?.t("target.identifying", "Identifying you...") ?? "Identifying you...";
+      }
+      return this.getDefaultTargetLabel(targetMode);
     }
     const numericTargetId = Number(targetId);
     const cleanTargetName = typeof targetName === "string" ? targetName.trim() : "";

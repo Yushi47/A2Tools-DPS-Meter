@@ -29,6 +29,9 @@ const createDetailsUI = ({
   let skillSortKey = "dmg";
   let skillSortDir = "desc";
   let activeCompactMode = false;
+  // "dmg" shows damage skills; "heal" shows healing done. Always resets to "dmg"
+  // when a fight is opened (see open/openHistoryFight).
+  let detailsMode = "dmg";
   let historyRecord = null;
   let fightStartMs = 0;
   let fightBossName = "";
@@ -155,6 +158,17 @@ const createDetailsUI = ({
     { key: "details.stats.parryRate", fallback: "Parry Rate", getValue: (d) => pctText(d?.totalParryPct) },
     { key: "details.stats.powershardRate", fallback: "P.Shard Rate", getValue: (d) => pctText(d?.totalPowershardPct) },
     { key: "details.stats.regen", fallback: "Regen", getValue: (d) => formatDamageCompact(d?.totalRegen) },
+  ];
+
+  // Stats shown when the DMG/HEAL toggle is on HEAL. Fewer, healing-relevant rows;
+  // remaining stat slots are hidden in heal mode.
+  const HEAL_STATUS = [
+    { key: "details.stats.totalHealing", fallback: "Total Healing", getValue: (d) => formatDamageCompact(d?.totalHeal) },
+    { key: "details.stats.hps", fallback: "HPS", getValue: (d) => d?.healPerSecText ?? "-" },
+    { key: "details.stats.combatTime", fallback: "Combat Time", getValue: (d) => d?.combatTime ?? "-" },
+    { key: "details.stats.healTicks", fallback: "Heal Ticks", getValue: (d) => formatCount(d?.healTicks) },
+    { key: "details.stats.hotTicks", fallback: "HoT Ticks", getValue: (d) => formatCount(d?.healHotTicks) },
+    { key: "details.stats.healSkills", fallback: "Skills", getValue: (d) => formatCount(d?.healSkillCount) },
   ];
 
   const createStatView = (labelKey, fallbackLabel, { isPlaceholder = false } = {}) => {
@@ -348,19 +362,26 @@ const createDetailsUI = ({
   ]);
 
   const renderStats = (details, { compact = false } = {}) => {
+    const statusList = detailsMode === "heal" ? HEAL_STATUS : STATUS;
     const hasPlayerSelected = Array.isArray(selectedAttackerIds) && selectedAttackerIds.length > 0;
-    const showSplit = hasPlayerSelected && !compact && lastUnfilteredDetails && lastUnfilteredDetails !== details;
+    // No player/total split in heal mode — show the healing values directly.
+    const showSplit = detailsMode !== "heal" && hasPlayerSelected && !compact && lastUnfilteredDetails && lastUnfilteredDetails !== details;
     // Resolve the selected player's class colour for the X value
     const playerColor = showSplit && selectedAttackerIds.length === 1
       ? getJobColor(getActorJob(selectedAttackerIds[0]))
       : "";
 
-    for (let i = 0; i < STATUS.length; i++) {
+    for (let i = 0; i < statSlots.length; i++) {
       const slot = statSlots[i];
-      const statKey = STATUS[i].key;
-      const shouldShow = !compact || COMPACT_STAT_KEYS.has(statKey);
+      const def = statusList[i];
+      if (!def) { slot.statEl.style.display = "none"; continue; }
+      const statKey = def.key;
+      const shouldShow = detailsMode === "heal" || !compact || COMPACT_STAT_KEYS.has(statKey);
       slot.statEl.style.display = shouldShow ? "" : "none";
       if (!shouldShow) continue;
+
+      // Label may differ between DMG and HEAL stat sets — keep it in sync.
+      slot.labelEl.textContent = labelText(def.key, def.fallback);
 
       slot.valueEl.innerHTML = "";
       slot.valueEl.style.display = "";
@@ -395,7 +416,7 @@ const createDetailsUI = ({
         slot.valueEl.appendChild(sepSpan);
         slot.valueEl.appendChild(totalSpan);
       } else {
-        slot.valueEl.textContent = STATUS[i].getValue(details);
+        slot.valueEl.textContent = def.getValue(details);
       }
     }
   };
@@ -405,6 +426,33 @@ const createDetailsUI = ({
   // Returns { stats, battleTimeMs } where battleTimeMs is the context's overall fight time.
   // Always uses ALL targets so stats stay stable regardless of which player is selected.
   const buildPartyBarStats = () => {
+    // Heal mode: bars become a healing leaderboard, aggregated per actor from the
+    // fight's healSkills (dmg field = heal amount).
+    if (detailsMode === "heal") {
+      // Leaderboard always shows ALL members, so use the unfiltered details even when
+      // a single member is selected (their per-skill view is rendered separately).
+      const src = lastUnfilteredDetails || lastDetails;
+      const heals = Array.isArray(src?.healSkills) ? src.healSkills : [];
+      const combined = new Map();
+      heals.forEach((s) => {
+        const actorId = Number(s?.actorId);
+        if (!Number.isFinite(actorId) || actorId <= 0) return;
+        combined.set(actorId, (combined.get(actorId) || 0) + (Number(s?.dmg) || 0));
+      });
+      if (combined.size === 0) return null;
+      const total = [...combined.values()].reduce((a, b) => a + b, 0) || 1;
+      return {
+        stats: [...combined.entries()]
+          .map(([actorId, heal]) => ({
+            actorId,
+            job: detectedJobByActorId.get(actorId) || detailsActors.get(actorId)?.job || "",
+            totalDmg: heal,
+            contributionPct: (heal / total) * 100,
+          }))
+          .sort((a, b) => b.totalDmg - a.totalDmg),
+        battleTimeMs: Number(lastDetails?.battleTime) || 0,
+      };
+    }
     const allTargets = detailsTargets.filter((t) => Number(t?.targetId) > 0);
     const targets = selectedTargetId
       ? (getTargetById(selectedTargetId) ? [getTargetById(selectedTargetId)] : allTargets)
@@ -814,7 +862,10 @@ const createDetailsUI = ({
   updateGridColumns();
 
   const renderSkills = (details, { compact = false } = {}) => {
-    const skills = Array.isArray(details?.skills) ? details.skills : [];
+    const skills =
+      detailsMode === "heal"
+        ? (Array.isArray(details?.healSkills) ? details.healSkills : [])
+        : (Array.isArray(details?.skills) ? details.skills : []);
     const groupedSkills = new Map();
     skills.forEach((skill) => {
       if (!skill) return;
@@ -901,7 +952,9 @@ const createDetailsUI = ({
     displaySkills.sort(compareSkillSort);
     const topDisplay = compact ? displaySkills.slice(0, COMPACT_MAX_SKILLS) : displaySkills;
 
-    const totalDamage = Number(details?.totalDmg);
+    // In heal mode there's no target-total to normalise against, so percentages are
+    // relative to the total healing shown (aggregatedDamage = summed heal amounts).
+    const totalDamage = detailsMode === "heal" ? 0 : Number(details?.totalDmg);
     const aggregatedDamage = topDisplay.reduce((sum, s) => sum + (s._combinedDmg || 0), 0);
     const percentBaseTotal = totalDamage > 0 ? totalDamage : aggregatedDamage;
 
@@ -2097,6 +2150,7 @@ const createDetailsUI = ({
   ) => {
     const rowId = row?.id ?? null;
     // if (!rowId) return;
+    detailsMode = "dmg";
 
     const isOpen = detailsPanel.classList.contains("open");
     const isSame = isOpen && openedRowId === rowId;
@@ -2194,6 +2248,10 @@ const createDetailsUI = ({
     openSeq++;
     if (autoRefreshTimer) { clearInterval(autoRefreshTimer); autoRefreshTimer = null; }
 
+    // Reset the DMG/HEAL toggle (state + buttons) so it re-opens on DMG.
+    detailsMode = "dmg";
+    syncModeButtons();
+
     openedRowId = null;
     if (!keepPinned) {
       pinnedRowId = null;
@@ -2224,6 +2282,7 @@ const createDetailsUI = ({
 
   const openHistoryFight = async (record) => {
     if (autoRefreshTimer) { clearInterval(autoRefreshTimer); autoRefreshTimer = null; }
+    detailsMode = "dmg";
     historyRecord = record;
     openSeq++;
     const seq = openSeq;
@@ -2318,5 +2377,35 @@ const createDetailsUI = ({
 
   const isPinned = () => pinnedRowId !== null;
 
-  return { open, close, isOpen, isPinned, render, updateLabels, refresh, updateGridColumns, openHistoryFight };
+  const syncModeButtons = () => {
+    detailsPanel?.querySelectorAll?.(".detailsModeBtn")?.forEach?.((btn) => {
+      btn.classList.toggle("isActive", btn?.dataset?.mode === detailsMode);
+    });
+  };
+  const rerenderForMode = () => {
+    if (!lastDetails) return;
+    const ctx = buildPartyBarStats();
+    renderPartyBars(ctx?.stats || lastDetails?.perActorStats, ctx?.battleTimeMs || lastDetails?.battleTimeMs);
+    renderStats(lastDetails, { compact: activeCompactMode });
+    renderSkills(lastDetails, { compact: activeCompactMode });
+    renderTimeline(lastDetails);
+  };
+  const setDetailsMode = (mode) => {
+    const next = mode === "heal" ? "heal" : "dmg";
+    if (next === detailsMode) return;
+    detailsMode = next;
+    syncModeButtons();
+    rerenderForMode();
+  };
+  // Reset to DMG whenever a fight is opened.
+  const resetDetailsMode = () => {
+    detailsMode = "dmg";
+    syncModeButtons();
+  };
+  detailsPanel?.querySelectorAll?.(".detailsModeBtn")?.forEach?.((btn) => {
+    btn.addEventListener("click", () => setDetailsMode(btn?.dataset?.mode));
+  });
+  syncModeButtons();
+
+  return { open, close, isOpen, isPinned, render, updateLabels, refresh, updateGridColumns, openHistoryFight, resetDetailsMode };
 };

@@ -2092,14 +2092,63 @@ body.mainPlayerDpsBold .meter .item .content .dps {
   color: var(--title);
   text-shadow: var(--text-shadow);
   font-weight: bold;
-  height: 24px;
+  /* override the fixed `height: 24px` from the base `.header .bossNames` rule
+     above — a fixed height crams the name + HP bar into one line and overlaps. */
+  height: auto;
+  min-height: 24px;
   display: flex;
-  align-items: center;
-  font-size: 18px;
-  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 4px;
+  font-size: 17px;
+  overflow: visible;
 }
 .header .bossNames .bossName {
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.1;
+}
+.header .bossNames .bossHpBar {
+  position: relative;
+  height: 13px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+}
+.header .bossNames .bossHpBar .bossHpFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #36c46a, #5be08a);
+  /* Match the meter row bars: the colored fill fades with the meter bar opacity
+     setting, while the track and the HP text stay fully readable. */
+  opacity: var(--meter-fill-opacity, 0.8);
+  transition: width 0.3s ease, background 0.3s ease, opacity 0.2s ease;
+}
+.header .bossNames .bossHpBar.isMid .bossHpFill {
+  background: linear-gradient(90deg, #e0a23c, #f0c45b);
+}
+.header .bossNames .bossHpBar.isLow .bossHpFill {
+  background: linear-gradient(90deg, #d24b4b, #f06b6b);
+}
+.header .bossNames .bossHpBar .bossHpText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95), 0 0 3px rgba(0, 0, 0, 0.8);
+  letter-spacing: 0.2px;
 }
 .header .headerBtns {
   display: flex;
@@ -2908,6 +2957,38 @@ body.mainPlayerNamesBold .settingsPanel .themeDropdownMenu .settingsDropdownItem
   display: flex;
   align-items: center;
   gap: 8px;
+}
+.detailsPanel .detailsHeader .detailsModeToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+}
+.detailsPanel .detailsHeader .detailsModeBtn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.detailsPanel .detailsHeader .detailsModeBtn:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+.detailsPanel .detailsHeader .detailsModeBtn[data-mode="dmg"].isActive {
+  background: #e0a23c;
+  color: #0c1628;
+}
+.detailsPanel .detailsHeader .detailsModeBtn[data-mode="heal"].isActive {
+  background: #36c46a;
+  color: #0c1628;
 }
 .detailsPanel .detailsHeader .detailsSettingsMenuWrapper {
   position: relative;
@@ -4021,8 +4102,15 @@ body.mainPlayerNamesBold .settingsPanel .themeDropdownMenu .settingsDropdownItem
   display: none;
 }
 .meter.slim .header .bossNames {
-  font-size: 16px;
-  height: 22px;
+  font-size: 15px;
+  min-height: 20px;
+  overflow: visible;
+}
+.meter.slim .header .bossNames .bossHpBar {
+  height: 11px;
+}
+.meter.slim .header .bossNames .bossHpBar .bossHpText {
+  font-size: 9px;
 }
 .meter.slim .header .headerBtns .headerBtn {
   width: 16px;

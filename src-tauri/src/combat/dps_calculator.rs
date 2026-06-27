@@ -82,7 +82,7 @@ impl DpsCalculator {
             current_target: 0,
             last_dps_snapshot: None,
             last_damage_gen: -1,
-            target_selection_mode: TargetSelectionMode::LastHitByMe,
+            target_selection_mode: TargetSelectionMode::BossTargets,
             last_known_local_id: None,
             all_targets_window_ms: 120_000,
             nickname_job_cache: HashMap::new(),
@@ -117,6 +117,16 @@ impl DpsCalculator {
     }
 
     pub fn get_dps(&mut self) -> DpsData {
+        // A zone change flushed combat data; drop our cached snapshot and saved-target
+        // state so the meter resets this cycle instead of returning the stale snapshot.
+        if self.data_storage.take_combat_reset_requested() {
+            self.last_dps_snapshot = None;
+            self.saved_boss_targets.clear();
+            self.last_damage_gen = -1;
+            self.current_target = 0;
+            self.data_storage.set_current_target(0);
+        }
+
         let current_local_id = self.data_storage.local_player_id();
         if current_local_id != self.last_known_local_id {
             self.last_known_local_id = current_local_id;
@@ -147,6 +157,28 @@ impl DpsCalculator {
         self.current_target = tracking_id;
         dps_data.target_id = self.current_target;
         self.data_storage.set_current_target(self.current_target);
+
+        // Boss HP bar source: spawn-time max HP of the single boss target. Only
+        // meaningful for a single target (multi-target HP can't be summed sanely),
+        // so leave it 0 otherwise and let the frontend hide the bar.
+        let target_max_hp = if self.current_target != 0 {
+            self.data_storage.get_mob_hp(self.current_target).unwrap_or(0) as i64
+        } else {
+            0
+        };
+        dps_data.target_max_hp = target_max_hp;
+
+        // Real current HP from the live feed (-1 if none seen). Preferred over the
+        // derived max-minus-damage bar when available.
+        let target_current_hp = if self.current_target != 0 {
+            self.data_storage
+                .get_mob_current_hp(self.current_target)
+                .map(|h| h as i64)
+                .unwrap_or(-1)
+        } else {
+            -1
+        };
+        dps_data.target_current_hp = target_current_hp;
 
         // Collect actors from selected targets
         let mut combined_actors: HashMap<i32, i64> = HashMap::new();
@@ -183,6 +215,9 @@ impl DpsCalculator {
                 snapshot.target_name = dps_data.target_name.clone();
                 snapshot.target_mode = dps_data.target_mode.clone();
                 snapshot.target_id = dps_data.target_id;
+                snapshot.target_max_hp = target_max_hp;
+                snapshot.target_total_damage = 0;
+                snapshot.target_current_hp = target_current_hp;
                 return snapshot.clone();
             }
             self.last_dps_snapshot = Some(dps_data.clone());
@@ -285,6 +320,19 @@ impl DpsCalculator {
         }
 
         dps_data.battle_time = battle_time;
+        // total_damage here is the cumulative damage to the selected target(s).
+        // Paired with target_max_hp it yields remaining = max(0, max_hp - dealt).
+        dps_data.target_total_damage = total_damage as i64;
+        // If the boss is dead, force the bar to empty. The derived remaining can
+        // leave a sliver because the meter never observes every last hit (there is
+        // no live boss HP packet), so a kill should still read 0%.
+        if target_max_hp > 0
+            && self.current_target != 0
+            && self.data_storage.is_entity_dead(self.current_target)
+        {
+            dps_data.target_total_damage = target_max_hp;
+            dps_data.target_current_hp = 0;
+        }
         self.last_dps_snapshot = Some(dps_data.clone());
         dps_data
     }
@@ -753,6 +801,7 @@ impl DpsCalculator {
                 start_time: 0,
                 skills: Vec::new(),
                 ping_history: Vec::new(),
+                heal_skills: Vec::new(),
             },
         };
 
@@ -946,6 +995,57 @@ impl DpsCalculator {
             if entry.min_dmg == i32::MAX { entry.min_dmg = 0; }
         }
 
+        // Healing done this segment, per healer/skill. Keyed by the canonical actor
+        // (same nickname/orphan resolution as damage). Reuses DetailSkillEntry:
+        // dmg = heal amount, time = tick count, is_dot = HoT.
+        let mut heal_map: HashMap<(i32, i32), DetailSkillEntry> = HashMap::new();
+        for (&actor_id, skills) in &self.data_storage.get_heal_snapshot() {
+            let raw_uid = summon_resolver::resolve(actor_id, &summon_data);
+            if raw_uid <= 0 { continue; }
+            let remapped = *orphan_to_owner.get(&raw_uid).unwrap_or(&raw_uid);
+            let nickname = resolve_nickname(remapped, &nickname_data, &summon_data);
+            let uid = *canonical.get(&nickname).unwrap_or(&remapped);
+            if let Some(ref filter) = filter_uids {
+                if !filter.contains(&uid) { continue; }
+            }
+            for (&(skill_code, is_hot), hd) in skills {
+                let mut skill_name = self.skill_lookup.lookup_skill_name(skill_code);
+                if is_hot && !skill_name.is_empty() {
+                    skill_name = format!("{} - HoT", skill_name);
+                }
+                let job = JobClass::convert_from_skill(skill_code)
+                    .map(|j| j.class_name().to_string())
+                    .unwrap_or_default();
+                let key = (uid, skill_code + if is_hot { 1_000_000_000 } else { 0 });
+                let entry = heal_map.entry(key).or_insert_with(|| DetailSkillEntry {
+                    actor_id: uid,
+                    code: skill_code,
+                    name: skill_name,
+                    time: 0,
+                    dmg: 0,
+                    multi_hit_count: 0,
+                    multi_hit_damage: 0,
+                    multi_hit_hits: 0,
+                    min_dmg: 0,
+                    max_dmg: 0,
+                    crit: 0,
+                    parry: 0,
+                    back: 0,
+                    perfect: 0,
+                    double: 0,
+                    smite: 0,
+                    powershard: 0,
+                    regen: 0,
+                    job,
+                    is_dot: is_hot,
+                    hit_timestamps: Vec::new(),
+                    specs: Vec::new(),
+                });
+                entry.dmg = entry.dmg.saturating_add(hd.total_heal.min(i32::MAX as i64) as i32);
+                entry.time += hd.tick_count;
+            }
+        }
+
         let battle_time = (target_data.last_damage_time - target_data.first_damage_time).max(0);
 
         let ping_history = self.ping_tracker.get_ping_history(
@@ -962,6 +1062,7 @@ impl DpsCalculator {
             start_time: target_data.first_damage_time,
             skills: skill_map.into_values().collect(),
             ping_history,
+            heal_skills: heal_map.into_values().collect(),
         }
     }
 }

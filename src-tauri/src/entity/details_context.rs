@@ -96,4 +96,8 @@ pub struct TargetDetailsResponse {
     pub skills: Vec<DetailSkillEntry>,
     #[serde(default)]
     pub ping_history: Vec<PingPoint>,
+    /// Per-actor / per-skill HEALING done in this fight. Reuses DetailSkillEntry:
+    /// `dmg` = heal amount, `time` = tick count, `is_dot` = HoT. Empty for old files.
+    #[serde(default)]
+    pub heal_skills: Vec<DetailSkillEntry>,
 }
