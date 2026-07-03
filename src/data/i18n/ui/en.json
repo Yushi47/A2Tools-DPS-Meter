@@ -282,6 +282,7 @@
     "SORCERER": "Sorcerer",
     "CLERIC": "Cleric",
     "ELEMENTALIST": "Elementalist",
-    "CHANTER": "Chanter"
+    "CHANTER": "Chanter",
+    "FIGHTER": "Brawler"
   }
 }

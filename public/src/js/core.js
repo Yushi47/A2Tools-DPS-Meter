@@ -89,6 +89,9 @@ class DpsApp {
       Cleric: "#F2C15A",
       검성: "#4FD1C5",
       Gladiator: "#4FD1C5",
+      권성: "#E85D5D",
+      Brawler: "#E85D5D",
+      Fighter: "#E85D5D",
     };
 
     // 빈데이터 덮어쓰기 방지 스냅샷
@@ -1244,6 +1247,12 @@ class DpsApp {
     if (!Array.isArray(rows) || !rows.length || !this.USER_NAME) {
       return;
     }
+    // Stay sticky: if our current local id is still an active row, keep it. The
+    // canonical id for the local player can flip between co-existing self-ids as
+    // damage accumulates; re-binding on every flip churned the binding needlessly.
+    if (this.localPlayerId && rows.some((row) => Number(row?.id) === this.localPlayerId)) {
+      return;
+    }
     const matched = rows.find((row) => row?.name === this.USER_NAME);
     if (!matched) {
       return;
@@ -1271,7 +1280,14 @@ class DpsApp {
       this.localActorIdInput.value = String(actorId);
     }
     this.refreshConnectionInfo({ skipSettingsRefresh: true });
-    this.reinitTargetSelection(reason || "local id update");
+    // NOTE: do NOT reinitTargetSelection() here. Which entity id is "you" can
+    // change several times within one fight (the local player churns entity ids,
+    // e.g. after casting Divine Aura), and reinit → restartTargetSelection →
+    // reset_combat wipes ALL combat data and every teammate nickname. That fired
+    // on every poll, causing the meter to reset over and over (PC lag), teammates
+    // to flip to raw ids, and skills like Divine Aura to be dropped. Re-labelling
+    // who "you" are is a display concern only — the next dps poll re-renders the
+    // highlight from the updated localPlayerId with no reset.
   }
 
   rememberLocalIdForName(name, actorId) {
@@ -1485,6 +1501,7 @@ class DpsApp {
           crit: value.critTimes,
           parry: value.parryTimes,
           back: value.backTimes,
+          frontal: value.frontalTimes,
           perfect: value.perfectTimes,
           double: value.doubleTimes,
           regen: value.healAmount,
@@ -3455,7 +3472,6 @@ class DpsApp {
       return;
     }
     const info = this.safeParseJSON(raw, {});
-    const previousLocalId = this.localPlayerId;
 
     // Show Npcap error if present
     const pcapErr = typeof info?.pcapError === "string" ? info.pcapError.trim() : "";
@@ -3501,9 +3517,10 @@ class DpsApp {
       const nickname = String(info?.characterName || this.USER_NAME || "").trim();
       this.characterNameInput.value = nickname;
     }
-    if (this.localPlayerId && this.localPlayerId !== previousLocalId) {
-      this.reinitTargetSelection("local id update");
-    }
+    // Do NOT reinitTargetSelection() when the backend-reported local id changes:
+    // the local player churns entity ids mid-fight, and reinit → reset_combat
+    // wipes all combat data and every teammate nickname. The "you" highlight
+    // follows this.localPlayerId on the next dps render with no reset.
     this.updateConnectionStatusUi();
     if (!skipSettingsRefresh) {
       this.refreshSettingsPanelIfOpen();

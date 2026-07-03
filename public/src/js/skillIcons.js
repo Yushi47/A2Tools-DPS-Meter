@@ -63,6 +63,10 @@
     치유성: "CL",
     Chanter: "CH",
     호법성: "CH",
+    Brawler: "GT",
+    Fighter: "GT",
+    권성: "GT",
+    拳星: "GT",
   };
 
   const classCodeByPrefix = {
@@ -74,6 +78,7 @@
     "16": "EL",
     "17": "CL",
     "18": "CH",
+    "19": "GT",
   };
 
   const THEOSTONE_PREFIX = "30";

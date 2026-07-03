@@ -36,6 +36,10 @@
     "name": "怪物(樣本)",
     "isBoss": false
   },
+  "2000757": {
+    "name": "怪物(樣本)",
+    "isBoss": false
+  },
   "2000791": {
     "name": "水晶體",
     "isBoss": false
@@ -3660,159 +3664,219 @@
     "isBoss": false
   },
   "2101200": {
-    "name": "希羅斯特探索員",
+    "name": "希斯洛特竊賊",
     "isBoss": false
   },
   "2101201": {
-    "name": "希羅斯特工人",
+    "name": "希斯洛特強盜",
     "isBoss": false
   },
   "2101202": {
-    "name": "希羅斯特打手",
+    "name": "希斯洛特亡命",
     "isBoss": false
   },
   "2101203": {
-    "name": "希羅斯特巡查員",
+    "name": "希斯洛特追蹤員",
     "isBoss": false
   },
   "2101204": {
-    "name": "丘陵地豬籠草",
+    "name": "丘陵地格拉巴拉斯",
     "isBoss": false
   },
   "2101205": {
-    "name": "尖頭飛螳",
+    "name": "丘陵地黃蜂",
     "isBoss": false
   },
   "2101206": {
-    "name": "希羅斯特泉水監視者",
+    "name": "希斯洛特襲擊者",
     "isBoss": false
   },
   "2101207": {
-    "name": "希羅斯特泉水工人",
+    "name": "希斯洛特擄掠者",
     "isBoss": false
   },
   "2101208": {
-    "name": "希羅斯特泉水警戒員",
+    "name": "希斯洛特警戒員",
     "isBoss": false
   },
   "2101209": {
-    "name": "鉤角斯卡馬",
+    "name": "丘陵地斯卡馬",
     "isBoss": false
   },
   "2101210": {
-    "name": "毒鱗德利頓",
+    "name": "毒鱗古拉",
     "isBoss": false
   },
   "2101211": {
-    "name": "希羅斯特監視者",
+    "name": "希斯洛特監視者",
     "isBoss": false
   },
   "2101212": {
-    "name": "希羅斯特獵人",
+    "name": "希斯洛特通緝犯",
     "isBoss": false
   },
   "2101213": {
-    "name": "希羅斯特傭兵",
+    "name": "希斯洛特傭兵",
     "isBoss": false
   },
   "2101214": {
-    "name": "希羅斯特搜索員",
+    "name": "希斯洛特搜索員",
     "isBoss": false
   },
   "2101215": {
-    "name": "希羅斯特馴養的野狼",
+    "name": "希斯洛特馴養的野狼",
     "isBoss": false
   },
   "2101216": {
-    "name": "被汙染的迪歐那耶",
+    "name": "丘陵地德布里",
     "isBoss": false
   },
   "2101217": {
-    "name": "盧比雷恩變異蟲",
+    "name": "凝聚的貝雷諾",
     "isBoss": true
   },
   "2101218": {
-    "name": "希羅斯特搶奪者隊長",
+    "name": "前頭目比格爾",
     "isBoss": true
   },
+  "2101219": {
+    "name": "希斯洛特防禦砲",
+    "isBoss": false
+  },
+  "2101220": {
+    "name": "丘陵地小斯卡馬",
+    "isBoss": false
+  },
   "2101230": {
-    "name": "雷帕爾團山丘搜索員",
+    "name": "可疑的山丘搜索員",
     "isBoss": false
   },
   "2101231": {
-    "name": "艾易隆探索阿爾卡",
-    "isBoss": false
-  },
-  "2101232": {
-    "name": "毒袋蟲",
-    "isBoss": false
-  },
-  "2101233": {
     "name": "飢餓的托格",
     "isBoss": false
   },
-  "2101234": {
+  "2101232": {
     "name": "飢餓的年幼的托格",
     "isBoss": false
   },
+  "2101233": {
+    "name": "乾枯的毒氣花",
+    "isBoss": false
+  },
+  "2101234": {
+    "name": "廢墟蝠妖",
+    "isBoss": false
+  },
   "2101235": {
-    "name": "蒼白的藤蔓",
+    "name": "山丘特羅加斯",
     "isBoss": false
   },
   "2101236": {
-    "name": "艾易隆毒氣花",
+    "name": "廢墟清道夫",
     "isBoss": false
   },
   "2101237": {
-    "name": "雷帕爾團山丘探索員",
+    "name": "廢墟吉爾卡",
     "isBoss": false
   },
   "2101238": {
-    "name": "雷帕爾團收集者",
+    "name": "廢墟小吉爾卡",
     "isBoss": false
   },
   "2101239": {
-    "name": "雷帕爾團遺跡研究家",
+    "name": "山丘灰色蜥怪",
     "isBoss": false
   },
   "2101240": {
-    "name": "艾易隆搜索阿爾卡",
+    "name": "山丘蠍獸",
     "isBoss": false
   },
   "2101241": {
-    "name": "遺跡卡克蓋崙",
+    "name": "山丘德里茲納",
     "isBoss": false
   },
   "2101242": {
-    "name": "墮落的艾易隆守護者劍星",
+    "name": "艾易隆探索阿爾卡",
     "isBoss": false
   },
   "2101243": {
-    "name": "墮落的艾易隆守護者守護星",
+    "name": "遺跡卡克蓋崙",
     "isBoss": false
   },
   "2101244": {
-    "name": "墮落守護者精銳兵",
+    "name": "墮落守護者劍星",
+    "isBoss": true
+  },
+  "2101245": {
+    "name": "凶猛的波沙",
+    "isBoss": false
+  },
+  "2101246": {
+    "name": "可疑的探索員",
+    "isBoss": false
+  },
+  "2101247": {
+    "name": "可疑的偵察員",
+    "isBoss": false
+  },
+  "2101248": {
+    "name": "可疑的收集者",
+    "isBoss": false
+  },
+  "2101249": {
+    "name": "墮落守護者守護星",
+    "isBoss": false
+  },
+  "2101250": {
+    "name": "艾易隆紀錄阿爾卡",
+    "isBoss": false
+  },
+  "2101251": {
+    "name": "可疑的遺跡警戒員",
+    "isBoss": false
+  },
+  "2101252": {
+    "name": "可疑的遺跡探索員",
+    "isBoss": false
+  },
+  "2101253": {
+    "name": "可疑的遺跡搜索員",
+    "isBoss": false
+  },
+  "2101254": {
+    "name": "可疑的遺跡盜墓者",
+    "isBoss": false
+  },
+  "2101255": {
+    "name": "可疑的遺跡研究家",
+    "isBoss": false
+  },
+  "2101256": {
+    "name": "遺跡守護裝置",
+    "isBoss": false
+  },
+  "2101257": {
+    "name": "折翼茲拜因",
     "isBoss": true
   },
   "2101260": {
-    "name": "普雷爾跑腿工",
+    "name": "變異的結界塔觸手體",
     "isBoss": false
   },
   "2101261": {
-    "name": "結界塔被汙染的曼杜里",
+    "name": "變異的結界塔守護者",
     "isBoss": false
   },
   "2101262": {
-    "name": "結界塔德拉那漂浮體",
+    "name": "變異的結界塔漂浮體",
     "isBoss": false
   },
   "2101263": {
-    "name": "凝視眼魔",
+    "name": "普雷爾實驗體",
     "isBoss": false
   },
   "2101264": {
-    "name": "警戒眼魔",
+    "name": "變異的獠牙劍齒豹",
     "isBoss": false
   },
   "2101265": {
@@ -3820,55 +3884,99 @@
     "isBoss": false
   },
   "2101266": {
-    "name": "結界塔阿爾卡",
+    "name": "乾枯的德布里",
     "isBoss": false
   },
   "2101267": {
-    "name": "結界塔搜索阿爾卡",
+    "name": "變異的藤蔓精靈",
     "isBoss": false
   },
   "2101268": {
-    "name": "紅鉤劍齒豹",
+    "name": "普雷爾採石工",
     "isBoss": false
   },
   "2101269": {
-    "name": "注視眼魔",
+    "name": "結界塔紀錄阿爾卡",
     "isBoss": false
   },
   "2101270": {
-    "name": "普雷爾實驗體",
+    "name": "普雷爾搜索員",
     "isBoss": false
   },
   "2101271": {
-    "name": "結界塔探索阿爾卡",
+    "name": "普雷爾投擲工",
     "isBoss": false
   },
   "2101272": {
-    "name": "條紋曼杜里",
+    "name": "結界塔探索阿爾卡",
     "isBoss": false
   },
   "2101273": {
-    "name": "鋼鐵尖錐劍齒豹",
+    "name": "乾枯的特羅加斯",
     "isBoss": false
   },
   "2101274": {
-    "name": "普雷爾精銳實驗體",
+    "name": "荒地曼杜里打手",
     "isBoss": true
   },
   "2101275": {
-    "name": "白色獠牙劍齒豹",
+    "name": "荒地曼杜里投擲工",
     "isBoss": true
   },
+  "2101277": {
+    "name": "荒地圖卡",
+    "isBoss": false
+  },
+  "2101278": {
+    "name": "貪欲伊格提斯",
+    "isBoss": true
+  },
+  "2101279": {
+    "name": "生命神獸蘇佩爾維亞",
+    "isBoss": true
+  },
+  "2101280": {
+    "name": "故障的遺跡裝置",
+    "isBoss": false
+  },
+  "2101281": {
+    "name": "腐敗的腳爪路比利尼",
+    "isBoss": false
+  },
+  "2101282": {
+    "name": "結界塔破片卡克蓋崙",
+    "isBoss": false
+  },
+  "2101283": {
+    "name": "乾枯的德里茲納",
+    "isBoss": false
+  },
+  "2101284": {
+    "name": "荒地托爾巴",
+    "isBoss": false
+  },
+  "2101285": {
+    "name": "荒地蠍獸",
+    "isBoss": false
+  },
+  "2101286": {
+    "name": "荒地蜥蜴",
+    "isBoss": false
+  },
+  "2101287": {
+    "name": "荒地年幼的蜥蜴",
+    "isBoss": false
+  },
   "2101290": {
-    "name": "雷帕爾團搜索隊戰士",
+    "name": "雷帕爾團搜索隊工人",
     "isBoss": false
   },
   "2101291": {
-    "name": "雷帕爾團搜索隊魔法師",
+    "name": "雷帕爾團搜索隊監視者",
     "isBoss": false
   },
   "2101292": {
-    "name": "雷帕爾團搜索隊格鬥家",
+    "name": "雷帕爾團搜索隊傭兵",
     "isBoss": false
   },
   "2101293": {
@@ -3876,83 +3984,123 @@
     "isBoss": false
   },
   "2101294": {
-    "name": "紅羽路比利尼",
+    "name": "神祕泉亞勒馬頓",
     "isBoss": false
   },
   "2101295": {
-    "name": "黏稠史萊姆",
+    "name": "雷帕爾團搜索隊戰士",
     "isBoss": false
   },
   "2101296": {
-    "name": "雷帕爾團探索隊戰士",
+    "name": "神祕泉毒血塊狀怪",
     "isBoss": false
   },
   "2101297": {
-    "name": "雷帕爾團探索隊魔法師",
+    "name": "神祕泉沸騰的毒血",
     "isBoss": false
   },
   "2101298": {
-    "name": "雷帕爾團探索隊研究員",
+    "name": "雷帕爾團搜索隊研究員",
     "isBoss": false
   },
   "2101299": {
-    "name": "雷帕爾團改造加迪特",
+    "name": "雷帕爾團探索隊戰士",
     "isBoss": false
   },
   "2101300": {
-    "name": "雷帕爾團探索隊偵察兵",
+    "name": "雷帕爾團探索隊魔法師",
     "isBoss": false
   },
   "2101301": {
-    "name": "受訓過的雷帕爾團劍齒豹",
+    "name": "雷帕爾團探索隊研究員",
     "isBoss": false
   },
   "2101302": {
-    "name": "梅特林",
+    "name": "神祕泉被汙染的史萊姆",
     "isBoss": true
   },
+  "2101303": {
+    "name": "雷帕爾團探索隊偵察兵",
+    "isBoss": false
+  },
+  "2101304": {
+    "name": "雷帕爾團探索隊劍齒豹",
+    "isBoss": false
+  },
+  "2101305": {
+    "name": "神祕泉被汙染的傑爾比",
+    "isBoss": false
+  },
+  "2101306": {
+    "name": "腐根梅特林",
+    "isBoss": true
+  },
+  "2101307": {
+    "name": "神祕泉毒血",
+    "isBoss": false
+  },
+  "2101308": {
+    "name": "雷帕爾團搜索隊劍齒豹",
+    "isBoss": false
+  },
+  "2101326": {
+    "name": "被釋放的野狼",
+    "isBoss": false
+  },
+  "2101327": {
+    "name": "被釋放的小野狼",
+    "isBoss": false
+  },
+  "2101328": {
+    "name": "被釋放的蝠妖",
+    "isBoss": false
+  },
+  "2101329": {
+    "name": "被釋放的變異小妖精",
+    "isBoss": false
+  },
   "2101330": {
-    "name": "雷帕爾實驗團魔法師",
+    "name": "實驗體林普",
     "isBoss": false
   },
   "2101331": {
-    "name": "小角夫卡",
+    "name": "實驗體夫卡",
     "isBoss": false
   },
   "2101332": {
-    "name": "德拉那捕食者實驗體",
+    "name": "實驗體特羅加斯",
     "isBoss": false
   },
   "2101333": {
-    "name": "碾碎的實驗體林普",
+    "name": "墮落螺旋",
     "isBoss": false
   },
   "2101334": {
-    "name": "雷帕爾實驗團格鬥家",
+    "name": "雷帕爾團營帳警衛",
     "isBoss": false
   },
   "2101335": {
-    "name": "實驗紀錄用阿爾卡",
+    "name": "雷帕爾團營帳管理者",
     "isBoss": false
   },
   "2101336": {
-    "name": "雷帕爾團安全隊戰士",
+    "name": "實驗體紀錄阿爾卡",
     "isBoss": false
   },
   "2101337": {
-    "name": "雷帕爾團安全隊魔法師",
+    "name": "雷帕爾團安全隊戰士",
     "isBoss": false
   },
   "2101338": {
-    "name": "雷帕爾團德拉那研究員",
+    "name": "雷帕爾團安全隊魔法師",
     "isBoss": false
   },
   "2101339": {
-    "name": "雷帕爾團德拉那研究指揮官",
+    "name": "雷帕爾團德拉那研究員",
     "isBoss": false
   },
   "2101340": {
-    "name": "雷帕爾團安全隊格鬥家",
+    "name": "雷帕爾團德拉那管理者",
     "isBoss": false
   },
   "2101341": {
@@ -3960,19 +4108,19 @@
     "isBoss": false
   },
   "2101342": {
-    "name": "腐敗的實驗體路比利尼",
+    "name": "雷帕爾團安全隊格鬥家",
     "isBoss": false
   },
   "2101343": {
-    "name": "尼霍格",
+    "name": "安全監視塔",
     "isBoss": true
   },
   "2101344": {
-    "name": "不完整的柯堤馬",
+    "name": "雷帕爾團安全隊格鬥家",
     "isBoss": true
   },
   "2101345": {
-    "name": "故障的阿爾卡",
+    "name": "被釋放的托爾巴",
     "isBoss": false
   },
   "2101346": {
@@ -3980,16 +4128,404 @@
     "isBoss": false
   },
   "2101347": {
-    "name": "實驗體曼杜里",
+    "name": "被釋放的弗路彼",
     "isBoss": false
   },
   "2101348": {
-    "name": "被汙染的德拉那實驗體",
+    "name": "腐敗的實驗體路比利尼",
     "isBoss": false
   },
   "2101349": {
-    "name": "被汙染的德拉那曼杜里",
+    "name": "盲目的尼霍格",
+    "isBoss": true
+  },
+  "2101350": {
+    "name": "最初實驗體柯堤馬",
+    "isBoss": true
+  },
+  "2101351": {
+    "name": "乾枯的飛螳",
     "isBoss": false
+  },
+  "2101352": {
+    "name": "追擊用馴養的野狼",
+    "isBoss": false
+  },
+  "2101353": {
+    "name": "頑強的囊袋蜘蛛",
+    "isBoss": false
+  },
+  "2101354": {
+    "name": "乾枯的迪歐那耶",
+    "isBoss": false
+  },
+  "2101355": {
+    "name": "丘陵地圖卡",
+    "isBoss": false
+  },
+  "2101356": {
+    "name": "丘陵地弗路彼",
+    "isBoss": false
+  },
+  "2101357": {
+    "name": "丘陵地尖銳的圖卡",
+    "isBoss": false
+  },
+  "2101358": {
+    "name": "尖頭飛螳",
+    "isBoss": false
+  },
+  "2101359": {
+    "name": "丘陵地蜥蜴",
+    "isBoss": false
+  },
+  "2101360": {
+    "name": "丘陵地年幼的蜥蜴",
+    "isBoss": false
+  },
+  "2101361": {
+    "name": "丘陵地維若塔採藥人",
+    "isBoss": false
+  },
+  "2101362": {
+    "name": "丘陵地維若塔打手",
+    "isBoss": false
+  },
+  "2101363": {
+    "name": "丘陵地維若塔流浪者",
+    "isBoss": false
+  },
+  "2101364": {
+    "name": "丘陵地迪歐那耶",
+    "isBoss": false
+  },
+  "2101365": {
+    "name": "丘陵地帕皮斯",
+    "isBoss": false
+  },
+  "2101366": {
+    "name": "丘陵地夫魯坤",
+    "isBoss": false
+  },
+  "2101367": {
+    "name": "丘陵地地之精靈",
+    "isBoss": false
+  },
+  "2101368": {
+    "name": "丘陵地波庫斯",
+    "isBoss": false
+  },
+  "2101369": {
+    "name": "荒野可拉敦",
+    "isBoss": false
+  },
+  "2101370": {
+    "name": "山丘黃色路比利尼",
+    "isBoss": false
+  },
+  "2101371": {
+    "name": "山丘改造路比利尼",
+    "isBoss": false
+  },
+  "2101372": {
+    "name": "山丘杜爾加",
+    "isBoss": false
+  },
+  "2101373": {
+    "name": "丘陵地飛螳",
+    "isBoss": false
+  },
+  "2101374": {
+    "name": "丘陵地魁鳥",
+    "isBoss": false
+  },
+  "2101375": {
+    "name": "丘陵地公魁鳥",
+    "isBoss": false
+  },
+  "2101376": {
+    "name": "荒野草",
+    "isBoss": false
+  },
+  "2101377": {
+    "name": "荒野年幼的可拉敦",
+    "isBoss": false
+  },
+  "2101380": {
+    "name": "峽谷路比利尼",
+    "isBoss": false
+  },
+  "2101381": {
+    "name": "腐敗的峽谷路比利尼",
+    "isBoss": false
+  },
+  "2101382": {
+    "name": "峽谷帕奇倫",
+    "isBoss": false
+  },
+  "2101383": {
+    "name": "峽谷夫魯坤",
+    "isBoss": false
+  },
+  "2101384": {
+    "name": "峽谷格拉巴拉斯",
+    "isBoss": false
+  },
+  "2101385": {
+    "name": "峽谷杜爾加",
+    "isBoss": false
+  },
+  "2101386": {
+    "name": "峽谷拉古勒",
+    "isBoss": false
+  },
+  "2101387": {
+    "name": "不毛之地灰色奧格林特",
+    "isBoss": false
+  },
+  "2101388": {
+    "name": "不毛之地炸彈蟲",
+    "isBoss": false
+  },
+  "2101389": {
+    "name": "不毛之地飛螳",
+    "isBoss": false
+  },
+  "2101390": {
+    "name": "不毛之地吉爾卡",
+    "isBoss": false
+  },
+  "2101391": {
+    "name": "不毛之地德里茲納",
+    "isBoss": false
+  },
+  "2101400": {
+    "name": "逐漸乾枯的格拉巴拉斯",
+    "isBoss": false
+  },
+  "2101401": {
+    "name": "平原卡伊琳",
+    "isBoss": false
+  },
+  "2101402": {
+    "name": "平原波庫斯",
+    "isBoss": false
+  },
+  "2101403": {
+    "name": "平原星龜",
+    "isBoss": false
+  },
+  "2101404": {
+    "name": "平原光蟲",
+    "isBoss": false
+  },
+  "2101405": {
+    "name": "頑強的拉古勒",
+    "isBoss": false
+  },
+  "2101406": {
+    "name": "平原托爾巴",
+    "isBoss": false
+  },
+  "2101407": {
+    "name": "頑強的德里茲納",
+    "isBoss": false
+  },
+  "2101408": {
+    "name": "平原帕奇倫",
+    "isBoss": false
+  },
+  "2101409": {
+    "name": "平原灰色蜥怪",
+    "isBoss": false
+  },
+  "2101410": {
+    "name": "平原弗路彼",
+    "isBoss": false
+  },
+  "2101411": {
+    "name": "頑強的奧德蜘蛛",
+    "isBoss": false
+  },
+  "2101412": {
+    "name": "平原飛螳",
+    "isBoss": false
+  },
+  "2101413": {
+    "name": "逐漸乾枯的圖卡",
+    "isBoss": false
+  },
+  "2101414": {
+    "name": "平原夫魯坤",
+    "isBoss": false
+  },
+  "2101415": {
+    "name": "三角麥伊諾",
+    "isBoss": true
+  },
+  "2101416": {
+    "name": "痛苦拉普斯",
+    "isBoss": true
+  },
+  "2101417": {
+    "name": "平原海伊布",
+    "isBoss": false
+  },
+  "2101418": {
+    "name": "逐漸乾枯的格拉比",
+    "isBoss": false
+  },
+  "2101419": {
+    "name": "逐漸乾枯的魔法格拉比",
+    "isBoss": false
+  },
+  "2101420": {
+    "name": "逐漸乾枯的大葉格拉比",
+    "isBoss": false
+  },
+  "2101421": {
+    "name": "堅實的卡克蓋崙",
+    "isBoss": false
+  },
+  "2101422": {
+    "name": "堅硬的石精靈",
+    "isBoss": false
+  },
+  "2101423": {
+    "name": "頑強的路比利尼",
+    "isBoss": false
+  },
+  "2101424": {
+    "name": "平原年幼的卡伊琳",
+    "isBoss": false
+  },
+  "2101425": {
+    "name": "頑強的蝠妖",
+    "isBoss": false
+  },
+  "2101426": {
+    "name": "固執的守護者暗殺者",
+    "isBoss": false
+  },
+  "2101427": {
+    "name": "固執的守護者巡查者",
+    "isBoss": false
+  },
+  "2101428": {
+    "name": "頑強的劍齒豹",
+    "isBoss": false
+  },
+  "2101429": {
+    "name": "平原仙人掌蜘蛛",
+    "isBoss": false
+  },
+  "2101450": {
+    "name": "平原布拉斯",
+    "isBoss": false
+  },
+  "2101451": {
+    "name": "逐漸乾枯的奧格林特",
+    "isBoss": false
+  },
+  "2101500": {
+    "name": "銳鱗古拉",
+    "isBoss": false
+  },
+  "2101501": {
+    "name": "海岸特羅加斯",
+    "isBoss": false
+  },
+  "2101502": {
+    "name": "海岸蜥蜴",
+    "isBoss": false
+  },
+  "2101503": {
+    "name": "海岸年幼的蜥蜴",
+    "isBoss": false
+  },
+  "2101504": {
+    "name": "高原蠍獸",
+    "isBoss": false
+  },
+  "2101505": {
+    "name": "高原圖卡",
+    "isBoss": false
+  },
+  "2101506": {
+    "name": "荒野飛螳",
+    "isBoss": false
+  },
+  "2101507": {
+    "name": "高原杜爾加",
+    "isBoss": false
+  },
+  "2101508": {
+    "name": "高原兵蜂",
+    "isBoss": false
+  },
+  "2101509": {
+    "name": "高原工蜂",
+    "isBoss": false
+  },
+  "2101510": {
+    "name": "高原托爾巴",
+    "isBoss": false
+  },
+  "2101511": {
+    "name": "荒野波沙",
+    "isBoss": false
+  },
+  "2101512": {
+    "name": "荒野盜賊團監視者",
+    "isBoss": false
+  },
+  "2101513": {
+    "name": "荒野盜賊團襲擊者",
+    "isBoss": false
+  },
+  "2101514": {
+    "name": "荒野盜賊團巡查者",
+    "isBoss": false
+  },
+  "2101515": {
+    "name": "被趕走的洞穴蝙蝠",
+    "isBoss": false
+  },
+  "2101516": {
+    "name": "荒野夫魯坤",
+    "isBoss": false
+  },
+  "2101517": {
+    "name": "遲鈍的卡克蓋崙",
+    "isBoss": false
+  },
+  "2101518": {
+    "name": "堅硬的卡克蓋崙",
+    "isBoss": false
+  },
+  "2101519": {
+    "name": "海岸可拉敦",
+    "isBoss": false
+  },
+  "2101520": {
+    "name": "海岸年幼的可拉敦",
+    "isBoss": false
+  },
+  "2101521": {
+    "name": "海岸星龜",
+    "isBoss": false
+  },
+  "2101600": {
+    "name": "第3部隊長卡爾寇提",
+    "isBoss": true
+  },
+  "2101601": {
+    "name": "副軍團長比巴茲拉",
+    "isBoss": true
+  },
+  "2101602": {
+    "name": "軍團長塔爾納",
+    "isBoss": true
   },
   "2110000": {
     "name": "前指揮官馬爾德爾",
@@ -4607,6 +5143,90 @@
     "name": "德拉克紐特組件管理兵",
     "isBoss": false
   },
+  "2110465": {
+    "name": "強奪者帕伊特隆",
+    "isBoss": true
+  },
+  "2110466": {
+    "name": "駐地廢墟掠奪者",
+    "isBoss": false
+  },
+  "2110467": {
+    "name": "駐地廢墟襲擊者",
+    "isBoss": false
+  },
+  "2110468": {
+    "name": "駐地廢墟通緝犯",
+    "isBoss": false
+  },
+  "2110469": {
+    "name": "駐地廢墟波沙",
+    "isBoss": false
+  },
+  "2110470": {
+    "name": "頭目海勒儂",
+    "isBoss": true
+  },
+  "2110471": {
+    "name": "海勒儂盜賊團掠奪者",
+    "isBoss": false
+  },
+  "2110472": {
+    "name": "海勒儂盜賊團襲擊者",
+    "isBoss": false
+  },
+  "2110473": {
+    "name": "海勒儂盜賊團通緝犯",
+    "isBoss": false
+  },
+  "2110474": {
+    "name": "海勒儂盜賊團襲擊者",
+    "isBoss": false
+  },
+  "2110475": {
+    "name": "海勒儂盜賊團幹部",
+    "isBoss": false
+  },
+  "2110478": {
+    "name": "海勒儂盜賊團防禦砲",
+    "isBoss": false
+  },
+  "2110479": {
+    "name": "駐地廢墟監視塔",
+    "isBoss": false
+  },
+  "2110480": {
+    "name": "魔道裝置",
+    "isBoss": false
+  },
+  "2110481": {
+    "name": "帳幕控制器",
+    "isBoss": false
+  },
+  "2110482": {
+    "name": "海勒儂盜賊團掠奪者",
+    "isBoss": false
+  },
+  "2110483": {
+    "name": "海勒儂盜賊團通緝犯",
+    "isBoss": false
+  },
+  "2110484": {
+    "name": "海勒儂盜賊團幹部",
+    "isBoss": false
+  },
+  "2110485": {
+    "name": "海勒儂盜賊團襲擊者",
+    "isBoss": false
+  },
+  "2110486": {
+    "name": "海勒儂盜賊團通緝犯",
+    "isBoss": false
+  },
+  "2110487": {
+    "name": "海勒儂盜賊團幹部",
+    "isBoss": false
+  },
   "2110500": {
     "name": "紅玉小妖精",
     "isBoss": false
@@ -4665,6 +5285,274 @@
   },
   "2110514": {
     "name": "電氣磁場",
+    "isBoss": false
+  },
+  "2110515": {
+    "name": "狂熱信徒德凡",
+    "isBoss": true
+  },
+  "2110516": {
+    "name": "修道者那拉特",
+    "isBoss": true
+  },
+  "2110517": {
+    "name": "求道者塔尼切",
+    "isBoss": true
+  },
+  "2110518": {
+    "name": "虐殺者巴爾卡許",
+    "isBoss": true
+  },
+  "2110519": {
+    "name": "毛骨悚然的莫拉提亞",
+    "isBoss": true
+  },
+  "2110520": {
+    "name": "不屈的瓦塔坤",
+    "isBoss": true
+  },
+  "2110521": {
+    "name": "迅速的沙納格",
+    "isBoss": true
+  },
+  "2110600": {
+    "name": "狂氣開發者夏路特",
+    "isBoss": true
+  },
+  "2110601": {
+    "name": "雷帕爾團輔助研究員",
+    "isBoss": false
+  },
+  "2110602": {
+    "name": "雷帕爾團研究員",
+    "isBoss": false
+  },
+  "2110603": {
+    "name": "雷帕爾團上級研究員",
+    "isBoss": false
+  },
+  "2110604": {
+    "name": "雷帕爾團警衛",
+    "isBoss": false
+  },
+  "2110605": {
+    "name": "變異體劍齒豹",
+    "isBoss": false
+  },
+  "2110606": {
+    "name": "蘊含咒術的變異體",
+    "isBoss": false
+  },
+  "2110607": {
+    "name": "雷帕爾團咒術裝置",
+    "isBoss": false
+  },
+  "2110608": {
+    "name": "怪力路梅斯",
+    "isBoss": false
+  },
+  "2110609": {
+    "name": "空中要塞掠奪者",
+    "isBoss": false
+  },
+  "2110610": {
+    "name": "空中要塞襲擊者",
+    "isBoss": false
+  },
+  "2110611": {
+    "name": "空中要塞監視者",
+    "isBoss": false
+  },
+  "2110612": {
+    "name": "空中要塞監視者",
+    "isBoss": false
+  },
+  "2110613": {
+    "name": "空中要塞監督官",
+    "isBoss": false
+  },
+  "2110614": {
+    "name": "空中要塞警報裝置",
+    "isBoss": false
+  },
+  "2110615": {
+    "name": "空中要塞炸彈陷阱機關",
+    "isBoss": false
+  },
+  "2110616": {
+    "name": "大型咒術裝置",
+    "isBoss": false
+  },
+  "2110617": {
+    "name": "蘊含咒術的強化體",
+    "isBoss": false
+  },
+  "2110618": {
+    "name": "雷帕爾團上級研究員",
+    "isBoss": false
+  },
+  "2110619": {
+    "name": "狄格那戛",
+    "isBoss": true
+  },
+  "2110620": {
+    "name": "狄格那戛",
+    "isBoss": true
+  },
+  "2110621": {
+    "name": "狄格那戛蓄力器",
+    "isBoss": false
+  },
+  "2110622": {
+    "name": "德拉克紐特警備兵",
+    "isBoss": false
+  },
+  "2110623": {
+    "name": "德拉克紐特警備兵",
+    "isBoss": false
+  },
+  "2110624": {
+    "name": "德拉克紐特雜役兵",
+    "isBoss": false
+  },
+  "2110625": {
+    "name": "德拉克紐特警備兵",
+    "isBoss": false
+  },
+  "2110626": {
+    "name": "狄格那戛蓄力器",
+    "isBoss": false
+  },
+  "2110627": {
+    "name": "狄格那戛蓄力器",
+    "isBoss": false
+  },
+  "2110628": {
+    "name": "狂暴的實驗變異體",
+    "isBoss": false
+  },
+  "2110629": {
+    "name": "毒性氣體",
+    "isBoss": false
+  },
+  "2110630": {
+    "name": "狂暴的實驗變異體",
+    "isBoss": false
+  },
+  "2110631": {
+    "name": "狂暴的改造克拉爾",
+    "isBoss": false
+  },
+  "2110632": {
+    "name": "毒性氣體",
+    "isBoss": false
+  },
+  "2110634": {
+    "name": "基地偵察器",
+    "isBoss": false
+  },
+  "2110635": {
+    "name": "基地保護自爆器",
+    "isBoss": false
+  },
+  "2110636": {
+    "name": "狂暴的改造克拉爾",
+    "isBoss": false
+  },
+  "2110637": {
+    "name": "基地監視器",
+    "isBoss": false
+  },
+  "2110638": {
+    "name": "毒性氣體",
+    "isBoss": false
+  },
+  "2110639": {
+    "name": "毒性氣體",
+    "isBoss": false
+  },
+  "2110640": {
+    "name": "哨所長塔拉卡",
+    "isBoss": true
+  },
+  "2110641": {
+    "name": "德拉克紐特戰鬥指揮官",
+    "isBoss": false
+  },
+  "2110642": {
+    "name": "德拉克紐特弓手",
+    "isBoss": false
+  },
+  "2110643": {
+    "name": "德拉克紐特戰士",
+    "isBoss": false
+  },
+  "2110644": {
+    "name": "德拉克紐特雜工",
+    "isBoss": false
+  },
+  "2110645": {
+    "name": "斯拉克採集工",
+    "isBoss": false
+  },
+  "2110646": {
+    "name": "斯拉克雜工",
+    "isBoss": false
+  },
+  "2110647": {
+    "name": "防禦用實驗體",
+    "isBoss": false
+  },
+  "2110648": {
+    "name": "防禦用實驗體",
+    "isBoss": false
+  },
+  "2110649": {
+    "name": "爆炸地雷",
+    "isBoss": false
+  },
+  "2110650": {
+    "name": "乾枯的蜘蛛",
+    "isBoss": false
+  },
+  "2110651": {
+    "name": "蘊含咒術的變異體",
+    "isBoss": false
+  },
+  "2110652": {
+    "name": "雷帕爾團輔助研究員",
+    "isBoss": false
+  },
+  "2110653": {
+    "name": "雷帕爾團研究員",
+    "isBoss": false
+  },
+  "2110654": {
+    "name": "德拉克紐特防禦隊員",
+    "isBoss": false
+  },
+  "2110670": {
+    "name": "空中要塞奴隸鬥士",
+    "isBoss": false
+  },
+  "2110671": {
+    "name": "空中要塞奴隸弓士",
+    "isBoss": false
+  },
+  "2110672": {
+    "name": "雷射",
+    "isBoss": false
+  },
+  "2110673": {
+    "name": "雷射",
+    "isBoss": false
+  },
+  "2110674": {
+    "name": "空中要塞健壯的不汗黨",
+    "isBoss": false
+  },
+  "2110675": {
+    "name": "空中要塞不汗黨",
     "isBoss": false
   },
   "2200001": {
@@ -5177,6 +6065,298 @@
   },
   "2200148": {
     "name": "德拉坎研究員",
+    "isBoss": false
+  },
+  "2200149": {
+    "name": "希斯洛特打手",
+    "isBoss": false
+  },
+  "2200150": {
+    "name": "希斯洛特探索員",
+    "isBoss": false
+  },
+  "2200151": {
+    "name": "希斯洛特打手",
+    "isBoss": false
+  },
+  "2200152": {
+    "name": "希斯洛特打手",
+    "isBoss": false
+  },
+  "2200153": {
+    "name": "希斯洛特探索員",
+    "isBoss": false
+  },
+  "2200155": {
+    "name": "希斯洛特打手",
+    "isBoss": false
+  },
+  "2200156": {
+    "name": "希斯洛特工人",
+    "isBoss": false
+  },
+  "2200157": {
+    "name": "天加隆商團叛徒",
+    "isBoss": false
+  },
+  "2200158": {
+    "name": "天加隆商團叛徒",
+    "isBoss": false
+  },
+  "2200159": {
+    "name": "天加隆商團叛徒",
+    "isBoss": false
+  },
+  "2200160": {
+    "name": "天加隆商團叛徒",
+    "isBoss": false
+  },
+  "2200161": {
+    "name": "瓦當當的炸彈",
+    "isBoss": false
+  },
+  "2200162": {
+    "name": "汙染地帶",
+    "isBoss": false
+  },
+  "2200163": {
+    "name": "被汙染的史萊姆",
+    "isBoss": false
+  },
+  "2200164": {
+    "name": "汙染塊狀怪",
+    "isBoss": false
+  },
+  "2200165": {
+    "name": "可疑的倉庫偵察員",
+    "isBoss": false
+  },
+  "2200166": {
+    "name": "可疑的倉庫探索員",
+    "isBoss": false
+  },
+  "2200167": {
+    "name": "可疑的倉庫搜索員",
+    "isBoss": false
+  },
+  "2200168": {
+    "name": "希斯洛特打手",
+    "isBoss": false
+  },
+  "2200169": {
+    "name": "希斯洛特探索員",
+    "isBoss": false
+  },
+  "2200170": {
+    "name": "希斯洛特工人",
+    "isBoss": false
+  },
+  "2200171": {
+    "name": "可疑的雷帕爾團",
+    "isBoss": false
+  },
+  "2200172": {
+    "name": "雷帕爾團戰士",
+    "isBoss": false
+  },
+  "2200173": {
+    "name": "雷帕爾團魔法師",
+    "isBoss": false
+  },
+  "2200174": {
+    "name": "雷帕爾團格鬥家",
+    "isBoss": false
+  },
+  "2200175": {
+    "name": "雷帕爾團管理者",
+    "isBoss": false
+  },
+  "2200176": {
+    "name": "雷帕爾團警備劍齒豹",
+    "isBoss": false
+  },
+  "2200178": {
+    "name": "雷帕爾團人造實驗體",
+    "isBoss": false
+  },
+  "2200179": {
+    "name": "希斯洛特打手",
+    "isBoss": false
+  },
+  "2200180": {
+    "name": "希斯洛特打手",
+    "isBoss": false
+  },
+  "2200181": {
+    "name": "希斯洛特打手",
+    "isBoss": false
+  },
+  "2200182": {
+    "name": "希斯洛特探索員",
+    "isBoss": false
+  },
+  "2200183": {
+    "name": "希斯洛特探索員",
+    "isBoss": false
+  },
+  "2200184": {
+    "name": "希斯洛特工人",
+    "isBoss": false
+  },
+  "2200191": {
+    "name": "希斯洛特工人",
+    "isBoss": false
+  },
+  "2200192": {
+    "name": "希斯洛特探索員",
+    "isBoss": false
+  },
+  "2200193": {
+    "name": "希斯洛特獵人",
+    "isBoss": false
+  },
+  "2200194": {
+    "name": "希斯洛特工人",
+    "isBoss": false
+  },
+  "2200195": {
+    "name": "希斯洛特搶奪者",
+    "isBoss": false
+  },
+  "2200196": {
+    "name": "奇里利溫",
+    "isBoss": false
+  },
+  "2200197": {
+    "name": "石化陷阱",
+    "isBoss": false
+  },
+  "2200198": {
+    "name": "石化陷阱",
+    "isBoss": false
+  },
+  "2200199": {
+    "name": "可疑的書庫偵察員",
+    "isBoss": false
+  },
+  "2200200": {
+    "name": "可疑的書庫探索員",
+    "isBoss": false
+  },
+  "2200201": {
+    "name": "可疑的書庫搜索員",
+    "isBoss": false
+  },
+  "2200202": {
+    "name": "雷帕爾團人造實驗體",
+    "isBoss": false
+  },
+  "2200203": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2200204": {
+    "name": "艾夫格尼爾試煉",
+    "isBoss": false
+  },
+  "2200205": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2200206": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2200207": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2200208": {
+    "name": "地下室吉爾卡",
+    "isBoss": false
+  },
+  "2200209": {
+    "name": "石化陷阱",
+    "isBoss": false
+  },
+  "2200210": {
+    "name": "雷帕爾團研究室魔法師",
+    "isBoss": false
+  },
+  "2200211": {
+    "name": "雷帕爾團研究室格鬥家",
+    "isBoss": false
+  },
+  "2200212": {
+    "name": "雷帕爾團研究室戰士",
+    "isBoss": false
+  },
+  "2200213": {
+    "name": "雷帕爾團研究室研究家",
+    "isBoss": false
+  },
+  "2200214": {
+    "name": "雷射",
+    "isBoss": false
+  },
+  "2200215": {
+    "name": "廢棄實驗體",
+    "isBoss": false
+  },
+  "2200216": {
+    "name": "廢棄實驗體",
+    "isBoss": false
+  },
+  "2200217": {
+    "name": "廢棄實驗體",
+    "isBoss": false
+  },
+  "2200218": {
+    "name": "不良實驗體",
+    "isBoss": false
+  },
+  "2200219": {
+    "name": "不良實驗體",
+    "isBoss": false
+  },
+  "2200220": {
+    "name": "不良實驗體",
+    "isBoss": false
+  },
+  "2200221": {
+    "name": "雷帕爾團實驗體管理者",
+    "isBoss": false
+  },
+  "2200222": {
+    "name": "迷宮蜘蛛",
+    "isBoss": false
+  },
+  "2200223": {
+    "name": "希斯洛特打手",
+    "isBoss": false
+  },
+  "2200224": {
+    "name": "希斯洛特探索員",
+    "isBoss": false
+  },
+  "2200225": {
+    "name": "蜘蛛蟲",
+    "isBoss": false
+  },
+  "2200226": {
+    "name": "不良實驗體",
+    "isBoss": false
+  },
+  "2200227": {
+    "name": "不良實驗體",
+    "isBoss": false
+  },
+  "2200228": {
+    "name": "不良實驗體",
+    "isBoss": false
+  },
+  "2200229": {
+    "name": "雷帕爾團研究室格鬥家",
     "isBoss": false
   },
   "2290000": {
@@ -5693,6 +6873,314 @@
   },
   "2290180": {
     "name": "阿爾拉烏閃電圖騰",
+    "isBoss": false
+  },
+  "2290181": {
+    "name": "希斯洛特探索員",
+    "isBoss": false
+  },
+  "2290182": {
+    "name": "希斯洛特打手",
+    "isBoss": false
+  },
+  "2290184": {
+    "name": "希斯洛特精銳追擊員",
+    "isBoss": false
+  },
+  "2290185": {
+    "name": "希斯洛特打手",
+    "isBoss": false
+  },
+  "2290186": {
+    "name": "希斯洛特探索員",
+    "isBoss": false
+  },
+  "2290195": {
+    "name": "可疑的遺跡追擊員",
+    "isBoss": false
+  },
+  "2290196": {
+    "name": "可疑的遺跡偵察員",
+    "isBoss": false
+  },
+  "2290198": {
+    "name": "可疑的遺跡監督官",
+    "isBoss": false
+  },
+  "2290199": {
+    "name": "希斯洛特",
+    "isBoss": false
+  },
+  "2290200": {
+    "name": "可疑的束縛裝置",
+    "isBoss": false
+  },
+  "2290201": {
+    "name": "丘陵地吉爾卡",
+    "isBoss": false
+  },
+  "2290202": {
+    "name": "馴服的野狼",
+    "isBoss": false
+  },
+  "2290204": {
+    "name": "馴服的野狼",
+    "isBoss": false
+  },
+  "2290205": {
+    "name": "丘陵地吉爾卡",
+    "isBoss": false
+  },
+  "2290206": {
+    "name": "希斯洛特石化陷阱",
+    "isBoss": false
+  },
+  "2290207": {
+    "name": "希斯洛特石化陷阱",
+    "isBoss": false
+  },
+  "2290239": {
+    "name": "希斯洛特石化陷阱",
+    "isBoss": false
+  },
+  "2290243": {
+    "name": "鏡頭晃動",
+    "isBoss": false
+  },
+  "2290244": {
+    "name": "爆炸",
+    "isBoss": false
+  },
+  "2290247": {
+    "name": "德拉那捕食者實驗體",
+    "isBoss": false
+  },
+  "2290248": {
+    "name": "碾碎的實驗體林普",
+    "isBoss": false
+  },
+  "2290250": {
+    "name": "雷帕爾團監視塔魔法師",
+    "isBoss": false
+  },
+  "2290251": {
+    "name": "雷帕爾團監視塔格鬥家",
+    "isBoss": false
+  },
+  "2290252": {
+    "name": "雷帕爾團監視塔戰士",
+    "isBoss": false
+  },
+  "2290253": {
+    "name": "雷帕爾團監視塔研究家",
+    "isBoss": false
+  },
+  "2290254": {
+    "name": "雷帕爾團監視塔魔法師",
+    "isBoss": false
+  },
+  "2290255": {
+    "name": "雷帕爾團監視塔格鬥家",
+    "isBoss": false
+  },
+  "2290256": {
+    "name": "雷帕爾團監視塔戰士",
+    "isBoss": false
+  },
+  "2290257": {
+    "name": "雷帕爾團監視塔研究家",
+    "isBoss": false
+  },
+  "2290262": {
+    "name": "爆炸",
+    "isBoss": false
+  },
+  "2290263": {
+    "name": "廢墟阿爾卡",
+    "isBoss": false
+  },
+  "2290264": {
+    "name": "廢墟阿爾卡",
+    "isBoss": false
+  },
+  "2290265": {
+    "name": "雷帕爾團步哨兵",
+    "isBoss": false
+  },
+  "2290266": {
+    "name": "雷帕爾團警戒員",
+    "isBoss": false
+  },
+  "2290267": {
+    "name": "雷帕爾團搜索員",
+    "isBoss": false
+  },
+  "2290268": {
+    "name": "雷帕爾團警戒員",
+    "isBoss": false
+  },
+  "2290270": {
+    "name": "雷帕爾團哨兵",
+    "isBoss": false
+  },
+  "2290271": {
+    "name": "雷帕爾團警戒兵",
+    "isBoss": false
+  },
+  "2290274": {
+    "name": "雷帕爾團戰士",
+    "isBoss": false
+  },
+  "2290275": {
+    "name": "雷帕爾團魔法師",
+    "isBoss": false
+  },
+  "2290276": {
+    "name": "雷帕爾團格鬥家",
+    "isBoss": false
+  },
+  "2290277": {
+    "name": "雷帕爾團管理者",
+    "isBoss": false
+  },
+  "2290280": {
+    "name": "雷帕爾團監視塔監督官",
+    "isBoss": false
+  },
+  "2290281": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2290282": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2290283": {
+    "name": "爆炸",
+    "isBoss": false
+  },
+  "2290285": {
+    "name": "鏡頭晃動",
+    "isBoss": false
+  },
+  "2290287": {
+    "name": "凶暴的實驗體夫卡",
+    "isBoss": false
+  },
+  "2290288": {
+    "name": "雷帕爾團追擊團戰士",
+    "isBoss": false
+  },
+  "2290289": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2290290": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2290291": {
+    "name": "爆炸",
+    "isBoss": false
+  },
+  "2290292": {
+    "name": "空中炸彈",
+    "isBoss": false
+  },
+  "2290293": {
+    "name": "廢墟阿爾卡",
+    "isBoss": false
+  },
+  "2290300": {
+    "name": "希斯洛特巡查員",
+    "isBoss": false
+  },
+  "2290301": {
+    "name": "希斯洛特工人",
+    "isBoss": false
+  },
+  "2290302": {
+    "name": "希斯洛特探索員",
+    "isBoss": false
+  },
+  "2290303": {
+    "name": "希斯洛特巡查員",
+    "isBoss": false
+  },
+  "2290304": {
+    "name": "希斯洛特巡查員",
+    "isBoss": false
+  },
+  "2290305": {
+    "name": "希斯洛特探索員",
+    "isBoss": false
+  },
+  "2290306": {
+    "name": "希斯洛特工人",
+    "isBoss": false
+  },
+  "2290308": {
+    "name": "可疑的遺跡追擊員",
+    "isBoss": false
+  },
+  "2290309": {
+    "name": "希斯洛特巡查員",
+    "isBoss": false
+  },
+  "2290310": {
+    "name": "希斯洛特探索員",
+    "isBoss": false
+  },
+  "2290311": {
+    "name": "廢墟阿爾卡",
+    "isBoss": false
+  },
+  "2290312": {
+    "name": "廢墟阿爾卡",
+    "isBoss": false
+  },
+  "2290313": {
+    "name": "廢墟阿爾卡",
+    "isBoss": false
+  },
+  "2290315": {
+    "name": "可疑的束縛裝置",
+    "isBoss": false
+  },
+  "2290318": {
+    "name": "希斯洛特石化陷阱",
+    "isBoss": false
+  },
+  "2290319": {
+    "name": "希斯洛特石化陷阱",
+    "isBoss": false
+  },
+  "2290322": {
+    "name": "可疑的遺跡記錄員",
+    "isBoss": false
+  },
+  "2290323": {
+    "name": "可疑的遺跡捕獲者",
+    "isBoss": false
+  },
+  "2290324": {
+    "name": "可疑的遺跡記錄員",
+    "isBoss": false
+  },
+  "2290325": {
+    "name": "可疑的遺跡捕獲者",
+    "isBoss": false
+  },
+  "2290326": {
+    "name": "可疑的束縛裝置",
+    "isBoss": false
+  },
+  "2290327": {
+    "name": "可疑的束縛裝置",
+    "isBoss": false
+  },
+  "2290328": {
+    "name": "可疑的束縛裝置",
     "isBoss": false
   },
   "2300000": {
@@ -7364,6 +8852,26 @@
     "name": "羈絆花園管理員",
     "isBoss": false
   },
+  "2300465": {
+    "name": "深淵角萊卡恩警戒兵",
+    "isBoss": false
+  },
+  "2300466": {
+    "name": "深淵角萊卡恩治療師",
+    "isBoss": false
+  },
+  "2300467": {
+    "name": "深淵角萊卡恩鬥士",
+    "isBoss": false
+  },
+  "2300468": {
+    "name": "滿月儀式管理隊長",
+    "isBoss": false
+  },
+  "2300469": {
+    "name": "深淵角萊卡恩圖騰術士",
+    "isBoss": false
+  },
   "2300470": {
     "name": "苦惱的巴卡爾摩",
     "isBoss": true
@@ -7374,6 +8882,106 @@
     "category": "激戰",
     "tier": "征服",
     "dungeonId": 600032
+  },
+  "2300473": {
+    "name": "卡普",
+    "isBoss": true
+  },
+  "2300474": {
+    "name": "達坎",
+    "isBoss": true
+  },
+  "2300475": {
+    "name": "加爾加姆",
+    "isBoss": true
+  },
+  "2300476": {
+    "name": "中毒的斯拉克奴工",
+    "isBoss": false
+  },
+  "2300477": {
+    "name": "中毒的斯拉克挖掘工",
+    "isBoss": false
+  },
+  "2300478": {
+    "name": "中毒的斯拉克哨兵",
+    "isBoss": false
+  },
+  "2300479": {
+    "name": "中毒的斯拉克監督官",
+    "isBoss": false
+  },
+  "2300480": {
+    "name": "中毒的斯拉克車夫",
+    "isBoss": false
+  },
+  "2300482": {
+    "name": "深淵角杜杜卡工人",
+    "isBoss": false
+  },
+  "2300483": {
+    "name": "深淵角杜杜卡投石兵",
+    "isBoss": false
+  },
+  "2300484": {
+    "name": "深淵角路比利尼",
+    "isBoss": false
+  },
+  "2300485": {
+    "name": "深淵角萊卡恩警戒兵",
+    "isBoss": false
+  },
+  "2300486": {
+    "name": "深淵角萊卡恩治療師",
+    "isBoss": false
+  },
+  "2300487": {
+    "name": "深淵角萊卡恩鬥士",
+    "isBoss": false
+  },
+  "2300488": {
+    "name": "滿月儀式管理隊長",
+    "isBoss": false
+  },
+  "2300489": {
+    "name": "深淵角萊卡恩圖騰術士",
+    "isBoss": false
+  },
+  "2300491": {
+    "name": "卡普",
+    "isBoss": true
+  },
+  "2300492": {
+    "name": "達坎",
+    "isBoss": true
+  },
+  "2300493": {
+    "name": "加爾加姆",
+    "isBoss": true
+  },
+  "2300494": {
+    "name": "中毒的斯拉克奴工",
+    "isBoss": false
+  },
+  "2300495": {
+    "name": "中毒的斯拉克挖掘工",
+    "isBoss": false
+  },
+  "2300496": {
+    "name": "中毒的斯拉克哨兵",
+    "isBoss": false
+  },
+  "2300497": {
+    "name": "中毒的斯拉克監督官",
+    "isBoss": false
+  },
+  "2300498": {
+    "name": "中毒的斯拉克車夫",
+    "isBoss": false
+  },
+  "2300499": {
+    "name": "深淵角杜杜卡工人",
+    "isBoss": false
   },
   "2300500": {
     "name": "德拉多納",
@@ -7465,9 +9073,149 @@
     "tier": "探險",
     "dungeonId": 600041
   },
+  "2300518": {
+    "name": "深淵角杜杜卡投石兵",
+    "isBoss": false
+  },
   "2300519": {
     "name": "杜勒巴提毒液",
     "isBoss": true
+  },
+  "2300520": {
+    "name": "深淵角路比利尼",
+    "isBoss": false
+  },
+  "2300521": {
+    "name": "深淵角萊卡恩警戒兵",
+    "isBoss": false
+  },
+  "2300522": {
+    "name": "深淵角萊卡恩治療師",
+    "isBoss": false
+  },
+  "2300523": {
+    "name": "深淵角萊卡恩鬥士",
+    "isBoss": false
+  },
+  "2300524": {
+    "name": "滿月儀式管理隊長",
+    "isBoss": false
+  },
+  "2300525": {
+    "name": "深淵角萊卡恩圖騰術士",
+    "isBoss": false
+  },
+  "2300527": {
+    "name": "卡普",
+    "isBoss": true
+  },
+  "2300528": {
+    "name": "達坎",
+    "isBoss": true
+  },
+  "2300529": {
+    "name": "加爾加姆",
+    "isBoss": true
+  },
+  "2300530": {
+    "name": "中毒的斯拉克奴工",
+    "isBoss": false
+  },
+  "2300531": {
+    "name": "中毒的斯拉克挖掘工",
+    "isBoss": false
+  },
+  "2300532": {
+    "name": "中毒的斯拉克哨兵",
+    "isBoss": false
+  },
+  "2300533": {
+    "name": "中毒的斯拉克監督官",
+    "isBoss": false
+  },
+  "2300534": {
+    "name": "中毒的斯拉克車夫",
+    "isBoss": false
+  },
+  "2300535": {
+    "name": "深淵角杜杜卡工人",
+    "isBoss": false
+  },
+  "2300536": {
+    "name": "深淵角杜杜卡投石兵",
+    "isBoss": false
+  },
+  "2300537": {
+    "name": "深淵角路比利尼",
+    "isBoss": false
+  },
+  "2300538": {
+    "name": "深淵角萊卡恩警戒兵",
+    "isBoss": false
+  },
+  "2300539": {
+    "name": "深淵角萊卡恩治療師",
+    "isBoss": false
+  },
+  "2300540": {
+    "name": "深淵角萊卡恩鬥士",
+    "isBoss": false
+  },
+  "2300541": {
+    "name": "滿月儀式管理隊長",
+    "isBoss": false
+  },
+  "2300542": {
+    "name": "深淵角萊卡恩圖騰術士",
+    "isBoss": false
+  },
+  "2300544": {
+    "name": "卡普",
+    "isBoss": true
+  },
+  "2300545": {
+    "name": "達坎",
+    "isBoss": true
+  },
+  "2300546": {
+    "name": "加爾加姆",
+    "isBoss": true
+  },
+  "2300547": {
+    "name": "中毒的斯拉克奴工",
+    "isBoss": false
+  },
+  "2300548": {
+    "name": "中毒的斯拉克挖掘工",
+    "isBoss": false
+  },
+  "2300549": {
+    "name": "中毒的斯拉克哨兵",
+    "isBoss": false
+  },
+  "2300550": {
+    "name": "中毒的斯拉克監督官",
+    "isBoss": false
+  },
+  "2300551": {
+    "name": "中毒的斯拉克車夫",
+    "isBoss": false
+  },
+  "2300552": {
+    "name": "深淵角杜杜卡工人",
+    "isBoss": false
+  },
+  "2300553": {
+    "name": "深淵角杜杜卡投石兵",
+    "isBoss": false
+  },
+  "2300554": {
+    "name": "深淵角路比利尼",
+    "isBoss": false
+  },
+  "2300595": {
+    "name": "魅惑的迪歐那耶",
+    "isBoss": false
   },
   "2300601": {
     "name": "亞提埃爾",
@@ -8335,6 +10083,217 @@
   },
   "2301515": {
     "name": "神殿思念體",
+    "isBoss": false
+  },
+  "2301601": {
+    "name": "意志圖勒根",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "探險",
+    "dungeonId": 600144
+  },
+  "2301602": {
+    "name": "禁忌魔手格里歐薩",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "探險",
+    "dungeonId": 600144
+  },
+  "2301603": {
+    "name": "偽惡巴席路斯",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "探險",
+    "dungeonId": 600144
+  },
+  "2301604": {
+    "name": "墮落守護者引導人",
+    "isBoss": false
+  },
+  "2301605": {
+    "name": "墮落守護者注視者",
+    "isBoss": false
+  },
+  "2301606": {
+    "name": "墮落守護者執行者",
+    "isBoss": false
+  },
+  "2301607": {
+    "name": "軍團加迪特",
+    "isBoss": false
+  },
+  "2301608": {
+    "name": "軍團監視加迪特",
+    "isBoss": false
+  },
+  "2301609": {
+    "name": "軍團精銳加迪特",
+    "isBoss": false
+  },
+  "2301610": {
+    "name": "墮落守護者處決者",
+    "isBoss": false
+  },
+  "2301611": {
+    "name": "墮落守護者精銳賢者",
+    "isBoss": false
+  },
+  "2301612": {
+    "name": "處刑刀刃",
+    "isBoss": false
+  },
+  "2301613": {
+    "name": "城寨奧德蜘蛛",
+    "isBoss": false
+  },
+  "2301614": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2301701": {
+    "name": "意志圖勒根",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "征服",
+    "dungeonId": 600145
+  },
+  "2301702": {
+    "name": "禁忌魔手格里歐薩",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "征服",
+    "dungeonId": 600145
+  },
+  "2301703": {
+    "name": "偽惡巴席路斯",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "征服",
+    "dungeonId": 600145
+  },
+  "2301704": {
+    "name": "墮落守護者引導人",
+    "isBoss": false
+  },
+  "2301705": {
+    "name": "墮落守護者注視者",
+    "isBoss": false
+  },
+  "2301706": {
+    "name": "墮落守護者執行者",
+    "isBoss": false
+  },
+  "2301707": {
+    "name": "軍團加迪特",
+    "isBoss": false
+  },
+  "2301708": {
+    "name": "軍團監視加迪特",
+    "isBoss": false
+  },
+  "2301709": {
+    "name": "軍團精銳加迪特",
+    "isBoss": false
+  },
+  "2301710": {
+    "name": "墮落守護者處決者",
+    "isBoss": false
+  },
+  "2301711": {
+    "name": "墮落守護者精銳賢者",
+    "isBoss": false
+  },
+  "2301712": {
+    "name": "處刑刀刃",
+    "isBoss": false
+  },
+  "2301713": {
+    "name": "漂浮電流石",
+    "isBoss": false
+  },
+  "2301714": {
+    "name": "漂浮電流石",
+    "isBoss": false
+  },
+  "2301715": {
+    "name": "城寨奧德蜘蛛",
+    "isBoss": false
+  },
+  "2301716": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2301717": {
+    "name": "城寨魔道兵器",
+    "isBoss": false
+  },
+  "2301721": {
+    "name": "意志圖勒根",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "征服[困難]",
+    "dungeonId": 600146
+  },
+  "2301722": {
+    "name": "禁忌魔手格里歐薩",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "征服[困難]",
+    "dungeonId": 600146
+  },
+  "2301723": {
+    "name": "偽惡巴席路斯",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "征服[困難]",
+    "dungeonId": 600146
+  },
+  "2301724": {
+    "name": "墮落守護者引導人",
+    "isBoss": false
+  },
+  "2301725": {
+    "name": "墮落守護者注視者",
+    "isBoss": false
+  },
+  "2301726": {
+    "name": "墮落守護者執行者",
+    "isBoss": false
+  },
+  "2301727": {
+    "name": "軍團加迪特",
+    "isBoss": false
+  },
+  "2301728": {
+    "name": "軍團監視加迪特",
+    "isBoss": false
+  },
+  "2301729": {
+    "name": "軍團精銳加迪特",
+    "isBoss": false
+  },
+  "2301730": {
+    "name": "墮落守護者處決者",
+    "isBoss": false
+  },
+  "2301731": {
+    "name": "墮落守護者精銳賢者",
+    "isBoss": false
+  },
+  "2301732": {
+    "name": "處刑刀刃",
+    "isBoss": false
+  },
+  "2301734": {
+    "name": "城寨魔道兵器",
+    "isBoss": false
+  },
+  "2301735": {
+    "name": "城寨奧德蜘蛛",
+    "isBoss": false
+  },
+  "2301736": {
+    "name": "None",
     "isBoss": false
   },
   "2310101": {
@@ -11934,6 +13893,14 @@
     "name": "旋轉磁場",
     "isBoss": false
   },
+  "2341001": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2341002": {
+    "name": "None",
+    "isBoss": false
+  },
   "2341601": {
     "name": "亞提埃爾",
     "isBoss": true
@@ -13036,15 +15003,15 @@
     "isBoss": false
   },
   "2360143": {
-    "name": "維若塔修習者",
+    "name": "維若塔戰士",
     "isBoss": false
   },
   "2360144": {
-    "name": "維若塔仲裁者",
+    "name": "維若塔刺殺者",
     "isBoss": false
   },
   "2360145": {
-    "name": "維若塔浪子",
+    "name": "維若塔搜索者",
     "isBoss": false
   },
   "2360146": {
@@ -17971,51 +19938,199 @@
     "isDummy": true
   },
   "2406001": {
-    "name": "守護者騎士靈魂",
+    "name": "平原帕皮斯",
     "isBoss": false
   },
   "2406002": {
-    "name": "守護者弓手靈魂",
+    "name": "融化的雪地蜘蛛",
     "isBoss": false
   },
   "2406003": {
-    "name": "德拉克紐特偵察兵",
+    "name": "德拉克紐特搜索隊員",
     "isBoss": false
   },
   "2406004": {
-    "name": "德拉多納偵察兵",
+    "name": "龍族通訊塔",
     "isBoss": false
   },
   "2406005": {
-    "name": "森林守護戰士",
+    "name": "德拉多納奴役者",
     "isBoss": false
   },
   "2406006": {
-    "name": "伯勒坎",
+    "name": "德拉克紐特咒術士",
     "isBoss": false
   },
   "2406007": {
-    "name": "年幼的伯勒坎",
+    "name": "德拉克紐特防禦隊員",
     "isBoss": false
   },
   "2406008": {
-    "name": "露米那",
+    "name": "萬年雪帕奇倫",
     "isBoss": false
   },
   "2406009": {
-    "name": "溫德雷茲",
+    "name": "無魂的祭司",
     "isBoss": false
   },
   "2406010": {
-    "name": "年幼的溫德雷茲",
+    "name": "萬年雪托爾巴",
     "isBoss": false
   },
   "2406011": {
-    "name": "塞雷布羅",
+    "name": "柔順的冰凍獠牙波沙",
     "isBoss": false
   },
   "2406012": {
-    "name": "年幼的塞雷布羅",
+    "name": "無魂的自警團",
+    "isBoss": false
+  },
+  "2406013": {
+    "name": "德拉多納守護兵",
+    "isBoss": false
+  },
+  "2406014": {
+    "name": "腐敗的無魂戰士",
+    "isBoss": false
+  },
+  "2406015": {
+    "name": "被蠶食的博塔摩爾居民",
+    "isBoss": false
+  },
+  "2406016": {
+    "name": "中型法夫尼恩",
+    "isBoss": false
+  },
+  "2406017": {
+    "name": "帳幕寶玉",
+    "isBoss": false
+  },
+  "2406018": {
+    "name": "中型法夫尼恩",
+    "isBoss": false
+  },
+  "2406019": {
+    "name": "萬年雪圖卡",
+    "isBoss": false
+  },
+  "2406020": {
+    "name": "雪地拉古勒",
+    "isBoss": false
+  },
+  "2406021": {
+    "name": "冰凍獠牙波沙",
+    "isBoss": false
+  },
+  "2406022": {
+    "name": "博塔摩爾駐屯兵探索器",
+    "isBoss": false
+  },
+  "2406023": {
+    "name": "野生拉古勒",
+    "isBoss": false
+  },
+  "2406024": {
+    "name": "博塔摩爾駐屯兵弓手",
+    "isBoss": false
+  },
+  "2406025": {
+    "name": "追蹤用眼魔",
+    "isBoss": false
+  },
+  "2406026": {
+    "name": "冰霜精靈",
+    "isBoss": false
+  },
+  "2406027": {
+    "name": "山路搶奪者屠殺者",
+    "isBoss": false
+  },
+  "2406028": {
+    "name": "博塔摩爾駐屯兵戰士",
+    "isBoss": false
+  },
+  "2406029": {
+    "name": "德拉克紐特搜索兵",
+    "isBoss": false
+  },
+  "2406030": {
+    "name": "博塔摩爾杜爾加",
+    "isBoss": false
+  },
+  "2406031": {
+    "name": "針冰夫魯坤",
+    "isBoss": false
+  },
+  "2406032": {
+    "name": "山路搶奪者狙擊手",
+    "isBoss": false
+  },
+  "2406033": {
+    "name": "德拉克紐特突擊隊員",
+    "isBoss": false
+  },
+  "2406034": {
+    "name": "警戒流浪者帕爾坤",
+    "isBoss": true
+  },
+  "2406035": {
+    "name": "捕食巨手瓦拉克",
+    "isBoss": true
+  },
+  "2406036": {
+    "name": "冰霜蜘蛛",
+    "isBoss": false
+  },
+  "2406037": {
+    "name": "針冰特羅加斯",
+    "isBoss": false
+  },
+  "2406038": {
+    "name": "萬年雪卡伊琳",
+    "isBoss": false
+  },
+  "2406039": {
+    "name": "萬年雪年幼的卡伊琳",
+    "isBoss": false
+  },
+  "2406040": {
+    "name": "山路搶奪者襲擊者",
+    "isBoss": false
+  },
+  "2406041": {
+    "name": "萬年雪湖水古拉",
+    "isBoss": false
+  },
+  "2406042": {
+    "name": "山路搶奪者雙手戰士",
+    "isBoss": false
+  },
+  "2406043": {
+    "name": "萬年雪杜爾加",
+    "isBoss": false
+  },
+  "2406044": {
+    "name": "冰霜亞勒馬頓",
+    "isBoss": false
+  },
+  "2406045": {
+    "name": "突變奧格林特",
+    "isBoss": false
+  },
+  "2406046": {
+    "name": "萬年雪蜘蛛蟲",
+    "isBoss": false
+  },
+  "2406047": {
+    "name": "萬年雪乾枯的奧格林特",
+    "isBoss": false
+  },
+  "2406048": {
+    "name": "雪花彈丸草",
+    "isBoss": false
+  },
+  "2406049": {
+    "name": "冰霜蜘蛛",
     "isBoss": false
   },
   "2406050": {
@@ -18024,67 +20139,195 @@
     "isDummy": true
   },
   "2406051": {
-    "name": "冰爪萊卡恩鬥士",
+    "name": "無魂的雪原守護星",
     "isBoss": false
   },
   "2406052": {
-    "name": "冰爪萊卡恩治療師",
+    "name": "無魂的雪原劍星",
     "isBoss": false
   },
   "2406053": {
-    "name": "冰爪萊卡恩警戒兵",
+    "name": "帳幕寶玉",
     "isBoss": false
   },
   "2406054": {
-    "name": "杜杜卡雜工",
+    "name": "寒霜德拉坎突擊兵",
     "isBoss": false
   },
   "2406055": {
-    "name": "杜杜卡監視戰士",
+    "name": "寒霜德拉坎弓手",
     "isBoss": false
   },
   "2406056": {
-    "name": "霜牙",
+    "name": "寒霜德拉坎監視者",
     "isBoss": false
   },
   "2406057": {
-    "name": "維若塔修習者",
+    "name": "雪原野狼",
     "isBoss": false
   },
   "2406058": {
-    "name": "維若塔仲裁者",
+    "name": "小雪原野狼",
     "isBoss": false
   },
   "2406059": {
-    "name": "維若塔浪子",
-    "isBoss": false
-  },
-  "2406060": {
-    "name": "雷茲",
-    "isBoss": false
-  },
-  "2406061": {
-    "name": "年幼的雷茲",
-    "isBoss": false
-  },
-  "2406062": {
     "name": "雪原石精靈",
     "isBoss": false
   },
+  "2406060": {
+    "name": "雪原德拉坎監視兵",
+    "isBoss": false
+  },
+  "2406061": {
+    "name": "雪原德拉坎探查器",
+    "isBoss": false
+  },
+  "2406062": {
+    "name": "雪原德拉坎警備犬",
+    "isBoss": false
+  },
   "2406063": {
-    "name": "庫魯流浪者",
+    "name": "命運執政官獵人",
     "isBoss": false
   },
   "2406064": {
-    "name": "遊蕩的魂靈",
+    "name": "命運執政官支援祭司",
     "isBoss": false
   },
   "2406065": {
-    "name": "被束縛的靈魂",
+    "name": "命運執政官狂戰士",
     "isBoss": false
   },
   "2406066": {
-    "name": "遊蕩的守護者亡靈",
+    "name": "命運執政官追蹤兵",
+    "isBoss": false
+  },
+  "2406067": {
+    "name": "命運執政官處刑執行官",
+    "isBoss": false
+  },
+  "2406068": {
+    "name": "命運執政官斷頭台",
+    "isBoss": false
+  },
+  "2406069": {
+    "name": "雪原托爾巴",
+    "isBoss": false
+  },
+  "2406070": {
+    "name": "龍族斥候塔",
+    "isBoss": false
+  },
+  "2406071": {
+    "name": "血光暴風雪雷努夫",
+    "isBoss": true
+  },
+  "2406072": {
+    "name": "雪原特羅加斯",
+    "isBoss": false
+  },
+  "2406073": {
+    "name": "雪原德拉坎魔力支援兵",
+    "isBoss": false
+  },
+  "2406074": {
+    "name": "雪原德拉坎圖騰",
+    "isBoss": false
+  },
+  "2406076": {
+    "name": "被保存的中型法夫尼恩",
+    "isBoss": false
+  },
+  "2406077": {
+    "name": "雪原中型法夫尼恩",
+    "isBoss": false
+  },
+  "2406078": {
+    "name": "冰河吐息拉姆普",
+    "isBoss": false
+  },
+  "2406079": {
+    "name": "冰河水晶拉姆普",
+    "isBoss": false
+  },
+  "2406080": {
+    "name": "被處刑的執政官戰士",
+    "isBoss": false
+  },
+  "2406081": {
+    "name": "被處刑的執政官弓士",
+    "isBoss": false
+  },
+  "2406082": {
+    "name": "精神失常的雪原守護者",
+    "isBoss": false
+  },
+  "2406083": {
+    "name": "雪原德布里",
+    "isBoss": false
+  },
+  "2406084": {
+    "name": "雪原卡克蓋崙",
+    "isBoss": false
+  },
+  "2406085": {
+    "name": "雪原拉姆普",
+    "isBoss": false
+  },
+  "2406086": {
+    "name": "雪原夫魯坤",
+    "isBoss": false
+  },
+  "2406087": {
+    "name": "雪原棺材大蚊",
+    "isBoss": false
+  },
+  "2406088": {
+    "name": "雪原幽靈",
+    "isBoss": false
+  },
+  "2406089": {
+    "name": "冰凍湖古拉",
+    "isBoss": false
+  },
+  "2406090": {
+    "name": "雪原迷路的魂靈",
+    "isBoss": false
+  },
+  "2406091": {
+    "name": "雪原圖卡",
+    "isBoss": false
+  },
+  "2406092": {
+    "name": "雪原弗路彼",
+    "isBoss": false
+  },
+  "2406093": {
+    "name": "冰霜盔甲哈爾坎",
+    "isBoss": true
+  },
+  "2406094": {
+    "name": "藍眼淚格蕾伊西亞",
+    "isBoss": true
+  },
+  "2406095": {
+    "name": "雪原杜爾加",
+    "isBoss": false
+  },
+  "2406096": {
+    "name": "冰霜蜘蛛",
+    "isBoss": false
+  },
+  "2406097": {
+    "name": "雪原弗路彼",
+    "isBoss": false
+  },
+  "2406098": {
+    "name": "雪原石精靈",
+    "isBoss": false
+  },
+  "2406099": {
+    "name": "雪原幽靈",
     "isBoss": false
   },
   "2406100": {
@@ -18093,7 +20336,7 @@
     "isDummy": true
   },
   "2406101": {
-    "name": "伊拉斯克納迦守護兵",
+    "name": "伊拉斯克納迦蘭特守護戰士",
     "isBoss": false
   },
   "2406102": {
@@ -18101,15 +20344,155 @@
     "isBoss": false
   },
   "2406103": {
-    "name": "命運守護者步兵",
+    "name": "命運執政官警備兵",
     "isBoss": false
   },
   "2406104": {
-    "name": "命運守護者祭司",
+    "name": "命運執政官首席祭司",
     "isBoss": false
   },
   "2406105": {
-    "name": "命運守護者炸彈兵",
+    "name": "命運執政官鬥士",
+    "isBoss": false
+  },
+  "2406106": {
+    "name": "馴服的變異劍齒豹",
+    "isBoss": false
+  },
+  "2406107": {
+    "name": "庫爾帕克拉爾戰士",
+    "isBoss": false
+  },
+  "2406108": {
+    "name": "庫爾帕克拉爾刺殺兵",
+    "isBoss": false
+  },
+  "2406109": {
+    "name": "庫爾帕克拉爾治癒兵",
+    "isBoss": false
+  },
+  "2406110": {
+    "name": "庫爾帕克拉爾突擊兵",
+    "isBoss": false
+  },
+  "2406111": {
+    "name": "熔岩地獄犬",
+    "isBoss": false
+  },
+  "2406112": {
+    "name": "命運執政官追蹤者",
+    "isBoss": false
+  },
+  "2406113": {
+    "name": "命運執政官祭司",
+    "isBoss": false
+  },
+  "2406114": {
+    "name": "命運執政官搜索隊員",
+    "isBoss": false
+  },
+  "2406115": {
+    "name": "命運執政官首席魔道兵",
+    "isBoss": false
+  },
+  "2406116": {
+    "name": "命運執政官謀士",
+    "isBoss": false
+  },
+  "2406117": {
+    "name": "執政官劍齒豹",
+    "isBoss": false
+  },
+  "2406118": {
+    "name": "熔岩突變花",
+    "isBoss": false
+  },
+  "2406119": {
+    "name": "熔岩易燃物拉姆普",
+    "isBoss": false
+  },
+  "2406120": {
+    "name": "丘陵地路比利尼",
+    "isBoss": false
+  },
+  "2406121": {
+    "name": "伊拉斯克北海苔蟹",
+    "isBoss": false
+  },
+  "2406122": {
+    "name": "伊拉斯克北海星龜",
+    "isBoss": false
+  },
+  "2406123": {
+    "name": "紅色亞勒馬頓",
+    "isBoss": false
+  },
+  "2406124": {
+    "name": "熔岩鬃毛卡伊琳",
+    "isBoss": false
+  },
+  "2406125": {
+    "name": "丘陵地熔岩波庫斯",
+    "isBoss": false
+  },
+  "2406126": {
+    "name": "熔岩蜘蛛",
+    "isBoss": false
+  },
+  "2406127": {
+    "name": "沸騰的熔岩地獄犬",
+    "isBoss": false
+  },
+  "2406128": {
+    "name": "卡伍爾",
+    "isBoss": false
+  },
+  "2406129": {
+    "name": "業火翅膀皮歐斯",
+    "isBoss": true
+  },
+  "2406130": {
+    "name": "過熱的監視裝置",
+    "isBoss": false
+  },
+  "2406131": {
+    "name": "熔岩心臟巴圖",
+    "isBoss": true
+  },
+  "2406132": {
+    "name": "精銳審問官布蘭特",
+    "isBoss": true
+  },
+  "2406133": {
+    "name": "伊拉斯克小拉托哈",
+    "isBoss": false
+  },
+  "2406134": {
+    "name": "伊拉斯克靈活的拉托哈",
+    "isBoss": false
+  },
+  "2406135": {
+    "name": "伊拉斯克魔法拉托哈",
+    "isBoss": false
+  },
+  "2406136": {
+    "name": "灰燼卡克蓋崙",
+    "isBoss": false
+  },
+  "2406137": {
+    "name": "命運執政官警報裝置",
+    "isBoss": false
+  },
+  "2406138": {
+    "name": "伊拉斯克屍體清道夫",
+    "isBoss": false
+  },
+  "2406139": {
+    "name": "灰燼蜥怪",
+    "isBoss": false
+  },
+  "2406140": {
+    "name": "灰燼德里茲納",
     "isBoss": false
   },
   "2406150": {
@@ -18118,24 +20501,128 @@
     "isDummy": true
   },
   "2406151": {
-    "name": "命運守護者劍鬥士",
+    "name": "吞噬熔岩的蜥怪",
     "isBoss": false
   },
   "2406152": {
-    "name": "命運守護者修道士",
+    "name": "憤怒的火之精靈",
     "isBoss": false
   },
   "2406153": {
-    "name": "命運守護者顧問官",
+    "name": "憤怒的火之精靈守護者",
     "isBoss": false
   },
   "2406154": {
-    "name": "穆斯費爾地獄犬",
+    "name": "熔岩史萊姆",
     "isBoss": false
   },
   "2406155": {
+    "name": "穆斯費爾熔岩鬼",
+    "isBoss": false
+  },
+  "2406156": {
     "name": "殘暴的火之精靈",
     "isBoss": false
+  },
+  "2406157": {
+    "name": "殘暴的火之精靈守護者",
+    "isBoss": false
+  },
+  "2406158": {
+    "name": "火之神殿守護像",
+    "isBoss": false
+  },
+  "2406159": {
+    "name": "灰燼守林者",
+    "isBoss": false
+  },
+  "2406160": {
+    "name": "熔岩星龜",
+    "isBoss": false
+  },
+  "2406161": {
+    "name": "熔岩杜爾加",
+    "isBoss": false
+  },
+  "2406162": {
+    "name": "灰燼路比利尼",
+    "isBoss": false
+  },
+  "2406163": {
+    "name": "扭曲的羅坦",
+    "isBoss": false
+  },
+  "2406164": {
+    "name": "熔岩石精靈",
+    "isBoss": false
+  },
+  "2406165": {
+    "name": "庫爾帕克拉爾拘禁區",
+    "isBoss": false
+  },
+  "2406166": {
+    "name": "熔岩格拉巴拉斯",
+    "isBoss": false
+  },
+  "2406167": {
+    "name": "粉碎的古代圖騰",
+    "isBoss": false
+  },
+  "2406168": {
+    "name": "庫爾帕克拉爾抑制球",
+    "isBoss": false
+  },
+  "2406170": {
+    "name": "火息地獄犬",
+    "isBoss": false
+  },
+  "2406171": {
+    "name": "熔岩花",
+    "isBoss": false
+  },
+  "2406172": {
+    "name": "巨大的熔岩花",
+    "isBoss": false
+  },
+  "2406173": {
+    "name": "熔岩吐息拉姆普",
+    "isBoss": false
+  },
+  "2406174": {
+    "name": "庫爾帕克拉爾行動隊長",
+    "isBoss": false
+  },
+  "2406175": {
+    "name": "庫爾帕克拉爾追蹤兵",
+    "isBoss": false
+  },
+  "2406176": {
+    "name": "庫爾帕克拉爾支援兵",
+    "isBoss": false
+  },
+  "2406177": {
+    "name": "庫爾帕克拉爾偵察兵",
+    "isBoss": false
+  },
+  "2406178": {
+    "name": "火山蜘蛛",
+    "isBoss": false
+  },
+  "2406179": {
+    "name": "熔岩吉爾卡",
+    "isBoss": false
+  },
+  "2406180": {
+    "name": "小熔岩吉爾卡",
+    "isBoss": false
+  },
+  "2406181": {
+    "name": "發狂的看守人布爾拉根",
+    "isBoss": true
+  },
+  "2406182": {
+    "name": "火山君主格林尼爾",
+    "isBoss": true
   },
   "2406200": {
     "name": "沙包",
@@ -18204,6 +20691,462 @@
     "name": "沙包",
     "isBoss": false,
     "isDummy": true
+  },
+  "2406351": {
+    "name": "懸崖帕奇倫",
+    "isBoss": false
+  },
+  "2406352": {
+    "name": "灰燼杜爾加",
+    "isBoss": false
+  },
+  "2406353": {
+    "name": "黑曜石德里茲納",
+    "isBoss": false
+  },
+  "2406354": {
+    "name": "峽谷熔岩波庫斯",
+    "isBoss": false
+  },
+  "2406355": {
+    "name": "熔岩蜘蛛",
+    "isBoss": false
+  },
+  "2406356": {
+    "name": "火山灰卡克蓋崙",
+    "isBoss": false
+  },
+  "2406990": {
+    "name": "第3部隊長米納沙拉",
+    "isBoss": true
+  },
+  "2406991": {
+    "name": "副軍團長沙勒巴卡",
+    "isBoss": true
+  },
+  "2406992": {
+    "name": "軍團長泰伊特拉",
+    "isBoss": true
+  },
+  "2407000": {
+    "name": "怨靈艾雷高斯",
+    "isBoss": true
+  },
+  "2407002": {
+    "name": "雪原亡命弓手",
+    "isBoss": false
+  },
+  "2407003": {
+    "name": "雪原亡命戰士",
+    "isBoss": false
+  },
+  "2407004": {
+    "name": "雪原亡命盜賊",
+    "isBoss": false
+  },
+  "2407006": {
+    "name": "馴服的野狼",
+    "isBoss": false
+  },
+  "2407007": {
+    "name": "無名亡靈",
+    "isBoss": false
+  },
+  "2407008": {
+    "name": "無名亡靈",
+    "isBoss": false
+  },
+  "2407009": {
+    "name": "無名亡靈",
+    "isBoss": false
+  },
+  "2407011": {
+    "name": "詛咒封印石",
+    "isBoss": false
+  },
+  "2407012": {
+    "name": "詛咒封印石",
+    "isBoss": false
+  },
+  "2407013": {
+    "name": "詛咒封印石",
+    "isBoss": false
+  },
+  "2407020": {
+    "name": "腐敗的卡拉斯",
+    "isBoss": false
+  },
+  "2407021": {
+    "name": "腐敗的卡拉斯",
+    "isBoss": false
+  },
+  "2407022": {
+    "name": "懷有怨恨的亡靈",
+    "isBoss": false
+  },
+  "2407023": {
+    "name": "完全變異的斯戴伊努",
+    "isBoss": true
+  },
+  "2407024": {
+    "name": "懷有怨恨的亡靈",
+    "isBoss": false
+  },
+  "2407025": {
+    "name": "懷有怨恨的亡靈",
+    "isBoss": false
+  },
+  "2407026": {
+    "name": "懷有怨恨的亡靈",
+    "isBoss": false
+  },
+  "2407027": {
+    "name": "雪原卡拉斯屍體",
+    "isBoss": false
+  },
+  "2407028": {
+    "name": "雪原卡拉斯戰士",
+    "isBoss": false
+  },
+  "2407029": {
+    "name": "雪原卡拉斯精銳兵",
+    "isBoss": false
+  },
+  "2407030": {
+    "name": "雪原卡拉斯祭司",
+    "isBoss": false
+  },
+  "2407031": {
+    "name": "懷有怨恨的亡靈",
+    "isBoss": false
+  },
+  "2407032": {
+    "name": "懷有怨恨的亡靈",
+    "isBoss": false
+  },
+  "2407033": {
+    "name": "懷有怨恨的亡靈",
+    "isBoss": false
+  },
+  "2407034": {
+    "name": "懷有怨恨的亡靈",
+    "isBoss": false
+  },
+  "2407035": {
+    "name": "懷有怨恨的亡靈",
+    "isBoss": false
+  },
+  "2407036": {
+    "name": "懷有怨恨的亡靈",
+    "isBoss": false
+  },
+  "2407040": {
+    "name": "法夫尼恩警戒兵",
+    "isBoss": false
+  },
+  "2407041": {
+    "name": "法夫尼恩支援兵",
+    "isBoss": false
+  },
+  "2407042": {
+    "name": "法夫尼恩監督官",
+    "isBoss": false
+  },
+  "2407043": {
+    "name": "達爾巴塔親衛隊劍兵",
+    "isBoss": false
+  },
+  "2407044": {
+    "name": "達爾巴塔親衛隊弓兵",
+    "isBoss": false
+  },
+  "2407045": {
+    "name": "達爾巴塔親衛隊突擊兵",
+    "isBoss": false
+  },
+  "2407046": {
+    "name": "監視隊長達爾巴塔",
+    "isBoss": true
+  },
+  "2407047": {
+    "name": "法夫尼恩支援兵",
+    "isBoss": false
+  },
+  "2407048": {
+    "name": "法夫尼恩監督官",
+    "isBoss": false
+  },
+  "2407049": {
+    "name": "達爾巴塔親衛隊劍兵",
+    "isBoss": false
+  },
+  "2407050": {
+    "name": "達爾巴塔親衛隊劍兵",
+    "isBoss": false
+  },
+  "2407051": {
+    "name": "達爾巴塔親衛隊突擊兵",
+    "isBoss": false
+  },
+  "2407052": {
+    "name": "達爾巴塔親衛隊突擊兵",
+    "isBoss": false
+  },
+  "2407053": {
+    "name": "法夫尼恩監督官",
+    "isBoss": false
+  },
+  "2407054": {
+    "name": "法夫尼恩監督官",
+    "isBoss": false
+  },
+  "2407055": {
+    "name": "法夫尼恩支援兵",
+    "isBoss": false
+  },
+  "2407056": {
+    "name": "法夫尼恩支援兵",
+    "isBoss": false
+  },
+  "2407057": {
+    "name": "法夫尼恩監督官",
+    "isBoss": false
+  },
+  "2407058": {
+    "name": "法夫尼恩支援兵",
+    "isBoss": false
+  },
+  "2407059": {
+    "name": "奪取者卡拉罕塔",
+    "isBoss": true
+  },
+  "2407060": {
+    "name": "終結者安塔卡拉",
+    "isBoss": true
+  },
+  "2407061": {
+    "name": "破碎者巴茲拉丹特",
+    "isBoss": true
+  },
+  "2407062": {
+    "name": "災殃帕塔拉札",
+    "isBoss": true
+  },
+  "2407063": {
+    "name": "記錄官瓦魯納克夏",
+    "isBoss": true
+  },
+  "2407064": {
+    "name": "仲裁官梅戛納德",
+    "isBoss": true
+  },
+  "2407065": {
+    "name": "斷絕烏格拉巴乎",
+    "isBoss": true
+  },
+  "2407066": {
+    "name": "法夫尼恩",
+    "isBoss": false
+  },
+  "2407067": {
+    "name": "德拉克紐特空中炸彈",
+    "isBoss": false
+  },
+  "2407068": {
+    "name": "德拉克紐特雜工",
+    "isBoss": false
+  },
+  "2407069": {
+    "name": "德拉克紐特上級戰士",
+    "isBoss": false
+  },
+  "2407070": {
+    "name": "德拉克紐特空中炸彈",
+    "isBoss": false
+  },
+  "2407071": {
+    "name": "空中炸彈生成裝置",
+    "isBoss": false
+  },
+  "2407072": {
+    "name": "達爾巴塔親衛隊劍兵",
+    "isBoss": false
+  },
+  "2407073": {
+    "name": "達爾巴塔親衛隊突擊兵",
+    "isBoss": false
+  },
+  "2407074": {
+    "name": "達爾巴塔親衛隊突擊兵",
+    "isBoss": false
+  },
+  "2407075": {
+    "name": "普爾凱",
+    "isBoss": true
+  },
+  "2407076": {
+    "name": "追隨者變節守護者",
+    "isBoss": false
+  },
+  "2407077": {
+    "name": "追隨者變節守護者",
+    "isBoss": false
+  },
+  "2407078": {
+    "name": "追隨者變節守護者",
+    "isBoss": false
+  },
+  "2407079": {
+    "name": "追隨者變節守護者",
+    "isBoss": false
+  },
+  "2407080": {
+    "name": "隨從自爆蟲",
+    "isBoss": false
+  },
+  "2407081": {
+    "name": "異教徒狂信徒",
+    "isBoss": false
+  },
+  "2407082": {
+    "name": "異教徒狂信徒",
+    "isBoss": false
+  },
+  "2407083": {
+    "name": "異教徒狂信徒",
+    "isBoss": false
+  },
+  "2407084": {
+    "name": "異教徒狂信徒",
+    "isBoss": false
+  },
+  "2407085": {
+    "name": "異教徒狂信徒",
+    "isBoss": false
+  },
+  "2407086": {
+    "name": "異教徒教官",
+    "isBoss": false
+  },
+  "2407087": {
+    "name": "異教徒教團長",
+    "isBoss": false
+  },
+  "2407088": {
+    "name": "異教徒教團長",
+    "isBoss": false
+  },
+  "2407089": {
+    "name": "異教徒飼養的波沙",
+    "isBoss": false
+  },
+  "2407090": {
+    "name": "異教徒狂信徒",
+    "isBoss": false
+  },
+  "2407091": {
+    "name": "異教徒狂信徒",
+    "isBoss": false
+  },
+  "2407092": {
+    "name": "異教徒狂信徒",
+    "isBoss": false
+  },
+  "2407093": {
+    "name": "異教徒教團長",
+    "isBoss": false
+  },
+  "2407094": {
+    "name": "迪納克拉",
+    "isBoss": true
+  },
+  "2407095": {
+    "name": "監視眼魔",
+    "isBoss": false
+  },
+  "2407096": {
+    "name": "德拉坎管理兵",
+    "isBoss": false
+  },
+  "2407097": {
+    "name": "德拉坎管理兵",
+    "isBoss": false
+  },
+  "2407098": {
+    "name": "哨所保護自爆器",
+    "isBoss": false
+  },
+  "2407099": {
+    "name": "德拉克紐特雜工",
+    "isBoss": false
+  },
+  "2407100": {
+    "name": "德拉克紐特哨兵",
+    "isBoss": false
+  },
+  "2407101": {
+    "name": "德拉克紐特哨兵",
+    "isBoss": false
+  },
+  "2407102": {
+    "name": "德拉克紐特上級哨兵",
+    "isBoss": false
+  },
+  "2407103": {
+    "name": "德拉坎上級管理兵",
+    "isBoss": false
+  },
+  "2407104": {
+    "name": "德拉克紐特懶惰的哨兵",
+    "isBoss": false
+  },
+  "2407105": {
+    "name": "德拉克紐特懶惰的哨兵",
+    "isBoss": false
+  },
+  "2407106": {
+    "name": "哨所保護圖騰",
+    "isBoss": false
+  },
+  "2407108": {
+    "name": "哨所旗幟",
+    "isBoss": false
+  },
+  "2407109": {
+    "name": "哨所地下圖騰",
+    "isBoss": false
+  },
+  "2407110": {
+    "name": "追隨者暗殺變節守護者",
+    "isBoss": false
+  },
+  "2407111": {
+    "name": "陷阱裝置",
+    "isBoss": false
+  },
+  "2407112": {
+    "name": "陷阱毒袋",
+    "isBoss": false
+  },
+  "2407113": {
+    "name": "上級追隨者變節守護者",
+    "isBoss": false
+  },
+  "2407114": {
+    "name": "上級追隨者變節守護者",
+    "isBoss": false
+  },
+  "2407115": {
+    "name": "上級追隨者變節守護者",
+    "isBoss": false
+  },
+  "2407116": {
+    "name": "上級追隨者變節守護者",
+    "isBoss": false
+  },
+  "2407117": {
+    "name": "德拉坎上級管理兵",
+    "isBoss": false
   },
   "2500000": {
     "name": "盜賊團監視者",
@@ -18767,6 +21710,122 @@
     "name": "中毒的斯拉克",
     "isBoss": false
   },
+  "2500149": {
+    "name": "德拉克紐特追擊兵",
+    "isBoss": false
+  },
+  "2500150": {
+    "name": "德拉克紐特警戒兵",
+    "isBoss": false
+  },
+  "2500151": {
+    "name": "德拉多納偵察兵",
+    "isBoss": false
+  },
+  "2500152": {
+    "name": "來路不明的守護者",
+    "isBoss": false
+  },
+  "2500153": {
+    "name": "集會演講者",
+    "isBoss": false
+  },
+  "2500154": {
+    "name": "集會幹部",
+    "isBoss": false
+  },
+  "2500155": {
+    "name": "詛咒烙印",
+    "isBoss": false
+  },
+  "2500156": {
+    "name": "扭曲的靈魂殘渣",
+    "isBoss": false
+  },
+  "2500157": {
+    "name": "弱化的詛咒烙印",
+    "isBoss": false
+  },
+  "2500158": {
+    "name": "扭曲的靈魂",
+    "isBoss": false
+  },
+  "2500159": {
+    "name": "弱化的詛咒烙印",
+    "isBoss": false
+  },
+  "2500160": {
+    "name": "集會警備兵",
+    "isBoss": false
+  },
+  "2500161": {
+    "name": "集會警備兵",
+    "isBoss": false
+  },
+  "2500162": {
+    "name": "集會警備兵",
+    "isBoss": false
+  },
+  "2500163": {
+    "name": "集會警備兵",
+    "isBoss": false
+  },
+  "2500164": {
+    "name": "守護者戰士冤魂",
+    "isBoss": false
+  },
+  "2500165": {
+    "name": "憤怒的守護者戰士冤魂",
+    "isBoss": false
+  },
+  "2500166": {
+    "name": "卡爾賽克",
+    "isBoss": false
+  },
+  "2500169": {
+    "name": "寒霜琉克虎",
+    "isBoss": false
+  },
+  "2500170": {
+    "name": "寒霜琉克虎",
+    "isBoss": false
+  },
+  "2500171": {
+    "name": "寒霜琉克虎",
+    "isBoss": false
+  },
+  "2500172": {
+    "name": "寒霜琉克虎",
+    "isBoss": false
+  },
+  "2500173": {
+    "name": "寒霜琉克虎",
+    "isBoss": false
+  },
+  "2500174": {
+    "name": "寒霜琉克虎",
+    "isBoss": false
+  },
+  "2500175": {
+    "name": "寒霜琉克虎",
+    "isBoss": false
+  },
+  "2500177": {
+    "name": "巨大火之精靈",
+    "isBoss": false
+  },
+  "2500178": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2500179": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2500180": {
+    "name": "瓦特的執念",
+    "isBoss": false
+  },
   "2590000": {
     "name": "扭曲的德拉那變異體",
     "isBoss": false
@@ -19277,6 +22336,274 @@
   },
   "2590158": {
     "name": "憤怒的亞空間亡靈",
+    "isBoss": false
+  },
+  "2590160": {
+    "name": "謎樣命運執政官",
+    "isBoss": false
+  },
+  "2590161": {
+    "name": "卡爾賽克",
+    "isBoss": false
+  },
+  "2590162": {
+    "name": "炸彈",
+    "isBoss": false
+  },
+  "2590163": {
+    "name": "寒霜琉克虎",
+    "isBoss": false
+  },
+  "2590165": {
+    "name": "命運執政官刺殺兵",
+    "isBoss": false
+  },
+  "2590166": {
+    "name": "命運執政官執行官",
+    "isBoss": false
+  },
+  "2590190": {
+    "name": "命運執政官魔道兵",
+    "isBoss": false
+  },
+  "2590198": {
+    "name": "火之精靈",
+    "isBoss": false
+  },
+  "2590199": {
+    "name": "火之精靈",
+    "isBoss": false
+  },
+  "2590207": {
+    "name": "納迦洞穴祭司",
+    "isBoss": false
+  },
+  "2590211": {
+    "name": "火之精靈",
+    "isBoss": false
+  },
+  "2590214": {
+    "name": "德拉克紐特偵察兵",
+    "isBoss": false
+  },
+  "2590215": {
+    "name": "德拉克紐特防禦兵",
+    "isBoss": false
+  },
+  "2590216": {
+    "name": "德拉多納工人",
+    "isBoss": false
+  },
+  "2590217": {
+    "name": "德拉克紐特戰士",
+    "isBoss": false
+  },
+  "2590218": {
+    "name": "德拉克紐特偵察兵",
+    "isBoss": false
+  },
+  "2590219": {
+    "name": "德拉克紐特防禦兵",
+    "isBoss": false
+  },
+  "2590220": {
+    "name": "被寶玉蠶食的守護者",
+    "isBoss": false
+  },
+  "2590221": {
+    "name": "被寶玉蠶食的守護者",
+    "isBoss": false
+  },
+  "2590224": {
+    "name": "帳幕寶玉",
+    "isBoss": false
+  },
+  "2590225": {
+    "name": "德拉多納戰鬥兵",
+    "isBoss": false
+  },
+  "2590226": {
+    "name": "德拉克紐特偵察兵",
+    "isBoss": false
+  },
+  "2590227": {
+    "name": "德拉坎偵察兵",
+    "isBoss": false
+  },
+  "2590228": {
+    "name": "德拉坎斥候兵",
+    "isBoss": false
+  },
+  "2590229": {
+    "name": "法夫尼恩",
+    "isBoss": false
+  },
+  "2590230": {
+    "name": "卡拉卡爾",
+    "isBoss": false
+  },
+  "2590231": {
+    "name": "卡拉卡爾部下",
+    "isBoss": false
+  },
+  "2590232": {
+    "name": "卡拉卡爾部下",
+    "isBoss": false
+  },
+  "2590233": {
+    "name": "因得納赫",
+    "isBoss": false
+  },
+  "2590234": {
+    "name": "被迷惑的追隨者",
+    "isBoss": false
+  },
+  "2590235": {
+    "name": "被迷惑的追隨者",
+    "isBoss": false
+  },
+  "2590236": {
+    "name": "被迷惑的追隨者",
+    "isBoss": false
+  },
+  "2590237": {
+    "name": "被迷惑的追隨者",
+    "isBoss": false
+  },
+  "2590242": {
+    "name": "火之精靈",
+    "isBoss": false
+  },
+  "2590244": {
+    "name": "命運執政官祭司",
+    "isBoss": false
+  },
+  "2590245": {
+    "name": "命運執政官斥候兵",
+    "isBoss": false
+  },
+  "2590246": {
+    "name": "命運執政官審判者",
+    "isBoss": false
+  },
+  "2590250": {
+    "name": "納迦蘭特追擊者",
+    "isBoss": false
+  },
+  "2590251": {
+    "name": "納迦咒術士",
+    "isBoss": false
+  },
+  "2590252": {
+    "name": "受傷的弓星守護者",
+    "isBoss": false
+  },
+  "2590253": {
+    "name": "受傷的劍星守護者",
+    "isBoss": false
+  },
+  "2590254": {
+    "name": "德拉坎士兵思念體",
+    "isBoss": false
+  },
+  "2590255": {
+    "name": "德拉坎牧師思念體",
+    "isBoss": false
+  },
+  "2590256": {
+    "name": "暴走的靈體",
+    "isBoss": false
+  },
+  "2590259": {
+    "name": "德拉克紐特偵察兵",
+    "isBoss": false
+  },
+  "2590260": {
+    "name": "德拉克紐特防禦兵",
+    "isBoss": false
+  },
+  "2590261": {
+    "name": "納迦洞穴祭司",
+    "isBoss": false
+  },
+  "2590264": {
+    "name": "命運執政官警戒兵",
+    "isBoss": false
+  },
+  "2590265": {
+    "name": "命運執政官警戒兵",
+    "isBoss": false
+  },
+  "2590267": {
+    "name": "命運執政官警戒兵",
+    "isBoss": false
+  },
+  "2590269": {
+    "name": "爆炸",
+    "isBoss": false
+  },
+  "2590270": {
+    "name": "熔岩塊狀怪",
+    "isBoss": false
+  },
+  "2590271": {
+    "name": "巨大熔岩塊狀怪",
+    "isBoss": false
+  },
+  "2590272": {
+    "name": "暴走的火之精靈",
+    "isBoss": false
+  },
+  "2590273": {
+    "name": "爆炸",
+    "isBoss": false
+  },
+  "2590274": {
+    "name": "熔岩加內特里",
+    "isBoss": false
+  },
+  "2590275": {
+    "name": "熔岩加內特里",
+    "isBoss": false
+  },
+  "2590276": {
+    "name": "尼克萊伊",
+    "isBoss": false
+  },
+  "2590277": {
+    "name": "米羅拉部下",
+    "isBoss": false
+  },
+  "2590278": {
+    "name": "米羅拉部下",
+    "isBoss": false
+  },
+  "2590279": {
+    "name": "羅傑夫",
+    "isBoss": false
+  },
+  "2590280": {
+    "name": "米羅拉部下",
+    "isBoss": false
+  },
+  "2590281": {
+    "name": "米羅拉部下",
+    "isBoss": false
+  },
+  "2590282": {
+    "name": "米羅拉部下",
+    "isBoss": false
+  },
+  "2590283": {
+    "name": "龍族通訊塔",
+    "isBoss": false
+  },
+  "2590284": {
+    "name": "龍族通訊塔",
+    "isBoss": false
+  },
+  "2590285": {
+    "name": "命運執政官祭司",
     "isBoss": false
   },
   "2600001": {
@@ -19844,11 +23171,11 @@
     "isBoss": true
   },
   "2600154": {
-    "name": "拉泰斯蘭西方航線守護者",
+    "name": "德奇薩斯航線守護者",
     "isBoss": false
   },
   "2600155": {
-    "name": "拉泰斯蘭東方航線守護者",
+    "name": "克羅坦航線守護者",
     "isBoss": false
   },
   "2600156": {
@@ -21135,6 +24462,350 @@
     "name": "座狼狂戰士",
     "isBoss": false
   },
+  "2600601": {
+    "name": "深淵蟲子",
+    "isBoss": false
+  },
+  "2600602": {
+    "name": "深淵紐特",
+    "isBoss": false
+  },
+  "2600603": {
+    "name": "深淵老舊羅坦",
+    "isBoss": false
+  },
+  "2600604": {
+    "name": "深淵老舊羅坦",
+    "isBoss": false
+  },
+  "2600605": {
+    "name": "戰達拉克拉爾劍齒豹",
+    "isBoss": false
+  },
+  "2600606": {
+    "name": "戰達拉克拉爾劍齒豹",
+    "isBoss": false
+  },
+  "2600607": {
+    "name": "戰達拉克拉爾劍齒豹",
+    "isBoss": false
+  },
+  "2600608": {
+    "name": "戰達拉德拉坎偵察兵",
+    "isBoss": false
+  },
+  "2600609": {
+    "name": "戰達拉德拉坎偵察兵",
+    "isBoss": false
+  },
+  "2600610": {
+    "name": "戰達拉克拉爾弓手",
+    "isBoss": false
+  },
+  "2600611": {
+    "name": "戰達拉克拉爾弓手",
+    "isBoss": false
+  },
+  "2600612": {
+    "name": "戰達拉德拉坎突擊兵",
+    "isBoss": false
+  },
+  "2600613": {
+    "name": "變節的守護者",
+    "isBoss": false
+  },
+  "2600614": {
+    "name": "變節的守護者",
+    "isBoss": false
+  },
+  "2600615": {
+    "name": "變節的守護者",
+    "isBoss": false
+  },
+  "2600616": {
+    "name": "不死警備兵",
+    "isBoss": false
+  },
+  "2600617": {
+    "name": "不死警備兵",
+    "isBoss": false
+  },
+  "2600618": {
+    "name": "不死警備兵",
+    "isBoss": false
+  },
+  "2600621": {
+    "name": "深淵蟲子",
+    "isBoss": false
+  },
+  "2600622": {
+    "name": "深淵紐特",
+    "isBoss": false
+  },
+  "2600623": {
+    "name": "深淵老舊羅坦",
+    "isBoss": false
+  },
+  "2600624": {
+    "name": "深淵老舊羅坦",
+    "isBoss": false
+  },
+  "2600625": {
+    "name": "戰達拉克拉爾劍齒豹",
+    "isBoss": false
+  },
+  "2600626": {
+    "name": "戰達拉克拉爾劍齒豹",
+    "isBoss": false
+  },
+  "2600627": {
+    "name": "戰達拉克拉爾劍齒豹",
+    "isBoss": false
+  },
+  "2600628": {
+    "name": "戰達拉德拉坎偵察兵",
+    "isBoss": false
+  },
+  "2600629": {
+    "name": "戰達拉德拉坎偵察兵",
+    "isBoss": false
+  },
+  "2600630": {
+    "name": "戰達拉克拉爾弓手",
+    "isBoss": false
+  },
+  "2600631": {
+    "name": "戰達拉克拉爾弓手",
+    "isBoss": false
+  },
+  "2600632": {
+    "name": "戰達拉德拉坎突擊兵",
+    "isBoss": false
+  },
+  "2600633": {
+    "name": "變節的守護者",
+    "isBoss": false
+  },
+  "2600634": {
+    "name": "變節的守護者",
+    "isBoss": false
+  },
+  "2600635": {
+    "name": "變節的守護者",
+    "isBoss": false
+  },
+  "2600636": {
+    "name": "不死警備兵",
+    "isBoss": false
+  },
+  "2600637": {
+    "name": "不死警備兵",
+    "isBoss": false
+  },
+  "2600638": {
+    "name": "不死警備兵",
+    "isBoss": false
+  },
+  "2600641": {
+    "name": "深淵蟲子",
+    "isBoss": false
+  },
+  "2600642": {
+    "name": "深淵紐特",
+    "isBoss": false
+  },
+  "2600643": {
+    "name": "深淵老舊羅坦",
+    "isBoss": false
+  },
+  "2600644": {
+    "name": "深淵老舊羅坦",
+    "isBoss": false
+  },
+  "2600645": {
+    "name": "馬加拉夏克拉爾劍齒豹",
+    "isBoss": false
+  },
+  "2600646": {
+    "name": "馬加拉夏克拉爾劍齒豹",
+    "isBoss": false
+  },
+  "2600647": {
+    "name": "馬加拉夏克拉爾劍齒豹",
+    "isBoss": false
+  },
+  "2600648": {
+    "name": "馬加拉夏德拉坎偵察兵",
+    "isBoss": false
+  },
+  "2600649": {
+    "name": "馬加拉夏德拉坎偵察兵",
+    "isBoss": false
+  },
+  "2600650": {
+    "name": "馬加拉夏克拉爾弓手",
+    "isBoss": false
+  },
+  "2600651": {
+    "name": "馬加拉夏克拉爾弓手",
+    "isBoss": false
+  },
+  "2600652": {
+    "name": "馬加拉夏德拉坎突擊兵",
+    "isBoss": false
+  },
+  "2600653": {
+    "name": "變節的守護者",
+    "isBoss": false
+  },
+  "2600654": {
+    "name": "變節的守護者",
+    "isBoss": false
+  },
+  "2600655": {
+    "name": "變節的守護者",
+    "isBoss": false
+  },
+  "2600656": {
+    "name": "不死警備兵",
+    "isBoss": false
+  },
+  "2600657": {
+    "name": "不死警備兵",
+    "isBoss": false
+  },
+  "2600658": {
+    "name": "不死警備兵",
+    "isBoss": false
+  },
+  "2600661": {
+    "name": "深淵蟲子",
+    "isBoss": false
+  },
+  "2600662": {
+    "name": "深淵紐特",
+    "isBoss": false
+  },
+  "2600663": {
+    "name": "深淵老舊羅坦",
+    "isBoss": false
+  },
+  "2600664": {
+    "name": "深淵老舊羅坦",
+    "isBoss": false
+  },
+  "2600665": {
+    "name": "馬加拉夏克拉爾劍齒豹",
+    "isBoss": false
+  },
+  "2600666": {
+    "name": "馬加拉夏克拉爾劍齒豹",
+    "isBoss": false
+  },
+  "2600667": {
+    "name": "馬加拉夏克拉爾劍齒豹",
+    "isBoss": false
+  },
+  "2600668": {
+    "name": "馬加拉夏德拉坎偵察兵",
+    "isBoss": false
+  },
+  "2600669": {
+    "name": "馬加拉夏德拉坎偵察兵",
+    "isBoss": false
+  },
+  "2600670": {
+    "name": "馬加拉夏克拉爾弓手",
+    "isBoss": false
+  },
+  "2600671": {
+    "name": "馬加拉夏克拉爾弓手",
+    "isBoss": false
+  },
+  "2600672": {
+    "name": "馬加拉夏德拉坎突擊兵",
+    "isBoss": false
+  },
+  "2600673": {
+    "name": "變節的守護者",
+    "isBoss": false
+  },
+  "2600674": {
+    "name": "變節的守護者",
+    "isBoss": false
+  },
+  "2600675": {
+    "name": "變節的守護者",
+    "isBoss": false
+  },
+  "2600676": {
+    "name": "不死警備兵",
+    "isBoss": false
+  },
+  "2600677": {
+    "name": "不死警備兵",
+    "isBoss": false
+  },
+  "2600678": {
+    "name": "不死警備兵",
+    "isBoss": false
+  },
+  "2600681": {
+    "name": "深淵蟲子",
+    "isBoss": false
+  },
+  "2600682": {
+    "name": "深淵蟲子群體",
+    "isBoss": false
+  },
+  "2600683": {
+    "name": "深淵德拉那史萊姆",
+    "isBoss": false
+  },
+  "2600684": {
+    "name": "深淵德拉那斯卡馬",
+    "isBoss": false
+  },
+  "2600685": {
+    "name": "深淵德拉那食人蟲",
+    "isBoss": false
+  },
+  "2600686": {
+    "name": "深淵德拉那怪獸",
+    "isBoss": false
+  },
+  "2600687": {
+    "name": "深淵德拉那貪欲樹",
+    "isBoss": false
+  },
+  "2600688": {
+    "name": "深淵變異紐特",
+    "isBoss": false
+  },
+  "2600689": {
+    "name": "深淵德拉那變異體",
+    "isBoss": false
+  },
+  "2600690": {
+    "name": "烏納巴倫德拉克紐特狙擊兵",
+    "isBoss": false
+  },
+  "2600691": {
+    "name": "深淵德拉那巨大變異體",
+    "isBoss": false
+  },
+  "2600692": {
+    "name": "烏納巴倫納迦蘭特親衛隊",
+    "isBoss": false
+  },
+  "2600701": {
+    "name": "拉泰斯蘭南方航線守護者",
+    "isBoss": false
+  },
+  "2600702": {
+    "name": "拉泰斯蘭北方航線守護者",
+    "isBoss": false
+  },
   "2680000": {
     "name": "奧德碎晶暴風",
     "isBoss": false
@@ -21244,6 +24915,70 @@
     "isBoss": false
   },
   "2680028": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680032": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680033": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680034": {
+    "name": "風沙",
+    "isBoss": false
+  },
+  "2680035": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680036": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680037": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680038": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680039": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680040": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680041": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680042": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680043": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680044": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680045": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680046": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2680047": {
     "name": "None",
     "isBoss": false
   },
@@ -23184,23 +26919,23 @@
     "isBoss": true
   },
   "2701345": {
-    "name": "墜落地雷帕爾團戰士",
+    "name": "雷帕爾團防禦隊員",
     "isBoss": false
   },
   "2701346": {
-    "name": "墜落地雷帕爾團戰士",
+    "name": "雷帕爾團防禦隊員",
     "isBoss": false
   },
   "2701347": {
-    "name": "墜落地雷帕爾團格鬥家",
+    "name": "雷帕爾團別動隊員",
     "isBoss": false
   },
   "2701348": {
-    "name": "墜落地雷帕爾團魔法師",
+    "name": "雷帕爾團魔法師",
     "isBoss": false
   },
   "2701349": {
-    "name": "墜落地雷帕爾團魔法師",
+    "name": "雷帕爾團魔法師",
     "isBoss": false
   },
   "2701350": {
@@ -23208,7 +26943,7 @@
     "isBoss": false
   },
   "2701351": {
-    "name": "墜落地雷帕爾團戰士",
+    "name": "雷帕爾團防禦隊員",
     "isBoss": false
   },
   "2701352": {
@@ -23216,31 +26951,31 @@
     "isBoss": false
   },
   "2701353": {
-    "name": "墜落地雷帕爾團魔法師",
+    "name": "雷帕爾團魔法師",
     "isBoss": false
   },
   "2701354": {
-    "name": "墜落地雷帕爾團研究家",
+    "name": "雷帕爾團學者",
     "isBoss": false
   },
   "2701355": {
-    "name": "墜落地雷帕爾團研究家",
+    "name": "雷帕爾團學者",
     "isBoss": false
   },
   "2701356": {
-    "name": "墜落地雷帕爾團戰士",
+    "name": "雷帕爾團防禦隊員",
     "isBoss": false
   },
   "2701357": {
-    "name": "墜落地雷帕爾團格鬥家",
+    "name": "雷帕爾團別動隊員",
     "isBoss": false
   },
   "2701359": {
-    "name": "遺跡安全裝置",
+    "name": "神殿防禦裝置",
     "isBoss": false
   },
   "2701360": {
-    "name": "遺跡安全裝置",
+    "name": "神殿防禦裝置",
     "isBoss": false
   },
   "2701361": {
@@ -23248,39 +26983,39 @@
     "isBoss": true
   },
   "2701362": {
-    "name": "雷帕爾團研究所魔法師",
+    "name": "雷帕爾團魔法師",
     "isBoss": false
   },
   "2701363": {
-    "name": "雷帕爾團精銳管理者",
+    "name": "雷帕爾團管理者",
     "isBoss": false
   },
   "2701364": {
-    "name": "雷帕爾團研究所戰士",
+    "name": "雷帕爾團戰士",
     "isBoss": false
   },
   "2701365": {
-    "name": "雷帕爾團研究所魔法師",
+    "name": "雷帕爾團魔法師",
     "isBoss": false
   },
   "2701366": {
-    "name": "雷帕爾團研究所戰士",
+    "name": "雷帕爾團戰士",
     "isBoss": false
   },
   "2701367": {
-    "name": "雷帕爾團研究所研究家",
+    "name": "雷帕爾團研究家",
     "isBoss": false
   },
   "2701368": {
-    "name": "雷帕爾團研究所研究家",
+    "name": "雷帕爾團研究家",
     "isBoss": false
   },
   "2701369": {
-    "name": "實驗體夫卡",
+    "name": "可疑的泉水偵察員",
     "isBoss": false
   },
   "2701370": {
-    "name": "實驗體夫卡",
+    "name": "可疑的泉水追擊者",
     "isBoss": false
   },
   "2701371": {
@@ -23296,7 +27031,7 @@
     "isBoss": true
   },
   "2701374": {
-    "name": "黑化的阿特隆",
+    "name": "覺醒阿特隆",
     "isBoss": true
   },
   "2701375": {
@@ -23361,19 +27096,19 @@
     "isBoss": false
   },
   "2701391": {
-    "name": "墜落地雷帕爾團格鬥家",
+    "name": "雷帕爾團別動隊員",
     "isBoss": false
   },
   "2701392": {
-    "name": "墜落地雷帕爾團研究家",
+    "name": "雷帕爾團學者",
     "isBoss": false
   },
   "2701393": {
-    "name": "遺跡安全裝置",
+    "name": "神殿防禦裝置",
     "isBoss": false
   },
   "2701394": {
-    "name": "遺跡安全裝置",
+    "name": "神殿防禦裝置",
     "isBoss": false
   },
   "2701395": {
@@ -23405,11 +27140,11 @@
     "isBoss": true
   },
   "2701403": {
-    "name": "祕密倉庫謎樣守護者護法星",
+    "name": "祕密倉庫謎樣守護者巡查者",
     "isBoss": false
   },
   "2701404": {
-    "name": "祕密倉庫謎樣守護者護法星",
+    "name": "祕密倉庫謎樣守護者巡查者",
     "isBoss": false
   },
   "2701405": {
@@ -23430,6 +27165,14 @@
   },
   "2701412": {
     "name": "祕密倉庫謎樣守護者監視者",
+    "isBoss": false
+  },
+  "2701413": {
+    "name": "祕密倉庫謎樣守護者注視者",
+    "isBoss": false
+  },
+  "2701414": {
+    "name": "祕密倉庫謎樣守護者巡查者",
     "isBoss": false
   },
   "2701415": {
@@ -23505,23 +27248,23 @@
     "isBoss": false
   },
   "2701435": {
-    "name": "空中神殿命運守護者注視者",
+    "name": "西吉貝爾特親衛隊",
     "isBoss": false
   },
   "2701436": {
-    "name": "空中神殿命運守護者監視者",
+    "name": "西吉貝爾特親衛隊",
     "isBoss": false
   },
   "2701439": {
-    "name": "空中神殿命運守護者治癒星",
+    "name": "西吉貝爾特親衛隊",
     "isBoss": false
   },
   "2701440": {
-    "name": "神殿守護者胡基儂",
+    "name": "隨行官胡基儂",
     "isBoss": true
   },
   "2701441": {
-    "name": "空中神殿命運守護者教官",
+    "name": "西吉貝爾特親衛隊",
     "isBoss": false
   },
   "2701442": {
@@ -23533,11 +27276,11 @@
     "isBoss": false
   },
   "2701445": {
-    "name": "冰凍的命運注視者",
+    "name": "冰凍的命運執政官注視者",
     "isBoss": false
   },
   "2701446": {
-    "name": "冰凍的命運教官",
+    "name": "冰凍的命運執政官注視者",
     "isBoss": false
   },
   "2701447": {
@@ -23545,11 +27288,11 @@
     "isBoss": false
   },
   "2701448": {
-    "name": "冰凍的命運戰士",
+    "name": "冰凍的命運執政官監視者",
     "isBoss": false
   },
   "2701449": {
-    "name": "被處刑的命運守護者",
+    "name": "冰凍的執行者艾倫",
     "isBoss": true
   },
   "2701450": {
@@ -23572,8 +27315,16 @@
     "name": "戰士瓦斯提",
     "isBoss": true
   },
+  "2701455": {
+    "name": "冰凍的守護者",
+    "isBoss": false
+  },
+  "2701456": {
+    "name": "冰凍的守護者",
+    "isBoss": false
+  },
   "2701463": {
-    "name": "被迷惑的克羅梅德",
+    "name": "克羅梅德欲望",
     "isBoss": true
   },
   "2701469": {
@@ -24727,7 +28478,7 @@
     "isBoss": false
   },
   "2701777": {
-    "name": "狂暴的布里特拉指揮官",
+    "name": "狂暴的德拉坎指揮官",
     "isBoss": false
   },
   "2701778": {
@@ -24886,7 +28637,7 @@
     "isBoss": false
   },
   "2701833": {
-    "name": "憎惡布里特拉指揮官",
+    "name": "憎惡德拉坎指揮官",
     "isBoss": false
   },
   "2701834": {
@@ -24914,7 +28665,7 @@
     "isBoss": false
   },
   "2701840": {
-    "name": "憎惡變異戰士",
+    "name": "憎惡精銳監視者",
     "isBoss": false
   },
   "2701841": {
@@ -24940,7 +28691,7 @@
     "isBoss": false
   },
   "2701845": {
-    "name": "強化的布里特拉指揮官",
+    "name": "強化的德拉坎指揮官",
     "isBoss": false
   },
   "2701846": {
@@ -24968,7 +28719,7 @@
     "isBoss": false
   },
   "2701852": {
-    "name": "強化的變異戰士",
+    "name": "強化的精銳監視者",
     "isBoss": false
   },
   "2701853": {
@@ -24994,7 +28745,7 @@
     "isBoss": false
   },
   "2701857": {
-    "name": "聖所布里特拉指揮官",
+    "name": "聖所德拉坎指揮官",
     "isBoss": false
   },
   "2701858": {
@@ -25022,7 +28773,7 @@
     "isBoss": false
   },
   "2701864": {
-    "name": "聖所變異戰士",
+    "name": "聖所精銳監視者",
     "isBoss": false
   },
   "2701865": {
@@ -25473,23 +29224,23 @@
     "isBoss": true
   },
   "2702027": {
-    "name": "掠奪團戰士",
+    "name": "搶奪者戰士",
     "isBoss": false
   },
   "2702028": {
-    "name": "掠奪團炸彈兵",
+    "name": "搶奪者炸彈兵",
     "isBoss": false
   },
   "2702029": {
-    "name": "掠奪團警備兵",
+    "name": "搶奪者警備兵",
     "isBoss": false
   },
   "2702030": {
-    "name": "掠奪團魔法兵",
+    "name": "搶奪者魔法兵",
     "isBoss": false
   },
   "2702031": {
-    "name": "防禦砲",
+    "name": "搶奪者防禦砲",
     "isBoss": false
   },
   "2702032": {
@@ -25501,19 +29252,19 @@
     "isBoss": false
   },
   "2702034": {
-    "name": "不幸守護者指揮官",
+    "name": "被處決的執政官教官",
     "isBoss": false
   },
   "2702035": {
-    "name": "不幸守護者巡查者",
+    "name": "被處決的執政官候選人",
     "isBoss": false
   },
   "2702036": {
-    "name": "不幸守護者暗殺者",
+    "name": "被處決的執政官候選人",
     "isBoss": false
   },
   "2702037": {
-    "name": "不幸守護者亡靈",
+    "name": "被處決的執政官亡靈",
     "isBoss": false
   },
   "2702038": {
@@ -25561,7 +29312,7 @@
     "isBoss": false
   },
   "2702049": {
-    "name": "防禦砲",
+    "name": "搶奪者防禦砲",
     "isBoss": false
   },
   "2702050": {
@@ -25601,27 +29352,27 @@
     "isBoss": false
   },
   "2702059": {
-    "name": "變異的命運暗殺者",
+    "name": "變異的命運執政官",
     "isBoss": false
   },
   "2702060": {
-    "name": "變異的命運巡查者",
+    "name": "變異的命運執政官",
     "isBoss": false
   },
   "2702061": {
-    "name": "被蠶食的命運巡查者",
+    "name": "被蠶食的命運執政官",
     "isBoss": false
   },
   "2702062": {
-    "name": "被洗腦的命運亡靈",
+    "name": "命運執政官亡靈",
     "isBoss": false
   },
   "2702063": {
-    "name": "被洗腦的命運偵察者",
+    "name": "命運執政官冤魂",
     "isBoss": false
   },
   "2702064": {
-    "name": "被洗腦的命運騎士",
+    "name": "命運執政官冤魂",
     "isBoss": false
   },
   "2702065": {
@@ -25657,43 +29408,43 @@
     "isBoss": false
   },
   "2702073": {
-    "name": "水精靈",
+    "name": "熾熱的水之精靈",
     "isBoss": false
   },
   "2702074": {
-    "name": "純粹水精靈",
+    "name": "熾熱的水之精靈",
     "isBoss": false
   },
   "2702075": {
-    "name": "純粹水精靈",
+    "name": "熾熱的水之精靈",
     "isBoss": false
   },
   "2702076": {
-    "name": "阿爾貝倫",
-    "isBoss": false
+    "name": "沸騰的阿爾貝倫",
+    "isBoss": true
   },
   "2702077": {
     "name": "陷阱",
     "isBoss": false
   },
   "2702078": {
-    "name": "飛彈",
+    "name": "警戒圖騰",
     "isBoss": false
   },
   "2702079": {
-    "name": "西吉貝爾特手下",
+    "name": "命運執政官監視者",
     "isBoss": false
   },
   "2702080": {
-    "name": "西吉貝爾特手下",
+    "name": "命運執政官治癒星",
     "isBoss": false
   },
   "2702081": {
-    "name": "西吉貝爾特手下",
+    "name": "命運執政官首席教官",
     "isBoss": false
   },
   "2702082": {
-    "name": "西吉貝爾特手下",
+    "name": "命運執政官首席教官",
     "isBoss": false
   },
   "2702083": {
@@ -25737,7 +29488,7 @@
     "isBoss": false
   },
   "2702093": {
-    "name": "德拉坎野獸",
+    "name": "德拉坎軍犬",
     "isBoss": false
   },
   "2702094": {
@@ -25769,39 +29520,39 @@
     "isBoss": false
   },
   "2702101": {
-    "name": "空中炸彈",
+    "name": "龍族空中炸彈",
     "isBoss": false
   },
   "2702102": {
-    "name": "空中炸彈",
+    "name": "龍族空中炸彈",
     "isBoss": false
   },
   "2702103": {
-    "name": "倒塌的守護者沒落者",
+    "name": "死亡的戰士形體",
     "isBoss": false
   },
   "2702104": {
-    "name": "倒塌的守護者劍星",
+    "name": "死亡的劍星形體",
     "isBoss": false
   },
   "2702105": {
-    "name": "倒塌的守護者劍星",
+    "name": "死亡的劍星形體",
     "isBoss": false
   },
   "2702106": {
-    "name": "倒塌的守護者劍星",
+    "name": "死亡的劍星形體",
     "isBoss": false
   },
   "2702107": {
-    "name": "倒塌的守護者弓星",
+    "name": "死亡的弓星形體",
     "isBoss": false
   },
   "2702108": {
-    "name": "倒塌的守護者弓星",
+    "name": "死亡的弓星形體",
     "isBoss": false
   },
   "2702109": {
-    "name": "倒塌的守護者弓星",
+    "name": "死亡的弓星形體",
     "isBoss": false
   },
   "2702110": {
@@ -25809,7 +29560,7 @@
     "isBoss": true
   },
   "2702111": {
-    "name": "代筆人卡勒頓",
+    "name": "代筆人貝盧姆",
     "isBoss": true
   },
   "2702112": {
@@ -25832,8 +29583,488 @@
     "name": "None",
     "isBoss": false
   },
+  "2702117": {
+    "name": "德拉坎先遣隊武裝野獸",
+    "isBoss": false
+  },
+  "2702118": {
+    "name": "德拉坎武裝兵",
+    "isBoss": false
+  },
+  "2702120": {
+    "name": "德拉坎斥候兵",
+    "isBoss": false
+  },
+  "2702121": {
+    "name": "德拉坎監視者",
+    "isBoss": false
+  },
+  "2702122": {
+    "name": "德拉坎魔力支援兵",
+    "isBoss": false
+  },
+  "2702123": {
+    "name": "西吉貝爾特",
+    "isBoss": false
+  },
+  "2702124": {
+    "name": "赫伯拉",
+    "isBoss": false
+  },
+  "2702125": {
+    "name": "墮落的命運守護者護法星",
+    "isBoss": false
+  },
+  "2702126": {
+    "name": "墮落的命運守護者監視者",
+    "isBoss": false
+  },
+  "2702127": {
+    "name": "墮落的命運守護者監視者",
+    "isBoss": false
+  },
+  "2702128": {
+    "name": "墮落的命運守護者首席教官",
+    "isBoss": false
+  },
+  "2702129": {
+    "name": "墮落的命運守護者注視者",
+    "isBoss": false
+  },
+  "2702130": {
+    "name": "被支配的守護者靈魂",
+    "isBoss": false
+  },
+  "2702131": {
+    "name": "流淌的毒血",
+    "isBoss": false
+  },
+  "2702132": {
+    "name": "瑪爾庫坦軀殼",
+    "isBoss": true
+  },
+  "2702133": {
+    "name": "憤怒的阿斐爾卡圖斯",
+    "isBoss": true
+  },
+  "2702134": {
+    "name": "空虛螺旋體",
+    "isBoss": false
+  },
+  "2702135": {
+    "name": "空虛螺旋體",
+    "isBoss": false
+  },
+  "2702136": {
+    "name": "空虛螺旋體",
+    "isBoss": false
+  },
+  "2702137": {
+    "name": "被遺忘者雷克任",
+    "isBoss": true
+  },
+  "2702138": {
+    "name": "淹沒的德拉坎先遣隊工兵",
+    "isBoss": false
+  },
+  "2702140": {
+    "name": "淹沒的德拉坎空襲部隊兵器",
+    "isBoss": false
+  },
+  "2702141": {
+    "name": "淹沒的德拉坎訓練隊長",
+    "isBoss": false
+  },
+  "2702142": {
+    "name": "淹沒的德拉坎一般兵",
+    "isBoss": false
+  },
+  "2702143": {
+    "name": "淹沒的德拉坎武裝野獸",
+    "isBoss": false
+  },
+  "2702144": {
+    "name": "淹沒的德拉坎魔力支援兵",
+    "isBoss": false
+  },
+  "2702145": {
+    "name": "落石",
+    "isBoss": false
+  },
+  "2702146": {
+    "name": "落石",
+    "isBoss": false
+  },
+  "2702147": {
+    "name": "躲著的刀刃團戰士",
+    "isBoss": false
+  },
+  "2702148": {
+    "name": "躲著的刀刃團支援兵",
+    "isBoss": false
+  },
+  "2702149": {
+    "name": "躲著的刀刃團炸彈兵",
+    "isBoss": false
+  },
+  "2702151": {
+    "name": "法夫尼爾僕從",
+    "isBoss": false
+  },
+  "2702152": {
+    "name": "法夫尼爾僕從",
+    "isBoss": false
+  },
+  "2702153": {
+    "name": "法夫尼爾僕從",
+    "isBoss": false
+  },
+  "2702154": {
+    "name": "不穩定的帳幕寶玉",
+    "isBoss": false
+  },
+  "2702158": {
+    "name": "空虛螺旋體",
+    "isBoss": false
+  },
+  "2702159": {
+    "name": "空虛螺旋體",
+    "isBoss": false
+  },
+  "2702160": {
+    "name": "空虛螺旋體",
+    "isBoss": false
+  },
+  "2702161": {
+    "name": "伊德里斯",
+    "isBoss": true
+  },
+  "2702162": {
+    "name": "德拉克紐特戰士",
+    "isBoss": false
+  },
+  "2702163": {
+    "name": "德拉克紐特戰鬥兵",
+    "isBoss": false
+  },
+  "2702164": {
+    "name": "德拉克紐特弓兵",
+    "isBoss": false
+  },
+  "2702165": {
+    "name": "德拉克紐特上級弓兵",
+    "isBoss": false
+  },
+  "2702166": {
+    "name": "德拉克紐特雜工",
+    "isBoss": false
+  },
+  "2702167": {
+    "name": "德拉克紐特飼育員",
+    "isBoss": false
+  },
+  "2702168": {
+    "name": "德拉克紐特精銳管理者",
+    "isBoss": false
+  },
+  "2702169": {
+    "name": "德拉克紐特空中炸彈",
+    "isBoss": false
+  },
+  "2702171": {
+    "name": "石化陷阱機關",
+    "isBoss": false
+  },
+  "2702172": {
+    "name": "德拉克紐特護衛隊長",
+    "isBoss": false
+  },
+  "2702173": {
+    "name": "德拉克紐特精銳弓手",
+    "isBoss": false
+  },
   "2702174": {
     "name": "不穩定的奧德石原石",
+    "isBoss": false
+  },
+  "2702175": {
+    "name": "結冰的命運執政官",
+    "isBoss": false
+  },
+  "2702176": {
+    "name": "結冰的命運執政官",
+    "isBoss": false
+  },
+  "2702177": {
+    "name": "頭目柯林",
+    "isBoss": true
+  },
+  "2702178": {
+    "name": "寶物強化連結體",
+    "isBoss": false
+  },
+  "2702179": {
+    "name": "寶物強化連結體",
+    "isBoss": false
+  },
+  "2702180": {
+    "name": "杜杜卡寶物警戒兵",
+    "isBoss": false
+  },
+  "2702181": {
+    "name": "杜杜卡寶物工人",
+    "isBoss": false
+  },
+  "2702182": {
+    "name": "凶猛的萬年雪圖卡",
+    "isBoss": false
+  },
+  "2702183": {
+    "name": "漂浮石",
+    "isBoss": false
+  },
+  "2702184": {
+    "name": "漂浮石",
+    "isBoss": false
+  },
+  "2702185": {
+    "name": "躲著的小火之精靈",
+    "isBoss": false
+  },
+  "2702186": {
+    "name": "徘徊的火之精靈",
+    "isBoss": false
+  },
+  "2702188": {
+    "name": "不穩定的帳幕寶玉",
+    "isBoss": false
+  },
+  "2702190": {
+    "name": "祕密基地斥候兵",
+    "isBoss": false
+  },
+  "2702192": {
+    "name": "祕密基地偵察兵",
+    "isBoss": false
+  },
+  "2702193": {
+    "name": "祕密基地野獸",
+    "isBoss": false
+  },
+  "2702194": {
+    "name": "搗蛋鬼姆姆",
+    "isBoss": false
+  },
+  "2702195": {
+    "name": "迷宮洞警戒姆姆",
+    "isBoss": false
+  },
+  "2702196": {
+    "name": "迷宮洞戰士姆姆",
+    "isBoss": false
+  },
+  "2702197": {
+    "name": "迷宮洞管理者赫勒卡",
+    "isBoss": true
+  },
+  "2702198": {
+    "name": "仿冒管理者姆姆",
+    "isBoss": false
+  },
+  "2702199": {
+    "name": "炸彈",
+    "isBoss": false
+  },
+  "2702200": {
+    "name": "德拉克紐特弓手",
+    "isBoss": false
+  },
+  "2702201": {
+    "name": "德拉克紐特戰士",
+    "isBoss": false
+  },
+  "2702202": {
+    "name": "德拉克紐特上級戰鬥兵",
+    "isBoss": false
+  },
+  "2702203": {
+    "name": "德拉克紐特上級弓兵",
+    "isBoss": false
+  },
+  "2702204": {
+    "name": "德拉克紐特雜工",
+    "isBoss": false
+  },
+  "2702205": {
+    "name": "結界石",
+    "isBoss": false
+  },
+  "2702206": {
+    "name": "結界石",
+    "isBoss": false
+  },
+  "2702207": {
+    "name": "結界石",
+    "isBoss": false
+  },
+  "2702208": {
+    "name": "結界石",
+    "isBoss": false
+  },
+  "2702209": {
+    "name": "結界石",
+    "isBoss": false
+  },
+  "2702210": {
+    "name": "結界石",
+    "isBoss": false
+  },
+  "2702211": {
+    "name": "結界石",
+    "isBoss": false
+  },
+  "2702212": {
+    "name": "結界石",
+    "isBoss": false
+  },
+  "2702213": {
+    "name": "結界石",
+    "isBoss": false
+  },
+  "2702214": {
+    "name": "結界石",
+    "isBoss": false
+  },
+  "2702215": {
+    "name": "結界石",
+    "isBoss": false
+  },
+  "2702216": {
+    "name": "結界石",
+    "isBoss": false
+  },
+  "2702217": {
+    "name": "結界石",
+    "isBoss": false
+  },
+  "2702218": {
+    "name": "結界石",
+    "isBoss": false
+  },
+  "2702219": {
+    "name": "結界石",
+    "isBoss": false
+  },
+  "2702220": {
+    "name": "結界石",
+    "isBoss": false
+  },
+  "2702221": {
+    "name": "結界石",
+    "isBoss": false
+  },
+  "2702222": {
+    "name": "實驗基地斯拉克搬運工",
+    "isBoss": false
+  },
+  "2702223": {
+    "name": "實驗基地斯拉克工人",
+    "isBoss": false
+  },
+  "2702224": {
+    "name": "實驗基地斯拉克警備兵",
+    "isBoss": false
+  },
+  "2702225": {
+    "name": "躲起來的竊賊斯拉克",
+    "isBoss": false
+  },
+  "2702226": {
+    "name": "旋轉砲塔",
+    "isBoss": false
+  },
+  "2702227": {
+    "name": "躲起來的竊賊斯拉克",
+    "isBoss": false
+  },
+  "2702228": {
+    "name": "艾易隆盜賊團弓手",
+    "isBoss": false
+  },
+  "2702229": {
+    "name": "艾易隆盜賊團弓手",
+    "isBoss": false
+  },
+  "2702230": {
+    "name": "艾易隆盜賊團戰士",
+    "isBoss": false
+  },
+  "2702231": {
+    "name": "艾易隆盜賊團流氓",
+    "isBoss": false
+  },
+  "2702232": {
+    "name": "艾易隆亡命德拉克",
+    "isBoss": true
+  },
+  "2702234": {
+    "name": "掠奪者探索員",
+    "isBoss": false
+  },
+  "2702235": {
+    "name": "掠奪者頭目",
+    "isBoss": false
+  },
+  "2702236": {
+    "name": "掠奪者戰士",
+    "isBoss": false
+  },
+  "2702238": {
+    "name": "瓦斯",
+    "isBoss": false
+  },
+  "2702240": {
+    "name": "地下洞穴古拉",
+    "isBoss": false
+  },
+  "2702241": {
+    "name": "冤魂提普斯",
+    "isBoss": true
+  },
+  "2702245": {
+    "name": "水坑",
+    "isBoss": false
+  },
+  "2702246": {
+    "name": "德拉坎監視兵",
+    "isBoss": false
+  },
+  "2702247": {
+    "name": "德拉坎警備兵",
+    "isBoss": false
+  },
+  "2702248": {
+    "name": "德拉坎武裝野獸",
+    "isBoss": false
+  },
+  "2702250": {
+    "name": "德拉坎哨兵",
+    "isBoss": false
+  },
+  "2702253": {
+    "name": "德拉坎監督官",
+    "isBoss": false
+  },
+  "2702254": {
+    "name": "德拉坎監督官",
+    "isBoss": false
+  },
+  "2702255": {
+    "name": "德拉坎魔力具體者",
+    "isBoss": false
+  },
+  "2702259": {
+    "name": "魔力球體",
     "isBoss": false
   },
   "2702274": {
@@ -26014,6 +30245,173 @@
   },
   "2702318": {
     "name": "破滅猛禽戰士",
+    "isBoss": false
+  },
+  "2702320": {
+    "name": "要塞金庫祭司",
+    "isBoss": false
+  },
+  "2702321": {
+    "name": "要塞金庫看守人",
+    "isBoss": false
+  },
+  "2702322": {
+    "name": "要塞金庫亡靈",
+    "isBoss": false
+  },
+  "2702323": {
+    "name": "蝙蝠亡靈",
+    "isBoss": false
+  },
+  "2702325": {
+    "name": "骯髒的弗路彼",
+    "isBoss": false
+  },
+  "2702326": {
+    "name": "亂七八糟的格婁拉克",
+    "isBoss": true
+  },
+  "2702327": {
+    "name": "毒區塊",
+    "isBoss": false
+  },
+  "2702329": {
+    "name": "圖書管理者梅莎",
+    "isBoss": true
+  },
+  "2702330": {
+    "name": "生命守護者弓手冤魂",
+    "isBoss": false
+  },
+  "2702331": {
+    "name": "生命守護者騎士冤魂",
+    "isBoss": false
+  },
+  "2702332": {
+    "name": "生命守護者巡查者冤魂",
+    "isBoss": false
+  },
+  "2702333": {
+    "name": "生命守護者暗殺者冤魂",
+    "isBoss": false
+  },
+  "2702334": {
+    "name": "凶殘曼杜里",
+    "isBoss": false
+  },
+  "2702335": {
+    "name": "凶猛的曼杜里",
+    "isBoss": false
+  },
+  "2702336": {
+    "name": "暴走的心臟",
+    "isBoss": false
+  },
+  "2702339": {
+    "name": "雷帕爾團戰士",
+    "isBoss": false
+  },
+  "2702341": {
+    "name": "雷帕爾團研究家",
+    "isBoss": false
+  },
+  "2702342": {
+    "name": "雷帕爾團魔法師",
+    "isBoss": false
+  },
+  "2702343": {
+    "name": "雷帕爾團格鬥家",
+    "isBoss": false
+  },
+  "2702345": {
+    "name": "巨大汙染物",
+    "isBoss": false
+  },
+  "2702346": {
+    "name": "骯髒的史萊姆",
+    "isBoss": false
+  },
+  "2702347": {
+    "name": "被汙染的史萊姆",
+    "isBoss": false
+  },
+  "2702349": {
+    "name": "捕鼠人獵人",
+    "isBoss": false
+  },
+  "2702350": {
+    "name": "捕鼠人捕獲者",
+    "isBoss": false
+  },
+  "2702351": {
+    "name": "捕鼠人驅趕者",
+    "isBoss": false
+  },
+  "2702352": {
+    "name": "馴養的野狼",
+    "isBoss": false
+  },
+  "2702356": {
+    "name": "空虛螺旋體",
+    "isBoss": false
+  },
+  "2702357": {
+    "name": "空虛螺旋體",
+    "isBoss": false
+  },
+  "2702358": {
+    "name": "空虛螺旋體",
+    "isBoss": false
+  },
+  "2702359": {
+    "name": "耶爾羅恩",
+    "isBoss": true,
+    "category": "覺醒戰",
+    "tier": "簡單",
+    "dungeonId": 910061
+  },
+  "2702360": {
+    "name": "墓地扭曲的實驗體",
+    "isBoss": false
+  },
+  "2702362": {
+    "name": "墓地扭曲的魔法實驗體",
+    "isBoss": false
+  },
+  "2702363": {
+    "name": "墓地變異體",
+    "isBoss": false
+  },
+  "2702364": {
+    "name": "墓地實驗體",
+    "isBoss": false
+  },
+  "2702365": {
+    "name": "墓地漂浮體",
+    "isBoss": false
+  },
+  "2702366": {
+    "name": "墓地魔法實驗體",
+    "isBoss": false
+  },
+  "2702367": {
+    "name": "墓地德拉庫尼",
+    "isBoss": false
+  },
+  "2702368": {
+    "name": "墓地捕食者",
+    "isBoss": false
+  },
+  "2702369": {
+    "name": "墓地德拉那",
+    "isBoss": false
+  },
+  "2702370": {
+    "name": "墓地炸彈陷阱",
+    "isBoss": false
+  },
+  "2702371": {
+    "name": "墓地炸彈陷阱",
     "isBoss": false
   },
   "2702372": {
@@ -26234,8 +30632,1088 @@
     "name": "破滅黑魔法師",
     "isBoss": false
   },
+  "2702422": {
+    "name": "龍族物資管理兵",
+    "isBoss": false
+  },
+  "2702423": {
+    "name": "移動炸彈",
+    "isBoss": false
+  },
+  "2702424": {
+    "name": "龍族偵察兵",
+    "isBoss": false
+  },
+  "2702425": {
+    "name": "炸彈技術員",
+    "isBoss": false
+  },
+  "2702426": {
+    "name": "研究所守門人",
+    "isBoss": false
+  },
+  "2702427": {
+    "name": "人造神研究員",
+    "isBoss": false
+  },
+  "2702428": {
+    "name": "雷帕爾團實驗體",
+    "isBoss": false
+  },
+  "2702429": {
+    "name": "德拉那能量儲藏所",
+    "isBoss": false
+  },
+  "2702430": {
+    "name": "德拉那能量注入器",
+    "isBoss": false
+  },
+  "2702431": {
+    "name": "倉庫精銳守備兵",
+    "isBoss": false
+  },
+  "2702432": {
+    "name": "倉庫警備兵",
+    "isBoss": false
+  },
+  "2702433": {
+    "name": "倉庫精銳守備兵",
+    "isBoss": false
+  },
+  "2702434": {
+    "name": "倉庫精銳守備兵",
+    "isBoss": false
+  },
+  "2702435": {
+    "name": "倉庫精銳守備兵",
+    "isBoss": false
+  },
+  "2702436": {
+    "name": "倉庫精銳守備兵",
+    "isBoss": false
+  },
+  "2702437": {
+    "name": "倉庫精銳守備兵",
+    "isBoss": false
+  },
+  "2702438": {
+    "name": "倉庫精銳守備兵",
+    "isBoss": false
+  },
+  "2702439": {
+    "name": "倉庫精銳守備兵",
+    "isBoss": false
+  },
+  "2702440": {
+    "name": "倉庫精銳守備兵",
+    "isBoss": false
+  },
+  "2702441": {
+    "name": "刀刃團根據地警戒兵",
+    "isBoss": false
+  },
+  "2702442": {
+    "name": "刀刃團根據地咒術士",
+    "isBoss": false
+  },
+  "2702443": {
+    "name": "刀刃團根據地突擊隊長",
+    "isBoss": false
+  },
+  "2702445": {
+    "name": "刀刃團根據地突擊隊",
+    "isBoss": false
+  },
+  "2702446": {
+    "name": "熔岩塊狀怪",
+    "isBoss": false
+  },
+  "2702450": {
+    "name": "儲藏所防禦砲",
+    "isBoss": false
+  },
+  "2702451": {
+    "name": "儲藏所戰士",
+    "isBoss": false
+  },
+  "2702452": {
+    "name": "儲藏所炸彈兵",
+    "isBoss": false
+  },
+  "2702453": {
+    "name": "儲藏所魔法師",
+    "isBoss": false
+  },
+  "2702454": {
+    "name": "儲藏所支援兵",
+    "isBoss": false
+  },
+  "2702455": {
+    "name": "儲藏所警備兵",
+    "isBoss": false
+  },
+  "2702456": {
+    "name": "儲藏所魔法兵",
+    "isBoss": false
+  },
+  "2702457": {
+    "name": "儲藏所突擊隊長",
+    "isBoss": false
+  },
+  "2702458": {
+    "name": "儲藏所收穫者",
+    "isBoss": false
+  },
+  "2702460": {
+    "name": "儲藏所古代圖騰",
+    "isBoss": false
+  },
+  "2702461": {
+    "name": "卡爾利斯",
+    "isBoss": true,
+    "category": "覺醒戰",
+    "tier": "簡單",
+    "dungeonId": 910051
+  },
+  "2702462": {
+    "name": "耶爾羅恩",
+    "isBoss": true,
+    "category": "覺醒戰",
+    "tier": "普通",
+    "dungeonId": 910062
+  },
+  "2702463": {
+    "name": "覺醒的扭曲實驗體",
+    "isBoss": false
+  },
+  "2702465": {
+    "name": "覺醒的扭曲魔法實驗體",
+    "isBoss": false
+  },
+  "2702466": {
+    "name": "覺醒的變異體",
+    "isBoss": false
+  },
+  "2702467": {
+    "name": "覺醒的實驗體",
+    "isBoss": false
+  },
+  "2702468": {
+    "name": "覺醒的漂浮體",
+    "isBoss": false
+  },
+  "2702469": {
+    "name": "覺醒的魔法實驗體",
+    "isBoss": false
+  },
+  "2702470": {
+    "name": "覺醒的德拉庫尼",
+    "isBoss": false
+  },
+  "2702471": {
+    "name": "覺醒的捕食者",
+    "isBoss": false
+  },
+  "2702472": {
+    "name": "覺醒的德拉那",
+    "isBoss": false
+  },
+  "2702475": {
+    "name": "耶爾羅恩",
+    "isBoss": true,
+    "category": "覺醒戰",
+    "tier": "困難",
+    "dungeonId": 910063
+  },
+  "2702476": {
+    "name": "被蠶食的扭曲實驗體",
+    "isBoss": false
+  },
+  "2702478": {
+    "name": "被蠶食的扭曲魔法實驗體",
+    "isBoss": false
+  },
+  "2702479": {
+    "name": "被蠶食的變異體",
+    "isBoss": false
+  },
+  "2702480": {
+    "name": "被蠶食的實驗體",
+    "isBoss": false
+  },
+  "2702481": {
+    "name": "被蠶食的漂浮體",
+    "isBoss": false
+  },
+  "2702482": {
+    "name": "被蠶食的魔法實驗體",
+    "isBoss": false
+  },
+  "2702483": {
+    "name": "被蠶食的德拉庫尼",
+    "isBoss": false
+  },
+  "2702484": {
+    "name": "被蠶食的捕食者",
+    "isBoss": false
+  },
+  "2702485": {
+    "name": "被蠶食的德拉那",
+    "isBoss": false
+  },
+  "2702488": {
+    "name": "耶爾羅恩",
+    "isBoss": true,
+    "category": "覺醒戰",
+    "tier": "極限",
+    "dungeonId": 910064
+  },
+  "2702489": {
+    "name": "狂暴的扭曲實驗體",
+    "isBoss": false
+  },
+  "2702491": {
+    "name": "狂暴的扭曲魔法實驗體",
+    "isBoss": false
+  },
+  "2702492": {
+    "name": "狂暴的變異體",
+    "isBoss": false
+  },
+  "2702493": {
+    "name": "狂暴的實驗體",
+    "isBoss": false
+  },
+  "2702494": {
+    "name": "狂暴的漂浮體",
+    "isBoss": false
+  },
+  "2702495": {
+    "name": "狂暴的魔法實驗體",
+    "isBoss": false
+  },
+  "2702496": {
+    "name": "狂暴的德拉庫尼",
+    "isBoss": false
+  },
+  "2702497": {
+    "name": "狂暴的捕食者",
+    "isBoss": false
+  },
+  "2702498": {
+    "name": "狂暴的德拉那",
+    "isBoss": false
+  },
+  "2702501": {
+    "name": "耶爾羅恩",
+    "isBoss": true,
+    "category": "覺醒戰",
+    "tier": "絕望",
+    "dungeonId": 910065
+  },
+  "2702502": {
+    "name": "絕望扭曲的實驗體",
+    "isBoss": false
+  },
+  "2702504": {
+    "name": "絕望扭曲的魔法實驗體",
+    "isBoss": false
+  },
+  "2702505": {
+    "name": "絕望變異體",
+    "isBoss": false
+  },
+  "2702506": {
+    "name": "絕望實驗體",
+    "isBoss": false
+  },
+  "2702507": {
+    "name": "絕望漂浮體",
+    "isBoss": false
+  },
+  "2702508": {
+    "name": "絕望魔法實驗體",
+    "isBoss": false
+  },
+  "2702509": {
+    "name": "絕望德拉庫尼",
+    "isBoss": false
+  },
+  "2702510": {
+    "name": "絕望捕食者",
+    "isBoss": false
+  },
+  "2702511": {
+    "name": "絕望德拉那",
+    "isBoss": false
+  },
+  "2702514": {
+    "name": "被遺忘者雷克任",
+    "isBoss": true
+  },
+  "2702515": {
+    "name": "覺醒的德拉坎先遣隊工兵",
+    "isBoss": false
+  },
+  "2702517": {
+    "name": "覺醒的德拉坎空襲部隊兵器",
+    "isBoss": false
+  },
+  "2702518": {
+    "name": "覺醒的德拉坎訓練隊長",
+    "isBoss": false
+  },
+  "2702519": {
+    "name": "覺醒的德拉坎一般兵",
+    "isBoss": false
+  },
+  "2702520": {
+    "name": "覺醒的德拉坎武裝野獸",
+    "isBoss": false
+  },
+  "2702521": {
+    "name": "覺醒的德拉坎魔力支援兵",
+    "isBoss": false
+  },
+  "2702524": {
+    "name": "被遺忘者雷克任",
+    "isBoss": true
+  },
+  "2702525": {
+    "name": "被蠶食的德拉坎先遣隊工兵",
+    "isBoss": false
+  },
+  "2702527": {
+    "name": "被蠶食的德拉坎空襲部隊兵器",
+    "isBoss": false
+  },
+  "2702528": {
+    "name": "被蠶食的德拉坎訓練隊長",
+    "isBoss": false
+  },
+  "2702529": {
+    "name": "被蠶食的德拉坎一般兵",
+    "isBoss": false
+  },
+  "2702530": {
+    "name": "被蠶食的德拉坎武裝野獸",
+    "isBoss": false
+  },
+  "2702531": {
+    "name": "被蠶食的德拉坎魔力支援兵",
+    "isBoss": false
+  },
+  "2702534": {
+    "name": "被遺忘者雷克任",
+    "isBoss": true
+  },
+  "2702535": {
+    "name": "狂暴的德拉坎先遣隊工兵",
+    "isBoss": false
+  },
+  "2702537": {
+    "name": "狂暴的德拉坎空襲部隊兵器",
+    "isBoss": false
+  },
+  "2702538": {
+    "name": "狂暴的德拉坎訓練隊長",
+    "isBoss": false
+  },
+  "2702539": {
+    "name": "狂暴的德拉坎一般兵",
+    "isBoss": false
+  },
+  "2702540": {
+    "name": "狂暴的德拉坎武裝野獸",
+    "isBoss": false
+  },
+  "2702541": {
+    "name": "狂暴的德拉坎魔力支援兵",
+    "isBoss": false
+  },
+  "2702544": {
+    "name": "被遺忘者雷克任",
+    "isBoss": true
+  },
+  "2702545": {
+    "name": "深淵德拉坎先遣隊工兵",
+    "isBoss": false
+  },
+  "2702547": {
+    "name": "深淵德拉坎空襲部隊兵器",
+    "isBoss": false
+  },
+  "2702548": {
+    "name": "深淵德拉坎訓練隊長",
+    "isBoss": false
+  },
+  "2702549": {
+    "name": "深淵德拉坎一般兵",
+    "isBoss": false
+  },
+  "2702550": {
+    "name": "深淵德拉坎武裝野獸",
+    "isBoss": false
+  },
+  "2702551": {
+    "name": "深淵德拉坎魔力支援兵",
+    "isBoss": false
+  },
+  "2702554": {
+    "name": "洞穴納迦守護戰士",
+    "isBoss": false
+  },
+  "2702557": {
+    "name": "洞穴納迦祭司",
+    "isBoss": false
+  },
+  "2702559": {
+    "name": "高潔的守護像",
+    "isBoss": false
+  },
+  "2702560": {
+    "name": "火焰",
+    "isBoss": false
+  },
+  "2702563": {
+    "name": "變異的實驗體",
+    "isBoss": false
+  },
+  "2702564": {
+    "name": "變異的麥杰爾",
+    "isBoss": true
+  },
+  "2702565": {
+    "name": "被遺忘的守護像",
+    "isBoss": false
+  },
+  "2702567": {
+    "name": "被遺忘的札伊蓋崙",
+    "isBoss": false
+  },
+  "2702569": {
+    "name": "火焰蜘蛛",
+    "isBoss": false
+  },
+  "2702571": {
+    "name": "羅坦",
+    "isBoss": false
+  },
+  "2702572": {
+    "name": "巨大劍齒豹伊斯坦德",
+    "isBoss": true
+  },
+  "2702573": {
+    "name": "巢穴德布里",
+    "isBoss": false
+  },
+  "2702574": {
+    "name": "拉米佩頓",
+    "isBoss": true
+  },
+  "2702575": {
+    "name": "迷路的守護者騎士靈魂",
+    "isBoss": false
+  },
+  "2702576": {
+    "name": "迷路的守護者弓手靈魂",
+    "isBoss": false
+  },
+  "2702577": {
+    "name": "迷路的亡靈",
+    "isBoss": false
+  },
+  "2702579": {
+    "name": "逃走的打手",
+    "isBoss": false
+  },
+  "2702580": {
+    "name": "逃走的竊賊",
+    "isBoss": false
+  },
+  "2702582": {
+    "name": "馴養的弗路彼",
+    "isBoss": false
+  },
+  "2702583": {
+    "name": "庫爾帕別動隊戰士",
+    "isBoss": false
+  },
+  "2702584": {
+    "name": "庫爾帕別動隊治癒兵",
+    "isBoss": false
+  },
+  "2702585": {
+    "name": "庫爾帕別動隊突擊兵",
+    "isBoss": false
+  },
+  "2702586": {
+    "name": "庫爾帕別動隊刺殺兵",
+    "isBoss": false
+  },
+  "2702587": {
+    "name": "庫爾帕別動隊刺殺兵",
+    "isBoss": false
+  },
+  "2702588": {
+    "name": "庫爾帕別動隊弓手",
+    "isBoss": false
+  },
+  "2702589": {
+    "name": "庫爾帕別動隊弓手",
+    "isBoss": false
+  },
+  "2702590": {
+    "name": "毒袋",
+    "isBoss": false
+  },
+  "2702591": {
+    "name": "命運執政官叛徒",
+    "isBoss": false
+  },
+  "2702592": {
+    "name": "命運執政官叛徒",
+    "isBoss": false
+  },
+  "2702593": {
+    "name": "命運執政官叛徒",
+    "isBoss": false
+  },
+  "2702594": {
+    "name": "命運執政官叛教者",
+    "isBoss": false
+  },
+  "2702595": {
+    "name": "命運執政官叛教者",
+    "isBoss": false
+  },
+  "2702596": {
+    "name": "命運執政官反叛者",
+    "isBoss": false
+  },
+  "2702597": {
+    "name": "命運執政官反叛者",
+    "isBoss": false
+  },
+  "2702598": {
+    "name": "深淵西吉貝爾特",
+    "isBoss": true
+  },
+  "2702599": {
+    "name": "雷帕爾團戰士",
+    "isBoss": false
+  },
+  "2702600": {
+    "name": "雷帕爾團戰士",
+    "isBoss": false
+  },
+  "2702601": {
+    "name": "雷帕爾團格鬥家",
+    "isBoss": false
+  },
+  "2702602": {
+    "name": "雷帕爾團魔法師",
+    "isBoss": false
+  },
+  "2702603": {
+    "name": "雷帕爾團魔法師",
+    "isBoss": false
+  },
+  "2702604": {
+    "name": "雷帕爾團研究家",
+    "isBoss": false
+  },
+  "2702605": {
+    "name": "訓練用稻草人",
+    "isBoss": false,
+    "isDummy": true
+  },
+  "2702606": {
+    "name": "格拉比",
+    "isBoss": false
+  },
+  "2702607": {
+    "name": "雷射",
+    "isBoss": false
+  },
+  "2702608": {
+    "name": "雷射",
+    "isBoss": false
+  },
+  "2702609": {
+    "name": "栽培的格拉巴拉斯",
+    "isBoss": false
+  },
+  "2702610": {
+    "name": "栽培的格拉巴拉斯",
+    "isBoss": false
+  },
+  "2702611": {
+    "name": "耶爾羅恩",
+    "isBoss": true,
+    "category": "覺醒戰",
+    "tier": "地獄",
+    "dungeonId": 910066
+  },
+  "2702612": {
+    "name": "破滅扭曲的實驗體",
+    "isBoss": false
+  },
+  "2702613": {
+    "name": "破滅扭曲的魔法實驗體",
+    "isBoss": false
+  },
+  "2702614": {
+    "name": "破滅變異體",
+    "isBoss": false
+  },
+  "2702615": {
+    "name": "破滅實驗體",
+    "isBoss": false
+  },
+  "2702616": {
+    "name": "破滅漂浮體",
+    "isBoss": false
+  },
+  "2702617": {
+    "name": "破滅魔法實驗體",
+    "isBoss": false
+  },
+  "2702618": {
+    "name": "破滅德拉庫尼",
+    "isBoss": false
+  },
+  "2702619": {
+    "name": "破滅捕食者",
+    "isBoss": false
+  },
+  "2702620": {
+    "name": "破滅德拉那",
+    "isBoss": false
+  },
+  "2702623": {
+    "name": "耶爾羅恩",
+    "isBoss": true,
+    "category": "覺醒戰",
+    "tier": "破滅",
+    "dungeonId": 910067
+  },
+  "2702624": {
+    "name": "空虛扭曲的實驗體",
+    "isBoss": false
+  },
+  "2702625": {
+    "name": "空虛扭曲的魔法實驗體",
+    "isBoss": false
+  },
+  "2702626": {
+    "name": "空虛變異體",
+    "isBoss": false
+  },
+  "2702627": {
+    "name": "空虛實驗體",
+    "isBoss": false
+  },
+  "2702628": {
+    "name": "空虛漂浮體",
+    "isBoss": false
+  },
+  "2702629": {
+    "name": "空虛魔法實驗體",
+    "isBoss": false
+  },
+  "2702630": {
+    "name": "空虛德拉庫尼",
+    "isBoss": false
+  },
+  "2702631": {
+    "name": "空虛捕食者",
+    "isBoss": false
+  },
+  "2702632": {
+    "name": "空虛德拉那",
+    "isBoss": false
+  },
+  "2702635": {
+    "name": "鰭怪物",
+    "isBoss": false
+  },
+  "2702636": {
+    "name": "年幼的鰭怪物",
+    "isBoss": false
+  },
   "2702637": {
     "name": "炸彈",
+    "isBoss": false
+  },
+  "2702638": {
+    "name": "覺醒的儲藏所防禦砲",
+    "isBoss": false
+  },
+  "2702639": {
+    "name": "覺醒的儲藏所戰士",
+    "isBoss": false
+  },
+  "2702640": {
+    "name": "覺醒的儲藏所炸彈兵",
+    "isBoss": false
+  },
+  "2702641": {
+    "name": "覺醒的儲藏所魔法師",
+    "isBoss": false
+  },
+  "2702642": {
+    "name": "覺醒的儲藏所支援兵",
+    "isBoss": false
+  },
+  "2702643": {
+    "name": "覺醒的儲藏所警備兵",
+    "isBoss": false
+  },
+  "2702644": {
+    "name": "覺醒的儲藏所魔法兵",
+    "isBoss": false
+  },
+  "2702645": {
+    "name": "覺醒的儲藏所突擊隊長",
+    "isBoss": false
+  },
+  "2702646": {
+    "name": "覺醒的儲藏所收穫者",
+    "isBoss": false
+  },
+  "2702647": {
+    "name": "覺醒的儲藏所古代圖騰",
+    "isBoss": false
+  },
+  "2702648": {
+    "name": "卡爾利斯",
+    "isBoss": true,
+    "category": "覺醒戰",
+    "tier": "普通",
+    "dungeonId": 910052
+  },
+  "2702649": {
+    "name": "被遺忘的儲藏所防禦砲",
+    "isBoss": false
+  },
+  "2702650": {
+    "name": "被遺忘的儲藏所戰士",
+    "isBoss": false
+  },
+  "2702651": {
+    "name": "被遺忘的儲藏所炸彈兵",
+    "isBoss": false
+  },
+  "2702652": {
+    "name": "被遺忘的儲藏所魔法師",
+    "isBoss": false
+  },
+  "2702653": {
+    "name": "被遺忘的儲藏所支援兵",
+    "isBoss": false
+  },
+  "2702654": {
+    "name": "被遺忘的儲藏所警備兵",
+    "isBoss": false
+  },
+  "2702655": {
+    "name": "被遺忘的儲藏所魔法兵",
+    "isBoss": false
+  },
+  "2702656": {
+    "name": "被遺忘的儲藏所突擊隊長",
+    "isBoss": false
+  },
+  "2702657": {
+    "name": "被遺忘的儲藏所收穫者",
+    "isBoss": false
+  },
+  "2702658": {
+    "name": "被遺忘的儲藏所古代圖騰",
+    "isBoss": false
+  },
+  "2702659": {
+    "name": "卡爾利斯",
+    "isBoss": true,
+    "category": "覺醒戰",
+    "tier": "困難",
+    "dungeonId": 910053
+  },
+  "2702660": {
+    "name": "狂暴的儲藏所防禦砲",
+    "isBoss": false
+  },
+  "2702661": {
+    "name": "狂暴的儲藏所戰士",
+    "isBoss": false
+  },
+  "2702662": {
+    "name": "狂暴的儲藏所炸彈兵",
+    "isBoss": false
+  },
+  "2702663": {
+    "name": "狂暴的儲藏所魔法師",
+    "isBoss": false
+  },
+  "2702664": {
+    "name": "狂暴的儲藏所支援兵",
+    "isBoss": false
+  },
+  "2702665": {
+    "name": "狂暴的儲藏所警備兵",
+    "isBoss": false
+  },
+  "2702666": {
+    "name": "狂暴的儲藏所魔法兵",
+    "isBoss": false
+  },
+  "2702667": {
+    "name": "狂暴的儲藏所突擊隊長",
+    "isBoss": false
+  },
+  "2702668": {
+    "name": "狂暴的儲藏所收穫者",
+    "isBoss": false
+  },
+  "2702669": {
+    "name": "狂暴的儲藏所古代圖騰",
+    "isBoss": false
+  },
+  "2702670": {
+    "name": "卡爾利斯",
+    "isBoss": true,
+    "category": "覺醒戰",
+    "tier": "極限",
+    "dungeonId": 910054
+  },
+  "2702671": {
+    "name": "絕望儲藏所防禦砲",
+    "isBoss": false
+  },
+  "2702672": {
+    "name": "絕望儲藏所戰士",
+    "isBoss": false
+  },
+  "2702673": {
+    "name": "絕望儲藏所炸彈兵",
+    "isBoss": false
+  },
+  "2702674": {
+    "name": "絕望儲藏所魔法師",
+    "isBoss": false
+  },
+  "2702675": {
+    "name": "絕望儲藏所支援兵",
+    "isBoss": false
+  },
+  "2702676": {
+    "name": "絕望儲藏所警備兵",
+    "isBoss": false
+  },
+  "2702677": {
+    "name": "絕望儲藏所魔法兵",
+    "isBoss": false
+  },
+  "2702678": {
+    "name": "絕望儲藏所突擊隊長",
+    "isBoss": false
+  },
+  "2702679": {
+    "name": "絕望儲藏所收穫者",
+    "isBoss": false
+  },
+  "2702680": {
+    "name": "絕望儲藏所古代圖騰",
+    "isBoss": false
+  },
+  "2702681": {
+    "name": "卡爾利斯",
+    "isBoss": true,
+    "category": "覺醒戰",
+    "tier": "絕望",
+    "dungeonId": 910055
+  },
+  "2702682": {
+    "name": "破滅儲藏所防禦砲",
+    "isBoss": false
+  },
+  "2702683": {
+    "name": "破滅儲藏所戰士",
+    "isBoss": false
+  },
+  "2702684": {
+    "name": "破滅儲藏所炸彈兵",
+    "isBoss": false
+  },
+  "2702685": {
+    "name": "破滅儲藏所魔法師",
+    "isBoss": false
+  },
+  "2702686": {
+    "name": "破滅儲藏所支援兵",
+    "isBoss": false
+  },
+  "2702687": {
+    "name": "破滅儲藏所警備兵",
+    "isBoss": false
+  },
+  "2702688": {
+    "name": "破滅儲藏所魔法兵",
+    "isBoss": false
+  },
+  "2702689": {
+    "name": "破滅儲藏所突擊隊長",
+    "isBoss": false
+  },
+  "2702690": {
+    "name": "破滅儲藏所收穫者",
+    "isBoss": false
+  },
+  "2702691": {
+    "name": "破滅儲藏所古代圖騰",
+    "isBoss": false
+  },
+  "2702692": {
+    "name": "卡爾利斯",
+    "isBoss": true,
+    "category": "覺醒戰",
+    "tier": "地獄",
+    "dungeonId": 910056
+  },
+  "2702693": {
+    "name": "空虛儲藏所防禦砲",
+    "isBoss": false
+  },
+  "2702694": {
+    "name": "空虛儲藏所戰士",
+    "isBoss": false
+  },
+  "2702695": {
+    "name": "空虛儲藏所炸彈兵",
+    "isBoss": false
+  },
+  "2702696": {
+    "name": "空虛儲藏所魔法師",
+    "isBoss": false
+  },
+  "2702697": {
+    "name": "空虛儲藏所支援兵",
+    "isBoss": false
+  },
+  "2702698": {
+    "name": "空虛儲藏所警備兵",
+    "isBoss": false
+  },
+  "2702699": {
+    "name": "空虛儲藏所魔法兵",
+    "isBoss": false
+  },
+  "2702700": {
+    "name": "空虛儲藏所突擊隊長",
+    "isBoss": false
+  },
+  "2702701": {
+    "name": "空虛儲藏所收穫者",
+    "isBoss": false
+  },
+  "2702702": {
+    "name": "空虛儲藏所古代圖騰",
+    "isBoss": false
+  },
+  "2702703": {
+    "name": "卡爾利斯",
+    "isBoss": true,
+    "category": "覺醒戰",
+    "tier": "破滅",
+    "dungeonId": 910057
+  },
+  "2702704": {
+    "name": "冰凍德布里",
+    "isBoss": false
+  },
+  "2702705": {
+    "name": "冰凍古拉",
+    "isBoss": false
+  },
+  "2702706": {
+    "name": "泉水掠奪者",
+    "isBoss": false
+  },
+  "2702707": {
+    "name": "泉水侵入者",
+    "isBoss": false
+  },
+  "2702708": {
+    "name": "泉水警戒兵",
+    "isBoss": false
+  },
+  "2702709": {
+    "name": "湖水洞穴亡靈",
+    "isBoss": false
+  },
+  "2702710": {
+    "name": "空虛螺旋體",
+    "isBoss": false
+  },
+  "2702711": {
+    "name": "空虛螺旋體",
+    "isBoss": false
+  },
+  "2702712": {
+    "name": "空虛螺旋體",
+    "isBoss": false
+  },
+  "2702713": {
+    "name": "空虛螺旋體",
+    "isBoss": false
+  },
+  "2702714": {
+    "name": "空虛螺旋體",
+    "isBoss": false
+  },
+  "2702715": {
+    "name": "空虛螺旋體",
+    "isBoss": false
+  },
+  "2702716": {
+    "name": "空虛螺旋體",
+    "isBoss": false
+  },
+  "2702717": {
+    "name": "儲藏所古代圖騰",
+    "isBoss": false
+  },
+  "2702718": {
+    "name": "覺醒的儲藏所古代圖騰",
+    "isBoss": false
+  },
+  "2702719": {
+    "name": "被遺忘的儲藏所古代圖騰",
+    "isBoss": false
+  },
+  "2702720": {
+    "name": "狂暴的儲藏所古代圖騰",
+    "isBoss": false
+  },
+  "2702721": {
+    "name": "絕望儲藏所古代圖騰",
+    "isBoss": false
+  },
+  "2702722": {
+    "name": "破滅儲藏所古代圖騰",
+    "isBoss": false
+  },
+  "2702723": {
+    "name": "空虛儲藏所古代圖騰",
+    "isBoss": false
+  },
+  "2702725": {
+    "name": "被淘汰的守護者殘渣",
+    "isBoss": false
+  },
+  "2702726": {
+    "name": "被淘汰的守護者殘渣",
     "isBoss": false
   },
   "2920029": {
@@ -26597,8 +32075,36 @@
     "name": "穆斯費爾守護像",
     "isBoss": false
   },
+  "2921298": {
+    "name": "亞提埃爾",
+    "isBoss": true
+  },
+  "2921299": {
+    "name": "亞提埃爾",
+    "isBoss": true
+  },
+  "2921300": {
+    "name": "亞提埃爾",
+    "isBoss": false
+  },
   "2921315": {
     "name": "穆斯費爾守護像",
+    "isBoss": false
+  },
+  "2921354": {
+    "name": "咆哮",
+    "isBoss": false
+  },
+  "2921355": {
+    "name": "蓄電核",
+    "isBoss": false
+  },
+  "2921382": {
+    "name": "咆哮",
+    "isBoss": false
+  },
+  "2921409": {
+    "name": "奧德石礦石",
     "isBoss": false
   },
   "2980000": {
@@ -28346,6 +33852,356 @@
   },
   "2980259": {
     "name": "亡靈芝捷爾",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第10階段",
+    "dungeonId": 200003
+  },
+  "2980260": {
+    "name": "克羅梅德欲望",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第1階段",
+    "dungeonId": 200003
+  },
+  "2980261": {
+    "name": "克羅梅德欲望",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第2階段",
+    "dungeonId": 200003
+  },
+  "2980262": {
+    "name": "克羅梅德欲望",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第3階段",
+    "dungeonId": 200003
+  },
+  "2980263": {
+    "name": "克羅梅德欲望",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第4階段",
+    "dungeonId": 200003
+  },
+  "2980264": {
+    "name": "克羅梅德欲望",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第5階段",
+    "dungeonId": 200003
+  },
+  "2980265": {
+    "name": "克羅梅德欲望",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第6階段",
+    "dungeonId": 200003
+  },
+  "2980266": {
+    "name": "克羅梅德欲望",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第7階段",
+    "dungeonId": 200003
+  },
+  "2980267": {
+    "name": "克羅梅德欲望",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第8階段",
+    "dungeonId": 200003
+  },
+  "2980268": {
+    "name": "克羅梅德欲望",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第9階段",
+    "dungeonId": 200003
+  },
+  "2980269": {
+    "name": "克羅梅德欲望",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第10階段",
+    "dungeonId": 200003
+  },
+  "2980270": {
+    "name": "完整的帕頓",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第1階段",
+    "dungeonId": 200003
+  },
+  "2980271": {
+    "name": "完整的帕頓",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第2階段",
+    "dungeonId": 200003
+  },
+  "2980272": {
+    "name": "完整的帕頓",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第3階段",
+    "dungeonId": 200003
+  },
+  "2980273": {
+    "name": "完整的帕頓",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第4階段",
+    "dungeonId": 200003
+  },
+  "2980274": {
+    "name": "完整的帕頓",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第5階段",
+    "dungeonId": 200003
+  },
+  "2980275": {
+    "name": "完整的帕頓",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第6階段",
+    "dungeonId": 200003
+  },
+  "2980276": {
+    "name": "完整的帕頓",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第7階段",
+    "dungeonId": 200003
+  },
+  "2980277": {
+    "name": "完整的帕頓",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第8階段",
+    "dungeonId": 200003
+  },
+  "2980278": {
+    "name": "完整的帕頓",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第9階段",
+    "dungeonId": 200003
+  },
+  "2980279": {
+    "name": "完整的帕頓",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第10階段",
+    "dungeonId": 200003
+  },
+  "2980280": {
+    "name": "覺醒阿特隆",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第1階段",
+    "dungeonId": 200003
+  },
+  "2980281": {
+    "name": "覺醒阿特隆",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第2階段",
+    "dungeonId": 200003
+  },
+  "2980282": {
+    "name": "覺醒阿特隆",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第3階段",
+    "dungeonId": 200003
+  },
+  "2980283": {
+    "name": "覺醒阿特隆",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第4階段",
+    "dungeonId": 200003
+  },
+  "2980284": {
+    "name": "覺醒阿特隆",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第5階段",
+    "dungeonId": 200003
+  },
+  "2980285": {
+    "name": "覺醒阿特隆",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第6階段",
+    "dungeonId": 200003
+  },
+  "2980286": {
+    "name": "覺醒阿特隆",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第7階段",
+    "dungeonId": 200003
+  },
+  "2980287": {
+    "name": "覺醒阿特隆",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第8階段",
+    "dungeonId": 200003
+  },
+  "2980288": {
+    "name": "覺醒阿特隆",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第9階段",
+    "dungeonId": 200003
+  },
+  "2980289": {
+    "name": "覺醒阿特隆",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第10階段",
+    "dungeonId": 200003
+  },
+  "2980290": {
+    "name": "搜索隊長凱德",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第1階段",
+    "dungeonId": 200003
+  },
+  "2980291": {
+    "name": "搜索隊長凱德",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第2階段",
+    "dungeonId": 200003
+  },
+  "2980292": {
+    "name": "搜索隊長凱德",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第3階段",
+    "dungeonId": 200003
+  },
+  "2980293": {
+    "name": "搜索隊長凱德",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第4階段",
+    "dungeonId": 200003
+  },
+  "2980294": {
+    "name": "搜索隊長凱德",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第5階段",
+    "dungeonId": 200003
+  },
+  "2980295": {
+    "name": "搜索隊長凱德",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第6階段",
+    "dungeonId": 200003
+  },
+  "2980296": {
+    "name": "搜索隊長凱德",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第7階段",
+    "dungeonId": 200003
+  },
+  "2980297": {
+    "name": "搜索隊長凱德",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第8階段",
+    "dungeonId": 200003
+  },
+  "2980298": {
+    "name": "搜索隊長凱德",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第9階段",
+    "dungeonId": 200003
+  },
+  "2980299": {
+    "name": "搜索隊長凱德",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第10階段",
+    "dungeonId": 200003
+  },
+  "2980300": {
+    "name": "副官希夫蘭",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第1階段",
+    "dungeonId": 200003
+  },
+  "2980301": {
+    "name": "副官希夫蘭",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第2階段",
+    "dungeonId": 200003
+  },
+  "2980302": {
+    "name": "副官希夫蘭",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第3階段",
+    "dungeonId": 200003
+  },
+  "2980303": {
+    "name": "副官希夫蘭",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第4階段",
+    "dungeonId": 200003
+  },
+  "2980304": {
+    "name": "副官希夫蘭",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第5階段",
+    "dungeonId": 200003
+  },
+  "2980305": {
+    "name": "副官希夫蘭",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第6階段",
+    "dungeonId": 200003
+  },
+  "2980306": {
+    "name": "副官希夫蘭",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第7階段",
+    "dungeonId": 200003
+  },
+  "2980307": {
+    "name": "副官希夫蘭",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第8階段",
+    "dungeonId": 200003
+  },
+  "2980308": {
+    "name": "副官希夫蘭",
+    "isBoss": true,
+    "category": "惡夢",
+    "tier": "第9階段",
+    "dungeonId": 200003
+  },
+  "2980309": {
+    "name": "副官希夫蘭",
     "isBoss": true,
     "category": "惡夢",
     "tier": "第10階段",

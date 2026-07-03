@@ -256,6 +256,9 @@ const createDetailsUI = ({
     Cleric: "#F2C15A",
     검성: "#4FD1C5",
     Gladiator: "#4FD1C5",
+    권성: "#E85D5D",
+    Brawler: "#E85D5D",
+    Fighter: "#E85D5D",
   };
 
   const getJobColor = (job) => jobColorMap[job] || "";
@@ -646,6 +649,9 @@ const createDetailsUI = ({
     const backEl = document.createElement("div");
     backEl.className = "cell center back";
 
+    const frontalEl = document.createElement("div");
+    frontalEl.className = "cell center frontal";
+
     const perfectEl = document.createElement("div");
     perfectEl.className = "cell center perfect";
 
@@ -678,6 +684,7 @@ const createDetailsUI = ({
     rowEl.appendChild(perfectEl);
     rowEl.appendChild(doubleEl);
     rowEl.appendChild(backEl);
+    rowEl.appendChild(frontalEl);
     rowEl.appendChild(powershardEl);
     rowEl.appendChild(regenEl);
     rowEl.appendChild(minDmgEl);
@@ -700,6 +707,7 @@ const createDetailsUI = ({
       critEl,
       parryEl,
       backEl,
+      frontalEl,
       perfectEl,
       doubleEl,
       powershardEl,
@@ -746,6 +754,8 @@ const createDetailsUI = ({
         return hits > 0 ? (Number(skill?.double) || 0) / hits : 0;
       case "back":
         return hits > 0 ? (Number(skill?.back) || 0) / hits : 0;
+      case "frontal":
+        return hits > 0 ? (Number(skill?.frontal) || 0) / hits : 0;
       case "powershard":
         return hits > 0 ? (Number(skill?.powershard) || 0) / hits : 0;
       case "regen":
@@ -803,13 +813,14 @@ const createDetailsUI = ({
     perfect: "minmax(22px, 0.65fr)",
     double: "minmax(22px, 0.65fr)",
     back: "minmax(18px, 0.6fr)",
+    frontal: "minmax(20px, 0.6fr)",
     powershard: "minmax(20px, 0.6fr)",
     regen: "minmax(28px, 0.8fr)",
     mindmg: "minmax(28px, 0.8fr)",
     avgdmg: "minmax(28px, 0.8fr)",
     maxdmg: "minmax(28px, 0.8fr)",
   };
-  const GRID_COL_ORDER = ["name", "hit", "dmg", "dmgpct", "mhit", "mdmg", "crit", "parry", "perfect", "double", "back", "powershard", "regen", "mindmg", "avgdmg", "maxdmg"];
+  const GRID_COL_ORDER = ["name", "hit", "dmg", "dmgpct", "mhit", "mdmg", "crit", "parry", "perfect", "double", "back", "frontal", "powershard", "regen", "mindmg", "avgdmg", "maxdmg"];
 
   let lastMeasuredNameWidth = 0;
   const updateGridColumns = () => {
@@ -896,6 +907,7 @@ const createDetailsUI = ({
         crit: (Number(existing.crit) || 0) + (Number(skill.crit) || 0),
         parry: (Number(existing.parry) || 0) + (Number(skill.parry) || 0),
         back: (Number(existing.back) || 0) + (Number(skill.back) || 0),
+        frontal: (Number(existing.frontal) || 0) + (Number(skill.frontal) || 0),
         perfect: (Number(existing.perfect) || 0) + (Number(skill.perfect) || 0),
         double: (Number(existing.double) || 0) + (Number(skill.double) || 0),
         smite: (Number(existing.smite) || 0) + (Number(skill.smite) || 0),
@@ -1038,6 +1050,9 @@ const createDetailsUI = ({
         const dotPerfect = dotHits > 0 ? Math.round(((Number(dot.perfect) || 0) / dotHits) * 100) : 0;
         const dotDouble = dotHits > 0 ? Math.round(((Number(dot.double) || 0) / dotHits) * 100) : 0;
         const dotBack = dotHits > 0 ? Math.round(((Number(dot.back) || 0) / dotHits) * 100) : 0;
+        const dotFrontal = dotHits > 0 ? Math.round(((Number(dot.frontal) || 0) / dotHits) * 100) : 0;
+        const dotPowershard = dotHits > 0 ? Math.round(((Number(dot.powershard) || 0) / dotHits) * 100) : 0;
+        const dotRegen = Number(dot.regen) || 0;
         const dotRawMin = Number(dot.minDmg) || 0;
         const dotMin = dotRawMin >= 2147483647 ? 0 : dotRawMin;
         const dotMax = Number(dot.maxDmg) || 0;
@@ -1084,6 +1099,9 @@ const createDetailsUI = ({
             { cls: "cell center perfect", text: `${dotPerfect}%` },
             { cls: "cell center double", text: `${dotDouble}%` },
             { cls: "cell center back", text: `${dotBack}%` },
+            { cls: "cell center frontal", text: `${dotFrontal}%` },
+            { cls: "cell center powershard", text: `${dotPowershard}%` },
+            { cls: "cell center regen", text: `${formatDamageCompact(dotRegen)}` },
             { cls: "cell center mindmg", text: `${formatDamageCompact(dotMin)}` },
             { cls: "cell center avgdmg", text: `${formatDamageCompact(dotAvg)}` },
             { cls: "cell center maxdmg", text: `${formatDamageCompact(dotMax)}` },
@@ -1111,6 +1129,7 @@ const createDetailsUI = ({
       const perfect = skill.perfect || 0;
       const double = skill.double || 0;
       const back = skill.back || 0;
+      const frontal = skill.frontal || 0;
       const smite = skill.smite || 0;
       const powershard = skill.powershard || 0;
       const regen = skill.regen || 0;
@@ -1132,6 +1151,7 @@ const createDetailsUI = ({
       const critRate = pct(crits, hits);
       const parryRate = pct(parry, hits);
       const backRate = pct(back, hits);
+      const frontalRate = pct(frontal, hits);
       const perfectRate = pct(perfect, hits);
       const doubleRate = pct(double, hits);
       const smiteRate = pct(smite, hits);
@@ -1163,6 +1183,7 @@ const createDetailsUI = ({
       view.critEl.textContent = `${critRate}%`;
       view.parryEl.textContent = `${parryRate}%`;
       view.backEl.textContent = `${backRate}%`;
+      view.frontalEl.textContent = `${frontalRate}%`;
       view.perfectEl.textContent = `${perfectRate}%`;
       view.doubleEl.textContent = `${doubleRate}%`;
       view.powershardEl.textContent = `${powershardRate}%`;

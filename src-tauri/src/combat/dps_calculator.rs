@@ -129,9 +129,12 @@ impl DpsCalculator {
 
         let current_local_id = self.data_storage.local_player_id();
         if current_local_id != self.last_known_local_id {
+            // The local player can churn entity ids several times per fight, so
+            // this fires repeatedly. Only invalidate the snapshot so the "you"
+            // highlight follows the new id — do NOT restart target selection,
+            // which would drop the current target/segment on every change.
             self.last_known_local_id = current_local_id;
             self.last_damage_gen = -1;
-            self.restart_target_selection(false);
         }
 
         // If no new damage since last cycle, return cached result
@@ -225,7 +228,7 @@ impl DpsCalculator {
         }
 
         // Build canonical nickname map from aggregates
-        let canonical = build_nickname_canonical_map_from_aggregates(&combined_actors, &summon_data, &nickname_data);
+        let canonical = build_nickname_canonical_map_from_aggregates(&combined_actors, &summon_data, &nickname_data, current_local_id.map(|v| v as i32));
 
         let mut total_damage: f64 = 0.0;
 
@@ -266,23 +269,16 @@ impl DpsCalculator {
         // Also skip merging if multiple orphans share the same class — ambiguous.
         let known_players = self.data_storage.get_known_player_ids();
         let mut orphan_merges: Vec<(i32, i32)> = Vec::new();
-        // First, count orphans per job to detect ambiguity
-        let mut orphan_count_by_job: HashMap<String, i32> = HashMap::new();
-        for (&uid, data) in &dps_data.map {
-            if summon_data.contains_key(&uid) { continue; }
-            if nickname_data.contains_key(&uid) { continue; }
-            if known_players.contains(&uid) { continue; }
-            if data.job.is_empty() { continue; }
-            *orphan_count_by_job.entry(data.job.clone()).or_insert(0) += 1;
-        }
         for (&uid, data) in &dps_data.map {
             if summon_data.contains_key(&uid) { continue; }
             if nickname_data.contains_key(&uid) { continue; }
             if known_players.contains(&uid) { continue; }
             let job = &data.job;
             if job.is_empty() { continue; }
-            // Ambiguous: multiple unnamed actors of this class — don't merge
-            if orphan_count_by_job.get(job).copied().unwrap_or(0) > 1 { continue; }
+            // Attribute an unnamed, non-player entity (a summon / spell-effect that
+            // deals class-band damage) to the same-class player when there is
+            // exactly one — that owner is unambiguous even if several such orphans
+            // share the class (e.g. a Sorcerer's spell entities).
             let same_job: Vec<_> = dps_data.map.iter()
                 .filter(|(oid, od)| **oid != uid && od.job == *job && nickname_data.contains_key(oid))
                 .map(|(&oid, _)| oid)
@@ -663,6 +659,7 @@ impl DpsCalculator {
                 &target_data.actors.iter().map(|(&id, ad)| (id, ad.total_damage)).collect(),
                 &summon_data,
                 &nickname_data,
+                self.data_storage.local_player_id().map(|v| v as i32),
             );
 
             for (&actor_id, actor_data) in &target_data.actors {
@@ -683,19 +680,11 @@ impl DpsCalculator {
                 }
             }
 
-            // Orphan summon inference: only merge true orphans (not known players)
-            // and only when there's exactly one orphan of that class (avoid ambiguity)
+            // Orphan summon inference: merge true orphans (not known players) into
+            // the same-class player when there is exactly one — an unambiguous
+            // owner even if several such orphans share the class.
             let target_actor_ids: HashSet<i32> = actor_damage.keys().copied().collect();
             let known_players = self.data_storage.get_known_player_ids();
-            let mut orphan_count_by_job: HashMap<String, i32> = HashMap::new();
-            for (&uid, (_, job)) in &actor_meta {
-                if !target_actor_ids.contains(&uid) { continue; }
-                if summon_data.contains_key(&uid) { continue; }
-                if nickname_data.contains_key(&uid) { continue; }
-                if known_players.contains(&uid) { continue; }
-                if job.is_empty() { continue; }
-                *orphan_count_by_job.entry(job.clone()).or_insert(0) += 1;
-            }
             let mut orphan_merges: Vec<(i32, i32)> = Vec::new();
             for (&uid, (_, job)) in &actor_meta {
                 if !target_actor_ids.contains(&uid) { continue; }
@@ -703,7 +692,6 @@ impl DpsCalculator {
                 if nickname_data.contains_key(&uid) { continue; }
                 if known_players.contains(&uid) { continue; }
                 if job.is_empty() { continue; }
-                if orphan_count_by_job.get(job).copied().unwrap_or(0) > 1 { continue; }
                 let same_job: Vec<i32> = actor_meta.iter()
                     .filter(|(oid, (_, oj))| **oid != uid && *oj == *job
                         && nickname_data.contains_key(oid)
@@ -812,7 +800,7 @@ impl DpsCalculator {
         let actor_damage_map: HashMap<i32, i64> = target_data.actors.iter()
             .map(|(&id, ad)| (id, ad.total_damage))
             .collect();
-        let canonical = build_nickname_canonical_map_from_aggregates(&actor_damage_map, &summon_data, &nickname_data);
+        let canonical = build_nickname_canonical_map_from_aggregates(&actor_damage_map, &summon_data, &nickname_data, self.data_storage.local_player_id().map(|v| v as i32));
 
         // Build orphan summon map
         let mut orphan_to_owner: HashMap<i32, i32> = HashMap::new();
@@ -826,20 +814,6 @@ impl DpsCalculator {
                 if actor_jobs.contains_key(&uid) { continue; }
                 if let Some(job) = actor_data.job {
                     actor_jobs.insert(uid, job.class_name().to_string());
-                }
-            }
-            // Count orphans per job first to detect ambiguous cases
-            let mut orphan_count_by_job: HashMap<String, i32> = HashMap::new();
-            for (&actor_id, actor_data) in &target_data.actors {
-                let raw_uid = summon_resolver::resolve(actor_id, &summon_data);
-                if raw_uid <= 0 { continue; }
-                if summon_data.contains_key(&raw_uid) || nickname_data.contains_key(&raw_uid) { continue; }
-                if known_players.contains(&raw_uid) { continue; }
-                let job = actor_data.skills.keys()
-                    .find_map(|&(sc, _)| JobClass::convert_from_skill_loose(sc))
-                    .map(|j| j.class_name().to_string());
-                if let Some(j) = job {
-                    *orphan_count_by_job.entry(j).or_insert(0) += 1;
                 }
             }
             let mut seen = HashSet::new();
@@ -858,8 +832,6 @@ impl DpsCalculator {
                     Some(j) => j,
                     None => continue,
                 };
-                // Ambiguous: multiple orphans of the same class — don't merge
-                if orphan_count_by_job.get(&job).copied().unwrap_or(0) > 1 { continue; }
                 let matching: Vec<i32> = actor_jobs.iter()
                     .filter(|(id, j)| **id != raw_uid && **j == job && nickname_data.contains_key(id))
                     .map(|(id, _)| *id)
@@ -950,6 +922,7 @@ impl DpsCalculator {
                     crit: 0,
                     parry: 0,
                     back: 0,
+                    frontal: 0,
                     perfect: 0,
                     double: 0,
                     smite: 0,
@@ -973,6 +946,7 @@ impl DpsCalculator {
                 if skill_data.max_damage > entry.max_dmg { entry.max_dmg = skill_data.max_damage; }
                 entry.crit += skill_data.crit_count;
                 entry.back += skill_data.back_count;
+                entry.frontal += skill_data.frontal_count;
                 entry.parry += skill_data.parry_count;
                 entry.perfect += skill_data.perfect_count;
                 entry.double += skill_data.double_count;
@@ -1031,6 +1005,7 @@ impl DpsCalculator {
                     crit: 0,
                     parry: 0,
                     back: 0,
+                    frontal: 0,
                     perfect: 0,
                     double: 0,
                     smite: 0,
@@ -1082,6 +1057,7 @@ fn build_nickname_canonical_map_from_aggregates(
     actor_damage: &HashMap<i32, i64>,
     summon_data: &HashMap<i32, i32>,
     nickname_data: &HashMap<i32, String>,
+    local_player_id: Option<i32>,
 ) -> HashMap<String, i32> {
     let mut nickname_damage: HashMap<String, HashMap<i32, i64>> = HashMap::new();
 
@@ -1094,6 +1070,15 @@ fn build_nickname_canonical_map_from_aggregates(
 
     let mut result = HashMap::new();
     for (nickname, id_damage) in &nickname_damage {
+        // Pin the local player's row to their bound id so it doesn't oscillate
+        // between co-existing self-ids as damage accumulates (which made the
+        // frontend re-bind and thrash the meter).
+        if let Some(lid) = local_player_id {
+            if id_damage.contains_key(&lid) {
+                result.insert(nickname.clone(), lid);
+                continue;
+            }
+        }
         let direct_owner = id_damage.keys().find(|&&id| nickname_data.get(&id).is_some_and(|n| n == nickname));
         let canonical = direct_owner.copied()
             .or_else(|| id_damage.iter().max_by_key(|(_, d)| *d).map(|(id, _)| *id));

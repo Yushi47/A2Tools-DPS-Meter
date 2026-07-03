@@ -280,6 +280,7 @@
     "SORCERER": "마도성",
     "CLERIC": "치유성",
     "ELEMENTALIST": "정령성",
-    "CHANTER": "호법성"
+    "CHANTER": "호법성",
+    "FIGHTER": "권성"
   }
 }

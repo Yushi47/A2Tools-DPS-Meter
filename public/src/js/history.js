@@ -26,7 +26,13 @@ const createHistoryUI = ({ onOpenFight } = {}) => {
     "치유성": "CLERIC",
     "정령성": "ELEMENTALIST",
     "호법성": "CHANTER",
+    "권성": "FIGHTER",
   };
+
+  // Class-filter icons that exist as assets (Korean class names). Guarding on
+  // this set avoids requesting a missing file on every render (which spammed
+  // "asset not found" for classes without an icon).
+  const CLASS_ICON_JOBS = new Set(["검성", "궁성", "마도성", "살성", "수호성", "정령성", "치유성", "호법성", "권성"]);
 
   let showDeleteMode = false;
   let filterBoss = "";
@@ -113,7 +119,9 @@ const createHistoryUI = ({ onOpenFight } = {}) => {
     filterPlayer = job;
     if (filterPlayerLabel) {
       if (job) {
-        const img = `<img src="./assets/${job}.png" alt="" class="historyClassDropdownIcon" onerror="this.style.display='none'">`;
+        const img = CLASS_ICON_JOBS.has(job)
+          ? `<img src="./assets/${job}.png" alt="" class="historyClassDropdownIcon" onerror="this.style.display='none'">`
+          : "";
         filterPlayerLabel.innerHTML = `${img}${getJobLabel(job)}`;
       } else {
         filterPlayerLabel.textContent = t("history.filterPlayer", "All classes");
@@ -163,12 +171,14 @@ const createHistoryUI = ({ onOpenFight } = {}) => {
         const opt = document.createElement("div");
         opt.className = "historyClassOption" + (job === filterPlayer ? " selected" : "");
         opt.dataset.job = job;
-        const img = document.createElement("img");
-        img.src = `./assets/${job}.png`;
-        img.alt = "";
-        img.className = "historyClassDropdownIcon";
-        img.onerror = () => { img.style.display = "none"; };
-        opt.appendChild(img);
+        if (CLASS_ICON_JOBS.has(job)) {
+          const img = document.createElement("img");
+          img.src = `./assets/${job}.png`;
+          img.alt = "";
+          img.className = "historyClassDropdownIcon";
+          img.onerror = () => { img.style.display = "none"; };
+          opt.appendChild(img);
+        }
         opt.appendChild(document.createTextNode(getJobLabel(job)));
         opt.addEventListener("click", () => setClassFilter(job));
         filterPlayerMenu.appendChild(opt);

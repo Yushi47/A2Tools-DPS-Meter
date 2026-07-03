@@ -15,6 +15,7 @@ pub struct AnalyzedSkill {
     pub times: i32,
     pub skill_name: String,
     pub back_times: i32,
+    pub frontal_times: i32,
     pub perfect_times: i32,
     pub double_times: i32,
     pub parry_times: i32,
@@ -32,6 +33,7 @@ impl AnalyzedSkill {
             times: 0,
             skill_name,
             back_times: 0,
+            frontal_times: 0,
             perfect_times: 0,
             double_times: 0,
             parry_times: 0,
@@ -53,6 +55,7 @@ impl AnalyzedSkill {
             self.damage_amount = self.damage_amount.saturating_add(pdp.total_damage());
             if pdp.is_crit() { self.crit_times += 1; }
             if pdp.specials().contains(&SpecialDamage::Back) { self.back_times += 1; }
+            if pdp.specials().contains(&SpecialDamage::Frontal) { self.frontal_times += 1; }
             if pdp.specials().contains(&SpecialDamage::Parry) { self.parry_times += 1; }
             if pdp.specials().contains(&SpecialDamage::Double) { self.double_times += 1; }
             if pdp.specials().contains(&SpecialDamage::Perfect) { self.perfect_times += 1; }
@@ -64,6 +67,7 @@ impl AnalyzedSkill {
         self.damage_amount = self.damage_amount.saturating_add(other.damage_amount);
         self.crit_times += other.crit_times;
         self.back_times += other.back_times;
+        self.frontal_times += other.frontal_times;
         self.parry_times += other.parry_times;
         self.double_times += other.double_times;
         self.perfect_times += other.perfect_times;

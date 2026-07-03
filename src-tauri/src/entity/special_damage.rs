@@ -7,6 +7,7 @@ pub enum SpecialDamage {
     Parry,
     Perfect,
     Double,
+    Frontal,
     Endure,
     Unknown4,
     PowerShard,

@@ -46,6 +46,7 @@ pub struct SkillCombatData {
     pub max_damage: i32,
     pub crit_count: i32,
     pub back_count: i32,
+    pub frontal_count: i32,
     pub parry_count: i32,
     pub perfect_count: i32,
     pub double_count: i32,
@@ -77,6 +78,7 @@ impl SkillCombatData {
             max_damage: self.max_damage,
             crit_count: self.crit_count,
             back_count: self.back_count,
+            frontal_count: self.frontal_count,
             parry_count: self.parry_count,
             perfect_count: self.perfect_count,
             double_count: self.double_count,
@@ -101,6 +103,7 @@ impl SkillCombatData {
             max_damage: 0,
             crit_count: 0,
             back_count: 0,
+            frontal_count: 0,
             parry_count: 0,
             perfect_count: 0,
             double_count: 0,
@@ -200,7 +203,18 @@ struct Inner {
     /// Live CURRENT HP per entity, from the in-place `8D <id> 02 01 00 <u32>` feed.
     mob_current_hp: HashMap<i32, i32>,
     known_player_ids: HashSet<i32>,
+    /// Ids whose nickname came from an authoritative source (a 45/44 36 player
+    /// spawn or the account char-list). Lower-confidence parsers may not steal
+    /// such a name onto a different id. Lives parallel to `nickname_storage`:
+    /// survives a combat flush, cleared by `reset_nicknames`, evicted alongside.
+    authoritative_name_ids: HashSet<i32>,
     confirmed_summon_ids: HashSet<i32>,
+    /// Ids that spawned via a `40/41 36` mob/summon spawn (as opposed to a
+    /// `44/45 36` player spawn). A real player never spawns this way, so an
+    /// entity here that deals class-band damage is a summon / spell-effect
+    /// entity — it must not be flagged as a known player, and is a candidate for
+    /// attribution to the same-class player.
+    summon_spawn_ids: HashSet<i32>,
     hostile_target_ids: HashSet<i32>,
     dead_entity_ids: HashSet<i32>,
     /// Boss entity IDs identified from NPC DB boss flags
@@ -229,7 +243,9 @@ impl DataStorage {
                 mob_hp_data: HashMap::new(),
                 mob_current_hp: HashMap::new(),
                 known_player_ids: HashSet::new(),
+                authoritative_name_ids: HashSet::new(),
                 confirmed_summon_ids: HashSet::new(),
+                summon_spawn_ids: HashSet::new(),
                 hostile_target_ids: HashSet::new(),
                 dead_entity_ids: HashSet::new(),
                 boss_entity_ids: HashSet::new(),
@@ -264,9 +280,13 @@ impl DataStorage {
             }
         }
         self.last_zone_reset_ms.store(now, Ordering::Relaxed);
-        self.flush();
+        // Preserve identity across the reset: a teleport within the same instance
+        // keeps everyone's entity ids, so wiping nicknames/known-players/summons
+        // would drop your party (and you) to raw ids until they happen to be
+        // re-broadcast. Clear only the per-segment damage aggregates.
+        self.flush_combat_only();
         self.combat_reset_requested.store(true, Ordering::Relaxed);
-        tracing::info!("Zone change detected — combat data reset");
+        tracing::info!("Zone change detected — combat data reset (identity preserved)");
         true
     }
 
@@ -323,8 +343,13 @@ impl DataStorage {
             return;
         }
 
-        // Track player skill usage
-        if is_player_skill(skill_code) && !inner.confirmed_summon_ids.contains(&actor_id) {
+        // Track player skill usage. Exclude anything that spawned via a mob/summon
+        // spawn (40/41 36): a real player never does, so such an entity dealing
+        // class-band damage is a summon / spell-effect, not a player.
+        if is_player_skill(skill_code)
+            && !inner.confirmed_summon_ids.contains(&actor_id)
+            && !inner.summon_spawn_ids.contains(&actor_id)
+        {
             let is_new = inner.known_player_ids.insert(actor_id);
             if is_new {
                 inner.summon_storage.remove(&actor_id);
@@ -433,6 +458,7 @@ impl DataStorage {
         if hit_dmg > skill_data.max_damage { skill_data.max_damage = hit_dmg; }
         if pdp.is_crit() { skill_data.crit_count += 1; }
         if pdp.specials().contains(&SpecialDamage::Back) { skill_data.back_count += 1; }
+        if pdp.specials().contains(&SpecialDamage::Frontal) { skill_data.frontal_count += 1; }
         if pdp.specials().contains(&SpecialDamage::Parry) { skill_data.parry_count += 1; }
         if pdp.specials().contains(&SpecialDamage::Perfect) { skill_data.perfect_count += 1; }
         if pdp.specials().contains(&SpecialDamage::Double) { skill_data.double_count += 1; }
@@ -520,6 +546,17 @@ impl DataStorage {
         self.inner.read().confirmed_summon_ids.contains(&id)
     }
 
+    /// Record that `id` appeared in a `40/41 36` mob/summon spawn (never a player
+    /// spawn). Used to keep summon / spell-effect entities out of the known-player
+    /// set and make them attributable to their same-class player.
+    pub fn note_summon_spawn(&self, id: i32) {
+        self.inner.write().summon_spawn_ids.insert(id);
+    }
+
+    pub fn get_summon_spawn_ids(&self) -> HashSet<i32> {
+        self.inner.read().summon_spawn_ids.clone()
+    }
+
     pub fn register_confirmed_summon_by_id(&self, summon_id: i32, owner_id: i32) {
         tracing::trace!("Summon confirmed (5F 00): {} owned by {}", summon_id, owner_id);
         let mut inner = self.inner.write();
@@ -550,16 +587,39 @@ impl DataStorage {
         inner.summon_storage.insert(summon, summoner);
     }
 
+    /// Bind a nickname from a LOWER-CONFIDENCE source (fuzzy actor-name rules,
+    /// loot attribution, nickname scan). Gated so it can't corrupt naming:
+    ///  1. It may only name an id that is already a real entity — seen in combat,
+    ///     a known player, spawn-authoritative, a summon, or already named. This
+    ///     rejects names being bound to counter/terminator-derived junk ids (e.g.
+    ///     the sequence counter in a `0E 00 36 <counter>` record), which would
+    ///     otherwise evict a correct spawn name via the name-eviction rule.
+    ///  2. It may not steal a name that an authoritative source already bound to a
+    ///     different id.
     pub fn append_nickname(&self, uid: i32, nickname: &str) {
         let mut inner = self.inner.write();
+        if !fuzzy_bind_allowed(&inner, uid, nickname) {
+            return;
+        }
+        append_nickname_inner(&mut inner, uid, nickname);
+    }
+
+    /// Bind a nickname from an AUTHORITATIVE source (a 45/44 36 player spawn or
+    /// the account char-list). Not gated — the id↔name pairing is trusted — and
+    /// marks the id so fuzzy parsers can't later steal the name. A stale/junk
+    /// prior binding of this name is evicted, reclaiming the name to the real id.
+    pub fn append_nickname_authoritative(&self, uid: i32, nickname: &str) {
+        let mut inner = self.inner.write();
+        inner.authoritative_name_ids.insert(uid);
         append_nickname_inner(&mut inner, uid, nickname);
     }
 
     pub fn set_permanent_nickname(&self, uid: i32, nickname: &str) {
         let mut inner = self.inner.write();
         inner.permanent_nicknames.insert(uid, nickname.to_string());
-        // Force-apply: user explicitly set this in settings, bypass length/CJK heuristics
-        // that protect against bad packet scan results.
+        // User explicitly set this in settings: authoritative, and force-apply to
+        // bypass length/CJK heuristics that protect against bad packet scan results.
+        inner.authoritative_name_ids.insert(uid);
         append_nickname_inner_with_force(&mut inner, uid, nickname, true);
     }
 
@@ -744,6 +804,23 @@ impl DataStorage {
         inner.summon_storage.clear();
         inner.known_player_ids.clear();
         inner.confirmed_summon_ids.clear();
+        inner.summon_spawn_ids.clear();
+        inner.hostile_target_ids.clear();
+        inner.dead_entity_ids.clear();
+        inner.has_boss_in_segment = false;
+        inner.mob_hp_data.clear();
+        inner.mob_current_hp.clear();
+        inner.heal_storage.clear();
+        inner.current_target = 0;
+    }
+
+    /// Clear only the per-segment combat/damage aggregates, preserving player
+    /// identity: nicknames, known-player ids, summon ownership, and job classes.
+    /// Used on a zone-change / in-instance-teleport reset so the meter starts on
+    /// clean numbers without dropping who your party and you are.
+    pub fn flush_combat_only(&self) {
+        let mut inner = self.inner.write();
+        inner.target_combat.clear();
         inner.hostile_target_ids.clear();
         inner.dead_entity_ids.clear();
         inner.has_boss_in_segment = false;
@@ -757,11 +834,40 @@ impl DataStorage {
         let mut inner = self.inner.write();
         inner.nickname_storage.clear();
         inner.pending_nicknames.clear();
+        inner.authoritative_name_ids.clear();
         let permanent: Vec<(i32, String)> = inner.permanent_nicknames.iter().map(|(&k, v)| (k, v.clone())).collect();
         for (uid, nick) in permanent {
             inner.nickname_storage.insert(uid, nick);
         }
     }
+}
+
+/// Gate for lower-confidence nickname bindings (see `append_nickname`).
+fn fuzzy_bind_allowed(inner: &Inner, uid: i32, nickname: &str) -> bool {
+    // (1) The id must already be a real entity. A counter/terminator-derived
+    // junk id (e.g. `0E 00 36 <counter>`) never appears in combat, is never a
+    // known player/summon, was never spawned, and has no name yet — so it is
+    // rejected here, and can no longer evict a correct spawn name.
+    let is_real_entity = inner.nickname_storage.contains_key(&uid)
+        || inner.known_player_ids.contains(&uid)
+        || inner.authoritative_name_ids.contains(&uid)
+        || inner.summon_storage.contains_key(&uid)
+        || inner.target_combat.contains_key(&uid)
+        || inner
+            .target_combat
+            .values()
+            .any(|t| t.actors.contains_key(&uid));
+    if !is_real_entity {
+        return false;
+    }
+    // (2) Don't let a fuzzy source steal a name an authoritative source already
+    // bound to a different id.
+    for (&id, name) in &inner.nickname_storage {
+        if id != uid && name == nickname && inner.authoritative_name_ids.contains(&id) {
+            return false;
+        }
+    }
+    true
 }
 
 fn has_cjk(s: &str) -> bool {
@@ -821,6 +927,7 @@ fn append_nickname_inner_with_force(inner: &mut Inner, uid: i32, nickname: &str,
         tracing::debug!("Name eviction: '{}' moved from entity {} to {}", nickname, old_id, uid);
         inner.nickname_storage.remove(&old_id);
         inner.known_player_ids.remove(&old_id);
+        inner.authoritative_name_ids.remove(&old_id);
         inner.pending_nicknames.remove(&old_id);
         // Remove summon mappings pointing to the stale owner
         inner.summon_storage.retain(|_, &mut owner| owner != old_id);

@@ -280,6 +280,7 @@
     "SORCERER": "魔道聖",
     "CLERIC": "治癒聖",
     "ELEMENTALIST": "精靈聖",
-    "CHANTER": "護法聖"
+    "CHANTER": "護法聖",
+    "FIGHTER": "拳聖"
   }
 }

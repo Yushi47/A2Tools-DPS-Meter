@@ -10,6 +10,7 @@ pub enum JobClass {
     Cleric,
     Elementalist,
     Chanter,
+    Fighter,
 }
 
 impl JobClass {
@@ -23,6 +24,7 @@ impl JobClass {
             JobClass::Cleric => "치유성",
             JobClass::Elementalist => "정령성",
             JobClass::Chanter => "호법성",
+            JobClass::Fighter => "권성",
         }
     }
 
@@ -36,6 +38,7 @@ impl JobClass {
             JobClass::Elementalist => 16,
             JobClass::Cleric => 17,
             JobClass::Chanter => 18,
+            JobClass::Fighter => 19,
         }
     }
 
@@ -49,6 +52,7 @@ impl JobClass {
             16 => Some(JobClass::Elementalist),
             17 => Some(JobClass::Cleric),
             18 => Some(JobClass::Chanter),
+            19 => Some(JobClass::Fighter),
             _ => None,
         }
     }

@@ -61,6 +61,8 @@ pub struct DetailSkillEntry {
     pub crit: i32,
     pub parry: i32,
     pub back: i32,
+    #[serde(default)]
+    pub frontal: i32,
     pub perfect: i32,
     pub double: i32,
     pub smite: i32,

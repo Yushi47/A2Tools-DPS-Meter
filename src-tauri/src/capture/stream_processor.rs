@@ -172,6 +172,13 @@ impl StreamProcessor {
             self.scan_for_embedded_40_36(buffer);
         }
 
+        // Bind the local player from the account character-select list, which
+        // arrives as plaintext (uncompressed) and can land in a standalone packet.
+        self.scan_char_list_self(buffer);
+        // Also from the in-world self-detail record (covers the already-loaded
+        // case where no login char-list is in the capture).
+        self.scan_self_detail_name(buffer);
+
         offset
     }
 
@@ -247,6 +254,8 @@ impl StreamProcessor {
         self.scan_for_embedded_04_8d(&decompressed);
         self.scan_for_entity_hp(&decompressed);
         self.scan_for_embedded_40_36(&decompressed);
+        self.scan_char_list_self(&decompressed);
+        self.scan_self_detail_name(&decompressed);
 
         self.pending_compact_skill_context = None;
     }
@@ -740,6 +749,134 @@ impl StreamProcessor {
         }
     }
 
+    /// Bind the local player from the account character-select list.
+    ///
+    /// At login (and after a relog) the game broadcasts the account's character
+    /// list as a run of entries `03 <entity_id u32 LE> <name_len u8> <utf8 name>`,
+    /// one per character on the account — including alts that are not in the world.
+    /// When you are already loaded into a zone there is no in-world `45 36` spawn
+    /// for the character you are playing, so this list is the only place the local
+    /// player's name↔id pairing appears (verified against two live captures where
+    /// the self id, e.g. 4715/6289 across a relog, only surfaced here).
+    ///
+    /// We bind ONLY the entry whose name matches the user-configured character
+    /// name — that drives the existing local-player auto-bind. Alts are
+    /// deliberately skipped so we never create a phantom entity that never
+    /// fights. The entity id is u32 little-endian here, unlike the varint used by
+    /// the `36`-family spawn opcodes. The entry has no reliable leading tag (a
+    /// `03` seen in one class's list was coincidental), so we scan for the
+    /// `<id u32-LE> <name_len> <name>` shape directly and let the exact
+    /// character-name match reject false positives.
+    fn scan_char_list_self(&self, data: &[u8]) {
+        let local_name = match self.data_storage.local_character_name() {
+            Some(n) => n.trim().to_string(),
+            None => return,
+        };
+        if local_name.is_empty() {
+            return;
+        }
+        let mut i = 0;
+        while i + 5 < data.len() {
+            let entity_id =
+                u32::from_le_bytes([data[i], data[i + 1], data[i + 2], data[i + 3]]);
+            if !(100..=9_999_999).contains(&entity_id) {
+                i += 1;
+                continue;
+            }
+            let name_len = data[i + 4] as usize;
+            if !(2..=36).contains(&name_len) {
+                i += 1;
+                continue;
+            }
+            let name_start = i + 5;
+            let name_end = name_start + name_len;
+            if name_end > data.len() {
+                i += 1;
+                continue;
+            }
+            if let Ok(name) = std::str::from_utf8(&data[name_start..name_end]) {
+                if let Some(sanitized) = sanitize_nickname(name) {
+                    if sanitized.trim() == local_name {
+                        self.data_storage.append_nickname_authoritative(entity_id as i32, &sanitized);
+                        tracing::info!(
+                            "char-list: bound local player '{}' -> entity {}",
+                            sanitized,
+                            entity_id
+                        );
+                        return;
+                    }
+                }
+            }
+            i += 1;
+        }
+    }
+
+    /// Bind the local player from the self-detail record.
+    ///
+    /// The client emits a single detail record about the character you are
+    /// playing:
+    ///   `36 <entity_id varint> <b0> <b1> <b2> 0B 37 <name_len u8> <utf8 name>`
+    /// The three bytes after the id are class/appearance-specific (Cleric = `5F
+    /// ?? CB`, Assassin = `5E ?? C3`, …) — only the trailing `0B 37` marker is
+    /// constant, so we match on that alone and rely on the configured character
+    /// name to reject false positives. Verified across live captures: this
+    /// identifies you even when already loaded in-world — no login char-list, and
+    /// you never see your own 45 36 spawn. Bound authoritatively so it reclaims
+    /// the name onto the correct id if a stale/earlier id held it.
+    fn scan_self_detail_name(&self, data: &[u8]) {
+        let local_name = match self.data_storage.local_character_name() {
+            Some(n) => n.trim().to_string(),
+            None => return,
+        };
+        if local_name.is_empty() {
+            return;
+        }
+        let mut i = 0;
+        while i + 6 < data.len() {
+            if data[i] != 0x36 {
+                i += 1;
+                continue;
+            }
+            let id = read_varint(data, i + 1);
+            if id.length <= 0 || !(100..=9_999_999).contains(&id.value) {
+                i += 1;
+                continue;
+            }
+            let s = i + 1 + id.length as usize;
+            // Class-agnostic signature: <b0> <b1> <b2> 0B 37 <len> <name>
+            if s + 6 > data.len() || data[s + 3] != 0x0B || data[s + 4] != 0x37 {
+                i += 1;
+                continue;
+            }
+            let name_len = data[s + 5] as usize;
+            if !(2..=36).contains(&name_len) {
+                i += 1;
+                continue;
+            }
+            let ns = s + 6;
+            let ne = ns + name_len;
+            if ne > data.len() {
+                i += 1;
+                continue;
+            }
+            if let Ok(name) = std::str::from_utf8(&data[ns..ne]) {
+                if let Some(sanitized) = sanitize_nickname(name) {
+                    if sanitized.trim() == local_name {
+                        self.data_storage
+                            .append_nickname_authoritative(id.value, &sanitized);
+                        tracing::info!(
+                            "self-detail: bound local player '{}' -> entity {}",
+                            sanitized,
+                            id.value
+                        );
+                        return;
+                    }
+                }
+            }
+            i += 1;
+        }
+    }
+
     /// Extract player name from a 44 36 player spawn sub-packet.
     /// Structure: <actor_varint> <data...> 07 <name_length> <name_bytes>
     fn parse_player_spawn_name(&self, data: &[u8], offset_after_opcode: usize) {
@@ -765,7 +902,8 @@ impl StreamProcessor {
                 if let Ok(name) = std::str::from_utf8(&data[name_start..name_end]) {
                     if let Some(sanitized) = sanitize_nickname(name) {
                         if sanitized.len() >= 2 {
-                            self.data_storage.append_nickname(actor_id, &sanitized);
+                            // 45/44 36 player spawn is an authoritative id↔name source.
+                            self.data_storage.append_nickname_authoritative(actor_id, &sanitized);
                             return;
                         }
                     }
@@ -812,6 +950,11 @@ impl StreamProcessor {
         if real_actor_id > 1_000_000 {
             real_actor_id = (real_actor_id & 0x3FFF) | 0x4000;
         }
+
+        // This entity spawned via a mob/summon spawn (40/41 36), never a player
+        // spawn. Record it so a summon / spell-effect that deals class-band damage
+        // isn't mistaken for a player and can be attributed to its owner.
+        self.data_storage.note_summon_spawn(real_actor_id);
 
         // Detect summon spawn: [xx] 10 00 pattern
         if offset + 2 < packet.len()
@@ -1478,16 +1621,31 @@ impl StreamProcessor {
                 _ => 8,
             };
 
-            // Special damage flags
+            // Special damage flags. Per the 2026-06 layout, the block after the
+            // skill code is: <damage_type/crit> <modifications byte> 00 <direction byte>.
             let mut specials = Vec::new();
             if [5, 6, 7].contains(&and_result) && offset < packet.len() {
-                let special_byte = packet[offset] as u32;
-                if special_byte & 0x01 != 0 { specials.push(SpecialDamage::Back); }
-                if special_byte & 0x04 != 0 { specials.push(SpecialDamage::Parry); }
-                if special_byte & 0x08 != 0 { specials.push(SpecialDamage::Perfect); }
-                if special_byte & 0x10 != 0 { specials.push(SpecialDamage::Double); }
-                if special_byte & 0x40 != 0 { specials.push(SpecialDamage::Smite); }
-                if special_byte & 0x80 != 0 { specials.push(SpecialDamage::PowerShard); }
+                // Modifications byte = attack-quality flags. Confirmed against the
+                // game combat log: Perfect=0x04 (15,276 [Perfect Critical]),
+                // Double=0x08 (60,876 [Double Critical]); 0x0c = Perfect+Double.
+                // Parry/Smite/PowerShard follow the same contiguous shift (inferred).
+                let mods = packet[offset] as u32;
+                if mods & 0x02 != 0 { specials.push(SpecialDamage::Parry); }
+                if mods & 0x04 != 0 { specials.push(SpecialDamage::Perfect); }
+                if mods & 0x08 != 0 { specials.push(SpecialDamage::Double); }
+                if mods & 0x20 != 0 { specials.push(SpecialDamage::Smite); }
+                if mods & 0x40 != 0 { specials.push(SpecialDamage::PowerShard); }
+                // Direction byte (2 later) = positional enum, NOT the modifications
+                // byte. Confirmed against the game combat log: 0x00 = normal (front),
+                // 0x01 = Back (e.g. 757/1301/11248 [Back]), 0x02 = Frontal (7926
+                // [Frontal Critical]).
+                if offset + 2 < packet.len() {
+                    match packet[offset + 2] {
+                        0x01 => specials.push(SpecialDamage::Back),
+                        0x02 => specials.push(SpecialDamage::Frontal),
+                        _ => {}
+                    }
+                }
             }
             if damage_type == 3 {
                 specials.push(SpecialDamage::Critical);
@@ -1499,15 +1657,32 @@ impl StreamProcessor {
             }
 
             // Struct data extraction
-            let first_value = match try_read_varint(packet, &mut offset) {
+            let mut first_value = match try_read_varint(packet, &mut offset) {
                 Some(v) => v,
                 None => break,
             };
-            let after_first_offset = offset;
-            let second_value = match try_read_varint(packet, &mut offset) {
+            let mut after_first_offset = offset;
+            let mut second_value = match try_read_varint(packet, &mut offset) {
                 Some(v) => v,
                 None => break,
             };
+
+            // Post-2026-06 layout shift: these records now carry a leading zero
+            // pad plus a fixed marker field (e.g. `E6 6F` = 14310) ahead of the
+            // real value, so the damage lands one varint later than the parser
+            // historically expected. A `first_value` of 0 is that pad — realign by
+            // one varint (first <- the marker, second <- the real value). Verified
+            // live: a Power Burst crit read the 14310 marker instead of its true
+            // 60876, which sits in this next varint; the marker is constant across
+            // skills, which is why the same wrong number appeared everywhere.
+            if first_value == 0 {
+                let after_second_offset = offset;
+                if let Some(third) = try_read_varint(packet, &mut offset) {
+                    first_value = second_value;
+                    after_first_offset = after_second_offset;
+                    second_value = third;
+                }
+            }
 
             let first_is_damage = should_treat_first_value_as_damage(first_value, second_value, and_result, damage_type as i32);
 
