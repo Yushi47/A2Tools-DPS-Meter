@@ -1,6 +1,6 @@
 {
   "header": {
-    "title": "DPS 미터",
+    "title": "A2Tools DPS Meter",
     "display": {
       "dps": "DPS",
       "total": "DMG",
@@ -120,6 +120,13 @@
     "characterNamePlaceholder": "캐릭터 이름 입력",
     "pinMeToTop": "내 캐릭터를 맨 위에 고정",
     "slimMode": "슬림 모드",
+    "meterLayout": {
+      "label": "미터 레이아웃",
+      "beta": "베타 UI",
+      "betaSlim": "베타 슬림",
+      "classic": "클래식 UI",
+      "classicSlim": "클래식 슬림"
+    },
     "appearance": "외관",
     "connection": "연결",
     "advanced": "고급",
@@ -165,6 +172,9 @@
     },
     "meterOpacity": {
       "label": "미터 바 불투명도"
+    },
+    "bossNameSize": {
+      "label": "대상 이름 크기"
     },
     "targetWindow": {
       "label": "대상 시간 범위",

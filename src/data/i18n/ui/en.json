@@ -1,6 +1,6 @@
 {
   "header": {
-    "title": "DPS METER",
+    "title": "A2Tools DPS Meter",
     "display": {
       "dps": "DPS",
       "total": "DMG",
@@ -122,6 +122,13 @@
     "characterNamePlaceholder": "Enter your character name",
     "pinMeToTop": "Always show me at the top",
     "slimMode": "Slim mode",
+    "meterLayout": {
+      "label": "Meter layout",
+      "beta": "Beta UI",
+      "betaSlim": "Beta Slim",
+      "classic": "Classic UI",
+      "classicSlim": "Classic Slim"
+    },
     "appearance": "Appearance",
     "connection": "Connection",
     "advanced": "Advanced",
@@ -167,6 +174,9 @@
     },
     "meterOpacity": {
       "label": "Meter bar opacity"
+    },
+    "bossNameSize": {
+      "label": "Target name size"
     },
     "targetWindow": {
       "label": "Target time range",

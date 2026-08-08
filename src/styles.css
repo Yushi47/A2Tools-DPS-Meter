@@ -382,151 +382,628 @@ html:lang(zh-Hant), html:lang(zh-Hant) body {
 .container {
   position: relative;
 }
+/* ============================================================
+   MAIN METER WINDOW
+   ------------------------------------------------------------
+   Read as an instrument, not a chart. Three rules drive the whole
+   layout:
+
+   1. Numbers lead. The DPS readout is the top of the type scale;
+      names identify, bars quantify, ranks order.
+   2. Text never sits on a colour slab. The bar is a tint behind the
+      row and ends in a lit edge, so the row stays legible over any
+      terrain and at any window opacity.
+   3. One chrome row at each end. The header states what is being
+      measured, the footer states the run — nothing floats.
+   ============================================================ */
+
+:root {
+  --hud-bg: 9, 13, 24;
+  --hud-hairline: rgba(255, 255, 255, 0.07);
+  --hud-row-bg: rgba(255, 255, 255, 0.035);
+
+  --hud-name: rgba(255, 255, 255, 0.95);
+  --hud-num: #ffffff;
+  --hud-sub: rgba(255, 255, 255, 0.45);
+  --hud-faint: rgba(255, 255, 255, 0.3);
+
+  /* DIN-lineage grotesque that ships with Windows 10/11. Instrument
+     dials and gauges use this shape for a reason: it stays legible
+     small, its figures are unambiguous, and it reads as telemetry
+     rather than as another game UI panel. Latin only, which is why
+     player names keep the CJK-capable stack below. */
+  --hud-tech: "Bahnschrift", "DIN Alternate", "Segoe UI Variable Display",
+    "Segoe UI", sans-serif;
+  --hud-ident: "Pretendard", "Spoqa Han Sans Neo", "Segoe UI", sans-serif;
+
+  --hud-row-h: 30px;
+  --hud-gap: 3px;
+  /* Reserved right column the bar track never enters. Sized to the widest
+     readout: a six-glyph figure plus the contribution percentage. */
+  --hud-readout: 104px;
+  /* User-adjustable in Settings; the value here is the design default. */
+  --boss-name-size: 15px;
+}
+
+/* ---------- shell ---------- */
+
 .meter {
   width: 380px;
-  background: rgba(12, 22, 40, var(--window-opacity));
-
-  /* backdrop-filter: blur(1px) saturate(180%); */
-  /* background-color: rgba(255, 255, 255, 0.1); */
-  border: 1px solid rgba(255, 255, 255, min(0.3, calc(var(--window-opacity) * 0.3)));
-  border-radius: var(--rounded);
-  position: relative;
   min-width: 300px;
   min-height: 30px;
-  padding-bottom: 20px;
-
-  &.flash {
-    animation: detailsFlash 1s ease-out;
-  }
+  position: relative;
+  border-radius: var(--rounded);
+  background: rgba(var(--hud-bg), var(--window-opacity));
+  border: 1px solid rgba(255, 255, 255, min(0.14, calc(var(--window-opacity) * 0.2)));
+  box-shadow: 0 8px 28px rgba(0, 0, 0, calc(var(--window-opacity) * 0.45));
 }
+.meter.flash {
+  animation: detailsFlash 1s ease-out;
+}
+
+/* ---------- header ---------- */
 
 .header {
   display: flex;
   align-items: center;
-  align-content: center;
   gap: 8px;
-  padding: 8px 12px;
-  .bossIcon {
-    display: flex;
-    align-items: center;
-    width: 88px;
-    position: relative;
-    img {
-      -webkit-user-drag: none;
-
-      width: 100%;
-    }
-  }
-  .bossIconOverlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    background: rgba(0, 0, 0, 0.35);
-    color: #ffffff;
-    transition: opacity 150ms ease;
-    pointer-events: none;
-    border-radius: 8px;
-  }
-  .bossIconOverlay svg {
-    width: 22px;
-    height: 22px;
-  }
-  .bossIcon:hover .bossIconOverlay {
-    opacity: 1;
-  }
-
-  .bossNames {
-    flex: 1;
-    color: var(--title);
-    text-shadow: var(--text-shadow);
-    font-weight: bold;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-  }
-
-  .headerBtns {
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    color: white;
-    gap: 8px;
-    text-shadow: var(--text-shadow);
-    cursor: pointer;
-    .headerBtn {
-      display: flex;
-      align-items: center;
-      width: 20px;
-      height: 20px;
-    }
-    /* When suspend button is visible, shrink all header buttons */
-    &.hasSuspendBtn .headerBtn {
-      width: 16px;
-      height: 16px;
-    }
-    &.hasSuspendBtn {
-      gap: 6px;
-    }
-    .suspendBtn {
-      color: rgba(255, 255, 255, 0.85);
-      transition: color 150ms ease;
-    }
-    .suspendBtn.isSuspended {
-      color: #ff6b6b;
-    }
-    .metricToggleBtn {
-      width: auto;
-      height: auto;
-      min-width: 26px;
-      padding: 0;
-      border: none;
-      background: transparent;
-      color: inherit;
-      font-size: 17px;
-      font-weight: 700;
-      cursor: pointer;
-      text-align: center;
-    }
-  }
-
-  .footerBtns {
-    position: absolute;
-    right: 24px;
-    bottom: 4px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: bold;
-    color: white;
-    text-shadow: var(--text-shadow);
-    cursor: pointer;
-
-    .footerBtn {
-      display: flex;
-      align-items: center;
-      width: 20px;
-      height: 20px;
-    }
-
-    .metricToggleBtn {
-      width: auto;
-      height: auto;
-      min-width: 26px;
-      padding: 0;
-      border: none;
-      background: transparent;
-      color: inherit;
-      font-size: 17px;
-      font-weight: 700;
-      cursor: pointer;
-      text-align: center;
-    }
-  }
+  padding: 7px 10px 6px;
 }
+
+/* Was an 88px AION 2 wordmark — a quarter of the window width spent on
+   branding, with "copy screenshot" hidden behind a hover state on it.
+   Now an ordinary icon button in the control group: same action, named,
+   discoverable, 15px. */
+.header .bossIcon {
+  order: 2;
+  flex: 0 0 auto;
+  position: relative;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition: color 120ms ease;
+}
+.header .bossIcon:hover { color: #fff; }
+.header .bossIcon img { display: none; }
+.header .bossIconOverlay {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  background: none;
+  color: inherit;
+  pointer-events: none;
+}
+.header .bossIconOverlay svg { width: 15px; height: 15px; }
+
+.header .bossNames {
+  order: 1;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  height: auto;
+}
+
+/* The boss name labels the readout, so it is set as a label: tracked
+   caps in the technical face, never louder than the numbers below. */
+.header .bossNames .bossName {
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 600, "wdth" 87.5;
+  font-size: var(--boss-name-size, 15px);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--title);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.15;
+}
+.header .bossNames .bossName:lang(ko),
+.header .bossNames .bossName:lang(zh-CN),
+.header .bossNames .bossName:lang(zh-Hans),
+.header .bossNames .bossName:lang(zh-TW),
+.header .bossNames .bossName:lang(zh-Hant) {
+  font-family: var(--cjk-font-stack);
+  font-weight: 600;
+  /* CJK glyphs are full-width and never uppercased, so they need a touch
+     more size than the tracked Latin caps to read at the same weight. */
+  font-size: calc(var(--boss-name-size, 15px) * 1.05);
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.header .headerBtns {
+  order: 3;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+}
+.header .headerBtns .headerBtn {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 120ms ease;
+}
+.header .headerBtns .headerBtn svg { width: 15px; height: 15px; }
+.header .headerBtns .headerBtn:hover { color: #fff; }
+.header .headerBtns.hasSuspendBtn { gap: 6px; }
+.header .headerBtns .suspendBtn { color: rgba(255, 255, 255, 0.55); }
+.header .headerBtns .suspendBtn.isSuspended { color: #ff6b6b; }
+
+/* ---------- boss HP: the waterline ---------- */
+
+/* Full-bleed band under the header. Edge to edge, square corners: it
+   reads as the horizon of the instrument rather than as a widget
+   parked inside the title row, and it costs 14px instead of stacking
+   a second line into the header. */
+.bossHpBar {
+  position: relative;
+  height: 14px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.45);
+  border-top: 1px solid var(--hud-hairline);
+  border-bottom: 1px solid var(--hud-hairline);
+}
+.bossHpFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(180deg, #47d47d 0%, #2ea75f 100%);
+  opacity: var(--meter-fill-opacity, 0.8);
+  transition: width 320ms cubic-bezier(0.22, 1, 0.36, 1), background 300ms ease;
+}
+.bossHpFill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 2px;
+  background: #d8ffe8;
+  box-shadow: 0 0 7px 1px rgba(120, 255, 175, 0.7);
+}
+.bossHpBar.isMid .bossHpFill { background: linear-gradient(180deg, #f0bb52 0%, #cf912c 100%); }
+.bossHpBar.isMid .bossHpFill::after { background: #fff0d0; box-shadow: 0 0 7px 1px rgba(255, 200, 110, 0.7); }
+.bossHpBar.isLow .bossHpFill { background: linear-gradient(180deg, #f06a6a 0%, #c93c3c 100%); }
+.bossHpBar.isLow .bossHpFill::after { background: #ffdcdc; box-shadow: 0 0 7px 1px rgba(255, 120, 120, 0.75); }
+
+/* Percent left, absolute HP right. A centred label sat exactly where
+   the fill edge crosses, which is what made the old one unreadable at
+   mid HP; split to the two ends, neither can be bisected. */
+.bossHpText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 600, "wdth" 87.5;
+  font-size: 10.5px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95), 0 0 4px rgba(0, 0, 0, 0.85);
+  pointer-events: none;
+}
+.bossHpText .bossHpAmt { color: rgba(255, 255, 255, 0.72); }
+
+/* ---------- player rows ---------- */
+
+.list {
+  display: grid;
+  gap: var(--hud-gap);
+  padding: 0 8px;
+}
+.list.hasRows { padding: 7px 8px; }
+
+.list .item {
+  position: relative;
+  height: var(--hud-row-h);
+  padding: 0 8px 0 6px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--hud-row-bg);
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+.list .item:hover { background: rgba(255, 255, 255, 0.075); }
+.list.dragInteracting .item { pointer-events: none; }
+
+/* The bar runs in a track that stops short of the readout column. In the
+   old layout a long bar slid its edge straight under the DPS figure and
+   cut it in half; here the numbers always sit on clean panel. */
+.list .item .fillTrack {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: var(--hud-readout, 104px);
+}
+
+/* The bar is a tint behind the row, never a slab under the text.
+   --bar is re-pointed per row state; everything else reads from it. */
+.list .item .fill {
+  --bar: var(--row-fill);
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  opacity: var(--meter-fill-opacity, 0.8);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--bar) 30%, transparent) 0%,
+    color-mix(in srgb, var(--bar) 62%, transparent) 100%
+  );
+  transition: width 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* The lit edge is the part you actually read at a glance. When the tint
+   washes out over bright terrain or at low panel opacity, the edge still
+   says exactly where the bar ends — six of them stack into a skyline
+   you can take in without focusing on the window. */
+.list .item .fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 2px;
+  background: color-mix(in srgb, var(--bar) 35%, white);
+  box-shadow: 0 0 9px 1px color-mix(in srgb, var(--bar) 75%, transparent);
+}
+.list .item.isUser .fill { --bar: var(--isUser-fill); }
+.list .item.warning .fill { --bar: var(--warning-fill); }
+.list .item.error .fill { --bar: var(--error-fill); }
+
+/* Your own row carries a lit rail on the left, so you can find yourself
+   without reading a name. */
+.list .item.isUser::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  z-index: 2;
+  background: var(--isUser-fill);
+  box-shadow: 0 0 8px 1px color-mix(in srgb, var(--isUser-fill) 70%, transparent);
+}
+
+.list .item .fill::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 40%;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%);
+}
+.list .item.hoverRippleOnce .fill::before {
+  opacity: 1;
+  animation: meterBarHoverRipple 900ms ease-out;
+}
+
+.list .item .content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* Rank is ladder position by damage, not row order — with "pin me to
+   top" on, your row moves but your rank does not lie. */
+.list .item .rank {
+  flex: 0 0 auto;
+  min-width: 13px;
+  text-align: right;
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 600, "wdth" 75;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: var(--hud-faint);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+}
+.list .item.isRankOne .rank { color: rgba(255, 255, 255, 0.8); }
+
+.list .item .classIcon {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.list .item .classIcon .classIconImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.8));
+}
+
+.list .item .name {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--hud-ident);
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--hud-name);
+  text-shadow: var(--player-name-shadow, var(--text-shadow));
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.list .item .name.isCjk {
+  font-family: var(--cjk-font-stack);
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+/* The readout: top of the type scale, tabular so digits do not dance
+   between frames. */
+.list .item .dps {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  font-family: var(--hud-tech);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.7);
+}
+.list .item .dps > p {
+  margin: 0;
+  font-variation-settings: "wght" 700, "wdth" 87.5;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--hud-num);
+}
+.list .item .dps .dpsContribution {
+  font-variation-settings: "wght" 600, "wdth" 75;
+  font-size: 11px;
+  color: var(--hud-sub);
+  min-width: 34px;
+  text-align: right;
+}
+
+.meter .item.isIdentifying .content .name {
+  font-size: 13px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--hud-sub);
+}
+body.mainPlayerNamesBold .meter .item .content .name { font-weight: 700; }
+body.mainPlayerNamesBold .meter .item .content .name.isCjk { font-weight: 700; }
+body.mainPlayerDpsBold .meter .item .content .dps > p {
+  font-variation-settings: "wght" 800, "wdth" 87.5;
+}
+
+/* ---------- footer ---------- */
+
+/* One real row. This used to be three absolutely-positioned fragments
+   — timer, totals, mode buttons — overlapping in the bottom 20px and
+   colliding with the resize handle. */
+.meterFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  height: 24px;
+  padding: 0 22px 0 10px;
+  border-top: 1px solid var(--hud-hairline);
+  /* Matches the shell radius rather than relying on overflow:hidden — the
+     settings / details / history panels are absolutely positioned outside
+     the meter box and clipping the shell would hide them. */
+  border-radius: 0 0 var(--rounded) var(--rounded);
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.battleTime {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  position: static;
+  padding: 0;
+  margin: 0;
+}
+.battleTime.isVisible { display: flex; margin-right: auto; }
+.battleTime .status {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+  flex: 0 0 auto;
+  position: relative;
+}
+.battleTime.state-fighting .status { background: var(--indicator-combat); }
+.battleTime.state-fighting .status::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 999px;
+  background: var(--indicator-combat);
+  opacity: 0.3;
+  animation: hudBeacon 1.6s ease-in-out infinite;
+}
+.battleTime.state-grace .status { background: var(--indicator-wait); }
+.battleTime.state-ended .status { background: var(--indicator-end); }
+.battleTime.state-idle .status { background: var(--indicator-idle); }
+.battleTime .tick {
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 600, "wdth" 87.5;
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.8);
+}
+.battleTime .analysisStatus {
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 400, "wdth" 87.5;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meterTotalBar {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 0;
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 600, "wdth" 87.5;
+  font-variant-numeric: tabular-nums;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.62);
+}
+.meterTotalBar .meterTotalDps { color: rgba(255, 255, 255, 0.82); }
+.meterTotalBar .meterTotalDmg { color: rgba(255, 255, 255, 0.5); }
+.meterTotalBar .meterTotalSep { color: rgba(255, 255, 255, 0.18); }
+
+.footerBtns {
+  position: static;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+/* Mode switches read as chips: small, quiet, obviously pressable, and
+   wide enough that TARGET → BOSS → TRAIN → ALL never shifts the row. */
+.footerBtns .footerBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 16px;
+  padding: 0 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.62);
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 700, "wdth" 75;
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  line-height: 1;
+  transition: color 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+.footerBtns .targetModeBtn { min-width: 44px; }
+.footerBtns .metricToggleBtn { min-width: 30px; }
+.footerBtns .footerBtn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.footerBtns .footerBtn:focus-visible {
+  outline: 2px solid var(--isUser-fill);
+  outline-offset: 1px;
+}
+.footerBtns .collapseBtn {
+  width: 18px;
+  min-width: 0;
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+}
+.footerBtns .collapseBtn svg { width: 13px; height: 13px; }
+
+.resizeHandle {
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 12px;
+  height: 12px;
+  cursor: se-resize;
+  opacity: 0.4;
+}
+.resizeHandle::before {
+  content: "";
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid rgba(255, 255, 255, 0.7);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+@keyframes hudBeacon {
+  0%, 100% { opacity: 0.32; transform: scale(1); }
+  50% { opacity: 0.08; transform: scale(1.55); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .battleTime.state-fighting .status::after { animation: none; }
+  .list .item .fill,
+  .bossHpFill { transition: none; }
+}
+
+/* ---------- slim ---------- */
+
+.meter.slim { --hud-row-h: 22px; --hud-gap: 2px; --hud-readout: 86px; }
+.meter.slim .header { padding: 5px 8px 4px; gap: 7px; }
+.meter.slim .header .bossIcon,
+.meter.slim .header .bossIconOverlay svg { width: 13px; height: 13px; }
+.meter.slim .header .bossNames .bossName {
+  font-size: calc(var(--boss-name-size, 15px) * 0.85);
+  letter-spacing: 0.1em;
+}
+.meter.slim .header .headerBtns .headerBtn,
+.meter.slim .header .headerBtns .headerBtn svg { width: 13px; height: 13px; }
+.meter.slim .bossHpBar { height: 10px; }
+.meter.slim .bossHpText { font-size: 8.5px; padding: 0 6px; }
+.meter.slim .list { padding: 0 6px; }
+.meter.slim .list.hasRows { padding: 5px 6px; }
+.meter.slim .list .item { padding: 0 6px 0 4px; }
+.meter.slim .list .item .content { gap: 5px; }
+.meter.slim .list .item .rank { min-width: 11px; font-size: 9px; }
+.meter.slim .list .item .classIcon { width: 15px; height: 15px; }
+.meter.slim .list .item .name { font-size: 11.5px; }
+.meter.slim .list .item .name.isCjk { font-size: 11px; }
+.meter.slim .list .item .dps { gap: 5px; }
+.meter.slim .list .item .dps > p { font-size: 12.5px; }
+.meter.slim .list .item .dps .dpsContribution { font-size: 9px; min-width: 28px; }
+.meter.slim .meterFooter { height: 19px; padding: 0 19px 0 8px; }
+.meter.slim .pingDisplay { font-size: 10px; }
+.meter.slim .pingDisplay .pingIcon { width: 11px; height: 11px; }
+.meter.slim .battleTime .tick { font-size: 10px; }
+.meter.slim .battleTime .analysisStatus { font-size: 10px; }
+.meter.slim .meterTotalBar { font-size: 9.5px; }
+.meter.slim .footerBtns .footerBtn { height: 14px; padding: 0 5px; font-size: 8.5px; }
+.meter.slim .footerBtns .targetModeBtn { min-width: 38px; }
+.meter.slim .footerBtns .metricToggleBtn { min-width: 26px; }
+.meter.slim .footerBtns .collapseBtn { width: 15px; }
+.meter.slim .footerBtns .collapseBtn svg { width: 11px; height: 11px; }
+.meter.slim .resizeHandle { width: 10px; height: 10px; }
+
+
 .settingsPanel {
   position: absolute;
   color: var(--text-color);
@@ -835,234 +1312,7 @@ html:lang(zh-Hant), html:lang(zh-Hant) body {
     width: 100%;
   }
 }
-.meterTotalBar {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 8px;
-  padding: 0 20px 6px 12px;
-  font-size: 13px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.7);
-}
-.meter.slim .meterTotalBar {
-  font-size: 11px;
-  padding: 0 20px 0 12px;
-}
-.meterTotalBar .meterTotalDps,
-.meterTotalBar .meterTotalDmg {
-  color: rgba(255, 255, 255, 0.55);
-}
-.meterTotalBar .meterTotalSep {
-  opacity: 0.3;
-}
-.list {
-  display: grid;
-  gap: 4px;
-  padding: 0 12px;
-  &:has(.item:not([style*="display: none"])) {
-    padding: 4px 12px 16px;
-  }
-  &:has(.item:not([style*="display: none"])) + .meterTotalBar {
-    margin-top: -13px;
-  }
-  .item {
-    position: relative;
-    height: 36px;
-    padding: 0 8px;
-    border-radius: var(--rounded-xs);
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-  }
 
-  /* .item.isUser {
-    cursor: pointer;
-  } */
-  .item.isUser .fill {
-    background: var(--isUser-fill);
-  }
-  .item.warning .fill {
-    background: var(--warning-fill);
-  }
-  .item.error .fill {
-    background: var(--error-fill);
-  }
-  .fill {
-    position: absolute;
-    inset: 0;
-
-    background: var(--row-fill);
-    opacity: 0.8;
-    transform-origin: left center;
-    transform: scaleX(0);
-    overflow: hidden;
-
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: -40%;
-      width: 40%;
-      opacity: 0;
-      pointer-events: none;
-      background: linear-gradient(
-              110deg,
-              rgba(255, 255, 255, 0) 0%,
-              rgba(255, 255, 255, 0.35) 50%,
-              rgba(255, 255, 255, 0) 100%
-      );
-    }
-  }
-
-  .item.hoverRippleOnce .fill::after {
-    opacity: 1;
-    animation: meterBarHoverRipple 900ms ease-out;
-  }
-
-  .content {
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    .classIcon {
-      width: 26px;
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-      .classIconImg {
-        width: 100%;
-        height: 100%;
-      }
-    }
-
-    .name {
-      flex: 1;
-      color: var(--text-color);
-      font-size: 21px;
-      line-height: 1;
-      padding-bottom: 1px;
-      text-shadow:
-              0 0 2px rgba(0,0,0,0.95),
-              0 1px 3px rgba(0,0,0,0.90),
-              0 3px 6px rgba(0,0,0,0.70);
-      font-weight: 500;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-    .name.isCjk {
-      font-family: var(--cjk-font-stack);
-      letter-spacing: 0;
-    }
-    .dps {
-      color: var(--dps-text);
-      font-size: var(--font);
-      text-shadow: var(--dps-shadow, var(--text-shadow));
-      font-weight: 400;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-  }
-}
-.meter .item.isIdentifying .content .name {
-  font-size: 18px;
-  font-weight: 400;
-}
-body.mainPlayerNamesBold .meter .item .content .name {
-  font-weight: 700;
-}
-body.mainPlayerNamesBold .meter .item .content .name.isCjk {
-  font-weight: 700;
-}
-body.mainPlayerDpsBold .meter .item .content .dps {
-  font-weight: 700;
-}
-.battleTime {
-  display: none;
-  align-items: center;
-  gap: 8px;
-  position: absolute;
-  bottom: 8px;
-  left: 12px;
-  margin-bottom: 0;
-  padding: 0;
-
-  &.isVisible {
-    display: flex;
-  }
-  .tick {
-    color: var(--text-color);
-    text-shadow: var(--text-shadow);
-    font-weight: 700;
-    font-size: 17px;
-  }
-
-  .analysisStatus {
-    color: rgba(255, 255, 255, 0.75);
-    text-shadow: var(--text-shadow);
-    font-size: 12px;
-    white-space: nowrap;
-  }
-
-  .status {
-    width: 10px;
-    height: 10px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.25);
-    flex: 0 0 auto;
-    position: relative;
-  }
-
-  &.state-fighting .status {
-    background: var(--indicator-combat);
-  }
-
-  &.state-fighting .status::after {
-    content: "";
-    position: absolute;
-    inset: -3px;
-    border-radius: 999px;
-    background: var(--indicator-combat);
-    opacity: 0.35;
-  }
-  &.state-grace .status {
-    background: var(--indicator-wait);
-  }
-  &.state-ended .status {
-    background: var(--indicator-end);
-  }
-  &.state-idle .status {
-    background: var(--indicator-idle);
-  }
-}
-
-.resizeHandle {
-  position: absolute;
-  right: 4px;
-  bottom: 4px;
-  width: 14px;
-  height: 14px;
-  cursor: se-resize;
-  opacity: 0.65;
-}
-
-.resizeHandle::before {
-  content: "";
-  position: absolute;
-  right: 2px;
-  bottom: 2px;
-  width: 10px;
-  height: 10px;
-  border-right: 2px solid rgba(255, 255, 255, 0.7);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.7);
-}
 
 /* Shared close button — used in settingsPanel, detailsPanel, and historyPanel */
 .closeX {
@@ -1560,23 +1810,27 @@ body.mainPlayerDpsBold .meter .item .content .dps {
 /* Ping display — sits below the meter, outside the meter viewport */
 .pingDisplay {
   display: none;
-  margin-top: 2px;
-  padding: 2px 8px;
-  font-size: 13px;
-  font-weight: 600;
+  margin: 0;
+  padding: 0;
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 600, "wdth" 87.5;
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+  line-height: 1;
   pointer-events: none;
   white-space: nowrap;
-  width: fit-content;
+  width: auto;
+  flex: 0 0 auto;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
   align-items: center;
-  gap: 5px;
+  gap: 4px;
 }
 .pingDisplay.isVisible {
   display: flex;
 }
 .pingDisplay .pingIcon {
-  width: 15px;
-  height: 15px;
+  width: 13px;
+  height: 13px;
   flex-shrink: 0;
 }
 .pingDisplay.ping-good {
@@ -2077,139 +2331,7 @@ body.mainPlayerDpsBold .meter .item .content .dps {
 }
 
 /* Compatibility: flatten nested rules for environments without CSS nesting support. */
-.header .bossIcon {
-  display: flex;
-  align-items: center;
-  width: 88px;
-}
-.header .bossIcon img {
-  -webkit-user-drag: none;
-  width: 100%;
-}
-.header .bossNames {
-  flex: 1;
-  min-width: 0;
-  color: var(--title);
-  text-shadow: var(--text-shadow);
-  font-weight: bold;
-  /* override the fixed `height: 24px` from the base `.header .bossNames` rule
-     above — a fixed height crams the name + HP bar into one line and overlaps. */
-  height: auto;
-  min-height: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  gap: 4px;
-  font-size: 17px;
-  overflow: visible;
-}
-.header .bossNames .bossName {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.1;
-}
-.header .bossNames .bossHpBar {
-  position: relative;
-  height: 13px;
-  border-radius: 3px;
-  background: rgba(0, 0, 0, 0.55);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
-  overflow: hidden;
-}
-.header .bossNames .bossHpBar .bossHpFill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  border-radius: 4px;
-  background: linear-gradient(90deg, #36c46a, #5be08a);
-  /* Match the meter row bars: the colored fill fades with the meter bar opacity
-     setting, while the track and the HP text stay fully readable. */
-  opacity: var(--meter-fill-opacity, 0.8);
-  transition: width 0.3s ease, background 0.3s ease, opacity 0.2s ease;
-}
-.header .bossNames .bossHpBar.isMid .bossHpFill {
-  background: linear-gradient(90deg, #e0a23c, #f0c45b);
-}
-.header .bossNames .bossHpBar.isLow .bossHpFill {
-  background: linear-gradient(90deg, #d24b4b, #f06b6b);
-}
-.header .bossNames .bossHpBar .bossHpText {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 1;
-  color: #fff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95), 0 0 3px rgba(0, 0, 0, 0.8);
-  letter-spacing: 0.2px;
-}
-.header .headerBtns {
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  color: white;
-  gap: 8px;
-  text-shadow: var(--text-shadow);
-  cursor: pointer;
-}
-.header .headerBtns .headerBtn {
-  display: flex;
-  align-items: center;
-  width: 20px;
-  height: 20px;
-}
-.footerBtns {
-  position: absolute;
-  right: 24px;
-  bottom: 4px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: bold;
-  color: white;
-  text-shadow: var(--text-shadow);
-  cursor: pointer;
-}
-.footerBtns .footerBtn {
-  display: flex;
-  align-items: center;
-  width: 20px;
-  height: 20px;
-}
-.footerBtns .metricToggleBtn {
-  width: auto;
-  height: auto;
-  min-width: 26px;
-  padding: 0;
-  border: none;
-  background: transparent;
-  color: inherit;
-  font-size: 17px;
-  font-weight: 700;
-  cursor: pointer;
-  text-align: center;
-}
-.footerBtns .targetModeBtn {
-  width: auto;
-  height: auto;
-  min-width: 62px;
-  padding: 0;
-  border: none;
-  background: transparent;
-  color: inherit;
-  font-size: 17px;
-  font-weight: 700;
-  cursor: pointer;
-  text-align: right;
-  justify-content: flex-end;
-}
+
 
 .settingsPanel.isOpen {
   display: flex;
@@ -2669,138 +2791,6 @@ body.mainPlayerNamesBold .settingsPanel .themeDropdownMenu .settingsDropdownItem
   text-decoration: underline;
 }
 
-.list .item {
-  position: relative;
-  height: 36px;
-  padding: 0 8px;
-  border-radius: var(--rounded-xs);
-  overflow: hidden;
-  background: rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-}
-.list .item.isUser .fill {
-  background: var(--isUser-fill);
-}
-.list .item.warning .fill {
-  background: var(--warning-fill);
-}
-.list .item.error .fill {
-  background: var(--error-fill);
-}
-.list .item .fill {
-  position: absolute;
-  inset: 0;
-  background: var(--row-fill);
-  opacity: var(--meter-fill-opacity, 0.8);
-  transform-origin: left center;
-  transform: scaleX(0);
-  overflow: hidden;
-}
-.list .item .fill::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0; /* Changed from -40% to 0 */
-  width: 40%;
-  opacity: 0;
-  pointer-events: none;
-  background: linear-gradient(
-          110deg,
-          rgba(255, 255, 255, 0) 0%,
-          rgba(255, 255, 255, 0.35) 50%,
-          rgba(255, 255, 255, 0) 100%
-  );
-  transform: translateX(-100%); /* Use transform for initial position */
-}
-.list .item.hoverRippleOnce .fill::after {
-  opacity: 1;
-  animation: meterBarHoverRipple 900ms ease-out;
-}
-.list .item .content {
-  position: relative;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.list .item .classIcon {
-  width: 26px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.list .item .classIcon .classIconImg {
-  width: 100%;
-  height: 100%;
-}
-.list .item .name {
-  flex: 1;
-  color: var(--text-color);
-  font-size: 18px;
-  text-shadow: var(--player-name-shadow, var(--text-shadow));
-  font-weight: 500;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.list .item .name.isCjk {
-  font-family: var(--cjk-font-stack);
-  font-weight: 500;
-  letter-spacing: 0;
-  text-shadow:
-          0 0 2px rgba(0,0,0,0.95),
-          0 1px 3px rgba(0,0,0,0.90),
-          0 3px 6px rgba(0,0,0,0.70);
-}
-.list .item .dps {
-  color: var(--dps-text);
-  font-size: var(--font);
-  text-shadow: var(--dps-shadow, var(--text-shadow));
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.battleTime.isVisible {
-  display: flex;
-}
-.battleTime .tick {
-  color: var(--text-color);
-  text-shadow: var(--text-shadow);
-  font-weight: 700;
-  font-size: 17px;
-}
-.battleTime .status {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.25);
-  flex: 0 0 auto;
-  position: relative;
-}
-.battleTime.state-fighting .status {
-  background: var(--indicator-combat);
-}
-.battleTime.state-fighting .status::after {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border-radius: 999px;
-  background: var(--indicator-combat);
-  opacity: 0.35;
-}
-.battleTime.state-grace .status {
-  background: var(--indicator-wait);
-}
-.battleTime.state-ended .status {
-  background: var(--indicator-end);
-}
-.battleTime.state-idle .status {
-  background: var(--indicator-idle);
-}
 
 .detailsPanel.open {
   display: flex;
@@ -3969,11 +3959,6 @@ body.mainPlayerNamesBold .settingsPanel .themeDropdownMenu .settingsDropdownItem
 }
 
 
-.list.dragInteracting .item {
-  pointer-events: none;
-}
-
-
 .windowDragFreeze {
   -webkit-user-select: none !important;
   user-select: none !important;
@@ -4087,91 +4072,7 @@ body.mainPlayerNamesBold .settingsPanel .themeDropdownMenu .settingsDropdownItem
 }
 
 /* ========== Slim Mode ========== */
-.meter.slim .header {
-  padding: 6px 10px;
-  gap: 8px;
-}
-.meter.slim .header .bossIcon {
-  width: 72px;
-}
-.meter.slim .header .bossIcon img {
-  border: none;
-  border-radius: 0;
-}
-.meter.slim .header .bossIcon .bossIconOverlay {
-  display: none;
-}
-.meter.slim .header .bossNames {
-  font-size: 15px;
-  min-height: 20px;
-  overflow: visible;
-}
-.meter.slim .header .bossNames .bossHpBar {
-  height: 11px;
-}
-.meter.slim .header .bossNames .bossHpBar .bossHpText {
-  font-size: 9px;
-}
-.meter.slim .header .headerBtns .headerBtn {
-  width: 16px;
-  height: 16px;
-}
-.meter.slim .footerBtns {
-  bottom: 1px;
-  right: 16px;
-}
-.meter.slim .footerBtns .footerBtn {
-  width: 16px;
-  height: 16px;
-}
-.meter.slim .footerBtns .metricToggleBtn,
-.meter.slim .footerBtns .targetModeBtn {
-  font-size: 13px;
-}
-.meter.slim .list:has(.item:not([style*="display: none"])) + .meterTotalBar {
-  margin-top: 0;
-}
-.meter.slim .list {
-  gap: 2px;
-}
-.meter.slim .list:has(.item:not([style*="display: none"])) {
-  padding: 2px 10px 6px;
-}
-.meter.slim .list .item {
-  height: 24px;
-  padding: 0 6px;
-}
-.meter.slim .list .item .content {
-  gap: 5px;
-}
-.meter.slim .list .item .classIcon {
-  width: 18px;
-}
-.meter.slim .list .item .name {
-  font-size: 14px;
-}
-.meter.slim .list .item .name.isCjk {
-  font-size: 16px;
-}
-.meter.slim .list .item .dps {
-  font-size: 13px;
-  gap: 4px;
-}
-.meter.slim .battleTime {
-  bottom: 1px;
-  left: 10px;
-}
-.meter.slim .battleTime .tick {
-  font-size: 14px;
-}
-.meter.slim .battleTime .status {
-  width: 8px;
-  height: 8px;
-}
-.meter.slim .resizeHandle {
-  width: 12px;
-  height: 12px;
-}
+
 
 /* ========== Settings Panel 2-Column Layout ========== */
 .settingsPanel .settingsColumns {
@@ -4258,4 +4159,913 @@ body.mainPlayerNamesBold .settingsPanel .themeDropdownMenu .settingsDropdownItem
 }
 .settingsPanel .playerLimitNarrow {
   min-width: 80px;
+}
+
+
+/* ============================================================
+   LEGACY METER SKIN
+   ------------------------------------------------------------
+   The pre-redesign main window, restored when Settings > Beta UI
+   is switched off. Everything is scoped under body.legacyUi, so
+   with the toggle on none of it matches and the redesign stands
+   on its own.
+
+   The rules up to "legacy bridges" are the original stylesheet's
+   meter rules, unchanged apart from the scoping prefix.
+   ============================================================ */
+
+body.legacyUi .meter {
+  width: 380px;
+  background: rgba(12, 22, 40, var(--window-opacity));
+
+  /* backdrop-filter: blur(1px) saturate(180%); */
+  /* background-color: rgba(255, 255, 255, 0.1); */
+  border: 1px solid rgba(255, 255, 255, min(0.3, calc(var(--window-opacity) * 0.3)));
+  border-radius: var(--rounded);
+  position: relative;
+  min-width: 300px;
+  min-height: 30px;
+  padding-bottom: 20px;
+
+  &.flash {
+    animation: detailsFlash 1s ease-out;
+  }
+}
+body.legacyUi .header {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  gap: 8px;
+  padding: 8px 12px;
+  .bossIcon {
+    display: flex;
+    align-items: center;
+    width: 88px;
+    position: relative;
+    img {
+      -webkit-user-drag: none;
+
+      width: 100%;
+    }
+  }
+  .bossIconOverlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.35);
+    color: #ffffff;
+    transition: opacity 150ms ease;
+    pointer-events: none;
+    border-radius: 8px;
+  }
+  .bossIconOverlay svg {
+    width: 22px;
+    height: 22px;
+  }
+  .bossIcon:hover .bossIconOverlay {
+    opacity: 1;
+  }
+
+  .bossNames {
+    flex: 1;
+    color: var(--title);
+    text-shadow: var(--text-shadow);
+    font-weight: bold;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+  }
+
+  .headerBtns {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    gap: 8px;
+    text-shadow: var(--text-shadow);
+    cursor: pointer;
+    .headerBtn {
+      display: flex;
+      align-items: center;
+      width: 20px;
+      height: 20px;
+    }
+    /* When suspend button is visible, shrink all header buttons */
+    &.hasSuspendBtn .headerBtn {
+      width: 16px;
+      height: 16px;
+    }
+    &.hasSuspendBtn {
+      gap: 6px;
+    }
+    .suspendBtn {
+      color: rgba(255, 255, 255, 0.85);
+      transition: color 150ms ease;
+    }
+    .suspendBtn.isSuspended {
+      color: #ff6b6b;
+    }
+    .metricToggleBtn {
+      width: auto;
+      height: auto;
+      min-width: 26px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      color: inherit;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+    }
+  }
+
+  .footerBtns {
+    position: absolute;
+    right: 24px;
+    bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    color: white;
+    text-shadow: var(--text-shadow);
+    cursor: pointer;
+
+    .footerBtn {
+      display: flex;
+      align-items: center;
+      width: 20px;
+      height: 20px;
+    }
+
+    .metricToggleBtn {
+      width: auto;
+      height: auto;
+      min-width: 26px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      color: inherit;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+    }
+  }
+}
+body.legacyUi .meterTotalBar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px 6px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+}
+body.legacyUi .meter.slim .meterTotalBar {
+  font-size: 11px;
+  padding: 0 20px 0 12px;
+}
+body.legacyUi .meterTotalBar .meterTotalDps,
+body.legacyUi .meterTotalBar .meterTotalDmg {
+  color: rgba(255, 255, 255, 0.55);
+}
+body.legacyUi .meterTotalBar .meterTotalSep {
+  opacity: 0.3;
+}
+body.legacyUi .list {
+  display: grid;
+  gap: 4px;
+  padding: 0 12px;
+  &:has(.item:not([style*="display: none"])) {
+    padding: 4px 12px 16px;
+  }
+  &:has(.item:not([style*="display: none"])) + .meterTotalBar {
+    margin-top: -13px;
+  }
+  .item {
+    position: relative;
+    height: 36px;
+    padding: 0 8px;
+    border-radius: var(--rounded-xs);
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+  }
+
+  /* .item.isUser {
+    cursor: pointer;
+  } */
+  .item.isUser .fill {
+    background: var(--isUser-fill);
+  }
+  .item.warning .fill {
+    background: var(--warning-fill);
+  }
+  .item.error .fill {
+    background: var(--error-fill);
+  }
+  .fill {
+    position: absolute;
+    inset: 0;
+
+    background: var(--row-fill);
+    opacity: 0.8;
+    transform-origin: left center;
+    transform: scaleX(0);
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -40%;
+      width: 40%;
+      opacity: 0;
+      pointer-events: none;
+      background: linear-gradient(
+              110deg,
+              rgba(255, 255, 255, 0) 0%,
+              rgba(255, 255, 255, 0.35) 50%,
+              rgba(255, 255, 255, 0) 100%
+      );
+    }
+  }
+
+  .item.hoverRippleOnce .fill::after {
+    opacity: 1;
+    animation: meterBarHoverRipple 900ms ease-out;
+  }
+
+  .content {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .classIcon {
+      width: 26px;
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+      .classIconImg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .name {
+      flex: 1;
+      color: var(--text-color);
+      font-size: 21px;
+      line-height: 1;
+      padding-bottom: 1px;
+      text-shadow:
+              0 0 2px rgba(0,0,0,0.95),
+              0 1px 3px rgba(0,0,0,0.90),
+              0 3px 6px rgba(0,0,0,0.70);
+      font-weight: 500;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .name.isCjk {
+      font-family: var(--cjk-font-stack);
+      letter-spacing: 0;
+    }
+    .dps {
+      color: var(--dps-text);
+      font-size: var(--font);
+      text-shadow: var(--dps-shadow, var(--text-shadow));
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+}
+body.legacyUi .meter .item.isIdentifying .content .name {
+  font-size: 18px;
+  font-weight: 400;
+}
+body.legacyUi.mainPlayerNamesBold .meter .item .content .name {
+  font-weight: 700;
+}
+body.legacyUi.mainPlayerNamesBold .meter .item .content .name.isCjk {
+  font-weight: 700;
+}
+body.legacyUi.mainPlayerDpsBold .meter .item .content .dps {
+  font-weight: 700;
+}
+body.legacyUi .battleTime {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  bottom: 8px;
+  left: 12px;
+  margin-bottom: 0;
+  padding: 0;
+
+  &.isVisible {
+    display: flex;
+  }
+  .tick {
+    color: var(--text-color);
+    text-shadow: var(--text-shadow);
+    font-weight: 700;
+    font-size: 17px;
+  }
+
+  .analysisStatus {
+    color: rgba(255, 255, 255, 0.75);
+    text-shadow: var(--text-shadow);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .status {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.25);
+    flex: 0 0 auto;
+    position: relative;
+  }
+
+  &.state-fighting .status {
+    background: var(--indicator-combat);
+  }
+
+  &.state-fighting .status::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 999px;
+    background: var(--indicator-combat);
+    opacity: 0.35;
+  }
+  &.state-grace .status {
+    background: var(--indicator-wait);
+  }
+  &.state-ended .status {
+    background: var(--indicator-end);
+  }
+  &.state-idle .status {
+    background: var(--indicator-idle);
+  }
+}
+body.legacyUi .resizeHandle {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 14px;
+  height: 14px;
+  cursor: se-resize;
+  opacity: 0.65;
+}
+body.legacyUi .resizeHandle::before {
+  content: "";
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid rgba(255, 255, 255, 0.7);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+}
+body.legacyUi .header .bossIcon {
+  display: flex;
+  align-items: center;
+  width: 88px;
+}
+body.legacyUi .header .bossIcon img {
+  -webkit-user-drag: none;
+  width: 100%;
+}
+body.legacyUi .header .bossNames {
+  flex: 1;
+  min-width: 0;
+  color: var(--title);
+  text-shadow: var(--text-shadow);
+  font-weight: bold;
+  /* override the fixed `height: 24px` from the base `.header .bossNames` rule
+     above — a fixed height crams the name + HP bar into one line and overlaps. */
+  height: auto;
+  min-height: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 4px;
+  font-size: 17px;
+  overflow: visible;
+}
+body.legacyUi .header .bossNames .bossName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.1;
+}
+body.legacyUi .header .headerBtns {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+  gap: 8px;
+  text-shadow: var(--text-shadow);
+  cursor: pointer;
+}
+body.legacyUi .header .headerBtns .headerBtn {
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+}
+body.legacyUi .footerBtns {
+  position: absolute;
+  right: 24px;
+  bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  color: white;
+  text-shadow: var(--text-shadow);
+  cursor: pointer;
+}
+body.legacyUi .footerBtns .footerBtn {
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+}
+body.legacyUi .footerBtns .metricToggleBtn {
+  width: auto;
+  height: auto;
+  min-width: 26px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+}
+body.legacyUi .footerBtns .targetModeBtn {
+  width: auto;
+  height: auto;
+  min-width: 62px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: right;
+  justify-content: flex-end;
+}
+body.legacyUi .list .item {
+  position: relative;
+  height: 36px;
+  padding: 0 8px;
+  border-radius: var(--rounded-xs);
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+body.legacyUi .list .item.isUser .fill {
+  background: var(--isUser-fill);
+}
+body.legacyUi .list .item.warning .fill {
+  background: var(--warning-fill);
+}
+body.legacyUi .list .item.error .fill {
+  background: var(--error-fill);
+}
+body.legacyUi .list .item .content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+body.legacyUi .list .item .classIcon {
+  width: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body.legacyUi .list .item .classIcon .classIconImg {
+  width: 100%;
+  height: 100%;
+}
+body.legacyUi .list .item .name {
+  flex: 1;
+  color: var(--text-color);
+  font-size: 18px;
+  text-shadow: var(--player-name-shadow, var(--text-shadow));
+  font-weight: 500;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+body.legacyUi .list .item .name.isCjk {
+  font-family: var(--cjk-font-stack);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-shadow:
+          0 0 2px rgba(0,0,0,0.95),
+          0 1px 3px rgba(0,0,0,0.90),
+          0 3px 6px rgba(0,0,0,0.70);
+}
+body.legacyUi .list .item .dps {
+  color: var(--dps-text);
+  font-size: var(--font);
+  text-shadow: var(--dps-shadow, var(--text-shadow));
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+body.legacyUi .battleTime.isVisible {
+  display: flex;
+}
+body.legacyUi .battleTime .tick {
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
+  font-weight: 700;
+  font-size: 17px;
+}
+body.legacyUi .battleTime .status {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.25);
+  flex: 0 0 auto;
+  position: relative;
+}
+body.legacyUi .battleTime.state-fighting .status {
+  background: var(--indicator-combat);
+}
+body.legacyUi .battleTime.state-fighting .status::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 999px;
+  background: var(--indicator-combat);
+  opacity: 0.35;
+}
+body.legacyUi .battleTime.state-grace .status {
+  background: var(--indicator-wait);
+}
+body.legacyUi .battleTime.state-ended .status {
+  background: var(--indicator-end);
+}
+body.legacyUi .battleTime.state-idle .status {
+  background: var(--indicator-idle);
+}
+body.legacyUi .list.dragInteracting .item {
+  pointer-events: none;
+}
+body.legacyUi .meter.slim .header {
+  padding: 6px 10px;
+  gap: 8px;
+}
+body.legacyUi .meter.slim .header .bossIcon {
+  width: 72px;
+}
+body.legacyUi .meter.slim .header .bossIcon img {
+  border: none;
+  border-radius: 0;
+}
+body.legacyUi .meter.slim .header .bossIcon .bossIconOverlay {
+  display: none;
+}
+body.legacyUi .meter.slim .header .bossNames {
+  font-size: 15px;
+  min-height: 20px;
+  overflow: visible;
+}
+body.legacyUi .meter.slim .header .bossNames .bossHpBar {
+  height: 11px;
+}
+body.legacyUi .meter.slim .header .bossNames .bossHpBar .bossHpText {
+  font-size: 9px;
+}
+body.legacyUi .meter.slim .header .headerBtns .headerBtn {
+  width: 16px;
+  height: 16px;
+}
+body.legacyUi .meter.slim .footerBtns {
+  bottom: 1px;
+  right: 16px;
+}
+body.legacyUi .meter.slim .footerBtns .footerBtn {
+  width: 16px;
+  height: 16px;
+}
+body.legacyUi .meter.slim .footerBtns .metricToggleBtn,
+body.legacyUi .meter.slim .footerBtns .targetModeBtn {
+  font-size: 13px;
+}
+body.legacyUi .meter.slim .list:has(.item:not([style*="display: none"])) + .meterTotalBar {
+  margin-top: 0;
+}
+body.legacyUi .meter.slim .list {
+  gap: 2px;
+}
+body.legacyUi .meter.slim .list:has(.item:not([style*="display: none"])) {
+  padding: 2px 10px 6px;
+}
+body.legacyUi .meter.slim .list .item {
+  height: 24px;
+  padding: 0 6px;
+}
+body.legacyUi .meter.slim .list .item .content {
+  gap: 5px;
+}
+body.legacyUi .meter.slim .list .item .classIcon {
+  width: 18px;
+}
+body.legacyUi .meter.slim .list .item .name {
+  font-size: 14px;
+}
+body.legacyUi .meter.slim .list .item .name.isCjk {
+  font-size: 16px;
+}
+body.legacyUi .meter.slim .list .item .dps {
+  font-size: 13px;
+  gap: 4px;
+}
+body.legacyUi .meter.slim .battleTime {
+  bottom: 1px;
+  left: 10px;
+}
+body.legacyUi .meter.slim .battleTime .tick {
+  font-size: 14px;
+}
+body.legacyUi .meter.slim .battleTime .status {
+  width: 8px;
+  height: 8px;
+}
+body.legacyUi .meter.slim .resizeHandle {
+  width: 12px;
+  height: 12px;
+}
+
+/* ---------- legacy bridges ----------
+   The redesign moved a few elements in the DOM (the HP bar left the header,
+   the footer fragments were gathered into one row, the bar gained a track
+   wrapper). These rules put those elements back where the legacy rules above
+   expect to find them, so the old layout reassembles from the new markup. */
+
+/* The footer row dissolves, handing its children back to .meter — which is
+   what the legacy absolute positioning for the timer and buttons assumes. */
+body.legacyUi .meterFooter {
+  display: contents;
+}
+
+/* Ping sat below the window, not inside it. */
+body.legacyUi .pingDisplay {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 2px;
+  padding: 2px 8px;
+  font-family: inherit;
+  font-variation-settings: normal;
+  font-size: 13px;
+  font-weight: 600;
+  width: fit-content;
+  gap: 5px;
+}
+body.legacyUi .pingDisplay .pingIcon {
+  width: 15px;
+  height: 15px;
+}
+
+/* Boss HP: back to an inset pill under the boss name rather than a
+   full-bleed band, and without the redesign's lit leading edge. */
+body.legacyUi .bossHpBar {
+  height: 13px;
+  margin: -2px 12px 6px;
+  border: 0;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+body.legacyUi .bossHpFill {
+  border-radius: 4px;
+  background: linear-gradient(90deg, #36c46a, #5be08a);
+}
+body.legacyUi .bossHpBar.isMid .bossHpFill {
+  background: linear-gradient(90deg, #e0a23c, #f0c45b);
+}
+body.legacyUi .bossHpBar.isLow .bossHpFill {
+  background: linear-gradient(90deg, #d24b4b, #f06b6b);
+}
+body.legacyUi .bossHpFill::after {
+  content: none;
+}
+body.legacyUi .bossHpText {
+  justify-content: center;
+  gap: 6px;
+  padding: 0;
+  font-family: inherit;
+  font-variation-settings: normal;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+body.legacyUi .bossHpText .bossHpAmt {
+  color: #fff;
+}
+
+/* Header: the classic skin keeps the redesign's screenshot button — an icon
+   grouped with the other controls on the right — rather than the 88px AION 2
+   wordmark that used to open the row with the action hidden on hover. */
+body.legacyUi .header .bossIcon {
+  order: 2;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+}
+body.legacyUi .header .bossIcon img {
+  display: none;
+}
+body.legacyUi .header .bossIconOverlay {
+  position: static;
+  inset: auto;
+  opacity: 1;
+  background: none;
+  border-radius: 0;
+  color: inherit;
+  pointer-events: none;
+}
+body.legacyUi .header .bossIconOverlay svg {
+  width: 20px;
+  height: 20px;
+}
+/* The old slim rules sized .bossIcon for the 72px wordmark and hid the hover
+   overlay outright; both have to be undone now that it is an icon button. */
+body.legacyUi .meter.slim .header .bossIcon {
+  width: 17px;
+  height: 17px;
+}
+body.legacyUi .meter.slim .header .bossIcon .bossIconOverlay {
+  display: flex;
+}
+body.legacyUi .meter.slim .header .bossIconOverlay svg {
+  width: 17px;
+  height: 17px;
+}
+body.legacyUi .header .bossNames .bossName {
+  font-family: inherit;
+  font-variation-settings: normal;
+  font-size: 18px;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* Bars: solid slab spanning the whole row, no reserved readout column and no
+   lit edge. meter.js drives width, which reproduces the old scaleX look. */
+body.legacyUi .list .item .fillTrack {
+  display: contents;
+}
+body.legacyUi .list .item .fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: auto;
+  transform: none;
+  border-radius: 0;
+  overflow: hidden;
+  background: var(--row-fill);
+  opacity: var(--meter-fill-opacity, 0.8);
+  transition: none;
+}
+body.legacyUi .list .item .fill::after {
+  content: none;
+}
+body.legacyUi .list .item.isUser .fill {
+  background: var(--isUser-fill);
+}
+body.legacyUi .list .item.warning .fill {
+  background: var(--warning-fill);
+}
+body.legacyUi .list .item.error .fill {
+  background: var(--error-fill);
+}
+
+/* Elements the old UI simply did not have. */
+body.legacyUi .list .item .rank {
+  display: none;
+}
+body.legacyUi .list .item.isUser::before {
+  content: none;
+}
+
+/* Mode switches were bare text, not chips. */
+body.legacyUi .footerBtns .footerBtn {
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-variation-settings: normal;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+body.legacyUi .footerBtns .targetModeBtn {
+  min-width: 62px;
+  text-align: right;
+  justify-content: flex-end;
+}
+body.legacyUi .footerBtns .metricToggleBtn {
+  min-width: 26px;
+}
+body.legacyUi .footerBtns .footerBtn:hover {
+  background: transparent;
+  border-color: transparent;
+}
+body.legacyUi .footerBtns .collapseBtn {
+  width: 20px;
+}
+body.legacyUi .footerBtns .collapseBtn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Header buttons were 20px icons without the dimmed resting state. */
+body.legacyUi .header .headerBtns {
+  color: #fff;
+}
+body.legacyUi .header .headerBtns .headerBtn,
+body.legacyUi .header .headerBtns .headerBtn svg {
+  width: 20px;
+  height: 20px;
+}
+body.legacyUi .header .headerBtns.hasSuspendBtn .headerBtn,
+body.legacyUi .header .headerBtns.hasSuspendBtn .headerBtn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Status dot / analysis text sizing predates the footer row. */
+body.legacyUi .battleTime .analysisStatus {
+  font-family: inherit;
+  font-variation-settings: normal;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+}
+body.legacyUi .battleTime .tick {
+  font-family: inherit;
+  font-variation-settings: normal;
+}
+body.legacyUi .meterTotalBar {
+  font-family: inherit;
+  font-variation-settings: normal;
+}
+body.legacyUi .list .item .name,
+body.legacyUi .list .item .dps,
+body.legacyUi .list .item .dps > p {
+  font-variation-settings: normal;
+}
+body.legacyUi .list .item .dps > p {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  letter-spacing: normal;
+}
+body.legacyUi .list .item .dps .dpsContribution {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  min-width: 0;
 }

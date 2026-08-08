@@ -27,11 +27,22 @@ const createMeterUI = ({
     rowEl.style.display = "none";
     rowEl.dataset.rowId = String(id);
 
+    // The bar runs inside a track that stops short of the readout column,
+    // so a long bar can never slide its lit edge under the numbers.
+    const fillTrackEl = document.createElement("div");
+    fillTrackEl.className = "fillTrack";
+
     const fillEl = document.createElement("div");
     fillEl.className = "fill";
+    fillTrackEl.appendChild(fillEl);
 
     const contentEl = document.createElement("div");
     contentEl.className = "content";
+
+    // Ladder position by damage. Kept separate from row order so that
+    // "pin me to top" moves the row without misreporting the rank.
+    const rankEl = document.createElement("span");
+    rankEl.className = "rank";
 
     const classIconEl = document.createElement("div");
     classIconEl.className = "classIcon";
@@ -56,10 +67,11 @@ const createMeterUI = ({
     dpsContainer.appendChild(dpsNumber);
     dpsContainer.appendChild(dpsContribution);
 
+    contentEl.appendChild(rankEl);
     contentEl.appendChild(classIconEl);
     contentEl.appendChild(nameEl);
     contentEl.appendChild(dpsContainer);
-    rowEl.appendChild(fillEl);
+    rowEl.appendChild(fillTrackEl);
     rowEl.appendChild(contentEl);
 
     const view = {
@@ -67,6 +79,7 @@ const createMeterUI = ({
       rowEl,
       prevContribClass: "",
       nameEl,
+      rankEl,
       dpsContainer,
       classIconEl,
       classIconImg,
@@ -80,6 +93,7 @@ const createMeterUI = ({
       lastIsCjk: false,
       lastMetricText: "",
       lastContributionText: "",
+      lastRankText: "",
       lastFillRatio: -1,
       lastClassIconSrc: "",
       lastIsUser: false,
@@ -184,7 +198,7 @@ const createMeterUI = ({
 
   let lastOrderKey = "";
 
-  const renderRows = (rows) => {
+  const renderRows = (rows, rankById) => {
     const now = nowMs();
     const nextVisibleIds = new Set();
 
@@ -310,9 +324,20 @@ const createMeterUI = ({
         view.lastContributionText = contributionText;
       }
 
+      const rankText = String(rankById?.get(id) ?? "");
+      if (view.lastRankText !== rankText) {
+        view.rankEl.textContent = rankText;
+        view.rowEl.classList.toggle("isRankOne", rankText === "1");
+        view.lastRankText = rankText;
+      }
+
       const ratio = Math.max(0, Math.min(1, metricValue / topMetric));
       if (view.lastFillRatio !== ratio) {
-        view.fillEl.style.transform = `scaleX(${ratio})`;
+        // Width rather than scaleX: the bar's lit leading edge is a fixed
+        // 2px child, and a scaled parent would squash it (and its glow) by
+        // the fill ratio. Six absolutely-positioned rows, rAF-throttled, so
+        // the layout cost is not measurable.
+        view.fillEl.style.width = `${(ratio * 100).toFixed(2)}%`;
         view.lastFillRatio = ratio;
       }
 
@@ -349,7 +374,19 @@ const createMeterUI = ({
       const bMetric = Number(resolveMetric(b)?.value) || 0;
       return sortDirection === "asc" ? aMetric - bMetric : bMetric - aMetric;
     });
-    renderRows(getDisplayRows(arr));
+
+    // Rank is always "1 = most damage", independent of the ascending /
+    // descending list toggle and of pinning the user to the top.
+    const rankById = new Map();
+    arr
+      .slice()
+      .sort((a, b) => (Number(resolveMetric(b)?.value) || 0) - (Number(resolveMetric(a)?.value) || 0))
+      .forEach((row, index) => {
+        const id = row?.id ?? row?.name;
+        if (id) rankById.set(id, index + 1);
+      });
+
+    renderRows(getDisplayRows(arr), rankById);
   };
 
   const updateFromRows = (rows) => {

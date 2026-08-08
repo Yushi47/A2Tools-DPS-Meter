@@ -1636,9 +1636,9 @@ impl StreamProcessor {
                 if mods & 0x20 != 0 { specials.push(SpecialDamage::Smite); }
                 if mods & 0x40 != 0 { specials.push(SpecialDamage::PowerShard); }
                 // Direction byte (2 later) = positional enum, NOT the modifications
-                // byte. Confirmed against the game combat log: 0x00 = normal (front),
-                // 0x01 = Back (e.g. 757/1301/11248 [Back]), 0x02 = Frontal (7926
-                // [Frontal Critical]).
+                // byte. Confirmed against the game combat log: 0x00 = no positional
+                // tag (untagged/parried hits), 0x01 = Back (12,030 [Back]),
+                // 0x02 = Front (14,561 [Front], 28,421 [Front Critical]).
                 if offset + 2 < packet.len() {
                     match packet[offset + 2] {
                         0x01 => specials.push(SpecialDamage::Back),

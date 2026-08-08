@@ -29,18 +29,14 @@
     <div class="container">
       <div class="meter">
         <div class="header">
-          <div class="bossIcon">
-            <img src="/src/assets/logo.png" alt="Logo" />
+          <div class="bossIcon" role="button" tabindex="0" aria-label="Copy screenshot">
+            <img src="/src/assets/logo.png" alt="" />
             <div class="bossIconOverlay" aria-hidden="true">
               <i data-lucide="camera"></i>
             </div>
           </div>
           <div class="bossNames">
             <span class="bossName"></span>
-            <div class="bossHpBar" style="display:none">
-              <div class="bossHpFill"></div>
-              <span class="bossHpText"></span>
-            </div>
           </div>
 
           <div class="headerBtns">
@@ -49,25 +45,12 @@
             <div class="headerBtn settingsBtn"><i data-lucide="settings"></i></div>
           </div>
         </div>
-        <div class="footerBtns">
-          <button
-            class="footerBtn targetModeBtn"
-            type="button"
-            aria-label="Target mode">
-            TARGET
-          </button>
-          <button
-            class="footerBtn metricToggleBtn"
-            type="button"
-            data-i18n="header.display.dps"
-            aria-label="Showing DPS">
-            DPS
-          </button>
-          <div class="footerBtn collapseBtn">
-            <i
-              class="collapseIcon"
-              data-lucide="arrow-up-wide-narrow"></i>
-          </div>
+        <div class="bossHpBar" style="display:none">
+          <div class="bossHpFill"></div>
+          <span class="bossHpText">
+            <span class="bossHpPct"></span>
+            <span class="bossHpAmt"></span>
+          </span>
         </div>
         <div
           class="detailsPanel"
@@ -443,6 +426,18 @@
                 </div>
                 <div class="settingsRow settingsRowSelect">
                   <div class="settingsInfo">
+                    <div class="settingsLabel" data-i18n="settings.meterLayout.label">Meter layout</div>
+                  </div>
+                  <div class="settingsDropdownWrapper meterLayoutDropdownWrapper">
+                    <button class="settingsDropdownBtn meterLayoutDropdownBtn" type="button">
+                      <span class="settingsDropdownText">Beta UI</span>
+                      <span class="settingsDropdownCaret" aria-hidden="true">▾</span>
+                    </button>
+                    <div class="settingsDropdownMenu meterLayoutDropdownMenu" role="menu"></div>
+                  </div>
+                </div>
+                <div class="settingsRow settingsRowSelect">
+                  <div class="settingsInfo">
                     <div class="settingsLabel" data-i18n="settings.theme.label">Theme</div>
                   </div>
                   <div class="settingsDropdownWrapper themeDropdownWrapper">
@@ -487,6 +482,23 @@
                     <div class="settingsValue meterOpacityValue">80%</div>
                   </div>
                 </div>
+                <div class="settingsRow settingsRowInput">
+                  <div class="settingsInfo">
+                    <div class="settingsLabel" data-i18n="settings.bossNameSize.label">Target name size</div>
+                  </div>
+                  <div class="settingsRangeInline">
+                    <input
+                      id="bossNameSizeInput"
+                      class="settingsRange bossNameSizeInput"
+                      type="range"
+                      min="8"
+                      max="20"
+                      step="0.5"
+                      value="15"
+                      aria-label="Target name size" />
+                    <div class="settingsValue bossNameSizeValue">15px</div>
+                  </div>
+                </div>
                 <div class="settingsRow settingsRowBoldToggles">
                   <div class="settingsInfo">
                     <div class="settingsLabel" data-i18n="settings.bold.label">Bold</div>
@@ -508,13 +520,6 @@
                     </label>
                   </div>
                 </div>
-                <label class="settingsToggle">
-                  <span class="settingsToggleLabel settingsLabel" data-i18n="settings.slimMode">Slim mode</span>
-                  <span class="settingsToggleControl">
-                    <input type="checkbox" class="slimModeCheckbox" />
-                    <span class="settingsToggleTrack" aria-hidden="true"></span>
-                  </span>
-                </label>
                 <label class="settingsToggle">
                   <span class="settingsToggleLabel settingsLabel" data-i18n="settings.showPing">Show ping</span>
                   <span class="settingsToggleControl">
@@ -747,23 +752,45 @@
           </div>
         </div>
         <div class="list"></div>
-        <div class="meterTotalBar" style="display:none">
-          <span class="meterTotalDps"></span>
-          <span class="meterTotalSep">|</span>
-          <span class="meterTotalDmg"></span>
-        </div>
-        <div class="battleTime">
-          <div class="status"></div>
-          <div class="tick"></div>
-          <div class="analysisStatus" data-i18n="battleTime.analysing">
-            Monitoring data...
+        <div class="meterFooter">
+          <div class="battleTime">
+            <div class="status"></div>
+            <div class="tick"></div>
+            <div class="analysisStatus" data-i18n="battleTime.analysing">
+              Monitoring data...
+            </div>
+          </div>
+          <div class="meterTotalBar" style="display:none">
+            <span class="meterTotalDps"></span>
+            <span class="meterTotalSep">/</span>
+            <span class="meterTotalDmg"></span>
+          </div>
+          <div class="footerBtns">
+            <button
+              class="footerBtn targetModeBtn"
+              type="button"
+              aria-label="Target mode">
+              TARGET
+            </button>
+            <button
+              class="footerBtn metricToggleBtn"
+              type="button"
+              data-i18n="header.display.dps"
+              aria-label="Showing DPS">
+              DPS
+            </button>
+            <div class="footerBtn collapseBtn" role="button" tabindex="0" aria-label="Sort direction">
+              <i
+                class="collapseIcon"
+                data-lucide="arrow-up-wide-narrow"></i>
+            </div>
+          </div>
+          <div class="pingDisplay">
+            <i data-lucide="wifi" class="pingIcon"></i>
+            <span class="pingText"></span>
           </div>
         </div>
         <div class="resizeHandle" aria-hidden="true"></div>
-      </div>
-      <div class="pingDisplay">
-        <i data-lucide="wifi" class="pingIcon"></i>
-        <span class="pingText"></span>
       </div>
       <div
         class="console"

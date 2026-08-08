@@ -1,6 +1,6 @@
 {
   "header": {
-    "title": "水表",
+    "title": "A2Tools DPS Meter",
     "display": {
       "dps": "DPS",
       "total": "DMG",
@@ -120,6 +120,13 @@
     "characterNamePlaceholder": "输入你的角色名称",
     "pinMeToTop": "将我置顶",
     "slimMode": "精简模式",
+    "meterLayout": {
+      "label": "仪表布局",
+      "beta": "Beta 界面",
+      "betaSlim": "Beta 精简",
+      "classic": "经典界面",
+      "classicSlim": "经典精简"
+    },
     "appearance": "外观",
     "connection": "连接",
     "advanced": "高级",
@@ -165,6 +172,9 @@
     },
     "meterOpacity": {
       "label": "计量条不透明度"
+    },
+    "bossNameSize": {
+      "label": "目标名称大小"
     },
     "targetWindow": {
       "label": "目标时间范围",

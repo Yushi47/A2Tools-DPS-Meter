@@ -1,6 +1,6 @@
 {
   "header": {
-    "title": "水錶",
+    "title": "A2Tools DPS Meter",
     "display": {
       "dps": "DPS",
       "total": "DMG",
@@ -120,6 +120,13 @@
     "characterNamePlaceholder": "輸入你的角色名稱",
     "pinMeToTop": "將我置頂",
     "slimMode": "精簡模式",
+    "meterLayout": {
+      "label": "儀表佈局",
+      "beta": "Beta 介面",
+      "betaSlim": "Beta 精簡",
+      "classic": "經典介面",
+      "classicSlim": "經典精簡"
+    },
     "appearance": "外觀",
     "connection": "連線",
     "advanced": "進階",
@@ -165,6 +172,9 @@
     },
     "meterOpacity": {
       "label": "計量條不透明度"
+    },
+    "bossNameSize": {
+      "label": "目標名稱大小"
     },
     "targetWindow": {
       "label": "目標時間範圍",

@@ -46,6 +46,8 @@ class DpsApp {
       bossLogs: "dpsMeter.bossLogsEnabled",
       saveRawPackets: "dpsMeter.saveRawPackets",
       windowOpacity: "dpsMeter.windowOpacity",
+      bossNameSize: "dpsMeter.bossNameSize",
+      betaUi: "dpsMeter.betaUi",
       showSuspendBtn: "dpsMeter.showSuspendBtn",
     };
 
@@ -54,6 +56,7 @@ class DpsApp {
     this.isCollapse = false;
     this._windowHidden = false;
     this.displayMode = "dps";
+    this.betaUi = true;
     this.theme = "aion2";
     this.availableThemes = [
       "aion2",
@@ -1158,6 +1161,31 @@ class DpsApp {
     }
   }
 
+  getDefaultBossNameSize() {
+    const raw = getComputedStyle(document.documentElement)
+      .getPropertyValue("--boss-name-size")
+      .trim();
+    const value = Number.parseFloat(raw);
+    return Number.isFinite(value) ? value : 15;
+  }
+
+  normalizeBossNameSize(value, fallback = 15) {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return fallback;
+    return Math.min(20, Math.max(8, Math.round(numeric * 2) / 2));
+  }
+
+  applyBossNameSize(px, { persist } = {}) {
+    const normalized = this.normalizeBossNameSize(px, 15);
+    document.documentElement.style.setProperty("--boss-name-size", `${normalized}px`);
+    // fitBossName reads the computed size, so re-run it: a bigger size may now
+    // overflow and need shrinking, a smaller one may have room to grow back.
+    this.fitBossName();
+    if (persist) {
+      this.safeSetSetting(this.storageKeys.bossNameSize, String(normalized));
+    }
+  }
+
   applyWindowOpacity(percent, { persist } = {}) {
     const normalized = Math.max(0, Math.min(100, Math.round(Number(percent))));
     document.documentElement.style.setProperty("--window-opacity", String(normalized / 100));
@@ -1362,6 +1390,7 @@ class DpsApp {
       crit = 0,
       parry = 0,
       back = 0,
+      frontal = 0,
       perfect = 0,
       double = 0,
       smite = 0,
@@ -1408,6 +1437,7 @@ class DpsApp {
         crit: Number(crit) || 0,
         parry: Number(parry) || 0,
         back: Number(back) || 0,
+        frontal: Number(frontal) || 0,
         perfect: Number(perfect) || 0,
         double: Number(double) || 0,
         smite: Number(smite) || 0,
@@ -1460,6 +1490,7 @@ class DpsApp {
           crit: value.crit,
           parry: value.parry,
           back: value.back,
+          frontal: value.frontal,
           perfect: value.perfect,
           double: value.double,
           smite: value.smite,
@@ -1646,7 +1677,7 @@ class DpsApp {
         dmg: amt,
         time: ticks,
         isDot: isHot,
-        crit: 0, parry: 0, back: 0, perfect: 0, double: 0, smite: 0, powershard: 0,
+        crit: 0, parry: 0, back: 0, frontal: 0, perfect: 0, double: 0, smite: 0, powershard: 0,
         regen: 0, multiHitCount: 0, multiHitDamage: 0, multiHitHits: 0,
         minDmg: 0, maxDmg: 0, job: v.job ?? "", specs: null, hitTimestamps: [],
       });
@@ -1790,11 +1821,14 @@ class DpsApp {
     this.showPingCheckbox = document.querySelector(".showPingCheckbox");
     this.saveRawPacketsCheckbox = document.querySelector(".saveRawPacketsCheckbox");
     this.pinMeToTopCheckbox = document.querySelector(".pinMeToTopCheckbox");
-    this.slimModeCheckbox = document.querySelector(".slimModeCheckbox");
+    this.meterLayoutDropdownBtn = document.querySelector(".meterLayoutDropdownBtn");
+    this.meterLayoutDropdownMenu = document.querySelector(".meterLayoutDropdownMenu");
     this.playerNamesBoldCheckbox = document.querySelector(".playerNamesBoldCheckbox");
     this.playerDpsBoldCheckbox = document.querySelector(".playerDpsBoldCheckbox");
     this.meterOpacityInput = document.querySelector(".meterOpacityInput");
     this.meterOpacityValue = document.querySelector(".meterOpacityValue");
+    this.bossNameSizeInput = document.querySelector(".bossNameSizeInput");
+    this.bossNameSizeValue = document.querySelector(".bossNameSizeValue");
     this.windowOpacityInput = document.querySelector(".windowOpacityInput");
     this.windowOpacityValue = document.querySelector(".windowOpacityValue");
     this.discordButton = document.querySelector(".discordButton");
@@ -1857,6 +1891,7 @@ class DpsApp {
     this.setOnlyShowUser(false, { persist: false });
     this.setDebugLogging(storedDebugLogging, { persist: false, syncBackend: true });
     this.setPinMeToTop(storedPinMeToTop, { persist: false });
+    this.setBetaUi(this.safeGetSetting(this.storageKeys.betaUi) !== "false", { persist: false });
     const storedSlimMode = this.safeGetSetting(this.storageKeys.slimMode) === "true";
     this.setSlimMode(storedSlimMode, { persist: false });
     this.setMainPlayerNamesBold(storedMainPlayerNamesBold, { persist: false });
@@ -2011,13 +2046,6 @@ class DpsApp {
         this.setPinMeToTop(isChecked, { persist: true });
       });
     }
-    if (this.slimModeCheckbox) {
-      this.slimModeCheckbox.checked = this.slimMode;
-      this.slimModeCheckbox.addEventListener("change", (event) => {
-        const isChecked = !!event.target?.checked;
-        this.setSlimMode(isChecked, { persist: true });
-      });
-    }
     if (this.playerNamesBoldCheckbox) {
       this.playerNamesBoldCheckbox.checked = this.mainPlayerNamesBold;
       this.playerNamesBoldCheckbox.addEventListener("change", (event) => {
@@ -2052,6 +2080,27 @@ class DpsApp {
         const next = this.normalizeMeterOpacity(value, defaultOpacity);
         this.meterOpacityValue.textContent = `${next}%`;
         this.applyMeterFillOpacity(next, { persist: true });
+      });
+    }
+
+    // Target name size
+    if (this.bossNameSizeInput && this.bossNameSizeValue) {
+      const defaultBossNameSize = this.getDefaultBossNameSize();
+      const storedBossNameSize = this.safeGetSetting(this.storageKeys.bossNameSize);
+      const resolvedBossNameSize =
+        storedBossNameSize !== null && String(storedBossNameSize).trim() !== ""
+          ? this.normalizeBossNameSize(storedBossNameSize, defaultBossNameSize)
+          : defaultBossNameSize;
+      this.applyBossNameSize(resolvedBossNameSize, { persist: false });
+      this.bossNameSizeInput.value = String(resolvedBossNameSize);
+      this.bossNameSizeValue.textContent = `${resolvedBossNameSize}px`;
+      const stopBossNameDrag = (event) => event.stopPropagation();
+      this.bossNameSizeInput.addEventListener("mousedown", stopBossNameDrag);
+      this.bossNameSizeInput.addEventListener("touchstart", stopBossNameDrag, { passive: true });
+      this.bossNameSizeInput.addEventListener("input", (event) => {
+        const next = this.normalizeBossNameSize(event.target?.value, defaultBossNameSize);
+        this.bossNameSizeValue.textContent = `${next}px`;
+        this.applyBossNameSize(next, { persist: true });
       });
     }
 
@@ -2530,6 +2579,26 @@ class DpsApp {
         this.safeSetSetting(this.storageKeys.trainSelectionMode, value);
         window.javaBridge?.setTrainSelectionMode?.(value);
         if (!this.isCollapse) this.fetchDps();
+      }
+    );
+
+    // One control for both axes of the main window: which skin, and how dense.
+    // They were two separate toggles, which made four states the user had to
+    // assemble themselves.
+    const meterLayoutOptions = [
+      { value: "beta", label: this.i18n?.t?.("settings.meterLayout.beta", "Beta UI") ?? "Beta UI" },
+      { value: "betaSlim", label: this.i18n?.t?.("settings.meterLayout.betaSlim", "Beta Slim") ?? "Beta Slim" },
+      { value: "classic", label: this.i18n?.t?.("settings.meterLayout.classic", "Classic UI") ?? "Classic UI" },
+      { value: "classicSlim", label: this.i18n?.t?.("settings.meterLayout.classicSlim", "Classic Slim") ?? "Classic Slim" },
+    ];
+    setupDropdown(
+      this.meterLayoutDropdownBtn,
+      this.meterLayoutDropdownMenu,
+      meterLayoutOptions,
+      this.getMeterLayout(),
+      (value) => {
+        if (!value) return;
+        this.setMeterLayout(value, { persist: true });
       }
     );
 
@@ -3158,11 +3227,33 @@ class DpsApp {
     this.renderCurrentRows();
   }
 
+  getMeterLayout() {
+    const base = this.betaUi ? "beta" : "classic";
+    return this.slimMode ? `${base}Slim` : base;
+  }
+
+  setMeterLayout(value, { persist = false } = {}) {
+    const beta = String(value).startsWith("beta");
+    const slim = String(value).endsWith("Slim");
+    this.setBetaUi(beta, { persist });
+    this.setSlimMode(slim, { persist });
+  }
+
+  // Beta UI is the redesigned main window and is the default. Switching it off
+  // adds body.legacyUi, which activates the pre-redesign skin in styles.css.
+  setBetaUi(enabled, { persist = false } = {}) {
+    this.betaUi = !!enabled;
+    document.body.classList.toggle("legacyUi", !this.betaUi);
+    // Both skins show the same placeholder text; only the type scale and the
+    // uppercase transform differ, so the fitted size has to be recomputed.
+    this.fitBossName();
+    if (persist) {
+      this.safeSetSetting(this.storageKeys.betaUi, String(this.betaUi));
+    }
+  }
+
   setSlimMode(enabled, { persist = false } = {}) {
     this.slimMode = !!enabled;
-    if (this.slimModeCheckbox && document.activeElement !== this.slimModeCheckbox) {
-      this.slimModeCheckbox.checked = this.slimMode;
-    }
     document.querySelector(".meter")?.classList.toggle("slim", this.slimMode);
     if (persist) {
       this.safeSetSetting(this.storageKeys.slimMode, String(this.slimMode));
@@ -3275,7 +3366,17 @@ class DpsApp {
     this.elBossHpBar.classList.toggle("isMid", pct > 25 && pct <= 50);
     this.elBossHpBar.classList.toggle("isLow", pct <= 25);
     if (this.elBossHpText) {
-      this.elBossHpText.textContent = `${this.formatAbbreviatedNumber(remaining)} · ${Math.round(pct)}%`;
+      // Split to the two ends of the band: the percentage rides the fill,
+      // the absolute HP sits on the track. A single centred label was
+      // getting sliced in half by the fill's leading edge at mid HP.
+      const pctEl = this.elBossHpText.querySelector(".bossHpPct");
+      const amtEl = this.elBossHpText.querySelector(".bossHpAmt");
+      if (pctEl && amtEl) {
+        pctEl.textContent = `${Math.round(pct)}%`;
+        amtEl.textContent = `${this.formatAbbreviatedNumber(remaining)} / ${this.formatAbbreviatedNumber(max)}`;
+      } else {
+        this.elBossHpText.textContent = `${this.formatAbbreviatedNumber(remaining)} · ${Math.round(pct)}%`;
+      }
     }
   }
 
@@ -3603,10 +3704,16 @@ class DpsApp {
     if (!el) return;
     const container = el.parentElement;
     if (!container) return;
-    const maxFs = this.slimMode ? 16 : 18;
-    const minFs = 10;
+    // The stylesheet owns the boss-name size; this only ever shrinks a long
+    // name to fit. It used to start from a hard-coded 18px (16 slim) and write
+    // that as an inline style, which silently overrode whatever the CSS asked
+    // for — so the header label ignored the design's type scale entirely.
     el.style.fontSize = "";
-    for (let fs = maxFs; fs >= minFs; fs--) {
+    const base = Number.parseFloat(getComputedStyle(el).fontSize);
+    if (!Number.isFinite(base) || base <= 0) return;
+    if (el.scrollWidth <= container.clientWidth) return;
+    const minFs = Math.max(7, base * 0.72);
+    for (let fs = base - 0.5; fs >= minFs; fs -= 0.5) {
       el.style.fontSize = `${fs}px`;
       if (el.scrollWidth <= container.clientWidth) return;
     }
@@ -3740,7 +3847,7 @@ class DpsApp {
       }
       return this.i18n?.t("target.train", "Training Scarecrow") ?? "Training Scarecrow";
     }
-    return this.i18n?.t("header.title", "DPS METER") ?? "DPS METER";
+    return this.i18n?.t("header.title", "A2Tools DPS Meter") ?? "A2Tools DPS Meter";
   }
 
   getTargetLabel({ targetId = 0, targetName = "", targetMode = "" } = {}) {
