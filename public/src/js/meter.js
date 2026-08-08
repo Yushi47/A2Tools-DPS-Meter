@@ -27,8 +27,8 @@ const createMeterUI = ({
     rowEl.style.display = "none";
     rowEl.dataset.rowId = String(id);
 
-    // The bar runs inside a track that stops short of the readout column,
-    // so a long bar can never slide its lit edge under the numbers.
+    // The bar spans the full row, so 100% reads as 100%. The readout keeps
+    // its own scrim (see .dps in styles.css) for where the bar passes behind.
     const fillTrackEl = document.createElement("div");
     fillTrackEl.className = "fillTrack";
 

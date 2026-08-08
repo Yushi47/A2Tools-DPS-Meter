@@ -418,9 +418,6 @@ html:lang(zh-Hant), html:lang(zh-Hant) body {
 
   --hud-row-h: 30px;
   --hud-gap: 3px;
-  /* Reserved right column the bar track never enters. Sized to the widest
-     readout: a six-glyph figure plus the contribution percentage. */
-  --hud-readout: 104px;
   /* User-adjustable in Settings; the value here is the design default. */
   --boss-name-size: 15px;
 }
@@ -625,15 +622,13 @@ html:lang(zh-Hant), html:lang(zh-Hant) body {
 .list .item:hover { background: rgba(255, 255, 255, 0.075); }
 .list.dragInteracting .item { pointer-events: none; }
 
-/* The bar runs in a track that stops short of the readout column. In the
-   old layout a long bar slid its edge straight under the DPS figure and
-   cut it in half; here the numbers always sit on clean panel. */
+/* The bar spans the whole row: at 100% it has to look 100% full, and a
+   reserved gutter made a solo player's bar read as roughly three-quarters.
+   The figures stay legible via the scrim on .dps below rather than by
+   keeping the bar away from them. */
 .list .item .fillTrack {
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: var(--hud-readout, 104px);
+  inset: 0;
 }
 
 /* The bar is a tint behind the row, never a slab under the text.
@@ -766,12 +761,22 @@ html:lang(zh-Hant), html:lang(zh-Hant) body {
 }
 
 /* The readout: top of the type scale, tabular so digits do not dance
-   between frames. */
+   between frames. The gradient scrim keeps wide figures like "106,406/s"
+   readable where the bar runs behind them, and bleeds to the row edge via
+   the negative margin so it never shows a seam. */
 .list .item .dps {
   flex: 0 0 auto;
   display: flex;
   align-items: baseline;
   gap: 7px;
+  margin-right: -8px;
+  padding: 0 8px 0 18px;
+  background: linear-gradient(
+    90deg,
+    rgba(var(--hud-bg), 0) 0%,
+    rgba(var(--hud-bg), 0.7) 42%,
+    rgba(var(--hud-bg), 0.82) 100%
+  );
   font-family: var(--hud-tech);
   font-variant-numeric: tabular-nums;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.7);
@@ -967,7 +972,7 @@ body.mainPlayerDpsBold .meter .item .content .dps > p {
 
 /* ---------- slim ---------- */
 
-.meter.slim { --hud-row-h: 22px; --hud-gap: 2px; --hud-readout: 86px; }
+.meter.slim { --hud-row-h: 22px; --hud-gap: 2px; }
 .meter.slim .header { padding: 5px 8px 4px; gap: 7px; }
 .meter.slim .header .bossIcon,
 .meter.slim .header .bossIconOverlay svg { width: 13px; height: 13px; }
@@ -987,7 +992,7 @@ body.mainPlayerDpsBold .meter .item .content .dps > p {
 .meter.slim .list .item .classIcon { width: 15px; height: 15px; }
 .meter.slim .list .item .name { font-size: 11.5px; }
 .meter.slim .list .item .name.isCjk { font-size: 11px; }
-.meter.slim .list .item .dps { gap: 5px; }
+.meter.slim .list .item .dps { gap: 5px; margin-right: -6px; padding: 0 6px 0 14px; }
 .meter.slim .list .item .dps > p { font-size: 12.5px; }
 .meter.slim .list .item .dps .dpsContribution { font-size: 9px; min-width: 28px; }
 .meter.slim .meterFooter { height: 19px; padding: 0 19px 0 8px; }
@@ -5061,6 +5066,11 @@ body.legacyUi .list .item .dps > p {
   font-weight: inherit;
   color: inherit;
   letter-spacing: normal;
+}
+body.legacyUi .list .item .dps {
+  margin-right: 0;
+  padding: 0;
+  background: none;
 }
 body.legacyUi .list .item .dps .dpsContribution {
   font-family: inherit;
