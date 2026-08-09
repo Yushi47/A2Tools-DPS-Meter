@@ -499,10 +499,20 @@ fn list_monitors(app: tauri::AppHandle) -> Vec<serde_json::Value> {
 /// Frameless to match the overlay; the in-page header carries the close button.
 #[tauri::command]
 fn open_details_window(app: tauri::AppHandle, monitor_index: usize) -> Result<(), String> {
-    open_details_on_monitor(&app, monitor_index)
+    open_details_on_monitor_inner(&app, monitor_index, true)
 }
 
 fn open_details_on_monitor(app: &tauri::AppHandle, monitor_index: usize) -> Result<(), String> {
+    open_details_on_monitor_inner(app, monitor_index, false)
+}
+
+/// `force_place` = the user just picked this monitor, so ignore any remembered
+/// position and fill that screen.
+fn open_details_on_monitor_inner(
+    app: &tauri::AppHandle,
+    monitor_index: usize,
+    force_place: bool,
+) -> Result<(), String> {
     let monitors = app.available_monitors().map_err(|e| e.to_string())?;
     if monitors.is_empty() {
         return Err("no monitors reported".into());
@@ -531,12 +541,14 @@ fn open_details_on_monitor(app: &tauri::AppHandle, monitor_index: usize) -> Resu
     );
 
     if let Some(existing) = app.get_webview_window("details") {
-        // Already open — move it. Physical variants here, since these setters
-        // take an explicit Position/Size enum rather than assuming logical.
-        let _ = existing.unmaximize();
-        let _ = existing.set_position(tauri::Position::Physical(pos));
-        let _ = existing.set_size(tauri::Size::Physical(size));
+        // Already open — move it only when the user explicitly picked a monitor.
+        if force_place {
+            let _ = existing.unmaximize();
+            let _ = existing.set_position(tauri::Position::Physical(pos));
+            let _ = existing.set_size(tauri::Size::Physical(size));
+        }
         let _ = existing.show();
+        let _ = existing.unminimize();
         let _ = existing.set_focus();
         announce_details_placement(app, monitor_index);
         return Ok(());
@@ -555,10 +567,7 @@ fn open_details_on_monitor(app: &tauri::AppHandle, monitor_index: usize) -> Resu
     .decorations(false)
     .transparent(false)
     .always_on_top(false)
-    // Not resizable: an undecorated resizable window carries an invisible 8px
-    // resize border, which offsets the visible content from the monitor edge
-    // and leaves a sliver of desktop showing. It fills the screen anyway.
-    .resizable(false)
+    .resizable(true)
     .skip_taskbar(false)
     .position(lx, ly)
     .inner_size(lw, lh)
@@ -569,28 +578,128 @@ fn open_details_on_monitor(app: &tauri::AppHandle, monitor_index: usize) -> Resu
     .build()
     .map_err(|e| e.to_string())?;
 
-    // Re-assert in physical units: the builder's logical values round on
-    // fractional-scale displays.
-    let _ = window.set_position(tauri::Position::Physical(pos));
-    let _ = window.set_size(tauri::Size::Physical(size));
+    // An explicit monitor pick always wins; otherwise fall back to wherever the
+    // user last dragged the window.
+    if force_place || !restore_window_geometry(app, &window, "details") {
+        // Re-assert in physical units: the builder's logical values round on
+        // fractional-scale displays.
+        let _ = window.set_position(tauri::Position::Physical(pos));
+        let _ = window.set_size(tauri::Size::Physical(size));
+    }
 
     // Announced once the window reports ready (see details_window_ready); a
     // freshly built webview has no listener attached yet.
-    // Safety net: if the frontend never reports ready (load failure), show it
-    // anyway rather than leaving an invisible window the user cannot dismiss.
+    // Safety net. Unconditional: is_visible() does not reliably reflect whether
+    // the window was actually mapped, so guarding on it left the window created
+    // but never revealed. show() on an already-visible window is a no-op, so the
+    // worst case here is a redundant call.
     let handle = app.clone();
     tauri::async_runtime::spawn(async move {
-        tokio::time::sleep(Duration::from_millis(4000)).await;
+        tokio::time::sleep(Duration::from_millis(1500)).await;
         if let Some(w) = handle.get_webview_window("details") {
-            if !w.is_visible().unwrap_or(true) {
-                tracing::warn!("details window never reported ready; showing anyway");
-                let _ = w.show();
-            }
+            let _ = w.show();
+            let _ = w.set_focus();
+            tracing::info!("details window revealed (safety net)");
         }
     });
     Ok(())
 }
 
+
+
+/// Restore a tool window's remembered geometry. Returns true if anything was
+/// applied, so callers know whether they still need to place it themselves.
+fn restore_window_geometry(app: &tauri::AppHandle, window: &tauri::WebviewWindow, label: &str) -> bool {
+    let Some(state) = app.try_state::<AppState>() else { return false };
+    let get = |k: &str| state.settings.get(&format!("window.{}.{}", label, k))
+        .and_then(|v| v.trim().parse::<i32>().ok());
+    let (Some(x), Some(y)) = (get("x"), get("y")) else { return false };
+    if x <= -10000 || y <= -10000 {
+        return false;
+    }
+    // Only restore onto a screen that still exists — an unplugged monitor would
+    // otherwise strand the window off-desktop.
+    let on_screen = app.available_monitors().map(|ms| {
+        ms.iter().any(|m| {
+            let p = *m.position();
+            let s = *m.size();
+            x >= p.x - 64 && x < p.x + s.width as i32 && y >= p.y - 64 && y < p.y + s.height as i32
+        })
+    }).unwrap_or(false);
+    if !on_screen {
+        tracing::info!("{} window: saved position {},{} is off-desktop; ignoring", label, x, y);
+        return false;
+    }
+    let _ = window.set_position(tauri::Position::Physical(tauri::PhysicalPosition { x, y }));
+    if let (Some(w), Some(h)) = (get("w"), get("h")) {
+        if w > 200 && h > 150 {
+            let _ = window.set_size(tauri::Size::Physical(tauri::PhysicalSize {
+                width: w as u32,
+                height: h as u32,
+            }));
+        }
+    }
+    true
+}
+
+/// The Settings window. Free-floating like Details — it used to be a panel that
+/// forced the overlay to resize itself to ~820px tall.
+#[tauri::command]
+fn open_settings_window(app: tauri::AppHandle) -> Result<(), String> {
+    if let Some(existing) = app.get_webview_window("settings") {
+        let _ = existing.show();
+        let _ = existing.unminimize();
+        let _ = existing.set_focus();
+        return Ok(());
+    }
+    let window = tauri::WebviewWindowBuilder::new(
+        &app,
+        "settings",
+        tauri::WebviewUrl::App("index.html".into()),
+    )
+    .title("A2Tools DPS Meter — Settings")
+    .decorations(false)
+    .transparent(false)
+    .always_on_top(false)
+    .resizable(true)
+    .skip_taskbar(false)
+    .inner_size(760.0, 820.0)
+    .min_inner_size(520.0, 420.0)
+    .visible(false)
+    .build()
+    .map_err(|e| e.to_string())?;
+
+    if !restore_window_geometry(&app, &window, "settings") {
+        let _ = window.center();
+    }
+    // Same hidden-until-painted treatment as Details: a visible webview paints
+    // white until the bundle loads.
+    let handle = app.clone();
+    tauri::async_runtime::spawn(async move {
+        tokio::time::sleep(Duration::from_millis(1500)).await;
+        if let Some(w) = handle.get_webview_window("settings") {
+            let _ = w.show();
+            let _ = w.set_focus();
+        }
+    });
+    Ok(())
+}
+
+#[tauri::command]
+fn close_settings_window(app: tauri::AppHandle) {
+    if let Some(window) = app.get_webview_window("settings") {
+        let _ = window.close();
+    }
+}
+
+/// Shown when the frontend of a tool window has painted.
+#[tauri::command]
+fn tool_window_ready(app: tauri::AppHandle, label: String) {
+    if let Some(window) = app.get_webview_window(&label) {
+        let _ = window.show();
+        let _ = window.set_focus();
+    }
+}
 
 /// Tell the Details window which screen it just landed on, so it can confirm
 /// visually. A dropdown label alone does not prove the right monitor was picked.
@@ -635,6 +744,7 @@ fn announce_details_placement(app: &tauri::AppHandle, monitor_index: usize) {
 fn details_window_ready(app: tauri::AppHandle) {
     if let Some(window) = app.get_webview_window("details") {
         let _ = window.show();
+        tracing::info!("details window revealed (frontend ready)");
     }
     let index = DETAILS_MONITOR.load(std::sync::atomic::Ordering::Relaxed);
     if index != usize::MAX {
@@ -1214,6 +1324,27 @@ pub fn run() {
                                     }
                                 }
                             }
+                            // Details and Settings float independently of the
+                            // overlay, so each remembers where it was left.
+                            for label in ["details", "settings"] {
+                                if let Some(w) = handle.get_webview_window(label) {
+                                    if !w.is_visible().unwrap_or(false) {
+                                        continue;
+                                    }
+                                    if let Ok(pos) = w.outer_position() {
+                                        if pos.x > -10000 && pos.y > -10000 {
+                                            state.settings.set(&format!("window.{}.x", label), &pos.x.to_string());
+                                            state.settings.set(&format!("window.{}.y", label), &pos.y.to_string());
+                                        }
+                                    }
+                                    if let Ok(size) = w.outer_size() {
+                                        if size.width > 100 && size.height > 100 {
+                                            state.settings.set(&format!("window.{}.w", label), &size.width.to_string());
+                                            state.settings.set(&format!("window.{}.h", label), &size.height.to_string());
+                                        }
+                                    }
+                                }
+                            }
                         }
 
                     }
@@ -1278,6 +1409,9 @@ pub fn run() {
             list_monitors,
             open_details_window,
             close_details_window,
+            open_settings_window,
+            close_settings_window,
+            tool_window_ready,
             details_window_ready,
             capture_screenshot,
             start_drag,

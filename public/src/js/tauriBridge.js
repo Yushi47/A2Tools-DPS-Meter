@@ -16,13 +16,40 @@
   // and it is available synchronously before anything else initialises.
   let viewMode = "main";
   try {
-    if (window.__TAURI__.window.getCurrentWindow().label === "details") {
-      viewMode = "details";
-    }
+    const label = window.__TAURI__.window.getCurrentWindow().label;
+    if (label === "details" || label === "settings") viewMode = label;
   } catch {}
   window.A2_VIEW = viewMode;
   if (viewMode === "details") {
     document.documentElement.classList.add("detailsWindow");
+  } else if (viewMode === "settings") {
+    document.documentElement.classList.add("settingsWindow");
+  }
+
+  // Tool windows are created hidden so they do not paint white while the bundle
+  // loads. Reveal from here rather than from core.js: this runs regardless of
+  // whether app startup succeeds, so a failure there can never leave a created
+  // but unmapped window the user cannot reach. show() must be called from the
+  // window's own webview — the same call from a spawned task on the Rust side
+  // silently did nothing.
+  if (viewMode !== "main") {
+    const reveal = () => {
+      try {
+        const w = window.__TAURI__.window.getCurrentWindow();
+        w.show();
+        w.setFocus();
+      } catch (e) {
+        console.error("[A2Tools] reveal failed", e);
+      }
+    };
+    const scheduleReveal = () => requestAnimationFrame(() => requestAnimationFrame(reveal));
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", scheduleReveal, { once: true });
+    } else {
+      scheduleReveal();
+    }
+    // Belt and braces if rAF never fires (window fully occluded at creation).
+    setTimeout(reveal, 1200);
   }
 
   // --- Cached state ---
@@ -165,7 +192,34 @@
       return invoke("close_details_window").catch(() => {});
     },
     detailsWindowReady() {
+      try {
+        const w = window.__TAURI__.window.getCurrentWindow();
+        w.show();
+        w.setFocus();
+      } catch (e) {
+        console.error("[A2Tools] revealSelf failed", e);
+      }
       return invoke("details_window_ready").catch(() => {});
+    },
+    openSettingsWindow() {
+      return invoke("open_settings_window").catch((e) => console.error("[A2Tools] openSettingsWindow", e));
+    },
+    closeSettingsWindow() {
+      return invoke("close_settings_window").catch(() => {});
+    },
+    toolWindowReady(label) {
+      // Reveal from the window's own webview thread. Calling show() on the Rust
+      // side from a spawned task did not take effect — the window stayed created
+      // but unmapped — so the window shows itself and the backend call is only
+      // a fallback for focus.
+      try {
+        const w = window.__TAURI__.window.getCurrentWindow();
+        w.show();
+        w.setFocus();
+      } catch (e) {
+        console.error("[A2Tools] revealSelf failed", e);
+      }
+      return invoke("tool_window_ready", { label: String(label) }).catch(() => {});
     },
 
     // --- Settings ---
@@ -471,9 +525,9 @@
 
   const updateWindowSize = () => {
     if (resizeActive) return; // Don't fight the user while they're resizing
-    // The Details window is sized to a whole monitor by the backend; letting
-    // the overlay's auto-sizing run here would shrink it to meter dimensions.
-    if (window.A2_VIEW === "details") return;
+    // Tool windows own their own geometry (and remember it). The overlay's
+    // auto-sizing would otherwise shrink them to meter dimensions.
+    if (window.A2_VIEW !== "main") return;
 
     const fullPanel = !!(
       document.querySelector(".settingsPanel.isOpen") ||

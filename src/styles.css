@@ -5242,3 +5242,139 @@ html.detailsWindow .detailsMonitorBadge.isVisible {
 @media (prefers-reduced-motion: reduce) {
   html.detailsWindow .detailsMonitorBadge.isVisible { animation-duration: 3s; }
 }
+
+/* ============================================================
+   SETTINGS WINDOW
+   ------------------------------------------------------------
+   Settings is its own window now, loading this same page with
+   only the settings panel shown. The overlay no longer grows to
+   ~820px tall to contain it, and the window remembers where it
+   was left.
+   ============================================================ */
+
+html.settingsWindow,
+html.settingsWindow body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0a0e16;
+}
+
+html.settingsWindow .container,
+html.settingsWindow .meter {
+  position: static;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+html.settingsWindow .header,
+html.settingsWindow .bossHpBar,
+html.settingsWindow .list,
+html.settingsWindow .meterFooter,
+html.settingsWindow .resizeHandle,
+html.settingsWindow .pingDisplay,
+html.settingsWindow .detailsPanel,
+html.settingsWindow .historyPanel,
+html.settingsWindow .updateModal,
+html.settingsWindow .hoverDetailsTooltip,
+html.settingsWindow .detailsMonitorBadge {
+  display: none !important;
+}
+
+html.settingsWindow .settingsPanel {
+  position: absolute;
+  inset: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  background: #0a0e16;
+  overflow-y: auto;
+}
+html.settingsWindow .settingsPanel.isOpen { display: flex; }
+
+/* Frameless, so the panel header is the drag surface. */
+html.settingsWindow .settingsHeader {
+  -webkit-app-region: drag;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: #0a0e16;
+}
+html.settingsWindow .settingsHeader button,
+html.settingsWindow .settingsHeader .closeX,
+html.settingsWindow .settingsHeader a {
+  -webkit-app-region: no-drag;
+}
+
+/* ============================================================
+   DRAG AFFORDANCE
+   ------------------------------------------------------------
+   The overlay is frameless, so there is no title bar to hint at.
+   Anywhere that actually moves the window shows a grab cursor;
+   the exclusions below mirror the mousedown drag filter in
+   core.js, so the cursor never promises a drag that will not
+   happen.
+   ============================================================ */
+
+.meter,
+.header,
+.header .bossNames,
+.header .bossNames .bossName,
+.meterFooter {
+  cursor: grab;
+}
+
+/* Interactive surfaces keep their own affordance. */
+.meter .list .item,
+.headerBtn,
+.footerBtn,
+.bossIcon,
+.resizeHandle,
+.settingsPanel,
+.detailsPanel,
+.historyPanel,
+.updateModal,
+.pingDisplay,
+.meter button,
+.meter input,
+.meter select,
+.meter textarea,
+.meter a,
+.meter [data-no-drag] {
+  cursor: auto;
+}
+.meter .list .item,
+.headerBtn,
+.footerBtn,
+.bossIcon,
+.meter button,
+.meter a {
+  cursor: pointer;
+}
+.resizeHandle { cursor: se-resize; }
+
+/* While a drag is in flight the whole window reads as held. */
+body.windowDragFreeze,
+body.windowDragFreeze * {
+  cursor: grabbing !important;
+}
+
+/* Tool windows drag by their own header, handled by -webkit-app-region. */
+html.detailsWindow .meter,
+html.settingsWindow .meter {
+  cursor: auto;
+}

@@ -239,12 +239,16 @@ class DpsApp {
       },
       onLeaveUserRow: () => {
         this.hoveredDetailsRowId = null;
-        if (this.pinnedDetailsRowId !== null) return;
         requestAnimationFrame(() => {
           const hoveredRow = this.elList?.querySelector?.(".item:hover");
           if (hoveredRow) return;
+          // Only the hover tooltip belongs to hovering. Leaving a row used to
+          // close the Details view as well, which killed a Details opened any
+          // other way — the target-name path clears pinnedDetailsRowId before
+          // opening, so the pin guard never protected it. Hover never opens the
+          // panel (openHoverDetailsRow bails when it is already open), so there
+          // is nothing here for it to close.
           this.hideHoverTooltip();
-          this.detailsUI?.close?.({ keepPinned: false });
         });
       },
       onClickUserRow: (row) => {
@@ -1774,25 +1778,23 @@ class DpsApp {
     this.logoBtn?.setAttribute("data-no-drag", "true");
 
     // Click on boss name area → open Details for current mob (all players) or history
-    const bossNamesEl = document.querySelector(".bossNames");
-    if (bossNamesEl) {
-      bossNamesEl.addEventListener("click", () => {
+    // The target name is a plain label now: no click target and no data-no-drag,
+    // so the whole top of the window is grab-and-drag surface. Details is opened
+    // from a player row, History from its own header button.
+
+    const historyBtn = document.querySelector(".historyBtn");
+    if (historyBtn) {
+      historyBtn.addEventListener("click", () => {
         if (this.isWindowDragging) return;
-        const targetId = this.lastTargetId;
-        if (targetId > 0) {
-          this.pinnedDetailsRowId = null;
-          this.detailsUI?.open?.(null, {
-            defaultTargetId: targetId,
-            defaultTargetAll: false,
-            pin: true,
-            force: true,
-          });
-        } else {
+        this.historyUI?.open?.();
+      });
+      historyBtn.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
           this.historyUI?.open?.();
         }
       });
-      bossNamesEl.setAttribute("data-no-drag", "true");
-      bossNamesEl.style.cursor = "pointer";
+      historyBtn.setAttribute("data-no-drag", "true");
     }
   }
 
@@ -2165,6 +2167,12 @@ class DpsApp {
     this.initializeSettingsDropdowns();
 
     this.settingsBtn?.addEventListener("click", () => {
+      // Settings is its own window now, so the overlay no longer grows to
+      // ~820px to contain it.
+      if (window.A2_VIEW === "main") {
+        window.javaBridge?.openSettingsWindow?.();
+        return;
+      }
       this.refreshMonitorList().then(() => this.initializeSettingsDropdowns());
       this.toggleSettingsPanel();
     });
@@ -3366,6 +3374,23 @@ class DpsApp {
     this.detailsMonitorHint.style.display = text ? "" : "none";
   }
 
+  // The "settings" window runs this same bundle with only the settings panel
+  // visible, so its markup and wiring are reused rather than duplicated.
+  enterSettingsWindowMode() {
+    document.body.classList.add("isSettingsWindow");
+    this.refreshMonitorList().then(() => this.initializeSettingsDropdowns());
+    this.settingsPanel?.classList.add("isOpen");
+    const close = () => window.javaBridge?.closeSettingsWindow?.();
+    this.settingsClose?.addEventListener("click", close);
+    document.querySelector(".settingsWindowClose")?.addEventListener("click", close);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") close();
+    });
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => window.javaBridge?.toolWindowReady?.("settings"));
+    });
+  }
+
   enterDetailsWindowMode() {
     document.body.classList.add("isDetailsWindow");
     // Frameless window, so the panel header supplies the close control. Closing
@@ -4412,6 +4437,8 @@ const startApp = async ({ forced = false } = {}) => {
     dpsApp.start();
     if (window.A2_VIEW === "details") {
       dpsApp.enterDetailsWindowMode();
+    } else if (window.A2_VIEW === "settings") {
+      dpsApp.enterSettingsWindowMode();
     }
     window.javaBridge?.notifyUiReady?.();
 
