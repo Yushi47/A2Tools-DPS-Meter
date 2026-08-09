@@ -127,8 +127,27 @@
       "classic": "经典界面",
       "classicSlim": "经典精简"
     },
+    "detailsMonitor": {
+      "label": "在显示器上显示详情",
+      "off": "关闭",
+      "primary": "主屏",
+      "missing": "该显示器未连接。",
+      "single": "仅检测到一个显示器 — 请连接第二块屏幕。",
+      "badge": "显示器",
+      "side": {
+        "left": "左侧",
+        "right": "右侧",
+        "above": "上方",
+        "below": "下方"
+      }
+    },
     "appearance": "外观",
     "connection": "连接",
+    "diagnostics": "诊断",
+    "device": {
+      "label": "抓包网卡",
+      "autoDetect": "自动检测"
+    },
     "advanced": "高级",
     "bossLogs": "启用每场Boss日志",
     "saveRawPackets": "启用数据包日志",

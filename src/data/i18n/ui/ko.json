@@ -127,8 +127,27 @@
       "classic": "클래식 UI",
       "classicSlim": "클래식 슬림"
     },
+    "detailsMonitor": {
+      "label": "상세 정보를 표시할 모니터",
+      "off": "끕",
+      "primary": "기본",
+      "missing": "해당 디스플레이가 연결되어 있지 않습니다.",
+      "single": "디스플레이가 하나만 감지되었습니다 — 두 번째 화면을 연결하세요.",
+      "badge": "모니터",
+      "side": {
+        "left": "왼쪽",
+        "right": "오른쪽",
+        "above": "위",
+        "below": "아래"
+      }
+    },
     "appearance": "외관",
     "connection": "연결",
+    "diagnostics": "진단",
+    "device": {
+      "label": "캡처 장치",
+      "autoDetect": "자동 감지"
+    },
     "advanced": "고급",
     "bossLogs": "보스별 로그 활성화",
     "saveRawPackets": "패킷 로깅 활성화",

@@ -127,8 +127,27 @@
       "classic": "經典介面",
       "classicSlim": "經典精簡"
     },
+    "detailsMonitor": {
+      "label": "在螢幕上顯示詳情",
+      "off": "關閉",
+      "primary": "主螢幕",
+      "missing": "該螢幕未連接。",
+      "single": "僅偵測到一個螢幕 — 請連接第二块螢幕。",
+      "badge": "螢幕",
+      "side": {
+        "left": "左側",
+        "right": "右側",
+        "above": "上方",
+        "below": "下方"
+      }
+    },
     "appearance": "外觀",
     "connection": "連線",
+    "diagnostics": "診斷",
+    "device": {
+      "label": "擷取網卡",
+      "autoDetect": "自動偵測"
+    },
     "advanced": "進階",
     "bossLogs": "啟用每場Boss記錄",
     "saveRawPackets": "啟用封包日誌",

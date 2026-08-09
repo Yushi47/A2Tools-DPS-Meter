@@ -29,6 +29,10 @@ use entity::details_context::{DetailsContext, TargetDetailsResponse};
 use history::fight_history::FightHistoryManager;
 use i18n::lookup::{NpcLookup, SkillLookup};
 
+/// Monitor the Details window was last placed on. Recorded here rather than
+/// passed back from JS so the confirmation cannot disagree with the placement.
+static DETAILS_MONITOR: std::sync::atomic::AtomicUsize = std::sync::atomic::AtomicUsize::new(usize::MAX);
+
 /// Shared application state.
 pub struct AppState {
     pub data_storage: Arc<DataStorage>,
@@ -412,8 +416,236 @@ fn open_url(url: String) {
 
 #[tauri::command]
 fn resize_window(app: tauri::AppHandle, width: f64, height: f64) {
+    // Only the overlay auto-sizes itself. The details window is sized to a
+    // whole monitor by open_details_window and must never be resized from JS.
     if let Some(window) = app.get_webview_window("main") {
         let _ = window.set_size(tauri::Size::Logical(tauri::LogicalSize { width, height }));
+    }
+}
+
+/// Displays as reported by the OS, for the "Show Details on Monitor" picker.
+/// Positions and sizes are physical pixels, which is what set_position and
+/// set_size want for exact monitor placement.
+#[tauri::command]
+fn list_monitors(app: tauri::AppHandle) -> Vec<serde_json::Value> {
+    let primary = app.primary_monitor().ok().flatten();
+    let primary_name = primary.as_ref().and_then(|m| m.name().cloned());
+    let primary_rect = primary.as_ref().map(|m| {
+        let p = *m.position();
+        let s = *m.size();
+        (p.x, p.y, s.width as i32, s.height as i32)
+    });
+
+    let monitors = match app.available_monitors() {
+        Ok(m) => m,
+        Err(_) => return Vec::new(),
+    };
+
+    let mut entries: Vec<(usize, serde_json::Value)> = monitors
+        .into_iter()
+        .enumerate()
+        .map(|(index, m)| {
+            let pos = m.position();
+            let size = m.size();
+            let name = m.name().cloned().unwrap_or_else(|| format!("Display {}", index + 1));
+            let is_primary = primary_name.as_ref() == Some(&name);
+            // Where this screen sits relative to the primary, so the picker can
+            // say "right" / "above" instead of only a resolution — a resolution
+            // alone does not tell you which physical monitor you just chose.
+            let side = match primary_rect {
+                _ if is_primary => "",
+                Some((px, py, pw, ph)) => {
+                    let (x, y, w, h) = (pos.x, pos.y, size.width as i32, size.height as i32);
+                    if x >= px + pw { "right" }
+                    else if x + w <= px { "left" }
+                    else if y >= py + ph { "below" }
+                    else if y + h <= py { "above" }
+                    else { "" }
+                }
+                None => "",
+            };
+            (
+                index,
+                serde_json::json!({
+                    // Index into available_monitors — this is what gets saved and
+                    // passed back to open_details_window, so it must stay stable
+                    // regardless of the display order below.
+                    "index": index,
+                    "name": name,
+                    "x": pos.x,
+                    "y": pos.y,
+                    "width": size.width,
+                    "height": size.height,
+                    "scaleFactor": m.scale_factor(),
+                    "isPrimary": is_primary,
+                    "side": side,
+                }),
+            )
+        })
+        .collect();
+
+    // Present the primary first so the picker's "1" is the screen the game is
+    // on and "2" is the other one. The OS order is not dependable: on a
+    // two-screen setup here it reported the secondary display first, which made
+    // "Monitor 2" select the primary.
+    entries.sort_by_key(|(index, v)| {
+        let primary = v.get("isPrimary").and_then(|p| p.as_bool()).unwrap_or(false);
+        (!primary, *index)
+    });
+    entries.into_iter().map(|(_, v)| v).collect()
+}
+
+/// Open (or move) the always-on Details window, filling the chosen monitor.
+/// Frameless to match the overlay; the in-page header carries the close button.
+#[tauri::command]
+fn open_details_window(app: tauri::AppHandle, monitor_index: usize) -> Result<(), String> {
+    open_details_on_monitor(&app, monitor_index)
+}
+
+fn open_details_on_monitor(app: &tauri::AppHandle, monitor_index: usize) -> Result<(), String> {
+    let monitors = app.available_monitors().map_err(|e| e.to_string())?;
+    if monitors.is_empty() {
+        return Err("no monitors reported".into());
+    }
+    let monitor = monitors
+        .get(monitor_index)
+        .ok_or_else(|| format!("monitor {} is not connected", monitor_index))?;
+    DETAILS_MONITOR.store(monitor_index, std::sync::atomic::Ordering::Relaxed);
+
+    // available_monitors reports PHYSICAL pixels, but WebviewWindowBuilder's
+    // position()/inner_size() take LOGICAL pixels. Convert, or on a scaled
+    // display the window lands in the wrong place at the wrong size.
+    let scale = monitor.scale_factor();
+    let pos = *monitor.position();
+    let size = *monitor.size();
+    let lx = pos.x as f64 / scale;
+    let ly = pos.y as f64 / scale;
+    let lw = size.width as f64 / scale;
+    let lh = size.height as f64 / scale;
+
+    tracing::info!(
+        "details window -> monitor {} '{}' physical {}x{} at {},{} (scale {}) => logical {}x{} at {},{}",
+        monitor_index,
+        monitor.name().cloned().unwrap_or_default(),
+        size.width, size.height, pos.x, pos.y, scale, lw, lh, lx, ly
+    );
+
+    if let Some(existing) = app.get_webview_window("details") {
+        // Already open — move it. Physical variants here, since these setters
+        // take an explicit Position/Size enum rather than assuming logical.
+        let _ = existing.unmaximize();
+        let _ = existing.set_position(tauri::Position::Physical(pos));
+        let _ = existing.set_size(tauri::Size::Physical(size));
+        let _ = existing.show();
+        let _ = existing.set_focus();
+        announce_details_placement(app, monitor_index);
+        return Ok(());
+    }
+
+    // Born at the target coordinates rather than created-then-moved. Moving a
+    // hidden window and calling maximize() put it on whichever monitor Windows
+    // still considered current, which is how Details kept opening on the same
+    // screen as the overlay.
+    let window = tauri::WebviewWindowBuilder::new(
+        app,
+        "details",
+        tauri::WebviewUrl::App("index.html".into()),
+    )
+    .title("A2Tools DPS Meter — Details")
+    .decorations(false)
+    .transparent(false)
+    .always_on_top(false)
+    // Not resizable: an undecorated resizable window carries an invisible 8px
+    // resize border, which offsets the visible content from the monitor edge
+    // and leaves a sliver of desktop showing. It fills the screen anyway.
+    .resizable(false)
+    .skip_taskbar(false)
+    .position(lx, ly)
+    .inner_size(lw, lh)
+    // Built hidden: a visible webview paints white until the bundle loads and
+    // applies the dark theme, which read as "a blank white window filled the
+    // screen". details_window_ready shows it once the page has rendered.
+    .visible(false)
+    .build()
+    .map_err(|e| e.to_string())?;
+
+    // Re-assert in physical units: the builder's logical values round on
+    // fractional-scale displays.
+    let _ = window.set_position(tauri::Position::Physical(pos));
+    let _ = window.set_size(tauri::Size::Physical(size));
+
+    // Announced once the window reports ready (see details_window_ready); a
+    // freshly built webview has no listener attached yet.
+    // Safety net: if the frontend never reports ready (load failure), show it
+    // anyway rather than leaving an invisible window the user cannot dismiss.
+    let handle = app.clone();
+    tauri::async_runtime::spawn(async move {
+        tokio::time::sleep(Duration::from_millis(4000)).await;
+        if let Some(w) = handle.get_webview_window("details") {
+            if !w.is_visible().unwrap_or(true) {
+                tracing::warn!("details window never reported ready; showing anyway");
+                let _ = w.show();
+            }
+        }
+    });
+    Ok(())
+}
+
+
+/// Tell the Details window which screen it just landed on, so it can confirm
+/// visually. A dropdown label alone does not prove the right monitor was picked.
+fn announce_details_placement(app: &tauri::AppHandle, monitor_index: usize) {
+    let monitors = match app.available_monitors() {
+        Ok(m) => m,
+        Err(_) => return,
+    };
+    let Some(monitor) = monitors.get(monitor_index) else { return };
+    let primary = app.primary_monitor().ok().flatten();
+    let primary_name = primary.as_ref().and_then(|m| m.name().cloned());
+    let name = monitor.name().cloned().unwrap_or_default();
+    let is_primary = primary_name.as_ref() == Some(&name);
+
+    // Position in the primary-first ordering the picker shows.
+    let mut ordered: Vec<(bool, usize)> = monitors
+        .iter()
+        .enumerate()
+        .map(|(i, m)| (m.name().cloned() == primary_name, i))
+        .collect();
+    ordered.sort_by_key(|(is_p, i)| (!*is_p, *i));
+    let position = ordered
+        .iter()
+        .position(|(_, i)| *i == monitor_index)
+        .unwrap_or(monitor_index);
+
+    let size = *monitor.size();
+    let _ = app.emit_to(
+        "details",
+        "details-placed",
+        serde_json::json!({
+            "number": position + 1,
+            "width": size.width,
+            "height": size.height,
+            "isPrimary": is_primary,
+        }),
+    );
+}
+
+/// Called by the Details window once its panel has painted.
+#[tauri::command]
+fn details_window_ready(app: tauri::AppHandle) {
+    if let Some(window) = app.get_webview_window("details") {
+        let _ = window.show();
+    }
+    let index = DETAILS_MONITOR.load(std::sync::atomic::Ordering::Relaxed);
+    if index != usize::MAX {
+        announce_details_placement(&app, index);
+    }
+}
+
+#[tauri::command]
+fn close_details_window(app: tauri::AppHandle) {
+    if let Some(window) = app.get_webview_window("details") {
+        let _ = window.close();
     }
 }
 
@@ -766,6 +998,29 @@ pub fn run() {
 
             app.manage(state);
 
+            // Reopen the Details window if it was left enabled. Done here rather
+            // than from JS because the backend already has settings loaded — the
+            // frontend reads them asynchronously and would race the first paint.
+            {
+                let saved = app.state::<AppState>().settings.get("dpsMeter.detailsMonitor");
+                if let Some(value) = saved {
+                    let value = value.trim().to_string();
+                    if !value.is_empty() && value != "off" {
+                        if let Ok(index) = value.parse::<usize>() {
+                            let handle = app.handle().clone();
+                            // Deferred: available_monitors is unreliable until the
+                            // main window exists and the event loop has run once.
+                            tauri::async_runtime::spawn(async move {
+                                tokio::time::sleep(Duration::from_millis(600)).await;
+                                if let Err(e) = open_details_on_monitor(&handle, index) {
+                                    tracing::warn!("details window reopen failed: {}", e);
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+
             // Restore saved window position and ensure always-on-top
             if let Some(window) = app.get_webview_window("main") {
                 let state_ref = app.state::<AppState>();
@@ -1020,6 +1275,10 @@ pub fn run() {
             read_cached_icon,
             write_cached_icon,
             resize_window,
+            list_monitors,
+            open_details_window,
+            close_details_window,
+            details_window_ready,
             capture_screenshot,
             start_drag,
             reset_auto_detection,

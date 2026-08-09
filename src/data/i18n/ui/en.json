@@ -129,8 +129,27 @@
       "classic": "Classic UI",
       "classicSlim": "Classic Slim"
     },
+    "detailsMonitor": {
+      "label": "Show Details on monitor",
+      "off": "Off",
+      "primary": "primary",
+      "missing": "That display is not connected.",
+      "single": "Only one display detected — connect a second screen to use this.",
+      "badge": "Monitor",
+      "side": {
+        "left": "left",
+        "right": "right",
+        "above": "above",
+        "below": "below"
+      }
+    },
     "appearance": "Appearance",
     "connection": "Connection",
+    "diagnostics": "Diagnostics",
+    "device": {
+      "label": "Capture device",
+      "autoDetect": "Auto-detect"
+    },
     "advanced": "Advanced",
     "bossLogs": "Enable per-boss logs",
     "saveRawPackets": "Enable packet logging",

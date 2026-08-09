@@ -10,6 +10,21 @@
   const { listen } = window.__TAURI__.event;
   const { open: shellOpen } = window.__TAURI__.opener;
 
+  // Two windows share this bundle: the game overlay (label "main") and the
+  // always-on Details view (label "details"), which the user can park on a
+  // second monitor. The window label is the discriminator — no URL parsing,
+  // and it is available synchronously before anything else initialises.
+  let viewMode = "main";
+  try {
+    if (window.__TAURI__.window.getCurrentWindow().label === "details") {
+      viewMode = "details";
+    }
+  } catch {}
+  window.A2_VIEW = viewMode;
+  if (viewMode === "details") {
+    document.documentElement.classList.add("detailsWindow");
+  }
+
   // --- Cached state ---
   let settingsCache = {};
   let settingsLoaded = false;
@@ -139,6 +154,20 @@
 
   // ===== window.javaBridge — called by various JS modules =====
   window.javaBridge = {
+    // --- Details window (second monitor) ---
+    listMonitors() {
+      return invoke("list_monitors").catch(() => []);
+    },
+    openDetailsWindow(monitorIndex) {
+      return invoke("open_details_window", { monitorIndex: Number(monitorIndex) || 0 });
+    },
+    closeDetailsWindow() {
+      return invoke("close_details_window").catch(() => {});
+    },
+    detailsWindowReady() {
+      return invoke("details_window_ready").catch(() => {});
+    },
+
     // --- Settings ---
     getSetting(key) {
       return settingsCache[key] ?? localStorage.getItem(key);
@@ -442,6 +471,10 @@
 
   const updateWindowSize = () => {
     if (resizeActive) return; // Don't fight the user while they're resizing
+    // The Details window is sized to a whole monitor by the backend; letting
+    // the overlay's auto-sizing run here would shrink it to meter dimensions.
+    if (window.A2_VIEW === "details") return;
+
     const fullPanel = !!(
       document.querySelector(".settingsPanel.isOpen") ||
       document.querySelector(".detailsPanel.open") ||

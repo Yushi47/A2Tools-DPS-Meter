@@ -48,6 +48,7 @@ class DpsApp {
       windowOpacity: "dpsMeter.windowOpacity",
       bossNameSize: "dpsMeter.bossNameSize",
       betaUi: "dpsMeter.betaUi",
+      detailsMonitor: "dpsMeter.detailsMonitor",
       showSuspendBtn: "dpsMeter.showSuspendBtn",
     };
 
@@ -1821,6 +1822,9 @@ class DpsApp {
     this.showPingCheckbox = document.querySelector(".showPingCheckbox");
     this.saveRawPacketsCheckbox = document.querySelector(".saveRawPacketsCheckbox");
     this.pinMeToTopCheckbox = document.querySelector(".pinMeToTopCheckbox");
+    this.detailsMonitorDropdownBtn = document.querySelector(".detailsMonitorDropdownBtn");
+    this.detailsMonitorDropdownMenu = document.querySelector(".detailsMonitorDropdownMenu");
+    this.detailsMonitorHint = document.querySelector(".detailsMonitorHint");
     this.meterLayoutDropdownBtn = document.querySelector(".meterLayoutDropdownBtn");
     this.meterLayoutDropdownMenu = document.querySelector(".meterLayoutDropdownMenu");
     this.playerNamesBoldCheckbox = document.querySelector(".playerNamesBoldCheckbox");
@@ -2124,15 +2128,44 @@ class DpsApp {
       });
     }
 
+    // Mirror each slider's position into a CSS custom property so the track
+    // can paint a filled portion. Presentation only — no setting reads it.
+    const syncRangeFill = (input) => {
+      if (!input) return;
+      const min = Number(input.min);
+      const max = Number(input.max);
+      const value = Number(input.value);
+      if (!Number.isFinite(min) || !Number.isFinite(max) || !Number.isFinite(value) || max <= min) {
+        return;
+      }
+      const pct = Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100));
+      input.style.setProperty("--range-pct", `${pct}%`);
+    };
+    this.settingsPanel?.querySelectorAll(".settingsRange").forEach(syncRangeFill);
+    this.settingsPanel?.addEventListener("input", (event) => {
+      const target = event.target;
+      if (target?.classList?.contains("settingsRange")) syncRangeFill(target);
+    });
+
     this.setupKeybindButtons();
 
     const currentLanguage = this.i18n?.getLanguage?.() || storedLanguage || "en";
     this.settingsSelections.language = currentLanguage;
     this.settingsSelections.theme = this.theme;
 
+    this.detailsMonitor = this.getDetailsMonitorSetting();
+    this.refreshMonitorList().then(() => {
+      this.initializeSettingsDropdowns();
+      // Re-open the Details window if it was left enabled last session.
+      if (this.detailsMonitor !== "off" && window.A2_VIEW !== "details") {
+        this.applyDetailsMonitor(this.detailsMonitor, { persist: false });
+      }
+    });
+
     this.initializeSettingsDropdowns();
 
     this.settingsBtn?.addEventListener("click", () => {
+      this.refreshMonitorList().then(() => this.initializeSettingsDropdowns());
       this.toggleSettingsPanel();
     });
 
@@ -2514,14 +2547,14 @@ class DpsApp {
         this.applyTheme(value, { persist: true });
       },
       {
+        // Only the colours are set here; size and weight come from the
+        // stylesheet so the theme control matches every other dropdown.
         decorateItem: (item, value) => {
           const colors = previewThemeVars(value);
           item.style.background = colors.rowFill;
           item.style.opacity = "1";
           item.style.color = colors.textColor;
           item.style.textShadow = colors.nameShadow;
-          item.style.fontWeight = "500";
-          item.style.fontSize = "18px";
         },
         decorateButton: (button, value) => {
           const colors = previewThemeVars(value);
@@ -2529,8 +2562,6 @@ class DpsApp {
           button.style.opacity = "1";
           button.style.color = colors.textColor;
           button.style.textShadow = colors.nameShadow;
-          button.style.fontWeight = "500";
-          button.style.fontSize = "18px";
           const textEl = button.querySelector(".settingsDropdownText");
           if (textEl) {
             textEl.style.textShadow = colors.nameShadow;
@@ -2581,6 +2612,34 @@ class DpsApp {
         if (!this.isCollapse) this.fetchDps();
       }
     );
+
+    // Monitor picker. Rebuilt every time the settings panel opens so hot-plugged
+    // displays appear without a restart.
+    {
+      const monitors = Array.isArray(this.monitorList) ? this.monitorList : [];
+      const offLabel = this.i18n?.t?.("settings.detailsMonitor.off", "Off") ?? "Off";
+      const detailsMonitorOptions = [{ value: "off", label: offLabel }].concat(
+        monitors.map((m, i) => ({ value: String(m.index), label: this.monitorLabel(m, i) }))
+      );
+      const current = this.detailsMonitor ?? this.getDetailsMonitorSetting();
+      setupDropdown(
+        this.detailsMonitorDropdownBtn,
+        this.detailsMonitorDropdownMenu,
+        detailsMonitorOptions,
+        detailsMonitorOptions.some((o) => o.value === current) ? current : "off",
+        (value) => {
+          this.applyDetailsMonitor(value, { persist: true });
+        }
+      );
+      if (monitors.length <= 1) {
+        this.setDetailsMonitorHint(
+          this.i18n?.t?.(
+            "settings.detailsMonitor.single",
+            "Only one display detected — connect a second screen to use this."
+          ) ?? "Only one display detected — connect a second screen to use this."
+        );
+      }
+    }
 
     // One control for both axes of the main window: which skin, and how dense.
     // They were two separate toggles, which made four states the user had to
@@ -3225,6 +3284,132 @@ class DpsApp {
       this.safeSetSetting(this.storageKeys.pinMeToTop, String(this.pinMeToTop));
     }
     this.renderCurrentRows();
+  }
+
+  // The "details" window runs this same bundle. Rather than a second app, it
+  // reuses the panel that already exists in index.html: the overlay chrome is
+  // hidden by CSS and the panel is held open on the whole fight.
+  /** "off" or a monitor index as a string. */
+  getDetailsMonitorSetting() {
+    const raw = this.safeGetSetting(this.storageKeys.detailsMonitor);
+    if (raw === null || raw === undefined || String(raw).trim() === "") return "off";
+    return String(raw);
+  }
+
+  async refreshMonitorList() {
+    try {
+      const list = await window.javaBridge?.listMonitors?.();
+      this.monitorList = Array.isArray(list) ? list : [];
+    } catch {
+      this.monitorList = [];
+    }
+    return this.monitorList;
+  }
+
+  monitorLabel(monitor, position) {
+    const n = Number.isFinite(position) ? position + 1 : Number(monitor?.index) + 1;
+    const w = Math.round(Number(monitor?.width) || 0);
+    const h = Math.round(Number(monitor?.height) || 0);
+    const notes = [];
+    if (monitor?.isPrimary) {
+      notes.push(this.i18n?.t?.("settings.detailsMonitor.primary", "primary") ?? "primary");
+    }
+    // Where the screen physically sits — a resolution alone does not tell the
+    // user which of their monitors they just selected.
+    const side = String(monitor?.side || "");
+    if (side) {
+      notes.push(this.i18n?.t?.(`settings.detailsMonitor.side.${side}`, side) ?? side);
+    }
+    const suffix = notes.length ? ` (${notes.join(", ")})` : "";
+    return `${n} — ${w}×${h}${suffix}`;
+  }
+
+  /**
+   * Apply the "Show Details on monitor" setting. Opening is best-effort: if the
+   * chosen display has been unplugged since it was saved, fall back to off
+   * rather than leaving a window stranded off-screen.
+   */
+  async applyDetailsMonitor(value, { persist = false } = {}) {
+    const next = value === "off" || value === null || value === undefined ? "off" : String(value);
+    this.detailsMonitor = next;
+    if (persist) {
+      this.safeSetSetting(this.storageKeys.detailsMonitor, next);
+    }
+    if (next === "off") {
+      await window.javaBridge?.closeDetailsWindow?.();
+      this.setDetailsMonitorHint("");
+      return;
+    }
+    const index = Number(next);
+    const monitors = await this.refreshMonitorList();
+    if (!Number.isFinite(index) || !monitors.some((m) => Number(m.index) === index)) {
+      this.setDetailsMonitorHint(
+        this.i18n?.t?.("settings.detailsMonitor.missing", "That display is not connected.") ??
+          "That display is not connected."
+      );
+      await window.javaBridge?.closeDetailsWindow?.();
+      this.detailsMonitor = "off";
+      if (persist) this.safeSetSetting(this.storageKeys.detailsMonitor, "off");
+      return;
+    }
+    try {
+      await window.javaBridge?.openDetailsWindow?.(index);
+      this.setDetailsMonitorHint("");
+    } catch (err) {
+      this.setDetailsMonitorHint(String(err?.message || err || ""));
+    }
+  }
+
+  setDetailsMonitorHint(text) {
+    if (!this.detailsMonitorHint) return;
+    this.detailsMonitorHint.textContent = text || "";
+    this.detailsMonitorHint.style.display = text ? "" : "none";
+  }
+
+  enterDetailsWindowMode() {
+    document.body.classList.add("isDetailsWindow");
+    // Frameless window, so the panel header supplies the close control. Closing
+    // also turns the setting off, otherwise it would reopen on next launch.
+    document.querySelector(".detailsWindowClose")?.addEventListener("click", () => {
+      this.safeSetSetting(this.storageKeys.detailsMonitor, "off");
+      window.javaBridge?.closeDetailsWindow?.();
+    });
+    const openAll = () => {
+      this.detailsUI?.open?.(null, { defaultTargetAll: true, pin: true, force: true });
+    };
+    // Confirm on the screen itself which monitor this is. Backed by the
+    // placement the backend actually performed, not by what was requested.
+    window.__TAURI__?.event?.listen?.("details-placed", (event) => {
+      const badge = document.querySelector(".detailsMonitorBadge");
+      if (!badge) return;
+      const p = event?.payload || {};
+      const numEl = badge.querySelector(".detailsMonitorBadgeNum");
+      const textEl = badge.querySelector(".detailsMonitorBadgeText");
+      if (numEl) numEl.textContent = String(p.number ?? "");
+      if (textEl) {
+        const label = this.i18n?.t?.("settings.detailsMonitor.badge", "Monitor") ?? "Monitor";
+        const primary = p.isPrimary
+          ? ` · ${this.i18n?.t?.("settings.detailsMonitor.primary", "primary") ?? "primary"}`
+          : "";
+        textEl.textContent = `${label} ${p.number ?? ""} · ${p.width}×${p.height}${primary}`;
+      }
+      badge.classList.remove("isVisible");
+      void badge.offsetWidth; // restart the fade if it fires twice
+      badge.classList.add("isVisible");
+    });
+
+    openAll();
+    // Tell the backend to reveal the window now that the panel has painted —
+    // it is created hidden to avoid a white flash while the bundle loads.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => window.javaBridge?.detailsWindowReady?.());
+    });
+    // The panel can be closed from inside (back button, escape). In this window
+    // there is nothing behind it, so re-assert rather than leave a blank screen.
+    if (this._detailsWindowTimer) clearInterval(this._detailsWindowTimer);
+    this._detailsWindowTimer = setInterval(() => {
+      if (!this.detailsPanel?.classList?.contains("open")) openAll();
+    }, 1000);
   }
 
   getMeterLayout() {
@@ -4225,6 +4410,9 @@ const startApp = async ({ forced = false } = {}) => {
     await window.i18n?.init?.();
     window.lucide?.createIcons?.();
     dpsApp.start();
+    if (window.A2_VIEW === "details") {
+      dpsApp.enterDetailsWindowMode();
+    }
     window.javaBridge?.notifyUiReady?.();
 
   } catch (err) {
