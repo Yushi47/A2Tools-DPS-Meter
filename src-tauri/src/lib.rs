@@ -81,8 +81,13 @@ fn get_details_context(state: tauri::State<'_, AppState>) -> DetailsContext {
 }
 
 #[tauri::command]
-fn get_fight_history(state: tauri::State<'_, AppState>) -> Vec<FightSummary> {
-    state.fight_history.list_fights()
+/// `async` keeps this off the main thread. Sync commands run there, and even
+/// with the summary cache a cold call reads every fight file — measured at
+/// ~350ms, during which no other IPC and no window painting can proceed. Each
+/// window calls this at startup and again every 10s, which is what made opening
+/// History feel like it hung.
+async fn get_fight_history(state: tauri::State<'_, AppState>) -> Result<Vec<FightSummary>, String> {
+    Ok(state.fight_history.list_fights())
 }
 
 #[tauri::command]
