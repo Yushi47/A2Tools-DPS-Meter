@@ -10,19 +10,42 @@
       href="/src/styles.css"
       rel="stylesheet"
       type="text/css" />
+    <!--
+      CJK webfonts, loaded without blocking first paint. Every window pulls the
+      whole head before it renders, so as plain stylesheets these four put
+      unpkg.com on the critical path of opening Settings, Details or History —
+      measured at ~770ms each on a cold cache, and unbounded when offline. The
+      media="print" swap lets the browser fetch them at low priority and apply
+      them when they land; Latin text renders immediately in the fallback stack
+      and CJK text reflows once, rather than everything waiting on the network.
+    -->
     <link
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
       href="https://unpkg.com/spoqa-han-sans@3.3.0/css/SpoqaHanSansNeo.min.css" />
     <link
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
       href="https://unpkg.com/pretendard@1.3.9/dist/web/variable/pretendardvariable.css" />
     <link
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
       href="https://unpkg.com/@fontsource/noto-sans-sc@5.0.19/index.css" />
     <link
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
       href="https://unpkg.com/@fontsource/noto-sans-tc@5.0.19/index.css" />
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!--
+      Vendored, and pinned. This is a render-blocking script that every icon in
+      the UI waits on, so fetching it from a CDN meant no icons until the
+      network answered — and "@latest" meant the version could change under us
+      between launches. Update by replacing the file.
+    -->
+    <script src="/vendor/lucide.min.js"></script>
   </head>
 
   <body>
