@@ -497,8 +497,10 @@ fn list_monitors(app: tauri::AppHandle) -> Vec<serde_json::Value> {
 
 /// Open (or move) the always-on Details window, filling the chosen monitor.
 /// Frameless to match the overlay; the in-page header carries the close button.
+///
+/// `async` is load-bearing — see the note on `open_settings_window`.
 #[tauri::command]
-fn open_details_window(app: tauri::AppHandle, monitor_index: usize) -> Result<(), String> {
+async fn open_details_window(app: tauri::AppHandle, monitor_index: usize) -> Result<(), String> {
     open_details_on_monitor_inner(&app, monitor_index, true)
 }
 
@@ -563,18 +565,22 @@ fn open_details_on_monitor_inner(
         "details",
         tauri::WebviewUrl::App("index.html".into()),
     )
+    .initialization_script("window.__A2_VIEW__ = 'details';")
     .title("A2Tools DPS Meter — Details")
     .decorations(false)
     .transparent(false)
-    .always_on_top(false)
+    // Intentional: the point of this window is to stay readable on a second
+    // monitor without being buried by whatever else is on that screen.
+    .always_on_top(true)
     .resizable(true)
     .skip_taskbar(false)
     .position(lx, ly)
     .inner_size(lw, lh)
-    // Built hidden: a visible webview paints white until the bundle loads and
-    // applies the dark theme, which read as "a blank white window filled the
-    // screen". details_window_ready shows it once the page has rendered.
-    .visible(false)
+    // Visible from the start. Creating it hidden and having the page reveal
+    // itself deadlocked: a hidden WebView2 window may never load its content,
+    // so the reveal never ran. The background colour below covers the load so
+    // there is no white flash.
+    .background_color(tauri::window::Color(10, 14, 22, 255))
     .build()
     .map_err(|e| e.to_string())?;
 
@@ -644,44 +650,59 @@ fn restore_window_geometry(app: &tauri::AppHandle, window: &tauri::WebviewWindow
 
 /// The Settings window. Free-floating like Details — it used to be a panel that
 /// forced the overlay to resize itself to ~820px tall.
+///
+/// **This command must stay `async`.** Tauri runs synchronous commands on the
+/// main thread, and on Windows `WebviewWindowBuilder::build()` deadlocks there:
+/// WebView2 needs the main thread's message loop to deliver the
+/// `CreateCoreWebView2Controller` callback, which cannot run while `build()` is
+/// blocking that same loop. The window still appeared — sized, and painting its
+/// background colour — but its WebView2 host stayed 0x0 and hidden, and the page
+/// never left `about:blank`. That is the "blank tool window". Marshalling
+/// through `run_on_main_thread` makes it worse, not better. An `async` command
+/// runs off the main thread, so the loop stays free to complete the callback.
+/// See <https://docs.rs/tauri/latest/tauri/webview/struct.WebviewWindowBuilder.html>.
 #[tauri::command]
-fn open_settings_window(app: tauri::AppHandle) -> Result<(), String> {
+async fn open_settings_window(app: tauri::AppHandle) -> Result<(), String> {
     if let Some(existing) = app.get_webview_window("settings") {
         let _ = existing.show();
         let _ = existing.unminimize();
+        let _ = existing.set_always_on_top(true);
         let _ = existing.set_focus();
         return Ok(());
     }
+    build_settings_window(&app)
+}
+
+fn build_settings_window(app: &tauri::AppHandle) -> Result<(), String> {
     let window = tauri::WebviewWindowBuilder::new(
-        &app,
+        app,
         "settings",
         tauri::WebviewUrl::App("index.html".into()),
     )
+    // Injected before any page script. WebviewUrl::App is a path, so a ?query
+    // gets percent-encoded — this is the one channel that is reliable.
+    .initialization_script("window.__A2_VIEW__ = 'settings';")
     .title("A2Tools DPS Meter — Settings")
     .decorations(false)
     .transparent(false)
-    .always_on_top(false)
+    // Matches Details: the overlay itself is always-on-top, so a settings window
+    // that could fall behind it would be unreachable while the game is focused.
+    .always_on_top(true)
     .resizable(true)
     .skip_taskbar(false)
     .inner_size(760.0, 820.0)
     .min_inner_size(520.0, 420.0)
-    .visible(false)
+    // Built visible, with the app's background colour to cover the load rather
+    // than flashing white. Building it hidden is not an option: a hidden
+    // WebView2 window may never load its content, so a page-driven reveal
+    // deadlocks.
+    .background_color(tauri::window::Color(10, 14, 22, 255))
     .build()
     .map_err(|e| e.to_string())?;
 
-    if !restore_window_geometry(&app, &window, "settings") {
+    if !restore_window_geometry(app, &window, "settings") {
         let _ = window.center();
     }
-    // Same hidden-until-painted treatment as Details: a visible webview paints
-    // white until the bundle loads.
-    let handle = app.clone();
-    tauri::async_runtime::spawn(async move {
-        tokio::time::sleep(Duration::from_millis(1500)).await;
-        if let Some(w) = handle.get_webview_window("settings") {
-            let _ = w.show();
-            let _ = w.set_focus();
-        }
-    });
     Ok(())
 }
 

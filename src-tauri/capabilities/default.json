@@ -1,8 +1,8 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
-  "description": "Capability for the main window",
-  "windows": ["main"],
+  "description": "Overlay plus both tool windows. Every window label must be listed here — a window that is absent gets no permissions at all, so window.__TAURI__.opener is never injected and tauriBridge.js dies on its first destructure, leaving a blank window.",
+  "windows": ["main", "settings", "details"],
   "permissions": [
     "core:default",
     "opener:default"
