@@ -624,6 +624,76 @@ fn open_details_on_monitor_inner(
 
 
 
+/// The monitor the user has pinned Details to, or `None` when the setting is
+/// off. Read from settings on every use rather than from `DETAILS_MONITOR`:
+/// that atomic is session-sticky and never cleared, so once a monitor had been
+/// picked, Details kept landing on that screen for the rest of the run even
+/// after the user set the dropdown back to Off.
+fn details_monitor_setting(app: &tauri::AppHandle) -> Option<usize> {
+    let state = app.try_state::<AppState>()?;
+    let raw = state.settings.get("dpsMeter.detailsMonitor")?;
+    let raw = raw.trim();
+    if raw.is_empty() || raw == "off" {
+        return None;
+    }
+    raw.parse::<usize>().ok()
+}
+
+/// Whether the Details window's saved rect is somewhere the *user* put it.
+///
+/// Geometry recorded while Details was pinned to a monitor is the setting's
+/// placement, not a choice — and it used to be saved anyway, so turning the
+/// setting off left Details reopening on that same screen. The saver now stamps
+/// this marker only when it records an unpinned window, so geometry written
+/// under the old behaviour has no marker and is ignored exactly once. After
+/// that the window remembers wherever the user drags it, including onto a
+/// second screen deliberately.
+fn details_geometry_is_user_placed(app: &tauri::AppHandle) -> bool {
+    app.try_state::<AppState>()
+        .and_then(|state| state.settings.get(DETAILS_USER_PLACED_KEY))
+        .map(|v| v.trim() == "true")
+        .unwrap_or(false)
+}
+
+const DETAILS_USER_PLACED_KEY: &str = "window.details.userPlaced";
+
+/// Whether a window rect swallows a whole monitor — the shape of a
+/// monitor-filling placement rather than somewhere the user dragged a window.
+fn rect_covers_a_monitor(
+    app: &tauri::AppHandle,
+    pos: tauri::PhysicalPosition<i32>,
+    size: tauri::PhysicalSize<u32>,
+) -> bool {
+    app.available_monitors()
+        .map(|monitors| {
+            monitors.iter().any(|m| {
+                let p = *m.position();
+                let s = *m.size();
+                pos.x <= p.x
+                    && pos.y <= p.y
+                    && pos.x + size.width as i32 >= p.x + s.width as i32
+                    && pos.y + size.height as i32 >= p.y + s.height as i32
+            })
+        })
+        .unwrap_or(false)
+}
+
+/// Centre a tool window on whichever screen the overlay is on — where the user
+/// is actually playing — rather than on whatever Windows considers current.
+fn center_on_overlay_monitor(app: &tauri::AppHandle, window: &tauri::WebviewWindow) {
+    if let Some(main) = app.get_webview_window("main") {
+        if let (Ok(Some(monitor)), Ok(size)) = (main.current_monitor(), window.outer_size()) {
+            let p = *monitor.position();
+            let s = *monitor.size();
+            let x = p.x + ((s.width as i32 - size.width as i32) / 2).max(0);
+            let y = p.y + ((s.height as i32 - size.height as i32) / 2).max(0);
+            let _ = window.set_position(tauri::Position::Physical(tauri::PhysicalPosition { x, y }));
+            return;
+        }
+    }
+    let _ = window.center();
+}
+
 /// Restore a tool window's remembered geometry. Returns true if anything was
 /// applied, so callers know whether they still need to place it themselves.
 fn restore_window_geometry(app: &tauri::AppHandle, window: &tauri::WebviewWindow, label: &str) -> bool {
@@ -839,11 +909,17 @@ async fn request_details_view(
     if let Ok(mut slot) = PENDING_DETAILS_REQUEST.lock() {
         *slot = Some(payload);
     }
-    let index = DETAILS_MONITOR.load(std::sync::atomic::Ordering::Relaxed);
-    if index != usize::MAX {
-        open_details_on_monitor(&app, index)
-    } else {
-        open_details_windowed(&app)
+    // The setting decides, every time. Reading DETAILS_MONITOR here is what
+    // made "Show Details on monitor: Off" do nothing once a monitor had been
+    // picked earlier in the session.
+    match details_monitor_setting(&app) {
+        Some(index) => open_details_on_monitor(&app, index),
+        None => {
+            // Forget the earlier pick too, so the placement badge does not
+            // announce a monitor this window is no longer tied to.
+            DETAILS_MONITOR.store(usize::MAX, std::sync::atomic::Ordering::Relaxed);
+            open_details_windowed(&app)
+        }
     }
 }
 
@@ -872,8 +948,11 @@ fn open_details_windowed(app: &tauri::AppHandle) -> Result<(), String> {
     .build()
     .map_err(|e| e.to_string())?;
 
-    if !restore_window_geometry(app, &window, "details") {
-        let _ = window.center();
+    // A remembered position still wins, but only one the user actually chose.
+    if !details_geometry_is_user_placed(app)
+        || !restore_window_geometry(app, &window, "details")
+    {
+        center_on_overlay_monitor(app, &window);
     }
     Ok(())
 }
@@ -1456,6 +1535,16 @@ pub fn run() {
                             // Details and Settings float independently of the
                             // overlay, so each remembers where it was left.
                             for label in ["details", "settings"] {
+                                // While Details is pinned to a monitor its rect
+                                // comes from the setting, not from the user.
+                                // Saving it poisons the windowed geometry: turn
+                                // the setting off and Details would reopen
+                                // full-size on that same screen.
+                                if label == "details"
+                                    && details_monitor_setting(&handle).is_some()
+                                {
+                                    continue;
+                                }
                                 if let Some(w) = handle.get_webview_window(label) {
                                     if !w.is_visible().unwrap_or(false) {
                                         continue;
@@ -1470,6 +1559,21 @@ pub fn run() {
                                         if size.width > 100 && size.height > 100 {
                                             state.settings.set(&format!("window.{}.w", label), &size.width.to_string());
                                             state.settings.set(&format!("window.{}.h", label), &size.height.to_string());
+                                        }
+                                    }
+                                    // Details is unpinned here, but the window
+                                    // may still be sitting on the fill rect from
+                                    // before the setting was switched off. A rect
+                                    // that swallows a whole screen is not a
+                                    // placement anyone chose by dragging, so it
+                                    // never earns the marker.
+                                    if label == "details" {
+                                        let filling = match (w.outer_position(), w.outer_size()) {
+                                            (Ok(pos), Ok(size)) => rect_covers_a_monitor(&handle, pos, size),
+                                            _ => true,
+                                        };
+                                        if !filling {
+                                            state.settings.set(DETAILS_USER_PLACED_KEY, "true");
                                         }
                                     }
                                 }
