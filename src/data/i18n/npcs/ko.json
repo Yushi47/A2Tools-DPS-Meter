@@ -1487,6 +1487,10 @@
     "isBoss": false,
     "isDummy": true
   },
+  "2090865": {
+    "name": "None",
+    "isBoss": false
+  },
   "2100000": {
     "name": "반짝이는 칼크겔름",
     "isBoss": false
@@ -9213,8 +9217,82 @@
     "name": "심연의 뿔 루필리니",
     "isBoss": false
   },
+  "2300571": {
+    "name": "바위 정령",
+    "isBoss": false
+  },
+  "2300572": {
+    "name": "대지 정령",
+    "isBoss": false
+  },
+  "2300573": {
+    "name": "분노한 바위 정령",
+    "isBoss": false
+  },
+  "2300574": {
+    "name": "분노한 대지 정령",
+    "isBoss": false
+  },
+  "2300575": {
+    "name": "타락한 페어리",
+    "isBoss": false
+  },
+  "2300576": {
+    "name": "섬의 수호자 궁수",
+    "isBoss": false
+  },
+  "2300577": {
+    "name": "오드 바위 정령",
+    "isBoss": false
+  },
+  "2300578": {
+    "name": "숲의 코라돈",
+    "isBoss": false
+  },
+  "2300579": {
+    "name": "침식된 칼크겔름",
+    "isBoss": false
+  },
+  "2300580": {
+    "name": "티에",
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "시련",
+    "dungeonId": 600074
+  },
+  "2300581": {
+    "name": "타몬",
+    "isBoss": true,
+    "category": "격돌",
+    "tier": "시련",
+    "dungeonId": 600074
+  },
+  "2300582": {
+    "name": "바크론",
+    "isBoss": true
+  },
+  "2300583": {
+    "name": "달콤한 독기 꽃",
+    "isBoss": false
+  },
+  "2300584": {
+    "name": "사나운 여왕 벌",
+    "isBoss": false
+  },
+  "2300585": {
+    "name": "거대한 꿀벌",
+    "isBoss": false
+  },
+  "2300586": {
+    "name": "부유 전기석",
+    "isBoss": false
+  },
+  "2300587": {
+    "name": "부유 전기석",
+    "isBoss": false
+  },
   "2300595": {
-    "name": "매혹하는 디오나에",
+    "name": "탄환초",
     "isBoss": false
   },
   "2300601": {
@@ -17570,6 +17648,11 @@
   "2400034": {
     "name": "볼드릭의 부하",
     "isBoss": false
+  },
+  "2400035": {
+    "name": "근접 훈련용 허수아비",
+    "isBoss": true,
+    "isDummy": true
   },
   "2400051": {
     "name": "굶주린 망자",
@@ -32099,13 +32182,65 @@
     "name": "축전핵",
     "isBoss": false
   },
+  "2921356": {
+    "name": "바크론의 가시덩굴",
+    "isBoss": false
+  },
+  "2921357": {
+    "name": "바크론의 가시덩굴",
+    "isBoss": false
+  },
   "2921382": {
     "name": "포효",
     "isBoss": false
   },
+  "2921400": {
+    "name": "저격",
+    "isBoss": true
+  },
+  "2921401": {
+    "name": "저격",
+    "isBoss": true
+  },
+  "2921402": {
+    "name": "살상",
+    "isBoss": true
+  },
   "2921409": {
     "name": "오디움 광석",
     "isBoss": false
+  },
+  "2921411": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2921418": {
+    "name": "바크론의 가시덩굴",
+    "isBoss": false
+  },
+  "2921425": {
+    "name": "바크론의 가시덩굴",
+    "isBoss": true
+  },
+  "2921426": {
+    "name": "바크론의 가시덩굴",
+    "isBoss": true
+  },
+  "2921427": {
+    "name": "바크론의 가시속박",
+    "isBoss": true
+  },
+  "2921428": {
+    "name": "바크론의 가시속박",
+    "isBoss": true
+  },
+  "2921429": {
+    "name": "바크론의 가시덩굴",
+    "isBoss": true
+  },
+  "2921430": {
+    "name": "바크론의 가시속박",
+    "isBoss": true
   },
   "2980000": {
     "name": "대신관의 환영",
