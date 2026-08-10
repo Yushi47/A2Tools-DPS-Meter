@@ -6266,6 +6266,8 @@ html.detailsWindow .meterFooter,
 html.detailsWindow .resizeHandle,
 html.detailsWindow .pingDisplay,
 html.detailsWindow .settingsPanel,
+/* History has its own window again, so it never draws over a fight. */
+html.detailsWindow .historyPanel,
 html.detailsWindow .updateModal,
 html.detailsWindow .hoverDetailsTooltip {
   display: none !important;
@@ -6295,11 +6297,58 @@ html.detailsWindow .detailsPanel {
 }
 html.detailsWindow .detailsPanel.open { display: flex; }
 
-/* History is the other half of this window, not an overlay popover: the two
-   panels take turns filling it, so History gets the Details panel's geometry
-   rather than the floating card it wears over the meter. Picking a fight swaps
-   to the fight view in place, and the fight view's back button returns here. */
-html.detailsWindow .historyPanel {
+/* ============================================================
+   HISTORY WINDOW
+   ------------------------------------------------------------
+   The fight list as a window of its own. It is a browser the
+   user leaves open: picking a fight opens that fight in its own
+   window and this list stays exactly as it was, so several
+   fights can be read side by side.
+
+   The panel therefore stops being the floating card it wears
+   over the meter and takes the whole window, on the same
+   geometry the Details panel uses.
+   ============================================================ */
+
+html.historyWindow,
+html.historyWindow body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: rgb(var(--hud-bg));
+}
+
+html.historyWindow .container,
+html.historyWindow .meter {
+  position: static;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  cursor: auto;
+}
+
+/* Everything that belongs to the overlay itself. */
+html.historyWindow .header,
+html.historyWindow .bossHpBar,
+html.historyWindow .list,
+html.historyWindow .meterFooter,
+html.historyWindow .resizeHandle,
+html.historyWindow .pingDisplay,
+html.historyWindow .settingsPanel,
+html.historyWindow .detailsPanel,
+html.historyWindow .updateModal,
+html.historyWindow .hoverDetailsTooltip,
+html.historyWindow .detailsMonitorBadge {
+  display: none !important;
+}
+
+html.historyWindow .historyPanel {
   position: absolute;
   inset: 0 auto 0 50%;
   transform: translateX(-50%);
@@ -6323,25 +6372,26 @@ html.detailsWindow .historyPanel {
 /* Over the meter the list is a floating card with a 540px cap. Filling a window
    it should run to the bottom, and the scroll belongs to the body so the header
    and filters stay put. */
-html.detailsWindow .historyList {
+html.historyWindow .historyList {
   max-height: none;
   overflow-y: visible;
 }
-html.detailsWindow .historyBody {
+html.historyWindow .historyBody {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
 }
 
-/* Frameless, so History supplies the same drag surface and close control the
-   Details header does. */
-html.detailsWindow .historyHeader {
+/* Frameless, so the history header is the drag surface and its × closes the
+   window. */
+html.historyWindow .historyHeader {
   -webkit-app-region: drag;
   padding-right: 6px;
 }
-html.detailsWindow .historyHeader button,
-html.detailsWindow .historyHeader .historyFilters,
-html.detailsWindow .historyHeader .historyClose {
+html.historyWindow .historyHeader button,
+html.historyWindow .historyHeader .historyViewToggle,
+html.historyWindow .historyFilters,
+html.historyWindow .historyHeader .historyClose {
   -webkit-app-region: no-drag;
 }
 

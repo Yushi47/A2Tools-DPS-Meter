@@ -25,15 +25,21 @@
   try {
     const injected = window.__A2_VIEW__;
     const fromUrl = new URLSearchParams(window.location.search).get("view");
+    // Per-fight windows are labelled details-<id>, so the label is only a
+    // fallback for the singletons; the injected value is what identifies them.
     const label = window.__TAURI__?.window?.getCurrentWindow?.()?.label;
     const candidate = injected || fromUrl || label;
-    if (candidate === "details" || candidate === "settings") viewMode = candidate;
+    if (candidate === "details" || candidate === "settings" || candidate === "history") {
+      viewMode = candidate;
+    }
   } catch {}
   window.A2_VIEW = viewMode;
   if (viewMode === "details") {
     document.documentElement.classList.add("detailsWindow");
   } else if (viewMode === "settings") {
     document.documentElement.classList.add("settingsWindow");
+  } else if (viewMode === "history") {
+    document.documentElement.classList.add("historyWindow");
   }
 
   // Tool-window bootstrap. This runs regardless of whether app startup
@@ -43,9 +49,13 @@
     // Show this window's panel here rather than relying on core.js. Its start()
     // does a lot of work and is wrapped in a try/catch, so a single failure in
     // an unrelated part of it used to leave the tool window blank.
+    const PANEL_FOR_VIEW = {
+      settings: [".settingsPanel", "isOpen"],
+      history: [".historyPanel", "open"],
+      details: [".detailsPanel", "open"],
+    };
     const showPanel = () => {
-      const sel = viewMode === "settings" ? ".settingsPanel" : ".detailsPanel";
-      const cls = viewMode === "settings" ? "isOpen" : "open";
+      const [sel, cls] = PANEL_FOR_VIEW[viewMode] || PANEL_FOR_VIEW.details;
       document.querySelector(sel)?.classList.add(cls);
     };
     if (document.readyState === "loading") {
@@ -244,7 +254,12 @@
       return invoke("request_details_view", { payload: payload || {} });
     },
     takePendingDetailsRequest() {
+      // No label argument — the backend reads it from the calling window, so a
+      // window can only ever claim the request that was parked for it.
       return invoke("take_pending_details_request").catch(() => null);
+    },
+    closeToolWindow() {
+      return invoke("close_tool_window").catch(() => {});
     },
     detailsWindowReady() {
       try {
@@ -484,6 +499,16 @@
       }
       // First call: block briefly with synchronous fallback
       return "[]";
+    },
+
+    // Await the cache actually being filled. getFightHistory() is synchronous
+    // and answers from window._cachedFightHistory, which a prefetch populates
+    // asynchronously — so a window created in order to show History renders
+    // before its own prefetch lands and gets an empty list.
+    refreshFightHistory() {
+      return invoke("get_fight_history")
+        .then((h) => { window._cachedFightHistory = h; return true; })
+        .catch(() => false);
     },
 
     getFightDetails(id) {

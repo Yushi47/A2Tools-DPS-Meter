@@ -361,7 +361,24 @@ class DpsApp {
         const nextId = Number(rowId);
         this.pinnedDetailsRowId = Number.isFinite(nextId) && nextId > 0 ? nextId : null;
       },
-      onBack: () => { this.historyUI?.open?.(); },
+      // "Back to History" means the History window now, not a list drawn over
+      // the fight — a fight window is one of several and the list is a window
+      // in its own right. Only the overlay still opens the panel inline.
+      onBack: () => {
+        if (window.A2_VIEW === "main") {
+          this.historyUI?.open?.();
+          return;
+        }
+        // detailsUI.close() already ran, so a fight window is now empty. Going
+        // back means "done with this fight": raise the list and dismiss this
+        // window rather than leaving a blank one behind.
+        const label = window.__TAURI__?.window?.getCurrentWindow?.()?.label || "";
+        const isFightWindow = label.startsWith("details-");
+        const sent = window.javaBridge?.requestDetailsView?.({ kind: "history" });
+        Promise.resolve(sent)
+          .catch(() => { if (!isFightWindow) this.historyUI?.open?.(); })
+          .then(() => { if (isFightWindow) window.javaBridge?.closeToolWindow?.(); });
+      },
     });
     if (this.detailsScreenshotBtn) {
       let screenshotNoteTimer = null;
@@ -458,20 +475,23 @@ class DpsApp {
     const storedDisplayMode = this.safeGetStorage(this.storageKeys.displayMode);
     this.setDisplayMode(storedDisplayMode || this.displayMode, { persist: false });
 
-    // History stays in the overlay — it is a picker, and it is where the user
-    // already is. Picking a fight hands it to the Details window instead of
-    // expanding the overlay behind it.
+    // History is a browser you leave open: picking a fight launches it into a
+    // window of its own so several can be compared, and the list stays put.
+    // Only the in-overlay fallback closes itself, because there the list and
+    // the fight would otherwise be stacked in the same 30px-row window.
     this.historyUI = typeof createHistoryUI === "function"
       ? createHistoryUI({
           onOpenFight: (record) => {
-            this.historyUI?.close?.();
-            const inOverlay = () => this.detailsUI?.openHistoryFight?.(record);
+            const inPlace = () => {
+              this.historyUI?.close?.();
+              this.detailsUI?.openHistoryFight?.(record);
+            };
             const fightId = record?.id ? String(record.id) : "";
             if (!fightId) {
-              inOverlay();
+              inPlace();
               return;
             }
-            this.openDetailsSurface({ kind: "fight", fightId }, inOverlay);
+            this.openDetailsSurface({ kind: "fight", fightId }, inPlace);
           },
         })
       : null;
@@ -3429,8 +3449,11 @@ class DpsApp {
     const runFallback = () => {
       try { fallback?.(); } catch (err) { console.error("[A2Tools] details fallback failed", err); }
     };
-    // The Details window itself never re-routes; it renders in place.
-    if (window.A2_VIEW !== "main") {
+    // A Details window is already the destination, so it renders in place
+    // rather than asking for yet another window. The overlay and the History
+    // window are both senders: History in particular must route, or picking a
+    // fight would replace the list instead of opening beside it.
+    if (window.A2_VIEW === "details") {
       runFallback();
       return;
     }
@@ -3470,43 +3493,68 @@ class DpsApp {
     });
   }
 
+  // The Battle History window: this bundle again, showing only the history
+  // panel. It is a browser the user leaves open — picking a fight opens that
+  // fight in a window of its own and the list stays exactly as it was, so
+  // several fights can be read side by side.
+  enterHistoryWindowMode() {
+    document.body.classList.add("isHistoryWindow");
+    const openList = () => this.historyUI?.open?.();
+    openList();
+    // open() reads a cache that an async prefetch fills, and this window is
+    // created precisely in order to show the list — so it renders before its
+    // own prefetch lands and would otherwise sit empty forever. Re-render once
+    // the data is genuinely there. Safe to re-open blindly: this resolves in
+    // the first moments of the window, before anyone can scroll or filter.
+    Promise.resolve(window.javaBridge?.refreshFightHistory?.())
+      .then(() => openList())
+      .catch(() => {});
+
+    // Frameless, so the panel's own × closes the window rather than just
+    // hiding the list — there is nothing behind it here.
+    document.querySelector(".historyClose")?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      window.javaBridge?.closeToolWindow?.();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") window.javaBridge?.closeToolWindow?.();
+    });
+
+    // Nothing sits behind the list, so if something closes it, put it back.
+    if (this._historyWindowTimer) clearInterval(this._historyWindowTimer);
+    this._historyWindowTimer = setInterval(() => {
+      if (!this.historyUI?.isOpen?.()) openList();
+    }, 1000);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => window.javaBridge?.toolWindowReady?.("history"));
+    });
+  }
+
   enterDetailsWindowMode() {
     document.body.classList.add("isDetailsWindow");
-    // Frameless window, so the panel header supplies the close control. Closing
-    // also turns the setting off, otherwise it would reopen on next launch.
+    // Two kinds of window run this mode: the single live "details" window, which
+    // is the one the monitor setting governs, and a "details-<fightId>" window
+    // showing one saved fight, of which there can be several.
+    const label = window.__TAURI__?.window?.getCurrentWindow?.()?.label || "details";
+    const isFightWindow = label.startsWith("details-");
+    if (isFightWindow) document.body.classList.add("isFightWindow");
+
+    // Frameless window, so the panel header supplies the close control.
     document.querySelector(".detailsWindowClose")?.addEventListener("click", () => {
+      if (isFightWindow) {
+        // One of several, and nothing to do with the monitor setting.
+        window.javaBridge?.closeToolWindow?.();
+        return;
+      }
+      // Closing the live window also turns the setting off, otherwise it would
+      // reopen on next launch.
       this.safeSetSetting(this.storageKeys.detailsMonitor, "off");
       window.javaBridge?.closeDetailsWindow?.();
     });
     const openAll = () => {
       this.detailsUI?.open?.(null, { defaultTargetAll: true, pin: true, force: true });
     };
-    // Closing History here means "done with the list", not "close the window" —
-    // this window always shows one panel or the other. Watching the class
-    // rather than waiting for the 1s watchdog keeps the swap from flashing an
-    // empty window. The History × is the only visible control while the list
-    // fills the window, so it has to land somewhere sensible.
-    const historyPanel = document.querySelector(".historyPanel");
-    if (historyPanel) {
-      let wasOpen = historyPanel.classList.contains("open");
-      new MutationObserver(() => {
-        const isOpen = historyPanel.classList.contains("open");
-        if (wasOpen && !isOpen) {
-          // Picking a fight also closes History, and the fight view opens in
-          // the same breath — so decide on the next tick, once whatever is
-          // taking over has claimed the window. Reacting to the class change
-          // itself would drop the live "all targets" view on top of the fight
-          // the user just asked for.
-          setTimeout(() => {
-            if (this._detailsRequestsInFlight > 0) return;
-            if (historyPanel.classList.contains("open")) return;
-            if (this.detailsPanel?.classList?.contains("open")) return;
-            openAll();
-          }, 120);
-        }
-        wasOpen = isOpen;
-      }).observe(historyPanel, { attributes: true, attributeFilter: ["class"] });
-    }
     // Confirm on the screen itself which monitor this is. Backed by the
     // placement the backend actually performed, not by what was requested.
     window.__TAURI__?.event?.listen?.("details-placed", (event) => {
@@ -3544,13 +3592,6 @@ class DpsApp {
       // before the panel opens, and the panel is closed until it lands.
       this._detailsRequestsInFlight += 1;
       try {
-        if (payload.kind === "history") {
-          // The list takes the window over; the fight view is what it opens
-          // into, and its back button brings this back.
-          this.detailsUI?.close?.({ keepPinned: false });
-          this.historyUI?.open?.();
-          return;
-        }
         if (payload.kind === "fight") {
           const raw = await window.javaBridge?.getFightDetails?.(String(payload.fightId || ""));
           const record = typeof raw === "string" ? this.safeParseJSON(raw, null) : raw;
@@ -3580,9 +3621,12 @@ class DpsApp {
       (event) => { void applyRequest(event?.payload); }
     );
 
-    openAll();
-    // Tell the backend to reveal the window now that the panel has painted —
-    // it is created hidden to avoid a white flash while the bundle loads.
+    // A fight window has a saved fight waiting for it, so showing live combat
+    // first would only flash the wrong content. The fight branch of
+    // applyRequest falls back to openAll() if the record cannot be loaded, so
+    // this cannot strand the window empty.
+    if (!isFightWindow) openAll();
+    // Tell the backend to reveal the window now that the panel has painted.
     // Sequenced after the listener so a request emitted meanwhile is not lost.
     Promise.resolve(listening)
       .catch(() => {})
@@ -3598,12 +3642,15 @@ class DpsApp {
     // there is nothing behind it, so re-assert rather than leave a blank screen.
     // History counts as content: it is the other panel that legitimately fills
     // this window, and reopening Details over it would fight the back button.
-    if (this._detailsWindowTimer) clearInterval(this._detailsWindowTimer);
-    this._detailsWindowTimer = setInterval(() => {
-      if (this._detailsRequestsInFlight > 0) return;
-      if (this.historyUI?.isOpen?.()) return;
-      if (!this.detailsPanel?.classList?.contains("open")) openAll();
-    }, 1000);
+    // Only the live window: openAll() shows current combat, which in a window
+    // opened to display one saved fight would quietly replace that fight.
+    if (!isFightWindow) {
+      if (this._detailsWindowTimer) clearInterval(this._detailsWindowTimer);
+      this._detailsWindowTimer = setInterval(() => {
+        if (this._detailsRequestsInFlight > 0) return;
+        if (!this.detailsPanel?.classList?.contains("open")) openAll();
+      }, 1000);
+    }
   }
 
   getMeterLayout() {
@@ -4608,6 +4655,8 @@ const startApp = async ({ forced = false } = {}) => {
       dpsApp.enterDetailsWindowMode();
     } else if (window.A2_VIEW === "settings") {
       dpsApp.enterSettingsWindowMode();
+    } else if (window.A2_VIEW === "history") {
+      dpsApp.enterHistoryWindowMode();
     }
     window.javaBridge?.notifyUiReady?.();
 

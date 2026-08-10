@@ -1,8 +1,8 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
-  "description": "Overlay plus both tool windows. Every window label must be listed here — a window that is absent gets no permissions at all, so window.__TAURI__.opener is never injected and tauriBridge.js dies on its first destructure, leaving a blank window.",
-  "windows": ["main", "settings", "details"],
+  "description": "Overlay plus every tool window. Every window label must match something here — a window that is absent gets no permissions at all, so window.__TAURI__.opener is never injected and tauriBridge.js dies on its first destructure, leaving a blank window. details-* covers the per-fight windows, which are labelled by fight id.",
+  "windows": ["main", "settings", "details", "details-*", "history"],
   "permissions": [
     "core:default",
     "opener:default"

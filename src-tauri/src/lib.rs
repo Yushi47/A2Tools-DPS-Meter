@@ -33,12 +33,15 @@ use i18n::lookup::{NpcLookup, SkillLookup};
 /// passed back from JS so the confirmation cannot disagree with the placement.
 static DETAILS_MONITOR: std::sync::atomic::AtomicUsize = std::sync::atomic::AtomicUsize::new(usize::MAX);
 
-/// The Details view the overlay last asked for, parked here until the Details
-/// window is able to receive it. A webview that has just been built has no
-/// event listener attached yet, so a push would be dropped; the window pulls
-/// this on startup instead (see `take_pending_details_request`).
-static PENDING_DETAILS_REQUEST: std::sync::Mutex<Option<serde_json::Value>> =
-    std::sync::Mutex::new(None);
+/// Requests waiting for the window that will serve them, keyed by window label.
+/// A webview that has just been built has no event listener attached yet, so a
+/// push would be dropped; each window pulls its own entry on startup instead
+/// (see `take_pending_details_request`). Keyed rather than a single slot
+/// because several fight windows can be opening at once, and one clobbering
+/// another's request would leave a blank window.
+static PENDING_DETAILS_REQUEST: std::sync::LazyLock<
+    std::sync::Mutex<std::collections::HashMap<String, serde_json::Value>>,
+> = std::sync::LazyLock::new(|| std::sync::Mutex::new(std::collections::HashMap::new()));
 
 /// Stamped onto every request so the Details window can ignore one it has
 /// already applied — the pull and the push can both carry the same request.
@@ -846,16 +849,19 @@ fn announce_details_placement(app: &tauri::AppHandle, monitor_index: usize) {
     );
 }
 
-/// Called by the Details window once its panel has painted.
+/// Called by a Details-family window once its panel has painted. Reveals the
+/// calling window rather than a fixed label, since there can now be several.
 #[tauri::command]
-fn details_window_ready(app: tauri::AppHandle) {
-    if let Some(window) = app.get_webview_window("details") {
-        let _ = window.show();
-        tracing::info!("details window revealed (frontend ready)");
-    }
-    let index = DETAILS_MONITOR.load(std::sync::atomic::Ordering::Relaxed);
-    if index != usize::MAX {
-        announce_details_placement(&app, index);
+fn details_window_ready(app: tauri::AppHandle, window: tauri::Window) {
+    let _ = window.show();
+    tracing::info!("{} window revealed (frontend ready)", window.label());
+    // Only the monitor-pinned singleton has a placement to confirm; a fight
+    // window is placed by cascade and the History window by its own geometry.
+    if window.label() == "details" {
+        let index = DETAILS_MONITOR.load(std::sync::atomic::Ordering::Relaxed);
+        if index != usize::MAX {
+            announce_details_placement(&app, index);
+        }
     }
 }
 
@@ -866,17 +872,35 @@ fn close_details_window(app: tauri::AppHandle) {
     }
 }
 
-/// Ask the standalone Details window to show something — a meter row, a target,
-/// a saved fight, or the fight history list. Details is one surface: the overlay
-/// never grows to contain it, it always lands in its own window wherever the
-/// user left that window.
+/// Window label for a saved fight. Each fight gets its own window so several can
+/// be compared side by side, so the id has to survive as a label — sanitised,
+/// because labels are also used to build the webview's internal identifiers.
+fn fight_window_label(fight_id: &str) -> String {
+    let safe: String = fight_id
+        .chars()
+        .map(|c| if c.is_ascii_alphanumeric() { c } else { '_' })
+        .collect();
+    format!("details-{}", safe)
+}
+
+/// Ask a Details surface to show something. Which window serves the request
+/// depends on what is being asked for:
 ///
-/// If the window is already up the request is pushed straight to it. If it is
-/// not, the window is created first (on its remembered geometry, or filling the
-/// monitor the user picked) and the request waits in `PENDING_DETAILS_REQUEST`
-/// until the window pulls it on startup.
+/// - `history` → the one persistent History window. It is a browser you leave
+///   open, so it never closes just because you opened something from it.
+/// - `fight`   → a window of its own, `details-<id>`, so fights can be compared
+///   side by side. Asking for a fight that is already open raises that window
+///   rather than opening a second copy of it.
+/// - anything else (a meter row) → the single live `details` window, re-targeted
+///   in place. Live rows are clicked constantly during combat; spawning a window
+///   per click would bury the game.
 ///
-/// `async` is load-bearing — it creates a window. See `open_settings_window`.
+/// If the target window is up the request is pushed straight to it. If not, the
+/// request is parked under that window's label and the window pulls it on
+/// startup — a webview that was created to serve a request has no listener
+/// attached at the moment the request is emitted.
+///
+/// `async` is load-bearing — it creates windows. See `open_settings_window`.
 #[tauri::command]
 async fn request_details_view(
     app: tauri::AppHandle,
@@ -887,14 +911,30 @@ async fn request_details_view(
     if !payload.is_object() {
         payload = serde_json::json!({});
     }
+    let kind = payload
+        .get("kind")
+        .and_then(|k| k.as_str())
+        .unwrap_or("row")
+        .to_string();
+    let fight_id = payload
+        .get("fightId")
+        .and_then(|f| f.as_str())
+        .unwrap_or("")
+        .to_string();
     if let Some(obj) = payload.as_object_mut() {
         obj.insert("seq".into(), serde_json::json!(seq));
     }
 
-    if let Some(window) = app.get_webview_window("details") {
+    let label = match kind.as_str() {
+        "history" => "history".to_string(),
+        "fight" if !fight_id.is_empty() => fight_window_label(&fight_id),
+        _ => "details".to_string(),
+    };
+
+    if let Some(window) = app.get_webview_window(&label) {
         // Live window: nothing to park, the listener is already attached.
-        if let Ok(mut slot) = PENDING_DETAILS_REQUEST.lock() {
-            *slot = None;
+        if let Ok(mut pending) = PENDING_DETAILS_REQUEST.lock() {
+            pending.remove(&label);
         }
         // Raise it if it was put away, but do not steal focus from a window
         // that is already on screen — the click came from an overlay sitting
@@ -905,27 +945,117 @@ async fn request_details_view(
             let _ = window.unminimize();
             let _ = window.show();
             let _ = window.set_focus();
+        } else if kind == "fight" {
+            // Re-asking for a fight that is already open means "show me that
+            // one", so bring it forward even though it was never hidden.
+            let _ = window.set_focus();
         }
-        app.emit_to("details", "details-request", payload)
+        app.emit_to(&label, "details-request", payload)
             .map_err(|e| e.to_string())?;
         return Ok(());
     }
 
-    if let Ok(mut slot) = PENDING_DETAILS_REQUEST.lock() {
-        *slot = Some(payload);
+    if let Ok(mut pending) = PENDING_DETAILS_REQUEST.lock() {
+        pending.insert(label.clone(), payload);
     }
-    // The setting decides, every time. Reading DETAILS_MONITOR here is what
-    // made "Show Details on monitor: Off" do nothing once a monitor had been
-    // picked earlier in the session.
-    match details_monitor_setting(&app) {
-        Some(index) => open_details_on_monitor(&app, index),
-        None => {
-            // Forget the earlier pick too, so the placement badge does not
-            // announce a monitor this window is no longer tied to.
-            DETAILS_MONITOR.store(usize::MAX, std::sync::atomic::Ordering::Relaxed);
-            open_details_windowed(&app)
+
+    let result = match kind.as_str() {
+        "history" => open_history_window_inner(&app),
+        "fight" if !fight_id.is_empty() => open_fight_window(&app, &label),
+        // The setting decides, every time. Reading DETAILS_MONITOR here is what
+        // made "Show Details on monitor: Off" do nothing once a monitor had
+        // been picked earlier in the session.
+        _ => match details_monitor_setting(&app) {
+            Some(index) => open_details_on_monitor(&app, index),
+            None => {
+                // Forget the earlier pick too, so the placement badge does not
+                // announce a monitor this window is no longer tied to.
+                DETAILS_MONITOR.store(usize::MAX, std::sync::atomic::Ordering::Relaxed);
+                open_details_windowed(&app)
+            }
+        },
+    };
+    if result.is_err() {
+        // Nothing will ever pull it, and a stale request must not resurface
+        // against some later window that happens to take the same label.
+        if let Ok(mut pending) = PENDING_DETAILS_REQUEST.lock() {
+            pending.remove(&label);
         }
     }
+    result
+}
+
+/// One window per saved fight, cascaded so a second fight does not land exactly
+/// on top of the first. These are deliberately not remembered: they are opened
+/// to be read and closed, and persisting geometry per fight id would accumulate
+/// settings without bound.
+fn open_fight_window(app: &tauri::AppHandle, label: &str) -> Result<(), String> {
+    let step = app.webview_windows().keys().filter(|l| l.starts_with("details-")).count() as f64;
+    let offset = (step % 6.0) * 34.0;
+
+    let window = tauri::WebviewWindowBuilder::new(
+        app,
+        label,
+        tauri::WebviewUrl::App("index.html".into()),
+    )
+    .initialization_script("window.__A2_VIEW__ = 'details';")
+    .title("A2Tools DPS Meter — Fight")
+    .decorations(false)
+    .transparent(false)
+    .always_on_top(true)
+    .resizable(true)
+    .skip_taskbar(false)
+    .inner_size(1180.0, 760.0)
+    .min_inner_size(520.0, 360.0)
+    .background_color(tauri::window::Color(10, 14, 22, 255))
+    .build()
+    .map_err(|e| e.to_string())?;
+
+    center_on_overlay_monitor(app, &window);
+    if offset > 0.0 {
+        if let Ok(pos) = window.outer_position() {
+            let shift = offset as i32;
+            let _ = window.set_position(tauri::Position::Physical(tauri::PhysicalPosition {
+                x: pos.x + shift,
+                y: pos.y + shift,
+            }));
+        }
+    }
+    Ok(())
+}
+
+/// The History window. Persistent by design — it is the browser you pick fights
+/// from, and it stays put while those fights open in windows of their own.
+fn open_history_window_inner(app: &tauri::AppHandle) -> Result<(), String> {
+    let window = tauri::WebviewWindowBuilder::new(
+        app,
+        "history",
+        tauri::WebviewUrl::App("index.html".into()),
+    )
+    .initialization_script("window.__A2_VIEW__ = 'history';")
+    .title("A2Tools DPS Meter — Battle History")
+    .decorations(false)
+    .transparent(false)
+    .always_on_top(true)
+    .resizable(true)
+    .skip_taskbar(false)
+    .inner_size(1100.0, 720.0)
+    .min_inner_size(480.0, 360.0)
+    .background_color(tauri::window::Color(10, 14, 22, 255))
+    .build()
+    .map_err(|e| e.to_string())?;
+
+    if !restore_window_geometry(app, &window, "history") {
+        center_on_overlay_monitor(app, &window);
+    }
+    Ok(())
+}
+
+/// Close whichever tool window asked. Fight windows are frameless and there can
+/// be several, so each closes itself rather than the overlay guessing which.
+#[tauri::command]
+fn close_tool_window(window: tauri::Window) {
+    let _ = window.close();
 }
 
 /// Create the Details window without claiming a whole screen. Used when the
@@ -962,14 +1092,15 @@ fn open_details_windowed(app: &tauri::AppHandle) -> Result<(), String> {
     Ok(())
 }
 
-/// Pulled by the Details window once its listener is attached. Clearing on read
-/// keeps a stale request from re-opening on a later launch.
+/// Pulled by a tool window once its listener is attached. The label comes from
+/// the calling window rather than an argument, so a window can only ever claim
+/// its own request. Clearing on read keeps a stale one from resurfacing.
 #[tauri::command]
-fn take_pending_details_request() -> Option<serde_json::Value> {
+fn take_pending_details_request(window: tauri::Window) -> Option<serde_json::Value> {
     PENDING_DETAILS_REQUEST
         .lock()
         .ok()
-        .and_then(|mut slot| slot.take())
+        .and_then(|mut pending| pending.remove(window.label()))
 }
 
 #[tauri::command]
@@ -1537,9 +1668,12 @@ pub fn run() {
                                     }
                                 }
                             }
-                            // Details and Settings float independently of the
-                            // overlay, so each remembers where it was left.
-                            for label in ["details", "settings"] {
+                            // These float independently of the overlay, so each
+                            // remembers where it was left. Per-fight windows
+                            // (details-*) are deliberately absent: they are
+                            // opened to be read and closed, and keying geometry
+                            // by fight id would grow settings without bound.
+                            for label in ["details", "settings", "history"] {
                                 // While Details is pinned to a monitor its rect
                                 // comes from the setting, not from the user.
                                 // Saving it poisons the windowed geometry: turn
@@ -1649,6 +1783,7 @@ pub fn run() {
             close_details_window,
             request_details_view,
             take_pending_details_request,
+            close_tool_window,
             open_settings_window,
             close_settings_window,
             tool_window_ready,
