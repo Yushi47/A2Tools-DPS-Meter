@@ -33,6 +33,17 @@ use i18n::lookup::{NpcLookup, SkillLookup};
 /// passed back from JS so the confirmation cannot disagree with the placement.
 static DETAILS_MONITOR: std::sync::atomic::AtomicUsize = std::sync::atomic::AtomicUsize::new(usize::MAX);
 
+/// The Details view the overlay last asked for, parked here until the Details
+/// window is able to receive it. A webview that has just been built has no
+/// event listener attached yet, so a push would be dropped; the window pulls
+/// this on startup instead (see `take_pending_details_request`).
+static PENDING_DETAILS_REQUEST: std::sync::Mutex<Option<serde_json::Value>> =
+    std::sync::Mutex::new(None);
+
+/// Stamped onto every request so the Details window can ignore one it has
+/// already applied — the pull and the push can both carry the same request.
+static DETAILS_REQUEST_SEQ: std::sync::atomic::AtomicU64 = std::sync::atomic::AtomicU64::new(0);
+
 /// Shared application state.
 pub struct AppState {
     pub data_storage: Arc<DataStorage>,
@@ -780,6 +791,103 @@ fn close_details_window(app: tauri::AppHandle) {
     }
 }
 
+/// Ask the standalone Details window to show something — a meter row, a target,
+/// a saved fight, or the fight history list. Details is one surface: the overlay
+/// never grows to contain it, it always lands in its own window wherever the
+/// user left that window.
+///
+/// If the window is already up the request is pushed straight to it. If it is
+/// not, the window is created first (on its remembered geometry, or filling the
+/// monitor the user picked) and the request waits in `PENDING_DETAILS_REQUEST`
+/// until the window pulls it on startup.
+///
+/// `async` is load-bearing — it creates a window. See `open_settings_window`.
+#[tauri::command]
+async fn request_details_view(
+    app: tauri::AppHandle,
+    payload: serde_json::Value,
+) -> Result<(), String> {
+    let seq = DETAILS_REQUEST_SEQ.fetch_add(1, std::sync::atomic::Ordering::Relaxed) + 1;
+    let mut payload = payload;
+    if !payload.is_object() {
+        payload = serde_json::json!({});
+    }
+    if let Some(obj) = payload.as_object_mut() {
+        obj.insert("seq".into(), serde_json::json!(seq));
+    }
+
+    if let Some(window) = app.get_webview_window("details") {
+        // Live window: nothing to park, the listener is already attached.
+        if let Ok(mut slot) = PENDING_DETAILS_REQUEST.lock() {
+            *slot = None;
+        }
+        // Raise it if it was put away, but do not steal focus from a window
+        // that is already on screen — the click came from an overlay sitting
+        // on top of a full-screen game, and pulling focus would tab out of it.
+        let hidden = !window.is_visible().unwrap_or(true)
+            || window.is_minimized().unwrap_or(false);
+        if hidden {
+            let _ = window.unminimize();
+            let _ = window.show();
+            let _ = window.set_focus();
+        }
+        app.emit_to("details", "details-request", payload)
+            .map_err(|e| e.to_string())?;
+        return Ok(());
+    }
+
+    if let Ok(mut slot) = PENDING_DETAILS_REQUEST.lock() {
+        *slot = Some(payload);
+    }
+    let index = DETAILS_MONITOR.load(std::sync::atomic::Ordering::Relaxed);
+    if index != usize::MAX {
+        open_details_on_monitor(&app, index)
+    } else {
+        open_details_windowed(&app)
+    }
+}
+
+/// Create the Details window without claiming a whole screen. Used when the
+/// user has never picked a monitor in Settings: clicking a meter row should
+/// give them a window they can move, not black out a display over the game.
+/// A remembered position still wins — this is only the first-run geometry.
+fn open_details_windowed(app: &tauri::AppHandle) -> Result<(), String> {
+    let window = tauri::WebviewWindowBuilder::new(
+        app,
+        "details",
+        tauri::WebviewUrl::App("index.html".into()),
+    )
+    .initialization_script("window.__A2_VIEW__ = 'details';")
+    .title("A2Tools DPS Meter — Details")
+    .decorations(false)
+    .transparent(false)
+    .always_on_top(true)
+    .resizable(true)
+    .skip_taskbar(false)
+    .inner_size(1180.0, 760.0)
+    .min_inner_size(520.0, 360.0)
+    // Visible, with the app background painted behind the load — same reason as
+    // the monitor-filling path: a hidden WebView2 window may never load at all.
+    .background_color(tauri::window::Color(10, 14, 22, 255))
+    .build()
+    .map_err(|e| e.to_string())?;
+
+    if !restore_window_geometry(app, &window, "details") {
+        let _ = window.center();
+    }
+    Ok(())
+}
+
+/// Pulled by the Details window once its listener is attached. Clearing on read
+/// keeps a stale request from re-opening on a later launch.
+#[tauri::command]
+fn take_pending_details_request() -> Option<serde_json::Value> {
+    PENDING_DETAILS_REQUEST
+        .lock()
+        .ok()
+        .and_then(|mut slot| slot.take())
+}
+
 #[tauri::command]
 fn capture_screenshot(app: tauri::AppHandle, x: i32, y: i32, width: i32, height: i32) {
     #[cfg(windows)]
@@ -1430,6 +1538,8 @@ pub fn run() {
             list_monitors,
             open_details_window,
             close_details_window,
+            request_details_view,
+            take_pending_details_request,
             open_settings_window,
             close_settings_window,
             tool_window_ready,

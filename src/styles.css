@@ -5074,6 +5074,1158 @@ body.legacyUi .list .item .dps .dpsContribution {
 }
 
 /* ============================================================
+   HISTORY & DETAILS PANELS
+   ------------------------------------------------------------
+   The two analysis surfaces, brought onto the same instrument
+   language as the meter and Settings. Everything below overrides
+   the original panel rules further up the file; nothing there was
+   deleted, so the JS hooks and the column-hiding machinery are
+   untouched.
+
+   Four rules drive both panels:
+
+   1. Labels whisper, numbers speak. Every label is tracked caps
+      in the technical face at 10px; every figure is tabular and
+      brighter than the word next to it.
+   2. Structure is hairlines, not boxes. Sections are named by a
+      tracked-caps rail that runs out to the edge of the column —
+      the same rail Settings uses — instead of by a filled bar.
+   3. One control geometry. Filters, mode switches, icon buttons
+      and menu rows are all the same bordered chip, so a control
+      is read by its label and never by its shape.
+   4. Numbers align right. These are tables, not captions: a
+      column of tabular figures with a common right edge can be
+      compared without reading it.
+
+   Accent is the user's theme (--isUser-fill / --row-fill) and is
+   spent only on state — what is selected, what is on, how far a
+   bar runs. Nothing here hard-codes a hue except the status
+   colours already defined as tokens.
+   ============================================================ */
+
+.historyPanel,
+.detailsPanel {
+  /* Chip geometry, shared with Settings so a control is the same
+     object in all three panels. */
+  --pane-field-h: 26px;
+  --pane-field-bg: rgba(255, 255, 255, 0.05);
+  --pane-field-border: rgba(255, 255, 255, 0.1);
+  --pane-field-bg-hover: rgba(255, 255, 255, 0.11);
+  --pane-field-border-hover: rgba(255, 255, 255, 0.2);
+
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 400, "wdth" 87.5;
+  font-weight: 400;
+  color: var(--hud-name);
+}
+
+/* Bahnschrift is Latin-only. A translated panel falls back to one CJK
+   stack rather than letting the browser substitute glyph by glyph. */
+.historyPanel:lang(ko),
+.historyPanel:lang(zh-CN),
+.historyPanel:lang(zh-Hans),
+.historyPanel:lang(zh-TW),
+.historyPanel:lang(zh-Hant),
+.detailsPanel:lang(ko),
+.detailsPanel:lang(zh-CN),
+.detailsPanel:lang(zh-Hans),
+.detailsPanel:lang(zh-TW),
+.detailsPanel:lang(zh-Hant) {
+  font-family: var(--cjk-font-stack);
+}
+/* Full-width glyphs carry less detail per pixel than tracked Latin caps,
+   so the rails and titles step up and drop the tracking. */
+.historyPanel:lang(ko) .historyTitle,
+.historyPanel:lang(zh-CN) .historyTitle,
+.historyPanel:lang(zh-Hans) .historyTitle,
+.historyPanel:lang(zh-TW) .historyTitle,
+.historyPanel:lang(zh-Hant) .historyTitle,
+.historyPanel:lang(ko) .historyGroupName,
+.historyPanel:lang(zh-CN) .historyGroupName,
+.historyPanel:lang(zh-Hans) .historyGroupName,
+.historyPanel:lang(zh-TW) .historyGroupName,
+.historyPanel:lang(zh-Hant) .historyGroupName,
+.detailsPanel:lang(ko) .detailsFightTitle,
+.detailsPanel:lang(zh-CN) .detailsFightTitle,
+.detailsPanel:lang(zh-Hans) .detailsFightTitle,
+.detailsPanel:lang(zh-TW) .detailsFightTitle,
+.detailsPanel:lang(zh-Hant) .detailsFightTitle,
+.detailsPanel:lang(ko) .detailsSectionTitle,
+.detailsPanel:lang(zh-CN) .detailsSectionTitle,
+.detailsPanel:lang(zh-Hans) .detailsSectionTitle,
+.detailsPanel:lang(zh-TW) .detailsSectionTitle,
+.detailsPanel:lang(zh-Hant) .detailsSectionTitle,
+.detailsPanel:lang(ko) .detailsStats .stat .label,
+.detailsPanel:lang(zh-CN) .detailsStats .stat .label,
+.detailsPanel:lang(zh-Hans) .detailsStats .stat .label,
+.detailsPanel:lang(zh-TW) .detailsStats .stat .label,
+.detailsPanel:lang(zh-Hant) .detailsStats .stat .label,
+.detailsPanel:lang(ko) .detailsSkills .skillHeader .cell,
+.detailsPanel:lang(zh-CN) .detailsSkills .skillHeader .cell,
+.detailsPanel:lang(zh-Hans) .detailsSkills .skillHeader .cell,
+.detailsPanel:lang(zh-TW) .detailsSkills .skillHeader .cell,
+.detailsPanel:lang(zh-Hant) .detailsSkills .skillHeader .cell,
+.detailsPanel:lang(ko) .detailsSettingsLabel,
+.detailsPanel:lang(zh-CN) .detailsSettingsLabel,
+.detailsPanel:lang(zh-Hans) .detailsSettingsLabel,
+.detailsPanel:lang(zh-TW) .detailsSettingsLabel,
+.detailsPanel:lang(zh-Hant) .detailsSettingsLabel {
+  font-family: var(--cjk-font-stack);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+/* ---------- shared chrome: header rails, chips, close ---------- */
+
+.historyPanel .historyHeader,
+.detailsPanel .detailsHeader {
+  gap: 9px;
+  padding: 9px 14px 8px;
+  border-bottom: 1px solid var(--hud-hairline);
+  color: var(--title);
+}
+
+.historyPanel .historyTitle {
+  flex: 1;
+  min-width: 0;
+  font-variation-settings: "wght" 700, "wdth" 87.5;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--title);
+}
+
+/* One chip for every square control in either header. */
+.historyPanel .historyViewBtn,
+.historyPanel .historyTrainToggle,
+.historyPanel .historyDeleteToggle,
+.detailsPanel .detailsHeader .detailsScreenshotBtn,
+.detailsPanel .detailsHeader .detailsSettingsBtn,
+.detailsPanel .detailsHeader .detailsRefreshBtn,
+.historyPanel .historyHeader .closeX,
+.detailsPanel .detailsHeader .closeX {
+  box-sizing: border-box;
+  width: 23px;
+  height: 23px;
+  min-width: 23px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--pane-field-border);
+  border-radius: 3px;
+  background: var(--pane-field-bg);
+  color: var(--hud-sub);
+  font-family: var(--hud-tech);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+.historyPanel .historyViewBtn:hover,
+.historyPanel .historyTrainToggle:hover,
+.historyPanel .historyDeleteToggle:hover,
+.detailsPanel .detailsHeader .detailsScreenshotBtn:hover,
+.detailsPanel .detailsHeader .detailsSettingsBtn:hover,
+.detailsPanel .detailsHeader .detailsRefreshBtn:hover,
+.historyPanel .historyHeader .closeX:hover,
+.detailsPanel .detailsHeader .closeX:hover {
+  color: #fff;
+  background: var(--pane-field-bg-hover);
+  border-color: var(--pane-field-border-hover);
+}
+.historyPanel .historyViewBtn:focus-visible,
+.historyPanel .historyTrainToggle:focus-visible,
+.historyPanel .historyDeleteToggle:focus-visible,
+.detailsPanel .detailsHeader button:focus-visible,
+.detailsPanel .detailsSkills .skillHeader .cell:focus-visible {
+  outline: 2px solid var(--isUser-fill);
+  outline-offset: 1px;
+}
+.historyPanel .historyViewBtn svg,
+.historyPanel .historyTrainToggle svg,
+.historyPanel .historyDeleteToggle svg,
+.detailsPanel .detailsHeader .detailsScreenshotBtn svg,
+.detailsPanel .detailsHeader .detailsSettingsBtn svg,
+.detailsPanel .detailsHeader .detailsRefreshBtn svg {
+  width: 14px;
+  height: 14px;
+}
+/* The × glyph is optically taller than an icon; drop it a hair so it
+   centres in the same 23px box. */
+.historyPanel .historyHeader .closeX,
+.detailsPanel .detailsHeader .closeX {
+  font-size: 17px;
+  padding-bottom: 2px;
+}
+
+/* "On" is the theme accent, and only ever the theme accent. */
+.historyPanel .historyViewBtn.active,
+.historyPanel .historyTrainToggle.active {
+  color: #fff;
+  background: color-mix(in srgb, var(--isUser-fill) 26%, transparent);
+  border-color: color-mix(in srgb, var(--isUser-fill) 60%, transparent);
+}
+/* Delete is destructive, so it reports as a status rather than a choice. */
+.historyPanel .historyDeleteToggle:hover,
+.historyPanel .historyDeleteToggle.active {
+  color: #fff;
+  background: color-mix(in srgb, var(--error-fill) 26%, transparent);
+  border-color: color-mix(in srgb, var(--error-fill) 62%, transparent);
+}
+
+/* ---------- history: filters ---------- */
+
+.historyPanel {
+  min-width: 320px;
+  background: rgba(var(--hud-bg), 0.97);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--rounded-lg);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.55);
+}
+
+.historyPanel .historyViewToggle {
+  gap: 3px;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+}
+
+.historyPanel .historyFilters {
+  gap: 7px;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--hud-hairline);
+}
+.historyPanel .historyFilterSelect {
+  box-sizing: border-box;
+  height: var(--pane-field-h);
+  padding: 0 24px 0 8px;
+  border: 1px solid var(--pane-field-border);
+  border-radius: 3px;
+  background-color: var(--pane-field-bg);
+  background-position: right 7px center;
+  color: rgba(255, 255, 255, 0.88);
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 500, "wdth" 87.5;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+.historyPanel .historyFilterSelect:hover {
+  background-color: var(--pane-field-bg-hover);
+  border-color: var(--pane-field-border-hover);
+}
+.historyPanel .historyFilterSelect:focus {
+  border-color: var(--pane-field-border-hover);
+}
+.historyPanel .historyFilterSelect option {
+  background: rgb(var(--hud-bg));
+  color: #fff;
+}
+/* The class filter is a div wearing the same chip; its caret is a real
+   child element, so it does not need the background arrow or its gutter. */
+.historyPanel .historyClassDropdown .historyClassDropdownTrigger {
+  padding: 0 8px;
+  background-image: none;
+}
+.historyPanel .historyClassDropdownChevron path {
+  fill: var(--hud-faint);
+}
+.historyPanel .historyClassDropdownMenu {
+  padding: 4px;
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  background: rgba(var(--hud-bg), 0.98);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+}
+.historyPanel .historyClassOption {
+  gap: 7px;
+  padding: 4px 7px;
+  border-radius: 3px;
+  font-variation-settings: "wght" 500, "wdth" 87.5;
+  font-weight: 500;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.78);
+}
+.historyPanel .historyClassOption:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+.historyPanel .historyClassOption.selected {
+  background: color-mix(in srgb, var(--isUser-fill) 22%, transparent);
+  color: #fff;
+}
+.historyPanel .historyClassDropdownIcon {
+  width: 17px;
+  height: 17px;
+}
+
+/* ---------- history: the list ---------- */
+
+.historyPanel .historyBody {
+  padding: 0;
+}
+.historyPanel .historyEmpty {
+  padding: 30px 16px;
+  font-variation-settings: "wght" 400, "wdth" 87.5;
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  color: var(--hud-sub);
+}
+
+.historyPanel .historyRow {
+  gap: 10px;
+  padding: 7px 14px;
+  border-bottom: 1px solid var(--hud-hairline);
+  transition: background 120ms ease;
+}
+.historyPanel .historyRow:hover {
+  background: rgba(255, 255, 255, 0.055);
+}
+
+/* Identity, so it keeps the CJK-capable stack the meter names use. */
+.historyPanel .historyRowName {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--hud-ident);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--hud-name);
+}
+
+/* Date · duration · damage. Hairline ticks instead of gaps: three short
+   figures separated by whitespace alone read as one run-on string. */
+.historyPanel .historyRowMeta {
+  gap: 0;
+  margin-top: 3px;
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 500, "wdth" 87.5;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--hud-sub);
+}
+.historyPanel .historyRowMeta > span + span {
+  position: relative;
+  margin-left: 9px;
+  padding-left: 9px;
+}
+.historyPanel .historyRowMeta > span + span::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1px;
+  height: 9px;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.16);
+}
+.historyPanel .historyRowDamage {
+  font-variation-settings: "wght" 700, "wdth" 87.5;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.historyPanel .historyRowIcons {
+  gap: 3px;
+}
+.historyPanel .historyRowClassIcon {
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.8));
+}
+.historyPanel .historyIconWrap[data-tip]::after {
+  background: rgba(var(--hud-bg), 0.97);
+  border: 1px solid var(--panel-border);
+  border-radius: 3px;
+  padding: 3px 7px;
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 600, "wdth" 87.5;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+}
+
+.historyPanel .historyDeleteBtn {
+  border-radius: 3px;
+  padding: 3px 5px;
+  color: var(--error-fill);
+}
+
+/* Grouped view: the boss name becomes the section rail, exactly as a
+   Settings group header does, and the count rides in a chip. */
+.historyPanel .historyGroup {
+  border-bottom: 1px solid var(--hud-hairline);
+}
+.historyPanel .historyGroupHeader {
+  gap: 8px;
+  padding: 8px 14px;
+  transition: background 120ms ease;
+}
+.historyPanel .historyGroupChevron {
+  color: var(--hud-faint);
+}
+.historyPanel .historyGroupName {
+  /* Shrink to the name, not to half the row: the rail after it takes the
+     slack, so flex:1 here truncated bosses that had room to spare. */
+  flex: 0 1 auto;
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 700, "wdth" 87.5;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--title);
+}
+.historyPanel .historyGroupHeader::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--hud-hairline);
+}
+.historyPanel .historyGroupCount {
+  order: 3;
+  flex: 0 0 auto;
+  padding: 1px 6px;
+  border: 1px solid var(--pane-field-border);
+  border-radius: 3px;
+  background: var(--pane-field-bg);
+  font-variation-settings: "wght" 700, "wdth" 75;
+  font-variant-numeric: tabular-nums;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--hud-sub);
+}
+/* A rail down the left of a group's children, so a long list still says
+   which section you are inside without scrolling back to the header. */
+.historyPanel .historyGroupChildren {
+  background: rgba(0, 0, 0, 0.28);
+  box-shadow: inset 2px 0 0 rgba(255, 255, 255, 0.09);
+}
+.historyPanel .historyGroupChildren .historyRowChild {
+  padding-left: 34px;
+  border-bottom: 1px solid var(--hud-hairline);
+}
+/* In grouped view the boss name is the section header and the row leads with
+   its timestamp instead, so the row title stops being a name and becomes a
+   figure: technical face, tabular, one step quieter than a boss name. */
+.historyPanel .historyRowChild .historyRowName {
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 600, "wdth" 87.5;
+  font-variant-numeric: tabular-nums;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Badges are state, so they borrow the same chip and carry a hue only
+   where the hue is the message. */
+.historyPanel .historyTrainBadge,
+.historyPanel .historyLiveBadge {
+  margin-left: 0;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 700, "wdth" 75;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+.historyPanel .historyTrainBadge {
+  color: #fff;
+  background: color-mix(in srgb, var(--row-fill) 34%, transparent);
+  border: 1px solid color-mix(in srgb, var(--row-fill) 62%, transparent);
+}
+.historyPanel .historyLiveBadge {
+  color: #fff;
+  background: color-mix(in srgb, var(--error-fill) 30%, transparent);
+  border: 1px solid color-mix(in srgb, var(--error-fill) 68%, transparent);
+}
+
+/* ---------- scrollbars: hairline, not hardware ---------- */
+
+.historyPanel .historyList::-webkit-scrollbar,
+.detailsPanel .detailsBody::-webkit-scrollbar,
+.detailsPanel .detailsSkills .skills::-webkit-scrollbar,
+.detailsPanel .timelineViewport::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.historyPanel .historyList::-webkit-scrollbar-track,
+.detailsPanel .detailsBody::-webkit-scrollbar-track,
+.detailsPanel .detailsSkills .skills::-webkit-scrollbar-track,
+.detailsPanel .timelineViewport::-webkit-scrollbar-track {
+  margin: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+}
+.historyPanel .historyList::-webkit-scrollbar-thumb,
+.detailsPanel .detailsBody::-webkit-scrollbar-thumb,
+.detailsPanel .detailsSkills .skills::-webkit-scrollbar-thumb,
+.detailsPanel .timelineViewport::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+.historyPanel .historyList::-webkit-scrollbar-thumb:hover,
+.detailsPanel .detailsBody::-webkit-scrollbar-thumb:hover,
+.detailsPanel .detailsSkills .skills::-webkit-scrollbar-thumb:hover,
+.detailsPanel .timelineViewport::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.26);
+}
+
+/* ---------- details: shell & header ---------- */
+
+.detailsPanel {
+  padding: 0;
+  background: rgba(var(--hud-bg), var(--details-bg-opacity, 0.8));
+  border: 1px solid var(--panel-border);
+  border-radius: var(--rounded-lg);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.55);
+}
+
+/* "FIGHT VS <BOSS> — 2026-08-09 21:14": the fight is the label, the boss
+   is the subject. Same tracked-caps treatment as the meter's boss name. */
+.detailsPanel .detailsHeader .detailsFightTitle {
+  font-variation-settings: "wght" 600, "wdth" 87.5;
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--hud-sub);
+}
+.detailsPanel .detailsHeader .detailsFightTitle .fightTitleBossName {
+  font-variation-settings: "wght" 700, "wdth" 87.5;
+  font-weight: 700;
+  color: var(--title);
+}
+
+.detailsPanel .detailsHeader .detailsHeaderControls {
+  gap: 7px;
+}
+
+/* Back to History, and the window's own close: same chip, wider. */
+.detailsPanel .detailsBackBtn {
+  height: 23px;
+  padding: 0 8px;
+  gap: 5px;
+  border: 1px solid var(--pane-field-border);
+  border-radius: 3px;
+  background: var(--pane-field-bg);
+  color: var(--hud-sub);
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 600, "wdth" 87.5;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.detailsPanel .detailsBackBtn:hover {
+  color: #fff;
+  background: var(--pane-field-bg-hover);
+  border-color: var(--pane-field-border-hover);
+}
+.detailsPanel .detailsBackBtn svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* DMG / HEAL. Both states are theme accents — reading which one is on is
+   the label's job, and a hard-coded amber/green pair belonged to no theme. */
+.detailsPanel .detailsHeader .detailsModeToggle {
+  gap: 3px;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+}
+.detailsPanel .detailsHeader .detailsModeBtn {
+  height: 23px;
+  min-width: 42px;
+  padding: 0 8px;
+  border: 1px solid var(--pane-field-border);
+  border-radius: 3px;
+  background: var(--pane-field-bg);
+  color: var(--hud-sub);
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 700, "wdth" 75;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  transition: color 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+.detailsPanel .detailsHeader .detailsModeBtn:hover {
+  color: #fff;
+  background: var(--pane-field-bg-hover);
+  border-color: var(--pane-field-border-hover);
+}
+.detailsPanel .detailsHeader .detailsModeBtn[data-mode="dmg"].isActive {
+  color: #fff;
+  background: color-mix(in srgb, var(--isUser-fill) 30%, transparent);
+  border-color: color-mix(in srgb, var(--isUser-fill) 62%, transparent);
+}
+.detailsPanel .detailsHeader .detailsModeBtn[data-mode="heal"].isActive {
+  color: #fff;
+  background: color-mix(in srgb, var(--row-fill) 32%, transparent);
+  border-color: color-mix(in srgb, var(--row-fill) 64%, transparent);
+}
+
+.detailsPanel .detailsHeader .detailsScreenshotBtn {
+  color: var(--hud-sub);
+}
+.detailsPanel .detailsHeader .detailsScreenshotBtn svg {
+  width: 14px;
+  height: 14px;
+}
+.detailsPanel .detailsHeader .detailsScreenshotNote {
+  font-variation-settings: "wght" 500, "wdth" 87.5;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--hud-sub);
+}
+
+/* Attacker / target pickers in the title line. */
+.detailsPanel .detailsHeader .detailsDropdownBtn {
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 700, "wdth" 87.5;
+  font-weight: 700;
+}
+.detailsPanel .detailsHeader .detailsDropdownCaret {
+  color: var(--hud-faint);
+}
+.detailsPanel .detailsHeader .detailsDropdownMenu {
+  padding: 4px;
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  background: rgba(var(--hud-bg), 0.98);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+}
+.detailsPanel .detailsHeader .detailsDropdownItem {
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-variation-settings: "wght" 500, "wdth" 87.5;
+  font-weight: 500;
+  font-size: 12px;
+}
+.detailsPanel .detailsHeader .detailsDropdownItem:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.detailsPanel .detailsHeader .detailsDropdownItem.isActive {
+  background: color-mix(in srgb, var(--isUser-fill) 22%, transparent);
+  color: #fff;
+}
+.detailsPanel .detailsHeader .detailsSortBtn {
+  height: 20px;
+  padding: 0 7px;
+  border: 1px solid var(--pane-field-border);
+  border-radius: 3px;
+  background: var(--pane-field-bg);
+  color: var(--hud-sub);
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 700, "wdth" 75;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.detailsPanel .detailsHeader .detailsSortBtn.isActive {
+  color: #fff;
+  background: color-mix(in srgb, var(--isUser-fill) 28%, transparent);
+  border-color: color-mix(in srgb, var(--isUser-fill) 60%, transparent);
+}
+
+/* ---------- details: the settings menu ---------- */
+
+.detailsPanel .detailsHeader .detailsSettingsMenu {
+  min-width: 300px;
+  margin-top: 6px;
+  padding: 12px 14px 13px;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--rounded-sm);
+  background: rgba(var(--hud-bg), 0.98);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+}
+.detailsPanel .detailsSettings {
+  gap: 9px;
+}
+/* The same section rail Settings uses, so the menu reads as short lists. */
+.detailsPanel .detailsSettings .detailsSettingsLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 3px;
+  opacity: 1;
+  font-variation-settings: "wght" 700, "wdth" 75;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hud-sub);
+}
+.detailsPanel .detailsSettings .detailsSettingsLabel::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--hud-hairline);
+}
+.detailsPanel .detailsSettings .detailsSettingsToggle {
+  min-height: 24px;
+  gap: 12px;
+}
+.detailsPanel .detailsSettings .detailsSettingsToggleLabel {
+  font-variation-settings: "wght" 500, "wdth" 87.5;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.78);
+}
+/* Same switch as Settings: 30×17 with an 11px knob. */
+.detailsPanel .detailsSettings .detailsSettingsToggleControl {
+  width: 30px;
+  height: 17px;
+}
+.detailsPanel .detailsSettings .detailsSettingsToggleTrack {
+  border: 1px solid var(--pane-field-border);
+  background: rgba(255, 255, 255, 0.08);
+  transition: background 120ms ease, border-color 120ms ease;
+}
+.detailsPanel .detailsSettings .detailsSettingsToggleTrack::after {
+  width: 11px;
+  height: 11px;
+  background: rgba(255, 255, 255, 0.55);
+  transition: transform 160ms cubic-bezier(0.22, 1, 0.36, 1), background 120ms ease;
+}
+.detailsPanel .detailsSettings .detailsSettingsToggleControl input[type="checkbox"]:checked
++ .detailsSettingsToggleTrack::after {
+  transform: translateX(13px);
+  background: #fff;
+}
+/* Two columns: fifteen one-line switches stacked is a scroll, not a list. */
+.detailsPanel .detailsSettings .detailsSettingsColumns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 18px;
+}
+.detailsPanel .detailsSettings .detailsSettingsControl {
+  gap: 10px;
+}
+.detailsPanel .detailsSettings .detailsOpacityInput,
+.detailsPanel .detailsSettings .detailsFontSizeInput,
+.detailsPanel .detailsSettings .detailsIconSizeInput {
+  flex: 1;
+  width: auto;
+  min-width: 0;
+  height: 14px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+/* --range-pct is mirrored from the input's value in core.js. */
+.detailsPanel .detailsSettings input[type="range"]::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--isUser-fill) 0 var(--range-pct, 50%),
+    rgba(255, 255, 255, 0.14) var(--range-pct, 50%) 100%
+  );
+}
+.detailsPanel .detailsSettings input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 9px;
+  height: 11px;
+  margin-top: -4px;
+  border: 0;
+  border-radius: 1px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+.detailsPanel .detailsSettings .detailsOpacityValue,
+.detailsPanel .detailsSettings .detailsFontSizeValue,
+.detailsPanel .detailsSettings .detailsIconSizeValue {
+  opacity: 1;
+  min-width: 38px;
+  font-variation-settings: "wght" 600, "wdth" 87.5;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.82);
+}
+.detailsPanel .detailsSettings .detailsSettingsFolderPath {
+  font-variation-settings: "wght" 400, "wdth" 87.5;
+  font-size: 11.5px;
+  color: var(--hud-sub);
+}
+.detailsPanel .detailsSettings .detailsSettingsFolderBtn {
+  height: var(--pane-field-h);
+  padding: 0 9px;
+  border: 1px solid var(--pane-field-border);
+  border-radius: 3px;
+  background: var(--pane-field-bg);
+  color: rgba(255, 255, 255, 0.88);
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 600, "wdth" 87.5;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.detailsPanel .detailsSettings .detailsSettingsFolderBtn:hover {
+  color: #fff;
+  background: var(--pane-field-bg-hover);
+  border-color: var(--pane-field-border-hover);
+}
+
+/* ---------- details: party bars & stat readouts ---------- */
+
+.detailsPanel .detailsStatsRow {
+  border-bottom: 1px solid var(--hud-hairline);
+}
+.detailsPanel .detailsPartyList {
+  border-right: 1px solid var(--hud-hairline);
+}
+
+.detailsPanel .detailsPartyBar {
+  height: 30px;
+  padding: 0 9px 0 11px;
+  border-bottom: 1px solid var(--hud-hairline);
+  transition: background 120ms ease;
+}
+.detailsPanel .detailsPartyBar:hover {
+  background: rgba(255, 255, 255, 0.055);
+}
+.detailsPanel .detailsPartyBar.isSelected {
+  background: rgba(255, 255, 255, 0.075);
+}
+/* Selection is a lit rail, the same one your own row wears in the meter —
+   a filled row would fight the damage bar underneath it. */
+.detailsPanel .detailsPartyBar.isSelected::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  z-index: 2;
+  background: var(--isUser-fill);
+  box-shadow: 0 0 8px 1px color-mix(in srgb, var(--isUser-fill) 70%, transparent);
+}
+/* Tint, not slab: the same gradient the meter rows use. */
+.detailsPanel .detailsPartyBarFill {
+  --bar: var(--row-fill);
+  opacity: var(--meter-fill-opacity, 0.8);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--bar) 26%, transparent) 0%,
+    color-mix(in srgb, var(--bar) 55%, transparent) 100%
+  );
+}
+.detailsPanel .detailsPartyBarContent {
+  gap: 6px;
+}
+.detailsPanel .detailsPartyBarIcon {
+  width: 19px;
+  height: 19px;
+}
+.detailsPanel .detailsPartyBarName {
+  font-family: var(--hud-ident);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--hud-name);
+}
+.detailsPanel .detailsPartyBarDps,
+.detailsPanel .detailsPartyBarDmg,
+.detailsPanel .detailsPartyBarPct {
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 600, "wdth" 87.5;
+  font-variant-numeric: tabular-nums;
+  font-size: 11.5px;
+  font-weight: 600;
+  opacity: 1;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.86);
+}
+.detailsPanel .detailsPartyBarDmg {
+  color: var(--hud-sub);
+}
+.detailsPanel .detailsPartyBarPct {
+  font-variation-settings: "wght" 600, "wdth" 75;
+  font-weight: 600;
+  font-size: 11px;
+  opacity: 1;
+  color: var(--hud-sub);
+}
+
+/* Stat readouts: as many 150px columns as fit, each a label/figure pair on
+   its own hairline. Two fixed columns left 600px gaps in the wide window. */
+.detailsPanel .detailsStats {
+  gap: 0 22px;
+  grid-template-columns: repeat(auto-fit, minmax(172px, 1fr));
+  padding: 8px 14px 9px;
+}
+.detailsPanel .detailsStats .stat {
+  align-items: baseline;
+  gap: 10px;
+  min-height: 23px;
+  padding: 2px 0;
+  border-bottom: 1px solid var(--hud-hairline);
+}
+.detailsPanel .detailsStats .stat .label {
+  font-variation-settings: "wght" 600, "wdth" 75;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--hud-sub);
+}
+.detailsPanel .detailsStats .stat .value {
+  flex: 0 0 auto;
+  font-variation-settings: "wght" 700, "wdth" 87.5;
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--hud-num);
+}
+
+/* ---------- details: collapsible sections ---------- */
+
+.detailsPanel .detailsSection .detailsSectionHeader {
+  gap: 7px;
+  padding: 9px 14px 7px;
+  border-bottom: 0;
+  font-variation-settings: "wght" 700, "wdth" 75;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hud-sub);
+  transition: color 120ms ease;
+}
+.detailsPanel .detailsSection .detailsSectionHeader:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+/* The rail: tracked caps that terminate in a hairline running to the edge
+   of the column, so the panel reads as three short views. */
+.detailsPanel .detailsSection .detailsSectionHeader::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--hud-hairline);
+}
+.detailsPanel .detailsSection .detailsSectionArrow {
+  border-left-color: var(--hud-faint);
+}
+
+/* ---------- details: the skill table ---------- */
+
+/* Micro-caps, sitting on a darker band so the table has a top edge even
+   when the rows scroll under it. */
+.detailsPanel .detailsSkills .skillHeader {
+  padding: 6px calc(14px + var(--scrollbar-w, 8px)) 6px 14px;
+  background: rgba(0, 0, 0, 0.24);
+  border-top: 1px solid var(--hud-hairline);
+  border-bottom: 1px solid var(--hud-hairline);
+  font-weight: 400;
+}
+.detailsPanel .detailsSkills .skillHeader .cell {
+  font-variation-settings: "wght" 700, "wdth" 75;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--hud-sub);
+  transition: color 120ms ease;
+}
+.detailsPanel .detailsSkills .skillHeader .cell.name {
+  color: rgba(255, 255, 255, 0.72);
+}
+.detailsPanel .detailsSkills .skillHeader .cell[data-sort-key]:hover {
+  color: #fff;
+}
+.detailsPanel .detailsSkills .skillHeader .cell[data-tip]::after {
+  background: rgba(var(--hud-bg), 0.97);
+  border: 1px solid var(--panel-border);
+  border-radius: 3px;
+  padding: 3px 7px;
+  font-family: var(--hud-tech);
+  font-variation-settings: "wght" 500, "wdth" 87.5;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+}
+
+.detailsPanel .detailsSkills .skills {
+  padding: 0 14px;
+}
+
+/* Sixteen numeric columns compared down the page, so they share a right
+   edge. Centred figures of different widths cannot be scanned as a column. */
+.detailsPanel .detailsSkills .cell.center,
+.detailsPanel .detailsSkills .cell.dmg,
+.detailsPanel .detailsSkills .cell.dmgpct {
+  justify-content: flex-end;
+}
+.detailsPanel .detailsSkills .cell {
+  font-variant-numeric: tabular-nums;
+}
+.detailsPanel .detailsSkills .skills .skillRow .cell {
+  font-variation-settings: "wght" 500, "wdth" 87.5;
+  font-weight: 500;
+  font-size: 0.8em;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.72);
+}
+/* Damage is what the table is for, so it is the only white column; its share
+   and the cast count support it one step down, everything else recedes. */
+.detailsPanel .detailsSkills .skills .skillRow .cell.dmg {
+  font-variation-settings: "wght" 700, "wdth" 87.5;
+  font-weight: 700;
+  color: var(--hud-num);
+}
+.detailsPanel .detailsSkills .skills .skillRow .cell.dmgpct,
+.detailsPanel .detailsSkills .skills .skillRow .cell.hit {
+  font-variation-settings: "wght" 600, "wdth" 87.5;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.detailsPanel .detailsSkills .skills .skillRow {
+  padding: 3px 0;
+  border-bottom: 1px solid var(--hud-hairline);
+}
+.detailsPanel .detailsSkills .skills .skillRow:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+/* The bar is a tint behind the row, not a slab under the text — the same
+   rule the meter rows follow, and it now runs the full width of the row
+   rather than starting after the icon. */
+.detailsPanel .detailsSkills .skills .skillRow .rowFill {
+  --bar: var(--row-fill);
+  left: 0;
+  border-radius: 3px;
+  opacity: var(--meter-fill-opacity, 0.8);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--bar) 20%, transparent) 0%,
+    color-mix(in srgb, var(--bar) 30%, transparent) 62%,
+    color-mix(in srgb, var(--bar) 52%, transparent) 100%
+  );
+}
+
+.detailsPanel .detailsSkills .cell.name {
+  color: var(--hud-name);
+}
+.detailsPanel .detailsSkills .skills .skillRow .cell.name {
+  font-variation-settings: "wght" 600, "wdth" 87.5;
+  font-weight: 600;
+}
+.detailsPanel .detailsSkills .cell.name .skillIcon {
+  width: var(--details-skill-icon-size, 24px);
+  height: var(--details-skill-icon-size, 24px);
+  border-radius: 3px;
+  margin-right: 5px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.75));
+}
+.detailsPanel .detailsSkills .cell.name .skillNameText {
+  font-family: var(--hud-ident);
+  font-size: 0.84em;
+  letter-spacing: 0.01em;
+  color: var(--hud-name);
+}
+.detailsPanel .detailsSkills .cell.name .dotToggle {
+  color: var(--hud-faint);
+  opacity: 1;
+}
+/* DoT ticks belong to the skill above them, so they sit inside a rail
+   instead of relying on italics alone. */
+.detailsPanel .detailsSkills .skills .skillRow.isDotChild {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: inset 2px 0 0 rgba(255, 255, 255, 0.07);
+}
+.detailsPanel .detailsSkills .skills .skillRow.isDotChild .cell {
+  color: var(--hud-sub);
+}
+.detailsPanel .detailsSkills .skills .skillRow.isDotChild .cell.name .skillNameText {
+  font-style: normal;
+  color: var(--hud-sub);
+}
+.detailsPanel .detailsSkills .cell.name .skillSpecIndicator .specDot.isActive {
+  background: var(--isUser-fill);
+}
+
+.detailsPanel .detailsSkills .detailsFootnote {
+  padding: 7px 14px 2px;
+  font-variation-settings: "wght" 400, "wdth" 87.5;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+  opacity: 1;
+  color: var(--hud-faint);
+}
+
+/* ---------- details: charts ---------- */
+
+.detailsPanel .dpsChartWrap {
+  padding: 6px 14px 0;
+}
+.detailsPanel .dpsChartLegend .legendItem,
+.detailsPanel .timelineLegend .legendItem {
+  font-variation-settings: "wght" 600, "wdth" 87.5;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.8);
+}
+.detailsPanel .dpsChartXAxis,
+.detailsPanel .timelineXAxis {
+  font-variation-settings: "wght" 500, "wdth" 75;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--hud-faint);
+}
+.detailsPanel .timelineLegend,
+.detailsPanel .timelineViewport {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+.detailsPanel .timelineXAxis {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .historyPanel .historyLiveBadge { animation: none; }
+  .detailsPanel .detailsSettings .detailsSettingsToggleTrack::after { transition: none; }
+}
+
+
+/* ============================================================
    DETAILS WINDOW
    ------------------------------------------------------------
    The second window ("Show Details on Monitor") loads this same
@@ -5089,7 +6241,7 @@ html.detailsWindow body {
   overflow: hidden;
   /* Opaque: this window sits on a desktop, not over the game, and the
      overlay's translucency would just show the wallpaper through it. */
-  background: #0a0e16;
+  background: rgb(var(--hud-bg));
 }
 
 html.detailsWindow .container,
@@ -5114,7 +6266,6 @@ html.detailsWindow .meterFooter,
 html.detailsWindow .resizeHandle,
 html.detailsWindow .pingDisplay,
 html.detailsWindow .settingsPanel,
-html.detailsWindow .historyPanel,
 html.detailsWindow .updateModal,
 html.detailsWindow .hoverDetailsTooltip {
   display: none !important;
@@ -5136,10 +6287,63 @@ html.detailsWindow .detailsPanel {
   height: 100%;
   border: 0;
   border-radius: 0;
-  padding: 10px 14px;
-  background: #0a0e16;
+  /* The header, stat strip and table carry their own 14px gutter now, so the
+     panel only adds the outer inset that keeps them off the screen edge. */
+  padding: 0 10px 10px;
+  background: rgb(var(--hud-bg));
+  box-shadow: none;
 }
 html.detailsWindow .detailsPanel.open { display: flex; }
+
+/* History is the other half of this window, not an overlay popover: the two
+   panels take turns filling it, so History gets the Details panel's geometry
+   rather than the floating card it wears over the meter. Picking a fight swaps
+   to the fight view in place, and the fight view's back button returns here. */
+html.detailsWindow .historyPanel {
+  position: absolute;
+  inset: 0 auto 0 50%;
+  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
+  /* border-box, or the 10px gutter is added to 100% and the panel hangs 20px
+     past the window edge. */
+  box-sizing: border-box;
+  width: min(1700px, 100%);
+  min-width: 0;
+  max-width: none;
+  max-height: none;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  padding: 0 10px 10px;
+  background: rgb(var(--hud-bg));
+  box-shadow: none;
+}
+
+/* Over the meter the list is a floating card with a 540px cap. Filling a window
+   it should run to the bottom, and the scroll belongs to the body so the header
+   and filters stay put. */
+html.detailsWindow .historyList {
+  max-height: none;
+  overflow-y: visible;
+}
+html.detailsWindow .historyBody {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* Frameless, so History supplies the same drag surface and close control the
+   Details header does. */
+html.detailsWindow .historyHeader {
+  -webkit-app-region: drag;
+  padding-right: 6px;
+}
+html.detailsWindow .historyHeader button,
+html.detailsWindow .historyHeader .historyFilters,
+html.detailsWindow .historyHeader .historyClose {
+  -webkit-app-region: no-drag;
+}
 
 /* Drag the window by its header, since it is frameless. */
 html.detailsWindow .detailsHeader {
@@ -5161,26 +6365,28 @@ html.detailsWindow .detailsWindowClose {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 26px;
-  height: 26px;
+  box-sizing: border-box;
+  width: 23px;
+  height: 23px;
   flex: 0 0 auto;
-  border: 1px solid var(--panel-border);
-  border-radius: var(--rounded-xs);
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.7);
+  padding: 0;
+  border: 1px solid var(--pane-field-border, rgba(255, 255, 255, 0.1));
+  border-radius: 3px;
+  background: var(--pane-field-bg, rgba(255, 255, 255, 0.05));
+  color: var(--hud-sub);
   cursor: pointer;
-  transition: background 120ms ease, color 120ms ease;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
 }
 html.detailsWindow .detailsWindowClose:hover {
-  background: rgba(255, 80, 80, 0.22);
+  background: color-mix(in srgb, var(--error-fill) 26%, transparent);
+  border-color: color-mix(in srgb, var(--error-fill) 62%, transparent);
   color: #fff;
 }
-html.detailsWindow .detailsWindowClose svg { width: 15px; height: 15px; }
+html.detailsWindow .detailsWindowClose svg { width: 14px; height: 14px; }
 
-/* The back-to-history button has nothing to go back to here, and the panel's
-   own close would only be undone by the keep-open watchdog — the window close
-   button beside it is the real control. */
-html.detailsWindow .detailsBackBtn,
+/* Back-to-History now has somewhere to go: History fills this same window. The
+   panel's own close stays hidden — it would only be undone by the keep-open
+   watchdog, and the window close button beside it is the real control. */
 html.detailsWindow .detailsClose { display: none !important; }
 
 /* Give the skill table the full height it now has room for. */

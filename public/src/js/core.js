@@ -254,12 +254,29 @@ class DpsApp {
       onClickUserRow: (row) => {
         if (!row || this.isWindowDragging) return;
         const rowId = Number(row?.id);
-        this.pinnedDetailsRowId = Number.isFinite(rowId) && rowId > 0 ? rowId : null;
+        const pinnedId = Number.isFinite(rowId) && rowId > 0 ? rowId : null;
         this.hideHoverTooltip();
-        this.detailsUI.open(row, {
-          pin: true,
-          ...this.getDefaultDetailsOpenOptions(),
-        });
+        const options = this.getDefaultDetailsOpenOptions();
+        // Details lives in its own window; the overlay only says what to show.
+        // Only the in-overlay fallback pins the row — pinning suppresses the
+        // hover tooltip, which should stay live when the panel is elsewhere.
+        this.openDetailsSurface(
+          {
+            kind: "row",
+            row: {
+              id: pinnedId,
+              name: row?.name ?? "",
+              job: row?.job ?? "",
+              isIdentifying: !!row?.isIdentifying,
+            },
+            defaultTargetAll: !!options.defaultTargetAll,
+            defaultTargetId: options.defaultTargetId ?? null,
+          },
+          () => {
+            this.pinnedDetailsRowId = pinnedId;
+            this.detailsUI.open(row, { pin: true, ...options });
+          }
+        );
       },
     });
 
@@ -441,11 +458,20 @@ class DpsApp {
     const storedDisplayMode = this.safeGetStorage(this.storageKeys.displayMode);
     this.setDisplayMode(storedDisplayMode || this.displayMode, { persist: false });
 
+    // History stays in the overlay — it is a picker, and it is where the user
+    // already is. Picking a fight hands it to the Details window instead of
+    // expanding the overlay behind it.
     this.historyUI = typeof createHistoryUI === "function"
       ? createHistoryUI({
           onOpenFight: (record) => {
             this.historyUI?.close?.();
-            this.detailsUI?.openHistoryFight?.(record);
+            const inOverlay = () => this.detailsUI?.openHistoryFight?.(record);
+            const fightId = record?.id ? String(record.id) : "";
+            if (!fightId) {
+              inOverlay();
+              return;
+            }
+            this.openDetailsSurface({ kind: "fight", fightId }, inOverlay);
           },
         })
       : null;
@@ -1784,14 +1810,22 @@ class DpsApp {
 
     const historyBtn = document.querySelector(".historyBtn");
     if (historyBtn) {
+      // History is part of the Details surface, not the overlay: opening it
+      // here would make the 30px-tall meter grow to swallow a fight list. It
+      // goes to the Details window, which then swaps between the list and a
+      // fight in place. The in-overlay panel remains the fallback for when
+      // that window cannot be reached at all.
+      const openHistory = () => {
+        this.openDetailsSurface({ kind: "history" }, () => this.historyUI?.open?.());
+      };
       historyBtn.addEventListener("click", () => {
         if (this.isWindowDragging) return;
-        this.historyUI?.open?.();
+        openHistory();
       });
       historyBtn.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
-          this.historyUI?.open?.();
+          openHistory();
         }
       });
       historyBtn.setAttribute("data-no-drag", "true");
@@ -2143,10 +2177,15 @@ class DpsApp {
       const pct = Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100));
       input.style.setProperty("--range-pct", `${pct}%`);
     };
-    this.settingsPanel?.querySelectorAll(".settingsRange").forEach(syncRangeFill);
-    this.settingsPanel?.addEventListener("input", (event) => {
-      const target = event.target;
-      if (target?.classList?.contains("settingsRange")) syncRangeFill(target);
+    // Both panels: the Details settings menu uses the same slider geometry, so
+    // its tracks read the same property.
+    const isRange = (el) => el?.tagName === "INPUT" && el.type === "range";
+    [this.settingsPanel, this.detailsPanel].forEach((root) => {
+      if (!root) return;
+      root.querySelectorAll('input[type="range"]').forEach(syncRangeFill);
+      root.addEventListener("input", (event) => {
+        if (isRange(event.target)) syncRangeFill(event.target);
+      });
     });
 
     this.setupKeybindButtons();
@@ -3374,6 +3413,46 @@ class DpsApp {
     this.detailsMonitorHint.style.display = text ? "" : "none";
   }
 
+  /**
+   * Hand a Details view to the standalone Details window.
+   *
+   * Every route into Details from the overlay — a meter row, a fight picked in
+   * History — goes through here, so there is exactly one Details surface and
+   * the overlay never grows to contain the panel. The backend creates the
+   * window if it is not up yet and places it where the user last left it.
+   *
+   * `fallback` is the old in-overlay behaviour, run when the window cannot be
+   * reached at all (bridge without the command, window build failed). Showing
+   * the panel in the overlay beats showing nothing.
+   */
+  openDetailsSurface(request, fallback) {
+    const runFallback = () => {
+      try { fallback?.(); } catch (err) { console.error("[A2Tools] details fallback failed", err); }
+    };
+    // The Details window itself never re-routes; it renders in place.
+    if (window.A2_VIEW !== "main") {
+      runFallback();
+      return;
+    }
+    const send = window.javaBridge?.requestDetailsView;
+    if (typeof send !== "function") {
+      runFallback();
+      return;
+    }
+    let result;
+    try {
+      result = send.call(window.javaBridge, request);
+    } catch (err) {
+      console.error("[A2Tools] requestDetailsView failed", err);
+      runFallback();
+      return;
+    }
+    Promise.resolve(result).catch((err) => {
+      console.error("[A2Tools] requestDetailsView failed", err);
+      runFallback();
+    });
+  }
+
   // The "settings" window runs this same bundle with only the settings panel
   // visible, so its markup and wiring are reused rather than duplicated.
   enterSettingsWindowMode() {
@@ -3402,6 +3481,32 @@ class DpsApp {
     const openAll = () => {
       this.detailsUI?.open?.(null, { defaultTargetAll: true, pin: true, force: true });
     };
+    // Closing History here means "done with the list", not "close the window" —
+    // this window always shows one panel or the other. Watching the class
+    // rather than waiting for the 1s watchdog keeps the swap from flashing an
+    // empty window. The History × is the only visible control while the list
+    // fills the window, so it has to land somewhere sensible.
+    const historyPanel = document.querySelector(".historyPanel");
+    if (historyPanel) {
+      let wasOpen = historyPanel.classList.contains("open");
+      new MutationObserver(() => {
+        const isOpen = historyPanel.classList.contains("open");
+        if (wasOpen && !isOpen) {
+          // Picking a fight also closes History, and the fight view opens in
+          // the same breath — so decide on the next tick, once whatever is
+          // taking over has claimed the window. Reacting to the class change
+          // itself would drop the live "all targets" view on top of the fight
+          // the user just asked for.
+          setTimeout(() => {
+            if (this._detailsRequestsInFlight > 0) return;
+            if (historyPanel.classList.contains("open")) return;
+            if (this.detailsPanel?.classList?.contains("open")) return;
+            openAll();
+          }, 120);
+        }
+        wasOpen = isOpen;
+      }).observe(historyPanel, { attributes: true, attributeFilter: ["class"] });
+    }
     // Confirm on the screen itself which monitor this is. Backed by the
     // placement the backend actually performed, not by what was requested.
     window.__TAURI__?.event?.listen?.("details-placed", (event) => {
@@ -3423,16 +3528,80 @@ class DpsApp {
       badge.classList.add("isVisible");
     });
 
+    // Views routed here from the overlay (a meter row, a fight from History).
+    // The request arrives two ways and only one of them can be relied on: a
+    // window that was created to serve the request has no listener attached
+    // when it is emitted, so it pulls the parked request on startup instead.
+    // The seq stamp makes applying it twice a no-op.
+    this._lastDetailsRequestSeq = 0;
+    this._detailsRequestsInFlight = 0;
+    const applyRequest = async (payload) => {
+      if (!payload || typeof payload !== "object") return;
+      const seq = Number(payload.seq) || 0;
+      if (seq && seq <= this._lastDetailsRequestSeq) return;
+      this._lastDetailsRequestSeq = seq;
+      // Hold off the keep-open watchdog: a fight has to be loaded from disk
+      // before the panel opens, and the panel is closed until it lands.
+      this._detailsRequestsInFlight += 1;
+      try {
+        if (payload.kind === "history") {
+          // The list takes the window over; the fight view is what it opens
+          // into, and its back button brings this back.
+          this.detailsUI?.close?.({ keepPinned: false });
+          this.historyUI?.open?.();
+          return;
+        }
+        if (payload.kind === "fight") {
+          const raw = await window.javaBridge?.getFightDetails?.(String(payload.fightId || ""));
+          const record = typeof raw === "string" ? this.safeParseJSON(raw, null) : raw;
+          if (!record) {
+            openAll();
+            return;
+          }
+          this.detailsUI?.resetDetailsMode?.();
+          await this.detailsUI?.openHistoryFight?.(record);
+          return;
+        }
+        const row = payload.row && typeof payload.row === "object" ? payload.row : null;
+        await this.detailsUI?.open?.(row, {
+          force: true,
+          pin: true,
+          defaultTargetAll: !!payload.defaultTargetAll,
+          defaultTargetId: payload.defaultTargetId ?? null,
+        });
+      } catch (err) {
+        console.error("[A2Tools] details request failed", err);
+      } finally {
+        this._detailsRequestsInFlight = Math.max(0, this._detailsRequestsInFlight - 1);
+      }
+    };
+    const listening = window.__TAURI__?.event?.listen?.(
+      "details-request",
+      (event) => { void applyRequest(event?.payload); }
+    );
+
     openAll();
     // Tell the backend to reveal the window now that the panel has painted —
     // it is created hidden to avoid a white flash while the bundle loads.
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => window.javaBridge?.detailsWindowReady?.());
-    });
+    // Sequenced after the listener so a request emitted meanwhile is not lost.
+    Promise.resolve(listening)
+      .catch(() => {})
+      .then(() => window.javaBridge?.takePendingDetailsRequest?.())
+      .then((pending) => (pending ? applyRequest(pending) : undefined))
+      .catch(() => {})
+      .then(() => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => window.javaBridge?.detailsWindowReady?.());
+        });
+      });
     // The panel can be closed from inside (back button, escape). In this window
     // there is nothing behind it, so re-assert rather than leave a blank screen.
+    // History counts as content: it is the other panel that legitimately fills
+    // this window, and reopening Details over it would fight the back button.
     if (this._detailsWindowTimer) clearInterval(this._detailsWindowTimer);
     this._detailsWindowTimer = setInterval(() => {
+      if (this._detailsRequestsInFlight > 0) return;
+      if (this.historyUI?.isOpen?.()) return;
       if (!this.detailsPanel?.classList?.contains("open")) openAll();
     }, 1000);
   }

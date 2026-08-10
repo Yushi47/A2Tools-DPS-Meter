@@ -237,6 +237,15 @@
     closeDetailsWindow() {
       return invoke("close_details_window").catch(() => {});
     },
+    // Details is one surface. The overlay never opens the panel inside itself —
+    // it describes what to show and the standalone window (created on demand)
+    // renders it. Rejections are surfaced so core.js can fall back in-overlay.
+    requestDetailsView(payload) {
+      return invoke("request_details_view", { payload: payload || {} });
+    },
+    takePendingDetailsRequest() {
+      return invoke("take_pending_details_request").catch(() => null);
+    },
     detailsWindowReady() {
       try {
         const w = window.__TAURI__.window.getCurrentWindow();
