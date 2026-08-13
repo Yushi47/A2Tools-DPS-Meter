@@ -8705,6 +8705,10 @@
     "tier": "第2階段",
     "dungeonId": 610021
   },
+  "2300366": {
+    "name": "被汙染的斯拉克奴工",
+    "isBoss": false
+  },
   "2300367": {
     "name": "None",
     "isBoss": true,
@@ -8719,12 +8723,56 @@
     "tier": "第4階段",
     "dungeonId": 610023
   },
+  "2300370": {
+    "name": "被汙染的斯拉克哨兵",
+    "isBoss": false
+  },
   "2300371": {
     "name": "克羅梅德欲望",
     "isBoss": true,
     "category": "激戰",
     "tier": "征服",
     "dungeonId": 600022
+  },
+  "2300372": {
+    "name": "被汙染的斯拉克監督官",
+    "isBoss": false
+  },
+  "2300376": {
+    "name": "被汙染的斯拉克奴工",
+    "isBoss": false
+  },
+  "2300378": {
+    "name": "被汙染的斯拉克哨兵",
+    "isBoss": false
+  },
+  "2300379": {
+    "name": "被汙染的斯拉克監督官",
+    "isBoss": false
+  },
+  "2300383": {
+    "name": "被汙染的斯拉克奴工",
+    "isBoss": false
+  },
+  "2300385": {
+    "name": "被汙染的斯拉克哨兵",
+    "isBoss": false
+  },
+  "2300386": {
+    "name": "被汙染的斯拉克監督官",
+    "isBoss": false
+  },
+  "2300390": {
+    "name": "被汙染的斯拉克奴工",
+    "isBoss": false
+  },
+  "2300392": {
+    "name": "被汙染的斯拉克哨兵",
+    "isBoss": false
+  },
+  "2300393": {
+    "name": "被汙染的斯拉克監督官",
+    "isBoss": false
   },
   "2300397": {
     "name": "愛的試煉",
@@ -8772,9 +8820,30 @@
     "name": "管理人亞巴圖勒",
     "isBoss": false
   },
+  "2300407": {
+    "name": "傲慢亞提埃爾",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "探險",
+    "dungeonId": 600161
+  },
   "2300408": {
     "name": "副士官阿克巴爾",
     "isBoss": false
+  },
+  "2300409": {
+    "name": "研究所長札伊洛斯",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "探險",
+    "dungeonId": 600161
+  },
+  "2300410": {
+    "name": "監督官格羅卡斯",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "探險",
+    "dungeonId": 600161
   },
   "2300411": {
     "name": "德拉克紐特隨行兵",
@@ -8840,6 +8909,10 @@
     "name": "腐敗的深淵蟲",
     "isBoss": false
   },
+  "2300427": {
+    "name": "實驗體混種",
+    "isBoss": false
+  },
   "2300428": {
     "name": "羈絆花園管理員",
     "isBoss": false
@@ -8854,6 +8927,158 @@
   },
   "2300431": {
     "name": "羈絆花園管理員",
+    "isBoss": false
+  },
+  "2300432": {
+    "name": "被汙染的史萊姆",
+    "isBoss": false
+  },
+  "2300433": {
+    "name": "被汙染的史萊姆",
+    "isBoss": false
+  },
+  "2300434": {
+    "name": "被汙染的史萊姆",
+    "isBoss": false
+  },
+  "2300435": {
+    "name": "被汙染的史萊姆",
+    "isBoss": false
+  },
+  "2300436": {
+    "name": "阿斯克藍",
+    "isBoss": true,
+    "category": "超越",
+    "tier": "第1階段",
+    "dungeonId": 610030
+  },
+  "2300437": {
+    "name": "不完整的布勞恩特",
+    "isBoss": true,
+    "category": "超越",
+    "tier": "第1階段",
+    "dungeonId": 610030
+  },
+  "2300438": {
+    "name": "狂氣克羅明斯特",
+    "isBoss": true,
+    "category": "超越",
+    "tier": "第1階段",
+    "dungeonId": 610030
+  },
+  "2300439": {
+    "name": "阿斯克藍",
+    "isBoss": true,
+    "category": "超越",
+    "tier": "第2階段",
+    "dungeonId": 610031
+  },
+  "2300440": {
+    "name": "不完整的布勞恩特",
+    "isBoss": true,
+    "category": "超越",
+    "tier": "第2階段",
+    "dungeonId": 610031
+  },
+  "2300441": {
+    "name": "狂氣克羅明斯特",
+    "isBoss": true,
+    "category": "超越",
+    "tier": "第2階段",
+    "dungeonId": 610031
+  },
+  "2300442": {
+    "name": "阿斯克藍",
+    "isBoss": true,
+    "category": "超越",
+    "tier": "第3階段",
+    "dungeonId": 610032
+  },
+  "2300443": {
+    "name": "不完整的布勞恩特",
+    "isBoss": true,
+    "category": "超越",
+    "tier": "第3階段",
+    "dungeonId": 610032
+  },
+  "2300444": {
+    "name": "狂氣克羅明斯特",
+    "isBoss": true,
+    "category": "超越",
+    "tier": "第3階段",
+    "dungeonId": 610032
+  },
+  "2300445": {
+    "name": "阿斯克藍",
+    "isBoss": true,
+    "category": "超越",
+    "tier": "第4階段",
+    "dungeonId": 610033
+  },
+  "2300446": {
+    "name": "不完整的布勞恩特",
+    "isBoss": true,
+    "category": "超越",
+    "tier": "第4階段",
+    "dungeonId": 610033
+  },
+  "2300447": {
+    "name": "狂氣克羅明斯特",
+    "isBoss": true,
+    "category": "超越",
+    "tier": "第4階段",
+    "dungeonId": 610033
+  },
+  "2300448": {
+    "name": "被汙染的塊狀怪",
+    "isBoss": false
+  },
+  "2300450": {
+    "name": "被汙染的塊狀怪",
+    "isBoss": false
+  },
+  "2300452": {
+    "name": "被汙染的塊狀怪",
+    "isBoss": false
+  },
+  "2300454": {
+    "name": "被汙染的塊狀怪",
+    "isBoss": false
+  },
+  "2300456": {
+    "name": "雷帕爾團警備隊長",
+    "isBoss": false
+  },
+  "2300457": {
+    "name": "雷帕爾團警備隊員",
+    "isBoss": false
+  },
+  "2300458": {
+    "name": "基地研究員",
+    "isBoss": false
+  },
+  "2300459": {
+    "name": "雷帕爾團首席警備隊員",
+    "isBoss": false
+  },
+  "2300460": {
+    "name": "雷帕爾團警備隊員",
+    "isBoss": false
+  },
+  "2300461": {
+    "name": "被汙染的史萊姆",
+    "isBoss": false
+  },
+  "2300462": {
+    "name": "實驗體變異體",
+    "isBoss": false
+  },
+  "2300463": {
+    "name": "實驗體捕食者",
+    "isBoss": false
+  },
+  "2300464": {
+    "name": "None",
     "isBoss": false
   },
   "2300465": {
@@ -8918,6 +9143,13 @@
   "2300480": {
     "name": "中毒的斯拉克車夫",
     "isBoss": false
+  },
+  "2300481": {
+    "name": "傲慢亞提埃爾",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "征服[困難]",
+    "dungeonId": 600163
   },
   "2300482": {
     "name": "深淵角杜杜卡工人",
@@ -9217,6 +9449,68 @@
     "name": "深淵角路比利尼",
     "isBoss": false
   },
+  "2300555": {
+    "name": "研究所長札伊洛斯",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "征服[困難]",
+    "dungeonId": 600163
+  },
+  "2300556": {
+    "name": "監督官格羅卡斯",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "征服[困難]",
+    "dungeonId": 600163
+  },
+  "2300557": {
+    "name": "實驗體混種",
+    "isBoss": false
+  },
+  "2300558": {
+    "name": "雷帕爾團警備隊長",
+    "isBoss": false
+  },
+  "2300559": {
+    "name": "雷帕爾團警備隊員",
+    "isBoss": false
+  },
+  "2300560": {
+    "name": "基地研究員",
+    "isBoss": false
+  },
+  "2300561": {
+    "name": "雷帕爾團首席警備隊員",
+    "isBoss": false
+  },
+  "2300562": {
+    "name": "雷帕爾團警備隊員",
+    "isBoss": false
+  },
+  "2300563": {
+    "name": "被汙染的史萊姆",
+    "isBoss": false
+  },
+  "2300564": {
+    "name": "實驗體變異體",
+    "isBoss": false
+  },
+  "2300565": {
+    "name": "實驗體捕食者",
+    "isBoss": false
+  },
+  "2300566": {
+    "name": "被汙染的靈魂癥結器",
+    "isBoss": false
+  },
+  "2300567": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2300568": {
+    "name": "奧德研究室雷射",
+    "isBoss": false
+  },
   "2300571": {
     "name": "岩石精靈",
     "isBoss": false
@@ -9291,6 +9585,18 @@
     "name": "漂浮電氣石",
     "isBoss": false
   },
+  "2300588": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2300589": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2300590": {
+    "name": "None",
+    "isBoss": false
+  },
   "2300595": {
     "name": "彈丸草",
     "isBoss": false
@@ -9361,6 +9667,86 @@
   },
   "2300617": {
     "name": "德烏斯研究基地裂縫",
+    "isBoss": false
+  },
+  "2300621": {
+    "name": "冷酷的技術員",
+    "isBoss": false
+  },
+  "2300622": {
+    "name": "瘋狂的研究員",
+    "isBoss": false
+  },
+  "2300623": {
+    "name": "歹毒的解剖學者",
+    "isBoss": false
+  },
+  "2300624": {
+    "name": "無情的警衛",
+    "isBoss": false
+  },
+  "2300625": {
+    "name": "變異實驗體",
+    "isBoss": false
+  },
+  "2300626": {
+    "name": "冷酷的技術員",
+    "isBoss": false
+  },
+  "2300627": {
+    "name": "瘋狂的研究員",
+    "isBoss": false
+  },
+  "2300628": {
+    "name": "歹毒的解剖學者",
+    "isBoss": false
+  },
+  "2300629": {
+    "name": "無情的警衛",
+    "isBoss": false
+  },
+  "2300630": {
+    "name": "變異實驗體",
+    "isBoss": false
+  },
+  "2300631": {
+    "name": "冷酷的技術員",
+    "isBoss": false
+  },
+  "2300632": {
+    "name": "瘋狂的研究員",
+    "isBoss": false
+  },
+  "2300633": {
+    "name": "歹毒的解剖學者",
+    "isBoss": false
+  },
+  "2300634": {
+    "name": "無情的警衛",
+    "isBoss": false
+  },
+  "2300635": {
+    "name": "變異實驗體",
+    "isBoss": false
+  },
+  "2300636": {
+    "name": "冷酷的技術員",
+    "isBoss": false
+  },
+  "2300637": {
+    "name": "瘋狂的研究員",
+    "isBoss": false
+  },
+  "2300638": {
+    "name": "歹毒的解剖學者",
+    "isBoss": false
+  },
+  "2300639": {
+    "name": "無情的警衛",
+    "isBoss": false
+  },
+  "2300640": {
+    "name": "變異實驗體",
     "isBoss": false
   },
   "2300701": {
@@ -10372,6 +10758,75 @@
   },
   "2301736": {
     "name": "None",
+    "isBoss": false
+  },
+  "2301748": {
+    "name": "傲慢亞提埃爾",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "征服",
+    "dungeonId": 600162
+  },
+  "2301749": {
+    "name": "研究所長札伊洛斯",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "征服",
+    "dungeonId": 600162
+  },
+  "2301750": {
+    "name": "監督官格羅卡斯",
+    "isBoss": true,
+    "category": "激戰",
+    "tier": "征服",
+    "dungeonId": 600162
+  },
+  "2301751": {
+    "name": "實驗體混種",
+    "isBoss": false
+  },
+  "2301752": {
+    "name": "雷帕爾團警備隊長",
+    "isBoss": false
+  },
+  "2301753": {
+    "name": "雷帕爾團警備隊員",
+    "isBoss": false
+  },
+  "2301754": {
+    "name": "基地研究員",
+    "isBoss": false
+  },
+  "2301755": {
+    "name": "雷帕爾團首席警備隊員",
+    "isBoss": false
+  },
+  "2301756": {
+    "name": "雷帕爾團警備隊員",
+    "isBoss": false
+  },
+  "2301757": {
+    "name": "被汙染的史萊姆",
+    "isBoss": false
+  },
+  "2301758": {
+    "name": "實驗體變異體",
+    "isBoss": false
+  },
+  "2301759": {
+    "name": "實驗體捕食者",
+    "isBoss": false
+  },
+  "2301760": {
+    "name": "被汙染的靈魂癥結器",
+    "isBoss": false
+  },
+  "2301761": {
+    "name": "None",
+    "isBoss": false
+  },
+  "2301762": {
+    "name": "奧德研究室雷射",
     "isBoss": false
   },
   "2310101": {
@@ -20061,7 +20516,7 @@
     "isBoss": false
   },
   "2406011": {
-    "name": "柔順的冰凍獠牙波沙",
+    "name": "溫馴的冰凍獠牙波沙",
     "isBoss": false
   },
   "2406012": {
@@ -32159,15 +32614,15 @@
     "isBoss": false
   },
   "2921298": {
-    "name": "亞提埃爾",
+    "name": "傲慢亞提埃爾",
     "isBoss": true
   },
   "2921299": {
-    "name": "亞提埃爾",
+    "name": "傲慢亞提埃爾",
     "isBoss": true
   },
   "2921300": {
-    "name": "亞提埃爾",
+    "name": "傲慢亞提埃爾",
     "isBoss": false
   },
   "2921315": {
@@ -32195,15 +32650,15 @@
     "isBoss": false
   },
   "2921400": {
-    "name": "狙擊",
+    "name": "被實驗體狙擊",
     "isBoss": true
   },
   "2921401": {
-    "name": "狙擊",
+    "name": "被實驗體狙擊",
     "isBoss": true
   },
   "2921402": {
-    "name": "殺傷",
+    "name": "火焰彈轟炸",
     "isBoss": true
   },
   "2921409": {
@@ -32241,6 +32696,10 @@
   "2921430": {
     "name": "巴克隆尖刺束縛",
     "isBoss": true
+  },
+  "2921511": {
+    "name": "傲慢亞提埃爾",
+    "isBoss": false
   },
   "2980000": {
     "name": "大神官幻影",

@@ -5601,7 +5601,7 @@ body.legacyUi .list .item .dps .dpsContribution {
    is the subject. Same tracked-caps treatment as the meter's boss name. */
 .detailsPanel .detailsHeader .detailsFightTitle {
   font-variation-settings: "wght" 600, "wdth" 87.5;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.13em;
@@ -5629,7 +5629,7 @@ body.legacyUi .list .item .dps .dpsContribution {
   color: var(--hud-sub);
   font-family: var(--hud-tech);
   font-variation-settings: "wght" 600, "wdth" 87.5;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -5662,7 +5662,7 @@ body.legacyUi .list .item .dps .dpsContribution {
   color: var(--hud-sub);
   font-family: var(--hud-tech);
   font-variation-settings: "wght" 700, "wdth" 75;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.13em;
   transition: color 120ms ease, background 120ms ease, border-color 120ms ease;
@@ -5693,7 +5693,7 @@ body.legacyUi .list .item .dps .dpsContribution {
 .detailsPanel .detailsHeader .detailsScreenshotNote {
   font-variation-settings: "wght" 500, "wdth" 87.5;
   font-weight: 500;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.04em;
   color: var(--hud-sub);
 }
@@ -5719,7 +5719,7 @@ body.legacyUi .list .item .dps .dpsContribution {
   border-radius: 3px;
   font-variation-settings: "wght" 500, "wdth" 87.5;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 13px;
 }
 .detailsPanel .detailsHeader .detailsDropdownItem:hover {
   background: rgba(255, 255, 255, 0.08);
@@ -5737,7 +5737,7 @@ body.legacyUi .list .item .dps .dpsContribution {
   color: var(--hud-sub);
   font-family: var(--hud-tech);
   font-variation-settings: "wght" 700, "wdth" 75;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -5770,7 +5770,7 @@ body.legacyUi .list .item .dps .dpsContribution {
   margin-top: 3px;
   opacity: 1;
   font-variation-settings: "wght" 700, "wdth" 75;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -5789,7 +5789,7 @@ body.legacyUi .list .item .dps .dpsContribution {
 .detailsPanel .detailsSettings .detailsSettingsToggleLabel {
   font-variation-settings: "wght" 500, "wdth" 87.5;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.02em;
   color: rgba(255, 255, 255, 0.78);
 }
@@ -5864,12 +5864,12 @@ body.legacyUi .list .item .dps .dpsContribution {
   font-variation-settings: "wght" 600, "wdth" 87.5;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  font-size: 11.5px;
+  font-size: 12.5px;
   color: rgba(255, 255, 255, 0.82);
 }
 .detailsPanel .detailsSettings .detailsSettingsFolderPath {
   font-variation-settings: "wght" 400, "wdth" 87.5;
-  font-size: 11.5px;
+  font-size: 12.5px;
   color: var(--hud-sub);
 }
 .detailsPanel .detailsSettings .detailsSettingsFolderBtn {
@@ -5881,7 +5881,7 @@ body.legacyUi .list .item .dps .dpsContribution {
   color: rgba(255, 255, 255, 0.88);
   font-family: var(--hud-tech);
   font-variation-settings: "wght" 600, "wdth" 87.5;
-  font-size: 11.5px;
+  font-size: 12.5px;
   font-weight: 600;
   letter-spacing: 0.04em;
 }
@@ -5944,7 +5944,7 @@ body.legacyUi .list .item .dps .dpsContribution {
 }
 .detailsPanel .detailsPartyBarName {
   font-family: var(--hud-ident);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.01em;
   color: var(--hud-name);
@@ -5955,7 +5955,7 @@ body.legacyUi .list .item .dps .dpsContribution {
   font-family: var(--hud-tech);
   font-variation-settings: "wght" 600, "wdth" 87.5;
   font-variant-numeric: tabular-nums;
-  font-size: 11.5px;
+  font-size: 12.5px;
   font-weight: 600;
   opacity: 1;
   letter-spacing: 0.01em;
@@ -5967,7 +5967,7 @@ body.legacyUi .list .item .dps .dpsContribution {
 .detailsPanel .detailsPartyBarPct {
   font-variation-settings: "wght" 600, "wdth" 75;
   font-weight: 600;
-  font-size: 11px;
+  font-size: 12px;
   opacity: 1;
   color: var(--hud-sub);
 }
@@ -5988,7 +5988,7 @@ body.legacyUi .list .item .dps .dpsContribution {
 }
 .detailsPanel .detailsStats .stat .label {
   font-variation-settings: "wght" 600, "wdth" 75;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -6001,7 +6001,7 @@ body.legacyUi .list .item .dps .dpsContribution {
   flex: 0 0 auto;
   font-variation-settings: "wght" 700, "wdth" 87.5;
   font-variant-numeric: tabular-nums;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.01em;
   color: var(--hud-num);
@@ -6014,7 +6014,7 @@ body.legacyUi .list .item .dps .dpsContribution {
   padding: 9px 14px 7px;
   border-bottom: 0;
   font-variation-settings: "wght" 700, "wdth" 75;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -6050,7 +6050,7 @@ body.legacyUi .list .item .dps .dpsContribution {
 .detailsPanel .detailsSkills .skillHeader .cell {
   font-variation-settings: "wght" 700, "wdth" 75;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--hud-sub);
@@ -6070,7 +6070,7 @@ body.legacyUi .list .item .dps .dpsContribution {
   font-family: var(--hud-tech);
   font-variation-settings: "wght" 500, "wdth" 87.5;
   font-weight: 500;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.04em;
   text-transform: none;
   color: rgba(255, 255, 255, 0.9);
@@ -6094,7 +6094,7 @@ body.legacyUi .list .item .dps .dpsContribution {
 .detailsPanel .detailsSkills .skills .skillRow .cell {
   font-variation-settings: "wght" 500, "wdth" 87.5;
   font-weight: 500;
-  font-size: 0.8em;
+  font-size: 0.875em;
   letter-spacing: 0.01em;
   color: rgba(255, 255, 255, 0.72);
 }
@@ -6149,9 +6149,12 @@ body.legacyUi .list .item .dps .dpsContribution {
   margin-right: 5px;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.75));
 }
+/* Nested inside the row cell's own 0.875em, so this multiplier compounds:
+   0.875 × 0.92 = 0.805em of the panel font. details.js measures the name
+   column with the same product — keep the two in step. */
 .detailsPanel .detailsSkills .cell.name .skillNameText {
   font-family: var(--hud-ident);
-  font-size: 0.84em;
+  font-size: 0.92em;
   letter-spacing: 0.01em;
   color: var(--hud-name);
 }
@@ -6180,7 +6183,7 @@ body.legacyUi .list .item .dps .dpsContribution {
 .detailsPanel .detailsSkills .detailsFootnote {
   padding: 7px 14px 2px;
   font-variation-settings: "wght" 400, "wdth" 87.5;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.4;
   opacity: 1;
@@ -6196,7 +6199,7 @@ body.legacyUi .list .item .dps .dpsContribution {
 .detailsPanel .timelineLegend .legendItem {
   font-variation-settings: "wght" 600, "wdth" 87.5;
   font-weight: 600;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.04em;
   color: rgba(255, 255, 255, 0.8);
 }
@@ -6205,7 +6208,7 @@ body.legacyUi .list .item .dps .dpsContribution {
   font-variation-settings: "wght" 500, "wdth" 75;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.06em;
   color: var(--hud-faint);
 }
