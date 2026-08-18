@@ -167,6 +167,7 @@
     },
     "showPing": "Show ping",
     "showTotalDps": "Show total DPS/DMG",
+    "roundDps": "Round DPS",
     "autoHideMeter": "Auto-hide meter",
     "showSuspendBtn": "Show suspend button",
     "playerLimit": {

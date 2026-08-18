@@ -165,6 +165,7 @@
     },
     "showPing": "핑 표시",
     "showTotalDps": "총 DPS/DMG 표시",
+    "roundDps": "DPS 반올림",
     "autoHideMeter": "미터 자동 숨기기",
     "showSuspendBtn": "일시정지 버튼 표시",
     "playerLimit": {

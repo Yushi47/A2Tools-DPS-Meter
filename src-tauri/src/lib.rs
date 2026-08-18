@@ -118,9 +118,23 @@ fn get_settings(state: tauri::State<'_, AppState>) -> std::collections::HashMap<
     state.settings.get_all()
 }
 
+/// Store a setting and tell every window about it.
+///
+/// Settings are edited in their own window, so without this broadcast the meter
+/// keeps rendering with whatever it read at startup — toggling something like
+/// "Round DPS" would appear to do nothing until the app restarted. Only real
+/// changes are emitted (see `Settings::set`), so the originating window's echo
+/// stops here rather than bouncing between windows.
 #[tauri::command]
-fn update_settings(state: tauri::State<'_, AppState>, key: String, value: String) {
-    state.settings.set(&key, &value);
+fn update_settings(
+    app: tauri::AppHandle,
+    state: tauri::State<'_, AppState>,
+    key: String,
+    value: String,
+) {
+    if state.settings.set(&key, &value) {
+        let _ = app.emit("setting-changed", serde_json::json!({ "key": key, "value": value }));
+    }
 }
 
 #[tauri::command]

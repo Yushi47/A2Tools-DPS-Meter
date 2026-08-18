@@ -741,8 +741,11 @@ html:lang(zh-Hant), html:lang(zh-Hant) body {
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.8));
 }
 
+/* Sized to its text, not to the free space, so the combat power that follows
+   sits against the name instead of being pushed out to the readout. Still
+   shrinks (and ellipsises) first when the row runs out of room. */
 .list .item .name {
-  flex: 1;
+  flex: 0 1 auto;
   min-width: 0;
   font-family: var(--hud-ident);
   font-size: 14.5px;
@@ -769,6 +772,10 @@ html:lang(zh-Hant), html:lang(zh-Hant) body {
   display: flex;
   align-items: baseline;
   gap: 7px;
+  /* Holds the readout against the right edge now that the name no longer grows
+     to fill the row. Independent of the combat power, which is absent for
+     anyone outside your party. */
+  margin-left: auto;
   margin-right: -8px;
   padding: 0 8px 0 18px;
   background: linear-gradient(
@@ -789,12 +796,62 @@ html:lang(zh-Hant), html:lang(zh-Hant) body {
   letter-spacing: 0.01em;
   color: var(--hud-num);
 }
+/* Share of party damage. Brighter than the other secondary text on the row:
+   it is a number people read at a glance mid-fight, and at 11px over the
+   moving bar the muted --hud-sub grey was hard to pick out. */
 .list .item .dps .dpsContribution {
   font-variation-settings: "wght" 600, "wdth" 75;
   font-size: 11px;
-  color: var(--hud-sub);
+  color: rgba(255, 255, 255, 0.88);
   min-width: 34px;
   text-align: right;
+}
+
+/* Party combat power in thousands ("864k"), sat between the name and the
+   readout. Cyan sets it apart
+   as a different kind of number from the white DPS figure — it is reference
+   information about the player, not something that moves during a fight — and
+   it holds its own width so the name ellipsis never fights it for space. Only
+   rendered for players the party roster packet covers. */
+.list .item .combatPower {
+  flex: 0 0 auto;
+  /* Pulls back against the row's 7px flex gap so the figure reads as part of
+     the name rather than as the leading edge of the DPS readout. */
+  margin-left: -3px;
+  font-family: var(--hud-tech);
+  font-variant-numeric: tabular-nums;
+  font-variation-settings: "wght" 600, "wdth" 75;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  /* The cyan the game itself uses for combat power, so the number reads as the
+     same stat players already know from the character sheet. */
+  color: #78f2fb;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+  white-space: nowrap;
+  /* Optical centring against the name. The row centres flex items by their
+     boxes, but the name is Pretendard and this is Bahnschrift at a smaller
+     size, and the two fonts put their baselines at different fractions of the
+     box — measured live, that left this number's cap-height midpoint 1.5px
+     above the name's. Nudged rather than baseline-aligned so it centres on the
+     name instead of sitting on its baseline. `relative` keeps it out of layout. */
+  position: relative;
+  top: 1.5px;
+}
+/* A CJK name renders from a different font stack at a different size, which
+   moves the target: measured, the same nudge overshoots by 1px there. The
+   combat power is always the name's next sibling, so it can be corrected
+   per-row without the JS having to know. */
+.list .item .name.isCjk + .combatPower {
+  top: 0.5px;
+}
+.meter.slim .list .item .combatPower {
+  font-size: 9px;
+  /* Same correction at the slim type scale (11.5px name / 9px figure). */
+  top: 1px;
+}
+.meter.slim .list .item .name.isCjk + .combatPower {
+  top: 0.5px;
 }
 
 .meter .item.isIdentifying .content .name {
@@ -4671,7 +4728,7 @@ body.legacyUi .list .item .classIcon .classIconImg {
   height: 100%;
 }
 body.legacyUi .list .item .name {
-  flex: 1;
+  flex: 0 1 auto;
   color: var(--text-color);
   font-size: 18px;
   text-shadow: var(--player-name-shadow, var(--text-shadow));

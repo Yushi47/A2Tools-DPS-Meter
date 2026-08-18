@@ -165,6 +165,7 @@
     },
     "showPing": "顯示延遲",
     "showTotalDps": "顯示總DPS/DMG",
+    "roundDps": "DPS取整",
     "autoHideMeter": "自動隱藏面板",
     "showSuspendBtn": "顯示暫停按鈕",
     "playerLimit": {

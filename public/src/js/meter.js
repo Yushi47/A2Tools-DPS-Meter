@@ -58,6 +58,12 @@ const createMeterUI = ({
     const nameEl = document.createElement("div");
     nameEl.className = "name";
 
+    // Party combat power, shown beside the name. Hidden unless the party roster
+    // packet supplied a value for this player.
+    const combatPowerEl = document.createElement("span");
+    combatPowerEl.className = "combatPower";
+    combatPowerEl.style.display = "none";
+
     const dpsContainer = document.createElement("div");
     const dpsNumber = document.createElement("p");
     dpsContainer.className = "dps";
@@ -70,6 +76,7 @@ const createMeterUI = ({
     contentEl.appendChild(rankEl);
     contentEl.appendChild(classIconEl);
     contentEl.appendChild(nameEl);
+    contentEl.appendChild(combatPowerEl);
     contentEl.appendChild(dpsContainer);
     rowEl.appendChild(fillTrackEl);
     rowEl.appendChild(contentEl);
@@ -79,6 +86,7 @@ const createMeterUI = ({
       rowEl,
       prevContribClass: "",
       nameEl,
+      combatPowerEl,
       rankEl,
       dpsContainer,
       classIconEl,
@@ -90,6 +98,7 @@ const createMeterUI = ({
       lastSeenAt: 0,
       isVisible: false,
       lastNameText: "",
+      lastCombatPowerText: "",
       lastIsCjk: false,
       lastMetricText: "",
       lastContributionText: "",
@@ -267,6 +276,24 @@ const createMeterUI = ({
       if (view.lastIsCjk !== isCjk) {
         view.nameEl.classList.toggle("isCjk", isCjk);
         view.lastIsCjk = isCjk;
+      }
+
+      // Combat power sits beside the name, abbreviated to thousands the way
+      // players quote it — 889,100 reads as "889k", 889,545 as "890k". The
+      // exact figure stays on the row for the details panel. Below 500 the
+      // abbreviation would collapse to "0k", so show the raw number there.
+      const combatPower = Number(row.combatPower) || 0;
+      const combatPowerK = Math.round(combatPower / 1000);
+      const combatPowerText =
+        combatPower <= 0
+          ? ""
+          : combatPowerK > 0
+            ? `${combatPowerK.toLocaleString()}k`
+            : combatPower.toLocaleString();
+      if (view.lastCombatPowerText !== combatPowerText) {
+        view.combatPowerEl.textContent = combatPowerText;
+        view.combatPowerEl.style.display = combatPowerText ? "" : "none";
+        view.lastCombatPowerText = combatPowerText;
       }
 
       if (row.job && !!row.job) {

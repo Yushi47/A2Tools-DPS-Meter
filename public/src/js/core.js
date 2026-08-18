@@ -1,3 +1,15 @@
+// Settings whose change in the Settings window must redraw the meter, mapped to
+// the control that applies them. See DpsApp.applyRemoteSettingChange().
+const REMOTE_APPLIED_SETTING_CONTROLS = {
+  "dpsMeter.roundDps": ".roundDpsCheckbox",
+  "dpsMeter.showTotalDps": ".showTotalDpsCheckbox",
+  "dpsMeter.pinMeToTop": ".pinMeToTopCheckbox",
+  "dpsMeter.mainPlayerNamesBold": ".playerNamesBoldCheckbox",
+  "dpsMeter.mainPlayerDpsBold": ".playerDpsBoldCheckbox",
+  "dpsMeter.showPing": ".showPingCheckbox",
+  "dpsMeter.bossNameSize": ".bossNameSizeInput",
+};
+
 class DpsApp {
   constructor() {
     if (DpsApp.instance) return DpsApp.instance;
@@ -39,6 +51,7 @@ class DpsApp {
       mainPlayerDpsBold: "dpsMeter.mainPlayerDpsBold",
       showPing: "dpsMeter.showPing",
       showTotalDps: "dpsMeter.showTotalDps",
+      roundDps: "dpsMeter.roundDps",
       playerLimit: "dpsMeter.playerLimit",
       theme: "dpsMeter.theme",
       slimMode: "dpsMeter.slimMode",
@@ -330,6 +343,8 @@ class DpsApp {
     this._pingTimer = setInterval(() => this.updatePing(), 30000);
 
     this.showTotalDps = this.safeGetSetting(this.storageKeys.showTotalDps) !== "false";
+    // Defaults on: `!== "false"` treats "never set" as enabled.
+    this.roundDps = this.safeGetSetting(this.storageKeys.roundDps) !== "false";
     this.meterTotalBar = document.querySelector(".meterTotalBar");
     this.meterTotalDpsEl = document.querySelector(".meterTotalDps");
     this.meterTotalDmgEl = document.querySelector(".meterTotalDmg");
@@ -1119,6 +1134,10 @@ class DpsApp {
         continue;
       }
 
+      // Combat power comes from the party roster packet, so it only exists for
+      // players actually in your party; 0 means "unknown", not "zero CP".
+      const combatPower = Math.trunc(Number(isObj ? value.combatPower : 0)) || 0;
+
       rows.push({
         id: String(id),
         name,
@@ -1126,6 +1145,7 @@ class DpsApp {
         dps,
         totalDamage,
         damageContribution,
+        combatPower,
         isUser: name === this.USER_NAME,
         isIdentifying,
       });
@@ -2056,6 +2076,15 @@ class DpsApp {
       this.showTotalDpsCheckbox.addEventListener("change", (event) => {
         this.showTotalDps = !!event.target?.checked;
         this.safeSetSetting(this.storageKeys.showTotalDps, String(this.showTotalDps));
+        this.renderCurrentRows();
+      });
+    }
+    this.roundDpsCheckbox = document.querySelector(".roundDpsCheckbox");
+    if (this.roundDpsCheckbox) {
+      this.roundDpsCheckbox.checked = this.roundDps;
+      this.roundDpsCheckbox.addEventListener("change", (event) => {
+        this.roundDps = !!event.target?.checked;
+        this.safeSetSetting(this.storageKeys.roundDps, String(this.roundDps));
         this.renderCurrentRows();
       });
     }
@@ -3826,6 +3855,21 @@ class DpsApp {
     return this.dpsFormatter.format(n);
   }
 
+  // DPS to the nearest thousand: 1,012,326 reads as "1,012k", 554,874 as "555k".
+  // Same rule as the combat power beside the name, so the two numbers on a row
+  // are at the same precision. Below 500 the abbreviation would collapse to
+  // "0k", so show the raw figure there instead. Turned off by the "Round DPS"
+  // setting, which falls back to the exact figure.
+  formatDpsThousands(value) {
+    const n = Number(value);
+    if (!Number.isFinite(n)) return "-";
+    if (!this.roundDps) return this.dpsFormatter.format(Math.round(n));
+    const thousands = Math.round(n / 1000);
+    return thousands > 0
+      ? `${this.dpsFormatter.format(thousands)}k`
+      : this.dpsFormatter.format(Math.round(n));
+  }
+
   refreshDamageData({ reason = "refresh" } = {}) {
     this.refreshPending = true;
     this.refreshPendingStartedAt = this.nowMs();
@@ -3865,6 +3909,40 @@ class DpsApp {
     this.logDebug(`Damage data refreshed (${reason}).`);
   }
 
+  // Settings are edited in a separate window, so this window has to be told
+  // when one changes or it keeps rendering with the value it read at startup.
+  //
+  // Every window loads the same document, so the control for the setting exists
+  // here too, already wired to the handler that applies it. Rather than
+  // duplicate that logic, set the control to the incoming value and fire the
+  // same event a click would — one code path for local and remote changes.
+  //
+  // Only the options that change what the meter draws are listed. Custom
+  // dropdowns (theme, layout, player limit) are not native inputs and need
+  // their own handling, so they are deliberately absent.
+  applyRemoteSettingChange(key, value) {
+    const selector = REMOTE_APPLIED_SETTING_CONTROLS[key];
+    if (!selector) return;
+    const control = document.querySelector(selector);
+    if (!control) return;
+
+    // Bail when the value already matches — this is what stops the echo. The
+    // handler below writes the setting straight back, and the backend only
+    // broadcasts real changes, so the round trip ends here.
+    if (control.type === "checkbox") {
+      const next = value !== "false";
+      if (control.checked === next) return;
+      control.checked = next;
+    } else {
+      if (String(control.value) === String(value)) return;
+      control.value = value;
+    }
+    control.dispatchEvent(new Event("change", { bubbles: true }));
+    if (control.type === "range") {
+      control.dispatchEvent(new Event("input", { bubbles: true }));
+    }
+  }
+
   getMetricForRow(row) {
     if (this.displayMode === "totalDamage") {
       const totalDamage = Number(row?.totalDamage) || 0;
@@ -3876,7 +3954,7 @@ class DpsApp {
     const dps = Number(row?.dps) || 0;
     return {
       value: dps,
-      text: `${this.dpsFormatter.format(dps)}${this.i18n?.t("meter.dpsSuffix", "/s") ?? "/s"}`,
+      text: `${this.formatDpsThousands(dps)}${this.i18n?.t("meter.dpsSuffix", "/s") ?? "/s"}`,
     };
   }
 
@@ -3890,7 +3968,9 @@ class DpsApp {
     const totalDps = rows.reduce((sum, r) => sum + (Number(r?.dps) || 0), 0);
     this.meterTotalBar.style.display = "";
     if (this.meterTotalDpsEl) {
-      this.meterTotalDpsEl.textContent = `${this.dpsFormatter.format(totalDps)}${this.i18n?.t("meter.dpsSuffix", "/s") ?? "/s"}`;
+      // Matches the per-row readout directly above it; a full-precision total
+      // over abbreviated rows reads as two different units.
+      this.meterTotalDpsEl.textContent = `${this.formatDpsThousands(totalDps)}${this.i18n?.t("meter.dpsSuffix", "/s") ?? "/s"}`;
     }
     if (this.meterTotalDmgEl) {
       this.meterTotalDmgEl.textContent = this.formatAbbreviatedNumber(totalDmg);

@@ -158,6 +158,18 @@
     cachedCaptureStatus = event.payload;
   });
 
+  // Settings live in their own window, so a change there has to reach the meter.
+  // Refresh the local cache and hand the app the key so it can re-apply just
+  // that option — see applyRemoteSettingChange() in core.js.
+  listen("setting-changed", (event) => {
+    const key = event?.payload?.key;
+    const value = event?.payload?.value;
+    if (typeof key !== "string") return;
+    settingsCache[key] = String(value);
+    try { localStorage.setItem(key, String(value)); } catch {}
+    window._dpsApp?.applyRemoteSettingChange?.(key, String(value));
+  });
+
   listen("npcap-missing", () => {
     const msg = "Npcap is required for packet capture but is not installed.\n\nWould you like to download it now?";
     if (confirm(msg)) {
